@@ -1,5 +1,5 @@
 ---
-title: Projectus
+title: "Projectus"
 parts:
 - translation:
     key: "application.name"
@@ -171,8 +171,54 @@ parts:
     title: "Content of the save preference error dialog"
     value: "Unable to save preferences"
     variants: {}
-
-
+- translation:
+    key: "preferences.tasks.title"
+    title: "Title for tasks tab in preferences"
+    value: "Tasks"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.title"
+    title: "Sizing preferences label"
+    value: "Task sizing"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.description"
+    title: "Description label for task sizing"
+    value: "Estimate values for task t-shirt sizes"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.xs"
+    title: "Extra small task label"
+    value: "XS"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.s"
+    title: "Small task label"
+    value: "S"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.m"
+    title: "Medium task label"
+    value: "M"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.l"
+    title: "Large task label"
+    value: "L"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.xl"
+    title: "Extra large task label"
+    value: "XL"
+    variants: {}
+- translation:
+    key: "preferences.actions.cancel"
+    title: "Label for cancel preferences button"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "preferences.actions.save"
+    title: "Label for preference save button"
+    value: "Save"
+    variants: {}
 sourceLanguage: "en"
-targetLanguages:
-- "fr"

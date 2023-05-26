@@ -70,10 +70,34 @@ public class PreferencesController implements Initializable {
     }
     
     /**
-     * Example setting text field.
+     * Extra small size text field.
      */
     @FXML
-    public TextField exampleSettingTextField;
+    public TextField extraSmallSizeTextField;
+    
+    /**
+     * Small size text field.
+     */
+    @FXML
+    public TextField smallSizeTextField;
+    
+    /**
+     * Medium size text field.
+     */
+    @FXML
+    public TextField mediumSizeTextField;
+    
+    /**
+     * Large size text field.
+     */
+    @FXML
+    public TextField largeSizeTextField;
+    
+    /**
+     * Extra large size text field.
+     */
+    @FXML
+    public TextField extraLargeSizeTextField;
     
     /**
      * Cancel preferences button.
@@ -106,7 +130,21 @@ public class PreferencesController implements Initializable {
      * @param doc 
      */
     private void mapPreferencesToWindow(Preferences prefs) {
-        exampleSettingTextField.setText(prefs.getExampleSetting());
+        extraSmallSizeTextField.setText(
+                String.valueOf(prefs.getExtraSmallTaskSize())
+        );
+        smallSizeTextField.setText(
+                String.valueOf(prefs.getSmallTaskSize())
+        );
+        mediumSizeTextField.setText(
+                String.valueOf(prefs.getMediumTaskSize())
+        );
+        largeSizeTextField.setText(
+                String.valueOf(prefs.getLargeTaskSize())
+        );
+        extraLargeSizeTextField.setText(
+                String.valueOf(prefs.getExtraLargeTaskSize())
+        );
     }
     
     /**
@@ -117,7 +155,11 @@ public class PreferencesController implements Initializable {
     private Preferences mapWindowToPreferences() {
         Preferences p = new Preferences();
         
-        p.setExampleString(exampleSettingTextField.getText());
+        p.setExtraSmallSize(extraSmallSizeTextField.getText());
+        p.setSmallSize(smallSizeTextField.getText());
+        p.setMediumSize(mediumSizeTextField.getText());
+        p.setLargeSize(largeSizeTextField.getText());
+        p.setExtraLargeSize(extraLargeSizeTextField.getText());
         
         return p;
     }

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * In memory representation of file.
@@ -24,6 +25,9 @@ public class Document {
      */
     @JsonInclude(Include.NON_NULL)
     private Preferences preferences;
+    
+    @JsonInclude(Include.NON_NULL)
+    private ArrayList<Project> projects;
     
     /**
      * Loads file from disk.
@@ -50,6 +54,35 @@ public class Document {
         doc.setFile(f);
         
         return doc;
+    }
+    
+    /**
+     * Creates a project of the given name.
+     * 
+     * @param name 
+     */
+    public void createProject(String name) {
+        addProject(
+                new Project(name)
+        );
+    }
+    
+    /**
+     * Adds a project to the document.
+     * 
+     * @param p 
+     */
+    public void addProject(Project p) {
+        projects.add(p);
+    }
+    
+    /**
+     * Removes a project from the document.
+     * 
+     * @param p 
+     */
+    public void removeProject(Project p) {
+        projects.remove(p);
     }
     
     /**
@@ -87,6 +120,15 @@ public class Document {
 
         return preferences;
     }
+    
+    /**
+     * Getter for projects.
+     * 
+     * @return 
+     */
+    public ArrayList<Project> getProjects() {
+        return projects;
+    }
 
     /**
      * Setter for file.
@@ -104,6 +146,15 @@ public class Document {
      */
     public void setPreferences(Preferences value) {
         preferences = value;
+    }
+    
+    /**
+     * Setter for projects.
+     * 
+     * @param value 
+     */
+    public void setProjects(ArrayList<Project> value) {
+        projects = value;
     }
 
 }
