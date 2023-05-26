@@ -26,8 +26,29 @@ public class Document {
     @JsonInclude(Include.NON_NULL)
     private Preferences preferences;
     
+    /**
+     * Project title
+     */
     @JsonInclude(Include.NON_NULL)
-    private ArrayList<Epic> projects;
+    private String title;
+    
+    /**
+     * Project start date
+     */
+    @JsonInclude(Include.NON_NULL)
+    private long start;
+    
+    /**
+     * Project end date
+     */
+    @JsonInclude(Include.NON_NULL)
+    private long end;
+    
+    /**
+     * Document epics
+     */
+    @JsonInclude(Include.NON_NULL)
+    private ArrayList<Epic> epics;
     
     /**
      * Loads file from disk.
@@ -61,8 +82,8 @@ public class Document {
      * 
      * @param name 
      */
-    public void createProject(String name) {
-        addProject(
+    public void createEpic(String name) {
+        addEpic(
                 new Epic(name)
         );
     }
@@ -72,8 +93,8 @@ public class Document {
      * 
      * @param p 
      */
-    public void addProject(Epic p) {
-        projects.add(p);
+    public void addEpic(Epic p) {
+        epics.add(p);
     }
     
     /**
@@ -81,8 +102,8 @@ public class Document {
      * 
      * @param p 
      */
-    public void removeProject(Epic p) {
-        projects.remove(p);
+    public void removeEpic(Epic p) {
+        epics.remove(p);
     }
     
     /**
@@ -122,12 +143,43 @@ public class Document {
     }
     
     /**
-     * Getter for projects.
+     * Getter for project title.
      * 
      * @return 
      */
-    public ArrayList<Epic> getProjects() {
-        return projects;
+    public String getTitle() {
+        if (title == null) {
+            return "";
+        }
+
+        return title;
+    }
+    
+    /**
+     * Getter for project start date.
+     * 
+     * @return 
+     */
+    public long getStart() {
+        return start;
+    }
+    
+    /**
+     * Getter for project end date.
+     * 
+     * @return 
+     */
+    public long getEnd() {
+        return end;
+    }
+    
+    /**
+     * Getter for project epics.
+     * 
+     * @return 
+     */
+    public ArrayList<Epic> getEpics() {
+        return epics;
     }
 
     /**
@@ -149,12 +201,39 @@ public class Document {
     }
     
     /**
-     * Setter for projects.
+     * Setter for project title.
      * 
      * @param value 
      */
-    public void setProjects(ArrayList<Epic> value) {
-        projects = value;
+    public void setTitle(String value) {
+        title = value;
+    }
+    
+    /**
+     * Setter for project start date.
+     * 
+     * @param value 
+     */
+    public void setStart(long value) {
+        start = value;
+    }
+    
+    /**
+     * Setter for project end date.
+     * 
+     * @param value 
+     */
+    public void setEnd(long value) {
+        end = value;
+    }
+    
+    /**
+     * Setter for project epics.
+     * 
+     * @param value 
+     */
+    public void setEpics(ArrayList<Epic> value) {
+        epics = value;
     }
 
 }

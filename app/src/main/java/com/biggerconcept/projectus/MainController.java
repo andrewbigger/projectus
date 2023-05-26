@@ -3,6 +3,7 @@ package com.biggerconcept.projectus;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
 import com.biggerconcept.projectus.platform.OperatingSystem;
+import com.biggerconcept.projectus.ui.Date;
 import com.biggerconcept.projectus.ui.dialogs.ErrorAlert;
 import com.biggerconcept.projectus.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.projectus.ui.dialogs.SaveFileDialog;
@@ -20,6 +21,8 @@ import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -84,6 +87,25 @@ public class MainController implements Initializable {
     public Button newFileButton;
     
     /**
+     * Project title text box.
+     * 
+     */
+    @FXML
+    public TextField projectNameTextField;
+    
+    /**
+     * Project start date picker.
+     */
+    @FXML
+    public DatePicker projectStartDatePicker;
+    
+    /**
+     * Project end date picker.
+     */
+    @FXML
+    public DatePicker projectEndDatePicker;
+    
+    /**
      * Initializes the main window.
      * 
      * @param url
@@ -142,7 +164,10 @@ public class MainController implements Initializable {
      */
     private void mapDocumentToWindow(Document doc) {
         applyPreferencesToWindow();
-        // TODO: map document to window
+        
+        projectNameTextField.setText(doc.getTitle());
+        projectStartDatePicker.setValue(Date.fromEpoch(doc.getStart()));
+        projectEndDatePicker.setValue(Date.fromEpoch(doc.getEnd()));
     }
     
     /**
@@ -153,13 +178,18 @@ public class MainController implements Initializable {
     }
     
     /**
-     * Maps window content to new document object for serialization.
+     * Maps window content to current document object for serialization.
      * 
      * @return 
      */
-    private Document mapWindowToDocument() {
-        // TODO: map window to document
-        return new Document();
+    private void mapWindowToDocument() {      
+        currentDocument.setTitle(projectNameTextField.getText());
+        
+        currentDocument.setStart(
+                Date.toEpoch(projectStartDatePicker.getValue())
+        );
+        
+        currentDocument.setEnd(Date.toEpoch(projectEndDatePicker.getValue()));
     }
     
     /**
@@ -220,6 +250,8 @@ public class MainController implements Initializable {
     @FXML
     private void handleSaveDocument() {
         try {
+            mapWindowToDocument();
+
             if (currentDocument.getFile() == null) {
                 File f = SaveFileDialog.show(
                         bundle.getString("dialogs.save.title"),

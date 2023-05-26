@@ -221,4 +221,24 @@ parts:
     title: "Label for preference save button"
     value: "Save"
     variants: {}
+- translation:
+    key: "project.label"
+    title: "Label for project title"
+    value: "Project"
+    variants: {}
+- translation:
+    key: "project.startDate"
+    title: "Label for start date control"
+    value: "Start date:"
+    variants: {}
+- translation:
+    key: "project.endDate"
+    title: "Label for end date"
+    value: "End date:"
+    variants: {}
+- translation:
+    key: "project.timeframe"
+    title: "Timeframe controls label"
+    value: "Timeframe"
+    variants: {}
 sourceLanguage: "en"
