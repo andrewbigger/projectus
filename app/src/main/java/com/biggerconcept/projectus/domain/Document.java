@@ -27,7 +27,7 @@ public class Document {
     private Preferences preferences;
     
     @JsonInclude(Include.NON_NULL)
-    private ArrayList<Project> projects;
+    private ArrayList<Epic> projects;
     
     /**
      * Loads file from disk.
@@ -63,7 +63,7 @@ public class Document {
      */
     public void createProject(String name) {
         addProject(
-                new Project(name)
+                new Epic(name)
         );
     }
     
@@ -72,7 +72,7 @@ public class Document {
      * 
      * @param p 
      */
-    public void addProject(Project p) {
+    public void addProject(Epic p) {
         projects.add(p);
     }
     
@@ -81,7 +81,7 @@ public class Document {
      * 
      * @param p 
      */
-    public void removeProject(Project p) {
+    public void removeProject(Epic p) {
         projects.remove(p);
     }
     
@@ -126,7 +126,7 @@ public class Document {
      * 
      * @return 
      */
-    public ArrayList<Project> getProjects() {
+    public ArrayList<Epic> getProjects() {
         return projects;
     }
 
@@ -153,7 +153,7 @@ public class Document {
      * 
      * @param value 
      */
-    public void setProjects(ArrayList<Project> value) {
+    public void setProjects(ArrayList<Epic> value) {
         projects = value;
     }
 

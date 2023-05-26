@@ -9,12 +9,12 @@ import java.util.ArrayList;
  * 
  * @author Andrew Bigger
  */
-public class Project {
-    // Project name
+public class Epic {
+    // Epic name
     @JsonInclude(Include.NON_NULL)
     private String name;
     
-    // Project tasks
+    // Epic tasks
     @JsonInclude(Include.NON_NULL)
     private ArrayList<Task> tasks;
     
@@ -23,7 +23,7 @@ public class Project {
      * 
      * @param name 
      */
-    public Project(String name) {
+    public Epic(String name) {
         this.name = name;
         this.tasks = new ArrayList<>();
     }
