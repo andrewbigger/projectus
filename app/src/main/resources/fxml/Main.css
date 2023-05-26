@@ -1,0 +1,25 @@
+.main-toolbar-button {
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#openFileButton {
+  -fx-background-image:url('../icons/OpenFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#saveFileButton {
+  -fx-background-image: url('../icons/SaveFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#newFileButton {
+  -fx-background-image: url('../icons/NewFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}

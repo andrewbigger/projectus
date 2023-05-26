@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="901.0" prefHeight="800.0" prefWidth="1500.0" stylesheets="Main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.MainController">
+   <top>
+      <BorderPane prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <center>
+            <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                  <Button id="newFileButton" fx:id="newFileButton" mnemonicParsing="false" onMouseClicked="#handleCreateNewDocument" prefHeight="55.0" prefWidth="55.0" />
+                  <Button id="openFileButton" fx:id="openFileButton" mnemonicParsing="false" onMouseClicked="#handleOpenDocument" prefHeight="55.0" prefWidth="55.0" />
+                  <Button id="saveFileButton" fx:id="saveFileButton" mnemonicParsing="false" onMouseClicked="#handleSaveDocument" prefHeight="55.0" prefWidth="55.0" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="9.0" />
+              </items>
+            </ToolBar>
+         </center>
+         <right>
+            <ToolBar prefHeight="71.0" prefWidth="177.0" BorderPane.alignment="CENTER" />
+         </right>
+         <top>
+            <MenuBar fx:id="mainMenu" BorderPane.alignment="CENTER">
+              <menus>
+                <Menu fx:id="fileMenu" mnemonicParsing="false" text="%menu.file.label">
+                  <items>
+                        <MenuItem fx:id="newMenuItem" mnemonicParsing="false" onAction="#handleCreateNewDocument" text="%menu.file.new">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="N" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="openMenuItem" mnemonicParsing="false" onAction="#handleOpenDocument" text="%menu.file.open">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="O" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="saveMenuItem" mnemonicParsing="false" onAction="#handleSaveDocument" text="%menu.file.save">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="preferencesMenuItem" mnemonicParsing="false" onAction="#handleOpenPreferencesDialog" text="%menu.file.preferences">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="COMMA" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" onAction="#handleApplicationExit" text="%menu.file.quit">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="F4" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="%menu.edit.title">
+                    <items>
+                        <MenuItem id="editUndoMenuItem" fx:id="editUndoMenuItem" mnemonicParsing="false" text="%menu.edit.undo">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="Z" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem id="editCutMenuItem" fx:id="editCutMenuItem" mnemonicParsing="false" text="%menu.edit.cut">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="X" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem id="editCopyMenuItem" fx:id="editCopyMenuItem" mnemonicParsing="false" text="%menu.edit.copy">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="C" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem id="editPasteMenu" fx:id="editPasteMenu" mnemonicParsing="false" text="%menu.edit.paste">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="V" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                            </accelerator>
+                        </MenuItem>
+                    </items>
+                </Menu>
+                <Menu fx:id="helpMenu" mnemonicParsing="false" text="%menu.help.title">
+                  <items>
+                    <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#handleOpenAboutDialog" text="%menu.help.about">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="SLASH" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                    </MenuItem>
+                    <MenuItem fx:id="viewHelpMenuItem" mnemonicParsing="false" onAction="#handleViewHelp" text="%menu.help.view">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="H" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator>
+                    </MenuItem>
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+      </BorderPane>
+   </top>
+</BorderPane>
