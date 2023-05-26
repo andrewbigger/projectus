@@ -94,6 +94,10 @@ public class Document {
      * @param p 
      */
     public void addEpic(Epic p) {
+        if (epics == null) {
+            epics = new ArrayList<>();
+        }
+
         epics.add(p);
     }
     
@@ -179,6 +183,10 @@ public class Document {
      * @return 
      */
     public ArrayList<Epic> getEpics() {
+        if (epics == null) {
+            return new ArrayList<>();
+        }
+        
         return epics;
     }
 

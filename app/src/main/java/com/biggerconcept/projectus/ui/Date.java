@@ -32,6 +32,10 @@ public class Date {
      * @return 
      */
     public static long toEpoch(LocalDate date) {
+        if (date == null) {
+            return 0;
+        }
+
         return date.toEpochDay();
     }
 }

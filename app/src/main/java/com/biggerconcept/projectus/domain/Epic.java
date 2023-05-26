@@ -19,7 +19,15 @@ public class Epic {
     private ArrayList<Task> tasks;
     
     /**
-     * Constructor for project.
+     * Default constructor.
+     */
+    public Epic() {
+        this.name = "";
+        this.tasks = new ArrayList<>();
+    }
+    
+    /**
+     * Constructor for epic with name.
      * 
      * @param name 
      */

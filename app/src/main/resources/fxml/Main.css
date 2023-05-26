@@ -23,3 +23,31 @@
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
 }
+
+#addEpicButton {
+  -fx-background-image: url('../icons/AddIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#removeEpicButton {
+  -fx-background-image: url('../icons/RemoveIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#moveEpicUpButton {
+  -fx-background-image: url('../icons/MoveUpIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#moveEpicDownButton {
+  -fx-background-image: url('../icons/MoveDownIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}

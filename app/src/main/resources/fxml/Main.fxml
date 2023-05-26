@@ -9,6 +9,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.input.KeyCodeCombination?>
@@ -26,6 +28,11 @@
                   <Button id="openFileButton" fx:id="openFileButton" mnemonicParsing="false" onMouseClicked="#handleOpenDocument" prefHeight="55.0" prefWidth="55.0" />
                   <Button id="saveFileButton" fx:id="saveFileButton" mnemonicParsing="false" onMouseClicked="#handleSaveDocument" prefHeight="55.0" prefWidth="55.0" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="9.0" />
+                  <Button id="addEpicButton" fx:id="addEpicButton" mnemonicParsing="false" onMouseClicked="#handleAddEpic" prefHeight="55.0" prefWidth="55.0" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="9.0" />
+                  <Button id="removeEpicButton" fx:id="removeEpicButton" mnemonicParsing="false" onMouseClicked="#handleRemoveEpic" prefHeight="55.0" prefWidth="55.0" />
+                  <Button id="moveEpicUpButton" fx:id="moveEpicUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpicUp" prefHeight="55.0" prefWidth="55.0" />
+                  <Button id="moveEpicDownButton" fx:id="moveEpicDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpicDown" prefHeight="55.0" prefWidth="55.0" />
               </items>
             </ToolBar>
          </center>
@@ -108,7 +115,7 @@
       </BorderPane>
    </top>
    <center>
-      <SplitPane fx:id="documentSplitPane" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <SplitPane fx:id="documentSplitPane" dividerPositions="0.1341789052069426" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
             <VBox fx:id="projectInfoPanel" prefHeight="200.0" prefWidth="100.0">
                <padding>
@@ -128,14 +135,6 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label text="%project.timeframe">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
                   <Label text="%project.startDate">
                      <VBox.margin>
                         <Insets bottom="5.0" />
@@ -154,6 +153,16 @@
                   <DatePicker fx:id="projectEndDatePicker" />
                </children>
             </VBox>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <TableView fx:id="epicsTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <columns>
+                        <TableColumn minWidth="100.0" prefWidth="75.0" text="#" />
+                        <TableColumn minWidth="500.0" prefWidth="75.0" text="Name" />
+                     </columns>
+                  </TableView>
+               </center>
+            </BorderPane>
         </items>
       </SplitPane>
    </center>

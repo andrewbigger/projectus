@@ -1,12 +1,15 @@
 package com.biggerconcept.projectus;
 
 import com.biggerconcept.projectus.domain.Document;
+import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
 import com.biggerconcept.projectus.platform.OperatingSystem;
 import com.biggerconcept.projectus.ui.Date;
 import com.biggerconcept.projectus.ui.dialogs.ErrorAlert;
 import com.biggerconcept.projectus.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.projectus.ui.dialogs.SaveFileDialog;
+import com.biggerconcept.projectus.ui.dialogs.TextPrompt;
+import com.biggerconcept.projectus.ui.dialogs.YesNoPrompt;
 import java.io.File;
 import java.io.IOException;
 import javafx.scene.control.Button;
@@ -14,16 +17,25 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -106,6 +118,36 @@ public class MainController implements Initializable {
     public DatePicker projectEndDatePicker;
     
     /**
+     * Add epic to project button.
+     */
+    @FXML
+    public Button addEpicButton;
+    
+    /**
+     * Remove epic from project button.
+     */
+    @FXML
+    public Button removeEpicButton;
+    
+    /**
+     * Move epic priority up within project button.
+     */
+    @FXML
+    public Button moveEpicUpButton;
+    
+    /**
+     * Move epic priority down within project button.
+     */
+    @FXML
+    public Button moveEpicDownButton;
+    
+    /**
+     * View of epics
+     */
+    @FXML
+    public TableView epicsTableView;
+    
+    /**
      * Initializes the main window.
      * 
      * @param url
@@ -168,6 +210,31 @@ public class MainController implements Initializable {
         projectNameTextField.setText(doc.getTitle());
         projectStartDatePicker.setValue(Date.fromEpoch(doc.getStart()));
         projectEndDatePicker.setValue(Date.fromEpoch(doc.getEnd()));
+        
+        epicsTableView.setItems(
+            FXCollections.observableArrayList(currentDocument.getEpics())
+        );
+        
+        // TODO: String
+        TableColumn<Epic, String> idCol = new TableColumn<>("#");
+        TableColumn<Epic, String> nameCol = new TableColumn<>("Name");
+        
+        idCol.setSortable(false);
+        idCol.setMinWidth(100);
+        idCol.setCellValueFactory(data -> {
+            return new SimpleStringProperty(
+                    String.valueOf(
+                            currentDocument
+                                    .getEpics()
+                                    .indexOf(data.getValue()) + 1)
+            );
+        });
+        
+        nameCol.setSortable(false);
+        nameCol.setMinWidth(500);
+        nameCol.setCellValueFactory(new PropertyValueFactory("name"));
+        
+        epicsTableView.getColumns().setAll(idCol, nameCol);
     }
     
     /**
@@ -276,6 +343,143 @@ public class MainController implements Initializable {
     }
     
     /**
+     * Adds epic to project.
+     */
+    @FXML
+    private void handleAddEpic() {
+        try {
+            // TODO: Add strings:
+            String name = TextPrompt.show(
+                    "Add epic",
+                    "Please enter the name of the epic"
+            );
+            
+            currentDocument.createEpic(name);
+            mapDocumentToWindow(currentDocument);
+
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch(Exception e) {
+            // TODO: String
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    /**
+     * Removes selected epic from project.
+     */
+    @FXML
+    private void handleRemoveEpic() {
+        try {
+            ObservableList<Epic> items = epicsTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            ButtonType answer = YesNoPrompt.show(
+                    AlertType.CONFIRMATION,
+                    "Remove selected epics",
+                    "Are you sure you want to remove the selected epic?"
+            );
+            
+            if (answer == ButtonType.YES) {
+                for (Epic e: items) {
+                    currentDocument.removeEpic(e);
+                }
+            }
+            
+            mapDocumentToWindow(currentDocument);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            // TODO: String
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+        
+    }
+    
+    /**
+     * Moves selected epic up the list.
+     */
+    @FXML
+    private void handleMoveEpicUp() {
+        try {
+            ObservableList<Epic> items = epicsTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            int selectedIndex = epicsTableView
+                    .getItems()
+                    .indexOf(items.get(0));
+            
+            int targetIndex = selectedIndex - 1;
+            
+            if (targetIndex < 0) {
+                throw new NoChoiceMadeException();
+            }
+            
+            Collections.swap(
+                    currentDocument.getEpics(),
+                    selectedIndex,
+                    targetIndex
+            );
+            
+            mapDocumentToWindow(currentDocument);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            // TODO: String
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    /**
+     * Moves selected epic down the list.
+     */
+    @FXML
+    private void handleMoveEpicDown() {
+        try {
+            ObservableList<Epic> items = epicsTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            int selectedIndex = epicsTableView
+                    .getItems()
+                    .indexOf(items.get(0));
+            
+            int targetIndex = selectedIndex + 1;
+            
+            if (targetIndex > epicsTableView.getItems().size() - 1) {
+                throw new NoChoiceMadeException();
+            }
+            
+            Collections.swap(
+                    currentDocument.getEpics(),
+                    selectedIndex,
+                    targetIndex
+            );
+            
+            mapDocumentToWindow(currentDocument);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            // TODO: String
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    /**
      * Shows preference dialog.The contents of the dialog are loaded from the 
      * pane FXML.
      * 
@@ -310,6 +514,7 @@ public class MainController implements Initializable {
             
             stage.showAndWait();
         } catch (IOException e) {
+            //TODO: Add strings
             ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
         }
     }
@@ -339,6 +544,7 @@ public class MainController implements Initializable {
             
             applyPreferencesToWindow();
         } catch (IOException e) {
+            //TODO: Add string
             ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
         }
     }
@@ -352,6 +558,7 @@ public class MainController implements Initializable {
         try {
             OperatingSystem.goToUrl(App.HELP_URL);
         } catch (Exception e) {
+            //TODO: Add string
             ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
         }
     }
