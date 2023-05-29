@@ -23,8 +23,9 @@ public class Preferences {
    /**
     * Returns estimate for given task size.
     * 
-    * @param size
-    * @return 
+    * @param size task size
+    * 
+    * @return estimate as number
     */
     public int estimateFor(Size.TaskSize size) {
         switch(size) {
@@ -76,7 +77,7 @@ public class Preferences {
     /**
      * Builds a set of default preferences.
      * 
-     * @return 
+     * @return default preferences
      */
     public static Preferences defaultPreferences() {
         Preferences p = new Preferences();
@@ -93,7 +94,7 @@ public class Preferences {
     /**
      * Getter for extra small task size setting.
      * 
-     * @return 
+     * @return extra small task size
      */
     public int getExtraSmallTaskSize() {
         return extraSmallTaskSize;
@@ -102,7 +103,7 @@ public class Preferences {
     /**
      * Getter for small task size setting.
      * 
-     * @return 
+     * @return small task size
      */
     public int getSmallTaskSize() {
         return smallTaskSize;
@@ -111,7 +112,7 @@ public class Preferences {
     /**
      * Getter for medium task size setting.
      * 
-     * @return 
+     * @return medium task size
      */
     public int getMediumTaskSize() {
         return mediumTaskSize;
@@ -120,7 +121,7 @@ public class Preferences {
     /**
      * Getter for large task size setting.
      * 
-     * @return 
+     * @return large task size
      */
     public int getLargeTaskSize() {
         return largeTaskSize;
@@ -129,7 +130,7 @@ public class Preferences {
     /**
      * Getter for extra large task size setting.
      * 
-     * @return 
+     * @return extra large task size
      */
     public int getExtraLargeTaskSize() {
         return extraLargeTaskSize;
@@ -140,7 +141,7 @@ public class Preferences {
      * 
      * Parses string to integer before calling the integer based setter.
      * 
-     * @param value 
+     * @param value string integer value to set as extra small size
      */
     public void setExtraSmallSize(String value) {
         setExtraSmallSize(
@@ -151,7 +152,7 @@ public class Preferences {
     /**
      * Setter for extra small task size setting.
      * 
-     * @param value 
+     * @param value integer value to set as extra small size
      */
     public void setExtraSmallSize(int value) {
         extraSmallTaskSize = value;
@@ -162,7 +163,7 @@ public class Preferences {
      * 
      * Parses string to integer before calling the integer based setter.
      * 
-     * @param value
+     * @param value string integer value to set as small size
      */
     public void setSmallSize(String value) {
         setSmallSize(
@@ -173,7 +174,7 @@ public class Preferences {
     /**
      * Setter for small task size setting.
      * 
-     * @param value 
+     * @param value integer value to set as small size
      */
     public void setSmallSize(int value) {
         smallTaskSize = value;
@@ -184,7 +185,7 @@ public class Preferences {
      * 
      * Parses string to integer before calling the integer based setter.
      * 
-     * @param value
+     * @param value string integer value to set as medium size
      */
     public void setMediumSize(String value) {
         setMediumSize(
@@ -195,7 +196,7 @@ public class Preferences {
     /**
      * Setter for medium task size setting.
      * 
-     * @param value 
+     * @param value integer value to set as medium size
      */
     public void setMediumSize(int value) {
         mediumTaskSize = value;
@@ -206,7 +207,7 @@ public class Preferences {
      * 
      * Parses string to integer before calling the integer based setter.
      * 
-     * @param value
+     * @param value string value to set as large size
      */
     public void setLargeSize(String value) {
         setLargeSize(
@@ -217,7 +218,7 @@ public class Preferences {
     /**
      * Setter for large task size setting.
      * 
-     * @param value 
+     * @param value integer value to set as large size
      */
     public void setLargeSize(int value) {
         largeTaskSize = value;
@@ -228,7 +229,7 @@ public class Preferences {
      * 
      * Parses string to integer before calling the integer based setter.
      * 
-     * @param value
+     * @param value string value to set as extra large size
      */
     public void setExtraLargeSize(String value) {
         setExtraLargeSize(
@@ -239,7 +240,7 @@ public class Preferences {
     /**
      * Setter for extra large task size setting.
      * 
-     * @param value 
+     * @param value integer value to set as extra large size
      */
     public void setExtraLargeSize(int value) {
         extraLargeTaskSize = value;

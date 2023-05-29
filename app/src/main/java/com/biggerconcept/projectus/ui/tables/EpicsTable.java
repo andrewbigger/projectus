@@ -12,7 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * View model for epics table.
+ * View model for currentEpics table.
  * 
  * @author Andrew Bigger
  */
@@ -26,12 +26,12 @@ public class EpicsTable {
     public static final boolean SORTABLE = false;
     
     /**
-     * Width of ID column in epics table.
+     * Width of ID column in currentEpics table.
      */
     public static final int ID_COL_MIN_WIDTH = 100;
     
     /**
-     * Width of name column in epics table.
+     * Width of name column in currentEpics table.
      */
     public static final int NAME_COL_MIN_WIDTH = 350;
     
@@ -43,29 +43,33 @@ public class EpicsTable {
     /**
      * Application resource bundle.
      */
-    private ResourceBundle bundle;
+    private final ResourceBundle bundle;
     
     /**
-     * Document preferences.
+     * Document documentPreferences.
      */
-    private Preferences preferences;
+    private final Preferences documentPreferences;
     
     /**
-     * List of epics for the table.
+     * List of currentEpics for the table.
      */
-    private ArrayList<Epic> epics;
+    private final ArrayList<Epic> currentEpics;
     
     /**
-     * Constructor for epics table view model.
+     * Constructor for currentEpics table view model.
      * 
-     * @param rb
-     * @param p
-     * @param e 
+     * @param rb application resource bundle
+     * @param preferences document documentPreferences
+     * @param epics epic list
      */
-    public EpicsTable(ResourceBundle rb, Preferences p, ArrayList<Epic> e) {
+    public EpicsTable(
+            ResourceBundle rb, 
+            Preferences preferences, 
+            ArrayList<Epic> epics
+     ) {
         bundle = rb;
-        preferences = p;
-        epics = e;
+        documentPreferences = preferences;
+        currentEpics = epics;
     }
     
     /**
@@ -78,11 +82,10 @@ public class EpicsTable {
      * The column builder functions are invoked here to build columns for
      * each visible attribute.
      * 
-     * @param view 
+     * @param view table view for currentEpics
      */
     public void build(TableView view) {        
-        view.setItems(
-                FXCollections.observableArrayList(epics)
+        view.setItems(FXCollections.observableArrayList(currentEpics)
         );
         
         view.setPlaceholder(
@@ -103,7 +106,7 @@ public class EpicsTable {
      * 
      * The cell factory builds an epic number for each epic.
      * 
-     * @return 
+     * @return ID column
      */
     private TableColumn idCol() {               
         TableColumn<Epic, String> idCol = new TableColumn<>(
@@ -115,8 +118,7 @@ public class EpicsTable {
         
         idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
-                    String.valueOf(
-                            epics.indexOf(data.getValue()) + 1)
+                    String.valueOf(currentEpics.indexOf(data.getValue()) + 1)
             );
         });
         
@@ -131,7 +133,7 @@ public class EpicsTable {
      * The value retrieves the name property of each epic instance in the 
      * table.
      * 
-     * @return 
+     * @return name column
      */
     private TableColumn nameCol() {
         TableColumn<Epic, String> nameCol = new TableColumn<>(
@@ -150,7 +152,7 @@ public class EpicsTable {
      * 
      * Constructs a column for the display of epic estimate.
      * 
-     * @return
+     * @return estimate column
      */
     private TableColumn estimateCol() {
         TableColumn<Epic, String> estimateCol = new TableColumn<>(
@@ -162,8 +164,7 @@ public class EpicsTable {
         
         estimateCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
-                    String.valueOf(
-                            data.getValue().getSize(preferences))
+                    String.valueOf(data.getValue().getSize(documentPreferences))
             );
         });
         

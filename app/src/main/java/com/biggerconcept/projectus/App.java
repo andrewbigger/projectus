@@ -35,8 +35,8 @@ public class App extends Application {
      * 
      * Then the stage will be shown.
      * 
-     * @param stage
-     * @throws IOException 
+     * @param stage application stage
+     * @throws IOException when unable to load main FXML
      */
     @Override
     public void start(Stage stage) throws IOException {
@@ -62,7 +62,7 @@ public class App extends Application {
      * 
      * Launches Projectus FX application
      * 
-     * @param args 
+     * @param args launch arguments
      */
     public static void main(String[] args) {
         launch();

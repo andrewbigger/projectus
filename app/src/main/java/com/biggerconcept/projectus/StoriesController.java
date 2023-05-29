@@ -38,10 +38,10 @@ public class StoriesController implements Initializable {
     private Document currentDocument;
     
     /**
-     * Initializer for the stories window.
+     * Initialize-er for the stories window.
      * 
-     * @param url
-     * @param rb
+     * @param url URL for stories FXML
+     * @param rb application resource bundle
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -60,7 +60,7 @@ public class StoriesController implements Initializable {
     /**
      * Sets controller current document.
      * 
-     * @param actors 
+     * @param doc open document 
      */
     public void setDocument(Document doc) {
         currentDocument = doc;
@@ -120,7 +120,7 @@ public class StoriesController implements Initializable {
      * 
      * The stories window stage is the window with the add story button.
      * 
-     * @return 
+     * @return controller window
      */
     private Stage storiesStage() {
         Stage stage = (Stage) addActorButton.getScene().getWindow();
@@ -145,6 +145,9 @@ public class StoriesController implements Initializable {
         storiesTable.build(storyTableView);
     }
     
+    /**
+     * Handles adding an actor to the document.
+     */
     @FXML
     private void handleAddActor() {
         try {
@@ -161,6 +164,9 @@ public class StoriesController implements Initializable {
         }
     }
     
+    /**
+     * Handles removing an actor from the document.
+     */
     @FXML
     private void handleRemoveActor() {
         try {
@@ -191,6 +197,9 @@ public class StoriesController implements Initializable {
         }
     }
     
+    /**
+     * Handles showing edit actor dialog.
+     */
     @FXML
     private void handleEditActor() {
         try {
@@ -222,6 +231,9 @@ public class StoriesController implements Initializable {
         }
     }
     
+    /**
+     * Handles adding a story to the document.
+     */
     @FXML
     private void handleAddStory() {
         try {
@@ -238,6 +250,9 @@ public class StoriesController implements Initializable {
         } 
     }
     
+    /**
+     * Handles removing a story from the document.
+     */
     @FXML
     private void handleRemoveStory() {
         try {
@@ -270,6 +285,9 @@ public class StoriesController implements Initializable {
         }
     }
     
+    /**
+     * Handles editing a story within a document.
+     */
     @FXML
     private void handleEditStory() {
         try {

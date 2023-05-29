@@ -24,49 +24,49 @@ public class TaskDialog {
     /**
      * Resource bundle for dialog.
      */
-    private ResourceBundle bundle;
+    private final ResourceBundle bundle;
     
     /**
-     * Pointer to the epic that the task belongs to.
+     * Pointer to the parentEpic that the task belongs to.
      */
-    private Epic epic;
+    private final Epic parentEpic;
     
     /**
      * Task currently being managed by the dialog.
      */
-    private Task currentTask;
+    private final Task currentTask;
     
     /**
      * Task name text field.
      */
-    private TextField nameField;
+    private final TextField nameField;
     
     /**
      * Task size combo box.
      */
-    private ComboBox sizeField;
+    private final ComboBox sizeField;
     
     /**
      * Task description text area.
      */
-    private TextArea descriptionField;
+    private final TextArea descriptionField;
     
     /**
      * Task acceptance criteria text area.
      */
-    private TextArea acceptanceCriteriaField;
+    private final TextArea acceptanceCriteriaField;
     
     /**
      * Constructor for task dialog
      * 
-     * @param b
-     * @param e
-     * @param t 
+     * @param rb application resource bundle
+     * @param epic parent parentEpic of chosen task
+     * @param task chosen task
      */
-    public TaskDialog(ResourceBundle b, Epic e, Task t) {
-        bundle = b;
-        epic = e;
-        currentTask = t;
+    public TaskDialog(ResourceBundle rb, Epic epic, Task task) {
+        bundle = rb;
+        parentEpic = epic;
+        currentTask = task;
         
         nameField = new TextField(currentTask.getName());
         
@@ -90,7 +90,7 @@ public class TaskDialog {
      * in the epic (if it has not already been created) and then apply the 
      * values from the dialog to the task.
      * 
-     * @param stage 
+     * @param stage parent window for dialog
      */
     public void show(Stage stage) {
         Dialog<String> dialog = new Dialog<>();
@@ -142,11 +142,11 @@ public class TaskDialog {
      * added to that epic.
      */
     private void addTaskToEpic() {
-        if (epic.hasTask(currentTask)) {
+        if (parentEpic.hasTask(currentTask)) {
             return;
         }
         
-        epic.addTask(currentTask);
+        parentEpic.addTask(currentTask);
     }
     
     /**
@@ -173,11 +173,12 @@ public class TaskDialog {
      * Attribute builder function.
      * 
      * This takes a label and a control for modifying the attribute and 
-     * returns it in a vbox wrapper.
+     * returns it in a VBox wrapper.
      * 
-     * @param label
-     * @param value
-     * @return 
+     * @param label attribute label node
+     * @param value node for presenting and editing attribute
+     * 
+     * @return attribute wrapped in VBox
      */
     private VBox attributeFor(Label label, Node value) {
         VBox wrapper = new VBox();
@@ -191,10 +192,10 @@ public class TaskDialog {
     /**
      * Name attribute builder.
      * 
-     * Builds a vbox with the name label and text field for managing a task
+     * Builds a VBox with the name label and text field for managing a task
      * name.
      * 
-     * @return 
+     * @return name attribute
      */
     private VBox nameAttribute() {        
         return attributeFor(
@@ -206,10 +207,10 @@ public class TaskDialog {
     /**
      * Size attribute builder.
      * 
-     * Builds a vbox with the size label and a combo box for selecting task
+     * Builds a VBox with the size label and a combo box for selecting task
      * size.
      * 
-     * @return 
+     * @return size attribute
      */
     private VBox sizeAttribute() {
         return attributeFor(
@@ -221,10 +222,10 @@ public class TaskDialog {
     /**
      * Description attribute builder.
      * 
-     * Builds a vbox with the description label and text area for managing
+     * Builds a VBox with the description label and text area for managing
      * task description.
      * 
-     * @return 
+     * @return description attribute
      */
     private VBox descriptionAttribute() {
         return attributeFor(
@@ -238,12 +239,12 @@ public class TaskDialog {
     }
     
     /**
-     * Acceptance criteria buiilder.
+     * Acceptance criteria builder.
      * 
-     * Builds a vbox with the acceptance criteria label and text area for 
+     * Builds a VBox with the acceptance criteria label and text area for 
      * managing task acceptance criteria.
      * 
-     * @return 
+     * @return acceptance criteria attribute
      */
     private VBox acceptanceCriteriaAttribute() {
         return attributeFor(

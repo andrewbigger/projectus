@@ -12,10 +12,12 @@ public class TextPrompt {
     /**
      * Prompts the user for text input.
      * 
-     * @param title
-     * @param question
-     * @return
-     * @throws NoChoiceMadeException 
+     * @param title dialog title
+     * @param question prompt for user
+     * 
+     * @return user input
+     * 
+     * @throws NoChoiceMadeException when user makes no input or cancels
      */
     public static String show(String title, String question) 
             throws NoChoiceMadeException {

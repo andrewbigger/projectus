@@ -11,7 +11,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -25,44 +24,44 @@ public class StoryDialog {
     /**
      * Resource bundle for dialog.
      */
-    private ResourceBundle bundle;
+    private final ResourceBundle bundle;
     
     /**
      * Pointer to the document.
      */
-    private Document currentDocument;
+    private final Document currentDocument;
     
     /**
      * Pointer to the actor.
      */
-    private Story currentStory;
+    private final Story currentStory;
     
     /**
      * Actor choice combo box
      */
-    private ComboBox actorField;
+    private final ComboBox actorField;
     
     /**
      * Intention text field.
      */
-    private TextArea intentionField;
+    private final TextArea intentionField;
     
     /**
-     * Expecation text field.
+     * Expectation text field.
      */
-    private TextArea expectationField;
+    private final TextArea expectationField;
     
     /**
      * Constructor for actor dialog.
      * 
-     * @param b
-     * @param d
-     * @param s
+     * @param rb application resource bundle
+     * @param document open document
+     * @param story chosen story
      */
-    public StoryDialog(ResourceBundle b, Document d, Story s) {
-        bundle = b;
-        currentDocument = d;
-        currentStory = s;
+    public StoryDialog(ResourceBundle rb, Document document, Story story) {
+        bundle = rb;
+        currentDocument = document;
+        currentStory = story;
         
         actorField = new ComboBox();
         actorField.getItems().addAll(currentDocument.getActors());
@@ -103,7 +102,7 @@ public class StoryDialog {
         
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == apply) {
-                applyToActor();
+                applyToStory();
             }
 
             return null;
@@ -112,6 +111,13 @@ public class StoryDialog {
         dialog.showAndWait();
     }
     
+    /**
+     * Ensures story exists in document.
+     * 
+     * When the story has been added to the document, we will return early.
+     * 
+     * If the story is not in the document then it's added.
+     */
     private void addStoryToDocument() {
         if (currentDocument.hasStory(currentStory)) {
             return;
@@ -120,7 +126,14 @@ public class StoryDialog {
         currentDocument.addStory(currentStory);
     }
     
-    private void applyToActor() {
+    /**
+     * Applies changes to story.
+     * 
+     * First we check to ensure the actor exists in the document.
+     * 
+     * Then the story attributes are set from the form.
+     */
+    private void applyToStory() {
         addStoryToDocument();
         
         currentStory.setActor(
@@ -135,11 +148,12 @@ public class StoryDialog {
      * Attribute builder function.
      * 
      * Takes a label and control for modifying the attribute and returns
-     * it in a vbox wrapper.
+     * it in a VBox wrapper.
      * 
-     * @param label
-     * @param value
-     * @return 
+     * @param label label node for the attribute
+     * @param value node for presenting and editing attribute
+     * 
+     * @return attribute wrapped in VBox
      */
     private VBox attributeFor(Label label, Node value) {
         VBox wrapper = new VBox();
@@ -153,9 +167,9 @@ public class StoryDialog {
     /**
      * Actor attribute builder.
      * 
-     * Builds vbox with the name label and text field for managing actor.
+     * Builds VBox with the name label and text field for managing actor.
      * 
-     * @return 
+     * @return actor attribute
      */
     private VBox actorAttribute() {
         return attributeFor(
@@ -167,9 +181,9 @@ public class StoryDialog {
     /**
      * Intention attribute builder.
      * 
-     * Builds vbox with the name label and text field for managing intention.
+     * Builds VBox with the name label and text field for managing intention.
      * 
-     * @return 
+     * @return intention attribute
      */
     private VBox intentionAttribute() {
         return attributeFor(
@@ -181,9 +195,9 @@ public class StoryDialog {
     /**
      * Expectation attribute builder.
      * 
-     * Builds vbox with the name label and text field for managing expectation.
+     * Builds VBox with the name label and text field for managing expectation.
      * 
-     * @return 
+     * @return expectation attribute
      */
     private VBox expectationAttribute() {
         return attributeFor(

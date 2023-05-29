@@ -16,9 +16,9 @@ public class ErrorAlert {
      * 
      * The alert text will be the exception message.
      * 
-     * @param bundle
-     * @param message
-     * @param ex 
+     * @param bundle application resource bundle
+     * @param message error message to show
+     * @param ex exception that caused message
      */
     public static void show(
             ResourceBundle bundle,
@@ -38,9 +38,9 @@ public class ErrorAlert {
      * This sets the title, header text and content to the given
      * values.
      * 
-     * @param title
-     * @param header
-     * @param content 
+     * @param title title of error alert dialog
+     * @param header header text of error alert dialog
+     * @param content body text of error alert dialog
      */
     public static void show(
             String title,

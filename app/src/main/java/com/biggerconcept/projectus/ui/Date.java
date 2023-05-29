@@ -14,8 +14,9 @@ public class Date {
      * If the value is 0, null will be returned so we don't have projects
      * starting in 1970.
      * 
-     * @param value
-     * @return 
+     * @param value epoch date value to convert
+     * 
+     * @return date as LocalDate
      */
     public static LocalDate fromEpoch(long value) {
         if (value == 0) {
@@ -28,8 +29,9 @@ public class Date {
     /**
      * Converts local date to epoch for serialization.
      * 
-     * @param date
-     * @return 
+     * @param date local date value to convert
+     * 
+     * @return date as number of seconds from epoch
      */
     public static long toEpoch(LocalDate date) {
         if (date == null) {

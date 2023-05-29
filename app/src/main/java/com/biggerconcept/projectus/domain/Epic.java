@@ -10,11 +10,15 @@ import java.util.ArrayList;
  * @author Andrew Bigger
  */
 public class Epic {
-    // Epic name
+    /**
+     * Epic name
+     */
     @JsonInclude(Include.NON_NULL)
     private String name;
     
-    // Epic tasks
+    /**
+     * Epic tasks
+     */
     @JsonInclude(Include.NON_NULL)
     private ArrayList<Task> tasks;
     
@@ -29,7 +33,7 @@ public class Epic {
     /**
      * Constructor for epic with name.
      * 
-     * @param name 
+     * @param name name of epic
      */
     public Epic(String name) {
         this.name = name;
@@ -39,14 +43,15 @@ public class Epic {
     /**
      * Counts the estimates of all of the tasks in the epic.
      * 
-     * @param p
-     * @return 
+     * @param preferences document preferences
+     * 
+     * @return total size of all epics
      */
-    public int getSize(Preferences p) {
+    public int getSize(Preferences preferences) {
         int size = 0;
         
         for (Task t: tasks) {
-            size += p.estimateFor(t.getSize());
+            size += preferences.estimateFor(t.getSize());
         }
         
         return size;
@@ -55,7 +60,7 @@ public class Epic {
     /**
      * Creates a new task with given name.
      * 
-     * @param name 
+     * @param name name of task
      */
     public void createTask(String name) {
         addTask(
@@ -66,35 +71,36 @@ public class Epic {
     /**
      * Returns true if task is in epic.
      * 
-     * @param t
-     * @return 
+     * @param task task to search for
+     * 
+     * @return result
      */
-    public boolean hasTask(Task t) {
-        return tasks.contains(t);
+    public boolean hasTask(Task task) {
+        return tasks.contains(task);
     }
     
     /**
      * Adds a task to this project.
      * 
-     * @param t 
+     * @param task task to add
      */
-    public void addTask(Task t) {
-        tasks.add(t);
+    public void addTask(Task task) {
+        tasks.add(task);
     }
     
     /**
      * Removes a task from this project.
      * 
-     * @param t 
+     * @param task task to remove
      */
-    public void removeTask(Task t) {
-        tasks.remove(t);
+    public void removeTask(Task task) {
+        tasks.remove(task);
     }
     
     /**
      * Getter for name.
      * 
-     * @return 
+     * @return epic name
      */
     public String getName() {
         return name;
@@ -103,7 +109,7 @@ public class Epic {
     /**
      * Getter for project tasks.
      * 
-     * @return 
+     * @return project tasks
      */
     public ArrayList<Task> getTasks() {
         return tasks;
@@ -112,7 +118,7 @@ public class Epic {
     /**
      * Setter for project name.
      * 
-     * @param value 
+     * @param value value for project name
      */
     public void setName(String value) {
         name = value;
@@ -121,7 +127,7 @@ public class Epic {
     /**
      * Setter for project tasks.
      * 
-     * @param value 
+     * @param value list of tasks
      */
     public void setTasks(ArrayList<Task> value) {
         tasks = value;

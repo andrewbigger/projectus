@@ -28,7 +28,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
@@ -212,8 +211,8 @@ public class MainController implements Initializable {
     /**
      * Initializes the main window.
      * 
-     * @param url
-     * @param rb 
+     * @param url URL of main FXML
+     * @param rb application resource bundle
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -289,7 +288,7 @@ public class MainController implements Initializable {
      * The main window stage is the window that the new file button control is
      * in. 
      * 
-     * @return 
+     * @return controller window
      */
     private Stage mainStage() {
         Stage stage = (Stage) newFileButton.getScene().getWindow();
@@ -298,8 +297,6 @@ public class MainController implements Initializable {
     
     /**
      * Maps given document to window.
-     * 
-     * @param doc 
      */
     private void mapDocumentToWindow() {
         applyPreferencesToWindow();
@@ -353,8 +350,6 @@ public class MainController implements Initializable {
     
     /**
      * Maps window content to current document object for serialization.
-     * 
-     * @return 
      */
     private void mapWindowToDocument() {  
         currentDocument.setTitle(projectNameTextField.getText());
@@ -844,6 +839,9 @@ public class MainController implements Initializable {
         }
     }
     
+    /**
+     * Shows manage stories window.
+     */
     @FXML
     private void handleManageStories() {
         try {
@@ -908,7 +906,6 @@ public class MainController implements Initializable {
     
     /**
      * Opens help website in default browser.
-     * 
      */
     @FXML
     private void handleViewHelp() {
@@ -921,8 +918,6 @@ public class MainController implements Initializable {
     
     /**
      * Exits application.
-     * 
-     * @param event
      */
     @FXML
     private void handleApplicationExit() {

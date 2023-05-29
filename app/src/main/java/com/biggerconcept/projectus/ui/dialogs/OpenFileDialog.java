@@ -20,11 +20,13 @@ public class OpenFileDialog {
      * 
      * If no choice is made, then a NoChoiceMadeException will be thrown.
      * 
-     * @param prompt
-     * @param toolboxStage
-     * @param ext
-     * @return
-     * @throws NoChoiceMadeException 
+     * @param prompt open file prompt, a description of prompt purpose
+     * @param toolboxStage parent window to show dialog from
+     * @param ext extension filter for dialog
+     * 
+     * @return chosen file
+     * 
+     * @throws NoChoiceMadeException when user makes no choice or cancels
      */
     public static File show(
             String prompt, 

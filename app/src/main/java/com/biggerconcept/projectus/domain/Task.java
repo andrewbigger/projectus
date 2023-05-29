@@ -10,28 +10,36 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * @author Andrew Bigger
  */
 public class Task {
-    // Task name
+    /**
+     * Task name.
+     */
     @JsonInclude(Include.NON_NULL)
     private String name;
     
-    // Task description
+    /**
+     * Task description.
+     */
     @JsonInclude(Include.NON_NULL)
     private String description;
     
-    // Task acceptance criteria
+    /**
+     * Task acceptance criteria.
+     */
     @JsonInclude(Include.NON_NULL)
     private String acceptanceCriteria;
     
-    // Task size
+    /**
+     * Task size.
+     */
     private TaskSize size;
     
     /**
      * Constructor fo task that accepts all task parameters.
      * 
-     * @param name
-     * @param description
-     * @param acceptanceCriteria
-     * @param size 
+     * @param name name of task
+     * @param description description for task
+     * @param acceptanceCriteria acceptance criteria of task
+     * @param size size of task
      */
     public Task(
             String name,
@@ -50,7 +58,7 @@ public class Task {
      * 
      * Accepts the task, and sets the other attributes to empty.
      * 
-     * @param name 
+     * @param name name of task
      */
     public Task(String name) {
         this.name = name;
@@ -62,8 +70,7 @@ public class Task {
     /**
      * Default constructor for task.
      * 
-     * This is used by the deserializer.
-     * 
+     * This is used by the de-serialize operation.
      */
     public Task() {
         this.name = "";
@@ -75,7 +82,7 @@ public class Task {
     /**
      * Getter for task name.
      * 
-     * @return 
+     * @return task name
      */
     public String getName() {
         return name;
@@ -84,7 +91,7 @@ public class Task {
     /**
      * Getter for task description.
      * 
-     * @return 
+     * @return task description
      */
     public String getDescription() {
         return description;
@@ -93,7 +100,7 @@ public class Task {
     /**
      * Getter for task acceptance criteria.
      * 
-     * @return 
+     * @return acceptance criteria for task
      */
     public String getAcceptanceCriteria() {
         return acceptanceCriteria;
@@ -102,7 +109,7 @@ public class Task {
     /**
      * Getter for task size.
      * 
-     * @return 
+     * @return size for task
      */
     public TaskSize getSize() {
         return size;
@@ -111,7 +118,7 @@ public class Task {
     /**
      * Setter for task name.
      * 
-     * @param value 
+     * @param value task name value
      */
     public void setName(String value) {
         name = value;
@@ -120,7 +127,7 @@ public class Task {
     /**
      * Setter for task description.
      * 
-     * @param value 
+     * @param value task description value
      */
     public void setDescription(String value) {
         description = value;
@@ -129,7 +136,7 @@ public class Task {
     /**
      * Setter for task acceptance criteria.
      * 
-     * @param value 
+     * @param value acceptance criteria value
      */
     public void setAcceptanceCriteria(String value) {
         acceptanceCriteria = value;
@@ -138,7 +145,7 @@ public class Task {
     /**
      * Setter for task size.
      * 
-     * @param value
+     * @param value task size value
      */
     public void setSize(TaskSize value) {
         size = value;

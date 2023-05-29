@@ -19,11 +19,13 @@ public class YesNoPrompt {
      * 
      * If there is no choice made then a NoChoiceException will be thrown.
      * 
-     * @param type
-     * @param header
-     * @param question
-     * @return
-     * @throws NoChoiceMadeException 
+     * @param type prompt type, controls icon rendered in dialog
+     * @param header header text for dialog
+     * @param question question for user
+     * 
+     * @return user response
+     * 
+     * @throws NoChoiceMadeException when user makes no choice
      */
     public static ButtonType show(
             Alert.AlertType type,

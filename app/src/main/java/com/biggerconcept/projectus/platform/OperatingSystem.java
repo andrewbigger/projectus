@@ -15,7 +15,7 @@ public class OperatingSystem {
     /**
     * Returns the name of the operating system executing the application.
     * 
-    * @return 
+    * @return name of operating system in lower case
     */
     public static String getName() {
         return System.getProperty("os.name").toLowerCase();
@@ -24,7 +24,7 @@ public class OperatingSystem {
     /**
     * Returns true if the platform is mac os.
     * 
-    * @return 
+    * @return result, true if operating system is mac os
     */
     public static boolean isMac() {
         return getName().startsWith("mac os"); 
@@ -33,7 +33,7 @@ public class OperatingSystem {
     /**
     * Returns true if the platform is windows.
     * 
-    * @return
+    * @return result, true if operating system is windows.
     */
     public static boolean isWindows() {
         return getName().startsWith("windows");
@@ -42,13 +42,14 @@ public class OperatingSystem {
      /**
      * Opens a URL in the system default browser.
      * 
-     * The browse command requires a URI, so the given url string is converted
+     * The browse command requires a URI, so the given URL string is converted
      * into a URL and then a URI.
      * 
-     * @param url
-     * @throws URISyntaxException
-     * @throws MalformedURLException
-     * @throws IOException 
+     * @param url web address to navigate to
+     * 
+     * @throws URISyntaxException when URL syntax is invalid
+     * @throws MalformedURLException when URL is malformed
+     * @throws IOException when unable to request page to load
      */
     public static void goToUrl(String url)
         throws URISyntaxException, MalformedURLException, IOException {

@@ -20,11 +20,13 @@ public class SaveFileDialog {
      * 
      * If no choice is made, then a NoChoiceMadeException will be thrown.
      * 
-     * @param prompt
-     * @param toolboxStage
-     * @param ext
-     * @return
-     * @throws NoChoiceMadeException 
+     * @param prompt save file prompt, description of dialog purpose
+     * @param toolboxStage parent window to show dialog from
+     * @param ext save file dialog extension filter
+     * 
+     * @return chosen file
+     * 
+     * @throws NoChoiceMadeException when user makes no choice or cancels
      */
     public static File show(
             String prompt,

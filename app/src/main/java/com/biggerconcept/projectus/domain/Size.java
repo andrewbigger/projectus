@@ -1,7 +1,8 @@
 package com.biggerconcept.projectus.domain;
 
 /**
- *
+ * Representation of task size.
+ * 
  * @author Andrew Bigger
  */
 public class Size {

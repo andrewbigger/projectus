@@ -25,7 +25,7 @@ public class Actor {
     /**
      * Constructor for an actor with a name.
      * 
-     * @param name
+     * @param name name of actor
      */
     public Actor(String name) {
         this.name = name;
@@ -34,7 +34,7 @@ public class Actor {
     /**
      * Getter for actor name.
      * 
-     * @return 
+     * @return actor name
      */
     public String getName() {
         return name;
@@ -43,7 +43,7 @@ public class Actor {
     /**
      * Setter for actor name.
      * 
-     * @param value 
+     * @param value value to set for actor name
      */
     public void setName(String value) {
         name = value;
@@ -52,7 +52,7 @@ public class Actor {
     /**
      * Override for toString method.
      * 
-     * @return 
+     * @return string representation of actor (name)
      */
     @Override
     public String toString() {

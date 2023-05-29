@@ -12,7 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * View model for the stories table.
+ * View model for the currentStories table.
  * 
  * @author Andrew Bigger
  */
@@ -48,35 +48,34 @@ public class StoryTable {
     /**
      * Application resource bundle.
      */
-    private ResourceBundle bundle;
+    private final ResourceBundle bundle;
     
     /**
-     * List of stories.
+     * List of currentStories.
      */
-    private ArrayList<Story> stories;
+    private final ArrayList<Story> currentStories;
     
     /**
-     * Constructor for the stories table view model.
+     * Constructor for the currentStories table view model.
      * 
-     * @param rb
-     * @param s
+     * @param rb application resource bundle
+     * @param stories list of currentStories
      */
     public StoryTable(
             ResourceBundle rb,
-            ArrayList<Story> s
+            ArrayList<Story> stories
     ) {
         bundle = rb;
-        stories = s;
+        currentStories = stories;
     }
     
     /**
      * Builds story table view.
      * 
-     * @param view
+     * @param view story table view
      */
     public void build(TableView view) {
-        view.setItems(
-                FXCollections.observableArrayList(stories)
+        view.setItems(FXCollections.observableArrayList(currentStories)
         );
         
         view.setPlaceholder(
@@ -96,7 +95,7 @@ public class StoryTable {
     /**
      * ID attribute column builder.
      * 
-     * @return
+     * @return ID column
      */
     private TableColumn idCol() {
         TableColumn<Task, String> idCol = new TableColumn<>(
@@ -108,8 +107,7 @@ public class StoryTable {
         
         idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
-                    String.valueOf(
-                        stories.indexOf(data.getValue()) + 1)
+                    String.valueOf(currentStories.indexOf(data.getValue()) + 1)
             );
         });
         
@@ -119,7 +117,7 @@ public class StoryTable {
     /**
      * Actor attribute column builder.
      * 
-     * @return
+     * @return actor column
      */
     private TableColumn actorCol() {
         TableColumn<Story, String> actorCol = new TableColumn<>(
@@ -141,7 +139,7 @@ public class StoryTable {
     /**
     * Intention attribute column builder.
     * 
-    * @return 
+    * @return intention column
     */
    private TableColumn intentionCol() {
         TableColumn<Story, String> intentCol = new TableColumn<>(
@@ -158,7 +156,7 @@ public class StoryTable {
    /**
     * Expectation attribute column builder.
     * 
-    * @return 
+    * @return expectation column
     */
    private TableColumn expectationCol() {
         TableColumn<Story, String> expectationCol = new TableColumn<>(

@@ -12,7 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * View model for tasks table.
+ * View model for currentTasks table.
  * 
  * @author Andrew Bigger
  */
@@ -48,40 +48,41 @@ public class TasksTable {
    /**
     * Application resource bundle.
     */
-   private ResourceBundle bundle;
+   private final ResourceBundle bundle;
    
    /**
     * Parent epic number.
     */
-   private int epicID;
+   private final int parentEpicNumber;
    
    /**
-    * List of epic tasks.
+    * List of epic currentTasks.
     */
-   private ArrayList<Task> tasks;
+   private final ArrayList<Task> currentTasks;
    
    /**
-    * Document preferences.
+    * Document documentPreferences.
     */
-   private Preferences preferences;
+   private final Preferences documentPreferences;
    
    /**
-    * Constructor for tasks table view model.
+    * Constructor for currentTasks table view model.
     * 
-    * @param rb
-    * @param t
-    * @param p 
+    * @param rb application resource bundle
+    * @param tasks list of currentTasks
+    * @param preferences document documentPreferences
+    * @param epicNumber epic number
     */
    public TasksTable(
            ResourceBundle rb,
-           ArrayList<Task> t,
-           Preferences p,
-           int e
+           ArrayList<Task> tasks,
+           Preferences preferences,
+           int epicNumber
    ) {
        bundle = rb;
-       tasks = t;
-       preferences = p;
-       epicID = e;
+       currentTasks = tasks;
+       documentPreferences = preferences;
+       parentEpicNumber = epicNumber;
    }
    
    /**
@@ -91,14 +92,13 @@ public class TasksTable {
     * 
     * This also sets the empty state string.
     * 
-    * The column builder functions are invoked here to build columns for eac
+    * The column builder functions are invoked here to build columns for each
     * visible attribute.
     * 
-    * @param view 
+    * @param view currentTasks table view
     */
    public void build(TableView view) {
-       view.setItems(
-               FXCollections.observableArrayList(tasks)
+       view.setItems(FXCollections.observableArrayList(currentTasks)
        );
        
        view.setPlaceholder(
@@ -119,7 +119,7 @@ public class TasksTable {
     * 
     * The cell factory builds a task number for each task.
     * 
-    * @return 
+    * @return ID column
     */
    private TableColumn idCol() {
        TableColumn<Task, String> idCol = new TableColumn<>(
@@ -131,8 +131,7 @@ public class TasksTable {
         
         idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
-                    epicID + "." + String.valueOf(
-                            tasks.indexOf(data.getValue()) + 1)
+                    parentEpicNumber + "." + String.valueOf(currentTasks.indexOf(data.getValue()) + 1)
             );
         });
         
@@ -147,7 +146,7 @@ public class TasksTable {
     * The cell factory retrieves the name property from each instance in the
     * table.
     * 
-    * @return 
+    * @return name column
     */
    private TableColumn nameCol() {
         TableColumn<Task, String> nameCol = new TableColumn<>(
@@ -169,7 +168,7 @@ public class TasksTable {
     * The cell factory retrieves the size property from each instance in the
     * table.
     * 
-    * @return 
+    * @return size column
     */
    private TableColumn sizeCol() {
         TableColumn<Task, String> sizeCol = new TableColumn<>(
@@ -190,7 +189,7 @@ public class TasksTable {
     * 
     * The cell factory retrieves the estimate from the preferences.
     * 
-    * @return 
+    * @return estimate column
     */
    private TableColumn estimateCol() {
        TableColumn<Task, String> estimateCol = new TableColumn<>(
@@ -203,8 +202,7 @@ public class TasksTable {
         estimateCol.setCellValueFactory(data -> {
             
             return new SimpleStringProperty(
-                    String.valueOf(
-                        preferences.estimateFor(data.getValue().getSize())
+                    String.valueOf(documentPreferences.estimateFor(data.getValue().getSize())
                     )
             );
         });

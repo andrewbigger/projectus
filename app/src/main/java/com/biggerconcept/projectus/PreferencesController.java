@@ -29,10 +29,10 @@ public class PreferencesController implements Initializable {
     private Document currentDocument;
     
     /**
-     * Initializer for the preference window
+     * Initialize-er for the preference window
      * 
-     * @param url
-     * @param rb
+     * @param url URL for preferences FXML
+     * @param rb application resource bundle
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -62,7 +62,7 @@ public class PreferencesController implements Initializable {
     /**
      * Sets document pointer for the preference window.
      * 
-     * @param doc 
+     * @param doc open document
      */
     public void setDocument(Document doc) {
         this.currentDocument = doc;
@@ -117,7 +117,7 @@ public class PreferencesController implements Initializable {
      * The pref window stage is the window that the save button control is
      * in. 
      * 
-     * @return 
+     * @return controller window
      */
     private Stage preferenceStage() {
         Stage stage = (Stage) savePreferencesButton.getScene().getWindow();
@@ -127,7 +127,7 @@ public class PreferencesController implements Initializable {
     /**
      * Maps given document to window.
      * 
-     * @param doc 
+     * @param doc open document
      */
     private void mapPreferencesToWindow(Preferences prefs) {
         extraSmallSizeTextField.setText(
@@ -150,7 +150,7 @@ public class PreferencesController implements Initializable {
     /**
      * Maps window content to new document object for serialization.
      * 
-     * @return 
+     * @return built preference object
      */
     private Preferences mapWindowToPreferences() {
         Preferences p = new Preferences();

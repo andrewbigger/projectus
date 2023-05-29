@@ -67,24 +67,26 @@ public class Document {
      * 
      * By default empty or null values are to be omitted from the parser.
      * 
-     * This will then attempt to deserialize a locale from a YAML locale file  
+     * This will then attempt to de-serialize a locale from a YAML locale file  
      * from disk. This may fail throwing an IO Exception which will be thrown to
      * the calling method.
      * 
-     * The deserialized Locale will then be returned to the caller.
+     * The de-serialized Locale will then be returned to the caller.
      * 
-     * @param f
-     * @return 
-     * @throws IOException
+     * @param file file to load from disk
+     * 
+     * @return loaded document
+     * 
+     * @throws IOException when unable to load file from disk
      */
-    public static Document load(File f) throws IOException {
+    public static Document load(File file) throws IOException {
         ObjectMapper oMap = new ObjectMapper();
         
         oMap.setSerializationInclusion(Include.NON_NULL);
         oMap.setSerializationInclusion(Include.NON_EMPTY);
         
-        Document doc = oMap.readValue(f, Document.class);
-        doc.setFile(f);
+        Document doc = oMap.readValue(file, Document.class);
+        doc.setFile(file);
         
         return doc;
     }
@@ -92,7 +94,7 @@ public class Document {
     /**
      * Creates an actor.
      * 
-     * @param name
+     * @param name name of actor
      */
     public void createActor(String name) {
         addActor(
@@ -103,7 +105,7 @@ public class Document {
     /**
      * Creates a story for the given actor.
      * 
-     * @param actor
+     * @param actor actor for story
      */
     public void createStory(Actor actor) {
         addStory(
@@ -114,7 +116,7 @@ public class Document {
     /**
      * Creates a project of the given name.
      * 
-     * @param name 
+     * @param name name of epic
      */
     public void createEpic(String name) {
         addEpic(
@@ -125,93 +127,94 @@ public class Document {
     /**
      * Returns true if document has actor.
      * 
-     * @param a
-     * @return 
+     * @param actor actor to look for
+     * 
+     * @return result
      */
-    public boolean hasActor(Actor a) {
-        return actors.contains(a);
+    public boolean hasActor(Actor actor) {
+        return actors.contains(actor);
     }
     
     /**
      * Returns true if document has story.
      * 
-     * @param s
-     * @return 
+     * @param story story to look for
+     * @return result
      */
-    public boolean hasStory(Story s) {
-        return stories.contains(s);
+    public boolean hasStory(Story story) {
+        return stories.contains(story);
     }
     
     /**
-     * Adds a story actor to the document.
+     * Adds actor story actor to the document.
      * 
-     * @param a 
+     * @param actor actor to add
      */
-    public void addActor(Actor a) {
+    public void addActor(Actor actor) {
         if (actors == null) {
             actors = new ArrayList<>();
         }
         
-        actors.add(a);
+        actors.add(actor);
     }
     
     /**
      * Adds a story to the document.
      * 
-     * @param s 
+     * @param story story to add
      */
-    public void addStory(Story s) {
+    public void addStory(Story story) {
         if (stories == null) {
             stories = new ArrayList<>();
         }
         
-        stories.add(s);
+        stories.add(story);
     }
     
     /**
      * Adds a project to the document.
      * 
-     * @param p 
+     * @param epic project to add
      */
-    public void addEpic(Epic p) {
+    public void addEpic(Epic epic) {
         if (epics == null) {
             epics = new ArrayList<>();
         }
 
-        epics.add(p);
+        epics.add(epic);
     }
     
     /**
      * Removes an actor from the document.
      * 
-     * @param a 
+     * @param actor actor to remove
      */
-    public void removeActor(Actor a) {
-        actors.remove(a);
+    public void removeActor(Actor actor) {
+        actors.remove(actor);
     }
     
     /**
      * Removes a story from the document.
      * 
-     * @param s 
+     * @param story story to remove
      */
-    public void removeStory(Story s) {
-        stories.remove(s);
+    public void removeStory(Story story) {
+        stories.remove(story);
     }
     
     /**
-     * Removes a project from the document.
+     * Removes an epic from the document.
      * 
-     * @param p 
+     * @param epic epic to remove
      */
-    public void removeEpic(Epic p) {
-        epics.remove(p);
+    public void removeEpic(Epic epic) {
+        epics.remove(epic);
     }
     
     /**
      * Saves document to disk.
      * 
-     * @throws IOException 
+     * @throws IOException when unable to save document to disk
      */
     public void save() throws IOException {       
         ObjectMapper oMap = new ObjectMapper();
@@ -225,7 +228,7 @@ public class Document {
     /**
      * Getter for file.
      * 
-     * @return 
+     * @return document file
      */
     public File getFile() {
         return file;
@@ -234,7 +237,7 @@ public class Document {
     /**
      * Getter for preferences.
      * 
-     * @return
+     * @return document preferences
      */
     public Preferences getPreferences() {
         if (preferences == null) {
@@ -247,7 +250,7 @@ public class Document {
     /**
      * Getter for actors.
      * 
-     * @return 
+     * @return list of actors
      */
     public ArrayList<Actor> getActors() {
         if (actors == null) {
@@ -260,7 +263,7 @@ public class Document {
     /**
      * Getter for stories.
      * 
-     * @return 
+     * @return list of stories
      */
     public ArrayList<Story> getStories() {
         if (stories == null) {
@@ -273,7 +276,7 @@ public class Document {
     /**
      * Getter for project title.
      * 
-     * @return 
+     * @return project title
      */
     public String getTitle() {
         if (title == null) {
@@ -286,7 +289,7 @@ public class Document {
     /**
      * Getter for project start date.
      * 
-     * @return 
+     * @return project start date
      */
     public long getStart() {
         return start;
@@ -295,7 +298,7 @@ public class Document {
     /**
      * Getter for project end date.
      * 
-     * @return 
+     * @return project end date
      */
     public long getEnd() {
         return end;
@@ -304,7 +307,7 @@ public class Document {
     /**
      * Getter for project epics.
      * 
-     * @return 
+     * @return project epics
      */
     public ArrayList<Epic> getEpics() {
         if (epics == null) {
@@ -317,7 +320,7 @@ public class Document {
     /**
      * Setter for file.
      * 
-     * @param value 
+     * @param value file to set
      */
     public void setFile(File value) {
         file = value;
@@ -326,7 +329,7 @@ public class Document {
     /**
      * Setter for preferences.
      * 
-     * @param value
+     * @param value preferences to set
      */
     public void setPreferences(Preferences value) {
         preferences = value;
@@ -335,7 +338,7 @@ public class Document {
     /**
      * Setter for actors.
      * 
-     * @param value 
+     * @param value list of actors to set
      */
     public void setActors(ArrayList<Actor> value) {
         actors = value;
@@ -344,7 +347,7 @@ public class Document {
     /**
      * Setter for stories.
      * 
-     * @param value 
+     * @param value list of stories to set
      */
     public void setStories(ArrayList<Story> value) {
         stories = value;
@@ -353,7 +356,7 @@ public class Document {
     /**
      * Setter for project title.
      * 
-     * @param value 
+     * @param value title to set
      */
     public void setTitle(String value) {
         title = value;
@@ -362,7 +365,7 @@ public class Document {
     /**
      * Setter for project start date.
      * 
-     * @param value 
+     * @param value date to set as start date
      */
     public void setStart(long value) {
         start = value;
@@ -371,7 +374,7 @@ public class Document {
     /**
      * Setter for project end date.
      * 
-     * @param value 
+     * @param value date to set as end date
      */
     public void setEnd(long value) {
         end = value;
@@ -380,7 +383,7 @@ public class Document {
     /**
      * Setter for project epics.
      * 
-     * @param value 
+     * @param value list of epics
      */
     public void setEpics(ArrayList<Epic> value) {
         epics = value;

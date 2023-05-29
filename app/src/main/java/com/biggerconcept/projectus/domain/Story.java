@@ -39,7 +39,7 @@ public class Story {
     /**
      * Constructor for story.
      * 
-     * @param actor 
+     * @param actor actor that the story belongs to
      */
     public Story(Actor actor) {
         this.actor = actor;
@@ -50,9 +50,9 @@ public class Story {
     /**
      * Constructor for story.
      * 
-     * @param actor
-     * @param intention
-     * @param expectation 
+     * @param actor actor that the story belongs to
+     * @param intention story intent string (i want to)
+     * @param expectation  story expectation strings (and i expect)
      */
     public Story(Actor actor, String intention, String expectation) {
         this.actor = actor;
@@ -63,7 +63,7 @@ public class Story {
     /**
      * Getter for actor.
      * 
-     * @return 
+     * @return story actor
      */
     public Actor getActor() {
         return actor;
@@ -72,7 +72,7 @@ public class Story {
     /**
      * Getter for intention.
      * 
-     * @return 
+     * @return story intention
      */
     public String getIntention() {
         return intention;
@@ -81,7 +81,7 @@ public class Story {
     /**
      * Getter for expectation.
      * 
-     * @return 
+     * @return story expectation
      */
     public String getExpectation() {
         return expectation;
@@ -90,7 +90,7 @@ public class Story {
     /**
      * Setter for actor.
      * 
-     * @param value 
+     * @param value story actor to set
      */
     public void setActor(Actor value) {
         actor = value;
@@ -99,7 +99,7 @@ public class Story {
     /**
      * Setter for intention.
      * 
-     * @param value 
+     * @param value intention value to set
      */
     public void setIntention(String value) {
         intention = value;
@@ -108,7 +108,7 @@ public class Story {
     /**
      * Setter for expectation.
      * 
-     * @param value 
+     * @param value expectation value to set
      */
     public void setExpectation(String value) {
         expectation = value;
