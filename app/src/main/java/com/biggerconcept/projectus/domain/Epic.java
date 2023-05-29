@@ -58,6 +58,16 @@ public class Epic {
     }
     
     /**
+     * Returns true if task is in epic.
+     * 
+     * @param t
+     * @return 
+     */
+    public boolean hasTask(Task t) {
+        return tasks.contains(t);
+    }
+    
+    /**
      * Adds a task to this project.
      * 
      * @param t 

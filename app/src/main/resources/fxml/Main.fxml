@@ -215,7 +215,7 @@
                             <Button id="addTaskButton" fx:id="addTaskButton" mnemonicParsing="false" onMouseClicked="#handleAddTask" prefWidth="25.0" />
                               <Button id="removeTaskButton" fx:id="removeTaskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveTask" prefWidth="25.0" />
                               <Button id="moveTaskUpButton" fx:id="moveTaskUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskUp" prefWidth="25.0" />
-                              <Button id="moveTaskDownButton" fx:id="moveTaskDownButton" mnemonicParsing="false" onAction="#handleRemoveTask" onMouseClicked="#handleMoveTaskDown" prefWidth="25.0" />
+                              <Button id="moveTaskDownButton" fx:id="moveTaskDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskDown" prefWidth="25.0" />
                           </items>
                         </ToolBar>
                      </center>

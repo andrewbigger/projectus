@@ -9,6 +9,7 @@ import com.biggerconcept.projectus.ui.Date;
 import com.biggerconcept.projectus.ui.dialogs.ErrorAlert;
 import com.biggerconcept.projectus.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.projectus.ui.dialogs.SaveFileDialog;
+import com.biggerconcept.projectus.ui.dialogs.TaskDialog;
 import com.biggerconcept.projectus.ui.dialogs.TextPrompt;
 import com.biggerconcept.projectus.ui.dialogs.YesNoPrompt;
 import com.biggerconcept.projectus.ui.tables.EpicsTable;
@@ -22,8 +23,6 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,11 +34,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -246,12 +243,15 @@ public class MainController implements Initializable {
      * 
      * @param doc 
      */
-    private void mapDocumentToWindow(Document doc) {
+    private void mapDocumentToWindow() {
         applyPreferencesToWindow();
         
-        projectNameTextField.setText(doc.getTitle());
-        projectStartDatePicker.setValue(Date.fromEpoch(doc.getStart()));
-        projectEndDatePicker.setValue(Date.fromEpoch(doc.getEnd()));
+        projectNameTextField.setText(currentDocument.getTitle());
+        projectStartDatePicker.setValue(
+                Date.fromEpoch(currentDocument.getStart())
+        );
+        
+        projectEndDatePicker.setValue(Date.fromEpoch(currentDocument.getEnd()));
         
         EpicsTable epicsTable = new EpicsTable(
                 bundle,
@@ -296,7 +296,7 @@ public class MainController implements Initializable {
      * 
      * @return 
      */
-    private void mapWindowToDocument() {      
+    private void mapWindowToDocument() {  
         currentDocument.setTitle(projectNameTextField.getText());
         
         currentDocument.setStart(
@@ -320,7 +320,7 @@ public class MainController implements Initializable {
     private void handleCreateNewDocument() {
         try {
             currentDocument = new Document();
-            mapDocumentToWindow(currentDocument);
+            mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(bundle, bundle.getString("errors.new"), e);
         }
@@ -349,7 +349,7 @@ public class MainController implements Initializable {
             );
 
             currentDocument = Document.load(documentFile);
-            mapDocumentToWindow(currentDocument);
+            mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (IOException e) {
@@ -405,7 +405,7 @@ public class MainController implements Initializable {
             );
             
             currentDocument.createEpic(name);
-            mapDocumentToWindow(currentDocument);
+            mapDocumentToWindow();
 
         } catch (NoChoiceMadeException ncm) {
             // do nothing
@@ -440,7 +440,7 @@ public class MainController implements Initializable {
                 }
             }
             
-            mapDocumentToWindow(currentDocument);
+            mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -479,7 +479,7 @@ public class MainController implements Initializable {
                     targetIndex
             );
             
-            mapDocumentToWindow(currentDocument);
+            mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -517,7 +517,7 @@ public class MainController implements Initializable {
                     targetIndex
             );
             
-            mapDocumentToWindow(currentDocument);
+            mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -525,6 +525,16 @@ public class MainController implements Initializable {
         }
     }
     
+    /**
+     * Handler for epic selection.
+     * 
+     * When triggered, the selection is checked to see if an epic has been
+     * selected. If an epic has been selected, then the current epic pointer
+     * is updated to the selected epic, this results in the epic being shown
+     * in the right hand side panel.
+     * 
+     * When no epic is chosen, the right hand side panel is hidden.
+     */
     @FXML
     private void handleEpicSelect() {
         try {
@@ -538,92 +548,199 @@ public class MainController implements Initializable {
                 currentEpic = items.get(0);
             }
             
-            mapDocumentToWindow(currentDocument);
+            mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(bundle, bundle.getString("errors.selectEpic"), e);
         }
     }
     
+    /**
+     * Handler for application of epic changes to document.
+     * 
+     * This will modify the current document pointer but not save it to disk.
+     * 
+     * The current form of the document will be placed on screen.
+     */
     @FXML
     private void handleApplyEpicChanges() {
         try {
             mapWindowToDocument();
-            mapDocumentToWindow(currentDocument);
+            mapDocumentToWindow();
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+            ErrorAlert.show(bundle, bundle.getString("errors.applyEpic"), e);
         }
     }
     
+    /**
+     * Handler for when epic changes are cancelled.
+     * 
+     * Nulls the current epic pointer, and clears the epic table view selection.
+     */
     @FXML
     private void handleCancelEpicChanges() {
         try {
             currentEpic = null;
             epicsTableView.getSelectionModel().clearSelection();
-            mapDocumentToWindow(currentDocument);
+            mapDocumentToWindow();
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.cancelEpicChanges"),
+                    e
+            );
         }
     }
-    
-    private void openTaskWindow(Task t) throws IOException {
-        URL location = getClass().getResource("/fxml/Task.fxml");
-        FXMLLoader loader = new FXMLLoader();
 
-        loader.setLocation(location);
-        loader.setResources(bundle);
-        loader.setBuilderFactory(new JavaFXBuilderFactory());
-
-        Parent taskPane = (Parent) loader.load();
-
-        TaskController controller = (TaskController) loader
-            .getController();
-
-        controller.setTask(t);
-
-        Stage stage = new Stage();
-
-        stage.setAlwaysOnTop(true);
-        stage.setScene(new Scene(taskPane));
-        stage.setTitle(t.getName());
-        stage.initStyle(StageStyle.UTILITY);
-        stage.resizableProperty().setValue(false);
-
-        stage.showAndWait();
-    }
-    
+    /**
+     * Handler for the creation of a new epic task.
+     * 
+     * This constructs a new add task dialog with an empty task.
+     * 
+     * The task dialog will handle whether or not to save the task into the
+     * project. The document is then mapped back to the window.
+     */
     @FXML
     private void handleAddTask() {
         try {
+            TaskDialog addTask = new TaskDialog(
+                    bundle,
+                    currentEpic,
+                    new Task()
+            );
             
+            addTask.show(mainStage());
+            mapDocumentToWindow();
         } catch (Exception e) {
-            
+            ErrorAlert.show(bundle, bundle.getString("errors.addTask"), e);
         }
     }
     
+    /**
+     * Handler for removing an epic task.
+     * 
+     * This gets the selected item. If nothing is selected then the function
+     * will exit.
+     * 
+     * If a task is selected, the user will be asked whether they want to 
+     * delete it.
+     * 
+     * If the user responds yes, then the task is removed, and the document
+     * is mapped to the window.
+     */
     @FXML
     private void handleRemoveTask() {
         try {
+            ObservableList<Task> items = tasksTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
             
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            ButtonType answer = YesNoPrompt.show(
+                    AlertType.CONFIRMATION,
+                    bundle.getString("epic.tasks.dialogs.remove.title"),
+                    bundle.getString("epic.tasks.dialogs.remove.description")
+            );
+            
+            if (answer == ButtonType.YES) {
+                for (Task t: items) {
+                    currentEpic.removeTask(t);
+                }
+            }
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
         } catch (Exception e) {
-            
+            ErrorAlert.show(bundle, bundle.getString("errors.removeTask"), e);
         }
     }
     
+    /**
+     * Handler for moving task up one position in the list.
+     * 
+     * When invoked, any selected item will be moved up and the document
+     * mapped to window.
+     * 
+     * If nothing is selected, then no change should be made.
+     * 
+    */
     @FXML
     private void handleMoveTaskUp() {
         try {
+            ObservableList<Task> items = tasksTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
             
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            int selectedIndex = tasksTableView
+                    .getItems()
+                    .indexOf(items.get(0));
+            
+            int targetIndex = selectedIndex - 1;
+            
+            if (targetIndex < 0) {
+                throw new NoChoiceMadeException();
+            }
+            
+            Collections.swap(
+                    currentEpic.getTasks(),
+                    selectedIndex,
+                    targetIndex
+            );
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
         } catch (Exception e) {
-            
+            ErrorAlert.show(bundle, bundle.getString("errors.moveTask"), e);
         }
     }
     
+    /**
+     * Handler for moving a task down one position in the list.
+     * 
+     * When invoked, this will move the task down one position.
+     * 
+     * If nothing is selected, then no change is made.
+     */
     @FXML
     private void handleMoveTaskDown() {
         try {
+            ObservableList<Task> items = tasksTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
             
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            int selectedIndex = tasksTableView
+                    .getItems()
+                    .indexOf(items.get(0));
+            
+            int targetIndex = selectedIndex + 1;
+            
+            if (targetIndex > tasksTableView.getItems().size() - 1) {
+                throw new NoChoiceMadeException();
+            }
+            
+            Collections.swap(
+                    currentEpic.getTasks(),
+                    selectedIndex,
+                    targetIndex
+            );
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
         } catch (Exception e) {
-            
+            ErrorAlert.show(bundle, bundle.getString("errors.moveTask"), e);
         }
     }
     

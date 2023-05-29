@@ -361,4 +361,72 @@ parts:
     title: "Error message for inability to open docs site"
     value: "Unable to open documentation site"
     variants: {}
+- translation:
+    key: "errors.applyEpic"
+    title: "Error message when unable to apply changes to epic"
+    value: "Unable to apply changes to epic"
+    variants: {}
+- translation:
+    key: "errors.cancelEpicChanges"
+    title: "Error when unable to cancel changes to epic"
+    value: "Unable to cancel changes"
+    variants: {}
+- translation:
+    key: "errors.addTask"
+    title: "Error message when unable to add task"
+    value: "Unable to add task to epic"
+    variants: {}
+- translation:
+    key: "errors.removeTask"
+    title: "Error message when unable to remove task"
+    value: "Unable to remove task from epic"
+    variants: {}
+- translation:
+    key: "errors.moveTask"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.remove.title"
+    title: "Remove task dialog title"
+    value: "Remove task"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.remove.description"
+    title: "Description for task remove prompt"
+    value: "Are you sure you want to remove the selected task?"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.manage.title"
+    title: "Title for manage task dialog"
+    value: "Manage Task"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.manage.actions.save"
+    title: "Label for manage dialog save button"
+    value: "Save"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.manage.actions.cancel"
+    title: "Label for manage dialog cancel button"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.manage.name"
+    title: "Label for task name attribute"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.manage.size"
+    title: "Label for size combo box label"
+    value: "Size"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.manage.description"
+    title: "Label for description text area label"
+    value: "Description"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.manage.acceptanceCriteria"
+    title: "Label for acceptance criteria label"
+    value: "Acceptance Criteria"
+    variants: {}
 sourceLanguage: "en"

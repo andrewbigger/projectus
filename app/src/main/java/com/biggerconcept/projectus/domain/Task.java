@@ -26,7 +26,7 @@ public class Task {
     private TaskSize size;
     
     /**
-     * Default constructor for task.
+     * Constructor fo task that accepts all task parameters.
      * 
      * @param name
      * @param description
@@ -45,8 +45,28 @@ public class Task {
         this.size = size;
     }
     
+    /**
+     * Constructor for a task when the name of the task is known.
+     * 
+     * Accepts the task, and sets the other attributes to empty.
+     * 
+     * @param name 
+     */
     public Task(String name) {
         this.name = name;
+        this.description = "";
+        this.acceptanceCriteria = "";
+        this.size = TaskSize.ZERO;
+    }
+    
+    /**
+     * Default constructor for task.
+     * 
+     * This is used by the deserializer.
+     * 
+     */
+    public Task() {
+        this.name = "";
         this.description = "";
         this.acceptanceCriteria = "";
         this.size = TaskSize.ZERO;
