@@ -479,4 +479,134 @@ parts:
     title: "Column header for epic estimates"
     value: "Estimate"
     variants: {}
+- translation:
+    key: "dialogs.stories.title"
+    title: "Stories window title"
+    value: "Manage User Stories"
+    variants: {}
+- translation:
+    key: "errors.stories.open"
+    title: "Error message when unable to open stories"
+    value: "Unable to open stories"
+    variants: {}
+- translation:
+    key: "stories.dialogs.actor.title"
+    title: "Title for actor dialog"
+    value: "Manage Actor"
+    variants: {}
+- translation:
+    key: "errors.addActor"
+    title: "Error alert message for failure to add actor"
+    value: "Unable to add actor"
+    variants: {}
+- translation:
+    key: "stories.dialogs.removeActor.title"
+    title: "Title for remove actor confirmation prompt"
+    value: "Remove Actor"
+    variants: {}
+- translation:
+    key: "stories.dialogs.removeActor.description"
+    title: "Description for remove actor confirmation"
+    value: "Are you sure you want to delete the selected actor?"
+    variants: {}
+- translation:
+    key: "errors.removeActor"
+    title: "Alert message for failure to remove actor"
+    value: "Unable to remove actor"
+    variants: {}
+- translation:
+    key: "errors.editActor"
+    title: "Text for error alert when unable to edit actor"
+    value: "Unable to edit actor"
+    variants: {}
+- translation:
+    key: "stories.dialogs.actor.actions.save"
+    title: "Save actor action button label"
+    value: "Save"
+    variants: {}
+- translation:
+    key: "stories.dialogs.actor.actions.cancel"
+    title: "Cancel actor dialog button label"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "stories.dialogs.actor.name"
+    title: "Name field label"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "stories.dialogs.story.title"
+    title: "Title of story management dialog"
+    value: "Manage story"
+    variants: {}
+- translation:
+    key: "stories.dialogs.story.actions.save"
+    title: "Save story button label"
+    value: "Save"
+    variants: {}
+- translation:
+    key: "stories.dialogs.story.actions.cancel"
+    title: "Canel story button label"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "stories.dialogs.story.actor"
+    title: "Label for story actor attribute"
+    value: "Actor (As a...)"
+    variants: {}
+- translation:
+    key: "stories.dialogs.story.intention"
+    title: "Label for story intention attribute"
+    value: "Intention (I want to...)"
+    variants: {}
+- translation:
+    key: "stories.dialogs.story.expectation"
+    title: "Label for story expectation"
+    value: "Expectation (And I expect...)"
+    variants: {}
+- translation:
+    key: "stories.table.empty"
+    title: "Empty state placeholder"
+    value: "No stories specified"
+    variants: {}
+- translation:
+    key: "stories.table.id"
+    title: "Column header for story id column"
+    value: "#"
+    variants: {}
+- translation:
+    key: "stories.table.actor"
+    title: "Header for stories actor column"
+    value: "As a..."
+    variants: {}
+- translation:
+    key: "stories.table.intention"
+    title: "Header for story intention column"
+    value: "I want to..."
+    variants: {}
+- translation:
+    key: "stories.table.expectation"
+    title: "Header for expectation column"
+    value: "And I expect..."
+    variants: {}
+- translation:
+    key: "errors.addStory"
+    title: "Error alert when unable to add story"
+    value: "Unable to add story"
+    variants: {}
+- translation:
+    key: "stories.dialogs.removeStory.title"
+    title: "Title for remove story dialog"
+    value: "Remove Story"
+    variants: {}
+- translation:
+    key: "stories.dialogs.removeStory.description"
+    title: "Description for remove story confirmation"
+    value: "Are you sure you want to remove the selected story?"
+    variants: {}
+- translation:
+    key: "errors.editStory"
+    title: "Error alert when unable to edit story"
+    value: "Unable to edit story"
+    variants: {}
 sourceLanguage: "en"

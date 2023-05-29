@@ -14,6 +14,7 @@ import com.biggerconcept.projectus.ui.dialogs.TextPrompt;
 import com.biggerconcept.projectus.ui.dialogs.YesNoPrompt;
 import com.biggerconcept.projectus.ui.tables.EpicsTable;
 import com.biggerconcept.projectus.ui.tables.TasksTable;
+import com.biggerconcept.projectus.ui.windows.Window;
 import java.io.File;
 import java.io.IOException;
 import javafx.scene.control.Button;
@@ -810,33 +811,67 @@ public class MainController implements Initializable {
     @FXML
     private void handleOpenPreferencesDialog() {
         try {
-            URL location = getClass().getResource("/fxml/Preferences.fxml");
-            FXMLLoader loader = new FXMLLoader();
-        
-            loader.setLocation(location);
-            loader.setResources(bundle);
-            loader.setBuilderFactory(new JavaFXBuilderFactory());
-        
+            FXMLLoader loader = Window.load(
+                    this,
+                    bundle,
+                    "/fxml/Preferences.fxml"
+            );
+            
             Parent preferencePane = (Parent) loader.load();
         
             PreferencesController controller = (PreferencesController) loader
                 .getController();
         
             controller.setDocument(currentDocument);
-        
-            Stage stage = new Stage();
-        
-            stage.setAlwaysOnTop(true);
-            stage.setScene(new Scene(preferencePane));
-            stage.setTitle(bundle.getString("dialogs.preferences.title"));
-            stage.initStyle(StageStyle.UTILITY);
-            stage.resizableProperty().setValue(false);
+            
+            Stage stage = Window.setup(
+                    preferencePane,
+                    bundle.getString("dialogs.preferences.title"),
+                    null,
+                    true,
+                    StageStyle.UTILITY,
+                    false
+                    
+            );
             
             stage.showAndWait();
         } catch (IOException e) {
             ErrorAlert.show(
                     bundle,
                     bundle.getString("errors.preferences.open"),
+                    e
+            );
+        }
+    }
+    
+    @FXML
+    private void handleManageStories() {
+        try {
+            FXMLLoader loader = Window.load(
+                    this,
+                    bundle,
+                    "/fxml/Stories.fxml"
+            );
+            
+            Parent storiesPane = (Parent) loader.load();
+            
+            StoriesController controller = (StoriesController) loader
+                    .getController();
+            
+            controller.setDocument(currentDocument);
+            
+            Stage stage = Window.setup(
+                    storiesPane,
+                    bundle.getString("dialogs.stories.title"),
+                    "/fxml/Stories.css",
+                    StageStyle.UTILITY
+            );
+            
+            stage.showAndWait();
+        } catch (Exception e) {
+             ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.stories.open"),
                     e
             );
         }

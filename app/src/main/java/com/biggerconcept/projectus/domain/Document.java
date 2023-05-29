@@ -51,6 +51,18 @@ public class Document {
     private ArrayList<Epic> epics;
     
     /**
+     * Document actors.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private ArrayList<Actor> actors;
+    
+    /**
+     * Document stories.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private ArrayList<Story> stories;
+    
+    /**
      * Loads file from disk.
      * 
      * By default empty or null values are to be omitted from the parser.
@@ -78,6 +90,28 @@ public class Document {
     }
     
     /**
+     * Creates an actor.
+     * 
+     * @param name
+     */
+    public void createActor(String name) {
+        addActor(
+                new Actor(name)
+        );
+    }
+    
+    /**
+     * Creates a story for the given actor.
+     * 
+     * @param actor
+     */
+    public void createStory(Actor actor) {
+        addStory(
+                new Story(actor)
+        );
+    }
+    
+    /**
      * Creates a project of the given name.
      * 
      * @param name 
@@ -86,6 +120,52 @@ public class Document {
         addEpic(
                 new Epic(name)
         );
+    }
+    
+    /**
+     * Returns true if document has actor.
+     * 
+     * @param a
+     * @return 
+     */
+    public boolean hasActor(Actor a) {
+        return actors.contains(a);
+    }
+    
+    /**
+     * Returns true if document has story.
+     * 
+     * @param s
+     * @return 
+     */
+    public boolean hasStory(Story s) {
+        return stories.contains(s);
+    }
+    
+    /**
+     * Adds a story actor to the document.
+     * 
+     * @param a 
+     */
+    public void addActor(Actor a) {
+        if (actors == null) {
+            actors = new ArrayList<>();
+        }
+        
+        actors.add(a);
+    }
+    
+    /**
+     * Adds a story to the document.
+     * 
+     * @param s 
+     */
+    public void addStory(Story s) {
+        if (stories == null) {
+            stories = new ArrayList<>();
+        }
+        
+        stories.add(s);
     }
     
     /**
@@ -99,6 +179,24 @@ public class Document {
         }
 
         epics.add(p);
+    }
+    
+    /**
+     * Removes an actor from the document.
+     * 
+     * @param a 
+     */
+    public void removeActor(Actor a) {
+        actors.remove(a);
+    }
+    
+    /**
+     * Removes a story from the document.
+     * 
+     * @param s 
+     */
+    public void removeStory(Story s) {
+        stories.remove(s);
     }
     
     /**
@@ -144,6 +242,32 @@ public class Document {
         }
 
         return preferences;
+    }
+    
+    /**
+     * Getter for actors.
+     * 
+     * @return 
+     */
+    public ArrayList<Actor> getActors() {
+        if (actors == null) {
+            actors = new ArrayList<>();
+        }
+        
+        return actors;
+    }
+    
+    /**
+     * Getter for stories.
+     * 
+     * @return 
+     */
+    public ArrayList<Story> getStories() {
+        if (stories == null) {
+            stories = new ArrayList<>();
+        }
+        
+        return stories;
     }
     
     /**
@@ -206,6 +330,24 @@ public class Document {
      */
     public void setPreferences(Preferences value) {
         preferences = value;
+    }
+    
+    /**
+     * Setter for actors.
+     * 
+     * @param value 
+     */
+    public void setActors(ArrayList<Actor> value) {
+        actors = value;
+    }
+    
+    /**
+     * Setter for stories.
+     * 
+     * @param value 
+     */
+    public void setStories(ArrayList<Story> value) {
+        stories = value;
     }
     
     /**

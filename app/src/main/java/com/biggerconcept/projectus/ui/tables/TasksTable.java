@@ -20,8 +20,8 @@ public class TasksTable {
     /**
      * Sortable constant.
      * 
-     * This should be false as reordering tasks is not supported in table
-     * view.
+     * This should be false as reordering tasks are presented in
+     * user specified order.
      */
    public static final boolean SORTABLE = false;
    

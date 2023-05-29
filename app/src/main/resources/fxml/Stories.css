@@ -1,0 +1,46 @@
+#addActorButton {
+  -fx-background-image: url('../icons/AddIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
+
+#removeActorButton {
+  -fx-background-image: url('../icons/RemoveIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
+
+#editActorButton {
+  -fx-background-image: url('../icons/EditIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
+
+#addStoryButton {
+  -fx-background-image: url('../icons/AddIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
+
+#removeStoryButton {
+  -fx-background-image: url('../icons/RemoveIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
+#editStoryButton {
+  -fx-background-image: url('../icons/EditIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
