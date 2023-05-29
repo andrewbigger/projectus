@@ -93,7 +93,7 @@
 }
 
 #manageStoriesButton {
-  -fx-background-image: url('../icons/ManageStoriesIcon.png');
+  -fx-background-image: url('../icons/StoryIcon.png');
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
