@@ -241,4 +241,69 @@ parts:
     title: "Timeframe controls label"
     value: "Timeframe"
     variants: {}
+- translation:
+    key: "epic.name"
+    title: "Label for epic name textbox"
+    value: "Epic name:"
+    variants: {}
+- translation:
+    key: "epic.estimate"
+    title: "Estimate label text"
+    value: "Estimate:"
+    variants: {}
+- translation:
+    key: "epic.tasks.label"
+    title: "Label for epic tasks table"
+    value: "Tasks:"
+    variants: {}
+- translation:
+    key: "epic.tasks.table.id"
+    title: "ID column header label"
+    value: "#"
+    variants: {}
+- translation:
+    key: "epic.tasks.table.name"
+    title: "Label for name column"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "epic.tasks.table.size"
+    title: "Label for epic size column"
+    value: "Size"
+    variants: {}
+- translation:
+    key: "epic.tasks.table.estimate"
+    title: "Label for epic estimate column"
+    value: "Estimate"
+    variants: {}
+- translation:
+    key: "epic.actions.close"
+    title: "Close action button label"
+    value: "Close"
+    variants: {}
+- translation:
+    key: "epic.actions.apply"
+    title: "Epic apply button label"
+    value: "Apply"
+    variants: {}
+- translation:
+    key: "project.table.id"
+    title: "Label for project ID column"
+    value: "#"
+    variants: {}
+- translation:
+    key: "project.table.name"
+    title: "Label for project name column"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "project.table.empty"
+    title: "Label for project table empty state"
+    value: "No projects"
+    variants: {}
+- translation:
+    key: "epic.tasks.table.empty"
+    title: "Label for empty table state"
+    value: "No tasks"
+    variants: {}
 sourceLanguage: "en"

@@ -29,7 +29,6 @@
                   <Button id="saveFileButton" fx:id="saveFileButton" mnemonicParsing="false" onMouseClicked="#handleSaveDocument" prefHeight="55.0" prefWidth="55.0" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="9.0" />
                   <Button id="addEpicButton" fx:id="addEpicButton" mnemonicParsing="false" onMouseClicked="#handleAddEpic" prefHeight="55.0" prefWidth="55.0" />
-                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="9.0" />
                   <Button id="removeEpicButton" fx:id="removeEpicButton" mnemonicParsing="false" onMouseClicked="#handleRemoveEpic" prefHeight="55.0" prefWidth="55.0" />
                   <Button id="moveEpicUpButton" fx:id="moveEpicUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpicUp" prefHeight="55.0" prefWidth="55.0" />
                   <Button id="moveEpicDownButton" fx:id="moveEpicDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpicDown" prefHeight="55.0" prefWidth="55.0" />
@@ -115,7 +114,7 @@
       </BorderPane>
    </top>
    <center>
-      <SplitPane fx:id="documentSplitPane" dividerPositions="0.1341789052069426" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <SplitPane fx:id="documentSplitPane" dividerPositions="0.1341789052069426, 0.568090787716956" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
             <VBox fx:id="projectInfoPanel" prefHeight="200.0" prefWidth="100.0">
                <padding>
@@ -153,15 +152,83 @@
                   <DatePicker fx:id="projectEndDatePicker" />
                </children>
             </VBox>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane snapToPixel="false">
                <center>
-                  <TableView fx:id="epicsTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="epicsTableView" onMouseClicked="#handleEpicSelect" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <columns>
-                        <TableColumn minWidth="100.0" prefWidth="75.0" text="#" />
-                        <TableColumn minWidth="500.0" prefWidth="75.0" text="Name" />
+                        <TableColumn minWidth="100.0" prefWidth="75.0" text="%project.table.id" />
+                        <TableColumn minWidth="500.0" prefWidth="75.0" text="%project.table.name" />
                      </columns>
                   </TableView>
                </center>
+            </BorderPane>
+            <BorderPane fx:id="selectedEpicPanel" prefHeight="706.0" prefWidth="555.0">
+               <top>
+                  <VBox fx:id="epicPanel" prefHeight="102.0" prefWidth="644.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="%epic.name">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="epicNameTextField">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="%epic.estimate">
+                           <padding>
+                              <Insets bottom="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="estimateLabel" text="0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="%epic.tasks.label">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </top>
+               <center>
+                  <TableView fx:id="tasksTableView" prefHeight="539.0" prefWidth="644.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="%epic.tasks.table.id" />
+                      <TableColumn minWidth="350.0" prefWidth="276.0" text="%epic.tasks.table.name" />
+                        <TableColumn text="%epic.tasks.table.size" />
+                        <TableColumn text="%epic.tasks.table.estimate" />
+                    </columns>
+                  </TableView>
+               </center>
+               <bottom>
+                  <BorderPane prefHeight="21.0" prefWidth="644.0" BorderPane.alignment="CENTER">
+                     <center>
+                        <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <items>
+                            <Button id="addTaskButton" fx:id="addTaskButton" mnemonicParsing="false" onMouseClicked="#handleAddTask" prefWidth="25.0" />
+                              <Button id="removeTaskButton" fx:id="removeTaskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveTask" prefWidth="25.0" />
+                              <Button id="moveTaskUpButton" fx:id="moveTaskUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskUp" prefWidth="25.0" />
+                              <Button id="moveTaskDownButton" fx:id="moveTaskDownButton" mnemonicParsing="false" onAction="#handleRemoveTask" onMouseClicked="#handleMoveTaskDown" prefWidth="25.0" />
+                          </items>
+                        </ToolBar>
+                     </center>
+                     <right>
+                        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="274.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <Button fx:id="applyEpicButton" defaultButton="true" maxWidth="70.0" minWidth="60.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleApplyEpicChanges" text="%epic.actions.apply" />
+                            <Button fx:id="cancelEpicButton" maxWidth="70.0" minWidth="60.0" mnemonicParsing="false" onMouseClicked="#handleCancelEpicChanges" text="%epic.actions.close" />
+                          </items>
+                        </ToolBar>
+                     </right>
+                  </BorderPane>
+               </bottom>
             </BorderPane>
         </items>
       </SplitPane>
