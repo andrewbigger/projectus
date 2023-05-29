@@ -12,11 +12,11 @@
    width="45"
    height="45"
    viewBox="0 0 45 45"
-   sodipodi:docname="RemoveString.svg"
+   sodipodi:docname="RemoveIcon.svg"
    inkscape:version="1.0.2 (e86c8708, 2021-01-15)"
-   inkscape:export-filename="/Users/abigger/Code/andrewbigger/stringer/app/src/main/resources/icons/RemoveString.png"
-   inkscape:export-xdpi="96"
-   inkscape:export-ydpi="96">
+   inkscape:export-filename="/Users/abigger/Code/andrewbigger/projectus/app/src/main/resources/icons/RemoveIcon16x16.png"
+   inkscape:export-xdpi="34.130001"
+   inkscape:export-ydpi="34.130001">
   <metadata
      id="metadata9467">
     <rdf:RDF>
@@ -66,11 +66,11 @@
      inkscape:window-height="1017"
      id="namedview9463"
      showgrid="false"
-     inkscape:zoom="12.235904"
-     inkscape:cx="24.078277"
+     inkscape:zoom="13.407258"
+     inkscape:cx="6.2148187"
      inkscape:cy="23.728472"
      inkscape:window-x="139"
-     inkscape:window-y="72"
+     inkscape:window-y="44"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg9461"
      inkscape:pagecheckerboard="0"

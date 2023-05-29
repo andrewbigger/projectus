@@ -13,9 +13,10 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.0.2 (e86c8708, 2021-01-15)"
-   sodipodi:docname="_default.svg"
-   inkscape:export-xdpi="96"
-   inkscape:export-ydpi="96">
+   sodipodi:docname="ProjectusIcon.svg"
+   inkscape:export-xdpi="24.000002"
+   inkscape:export-ydpi="24.000002"
+   inkscape:export-filename="/Users/abigger/Code/andrewbigger/projectus/app/src/main/resources/icons/projectus128x128.png">
   <metadata
      id="metadata839">
     <rdf:RDF>
@@ -42,12 +43,12 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="1.3284774"
-     inkscape:cx="205.60744"
-     inkscape:cy="301.93517"
-     inkscape:window-width="2011"
+     inkscape:zoom="1.6089441"
+     inkscape:cx="256"
+     inkscape:cy="305.72205"
+     inkscape:window-width="1781"
      inkscape:window-height="1368"
-     inkscape:window-x="0"
+     inkscape:window-x="1657"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1"
@@ -121,6 +122,59 @@
        ry="10.089218"
        rx="7.5806003"
        mask="none"
-       transform="matrix(2.228156,0,0,2.228156,0.01307947,-19.50932)" />
+       transform="matrix(2.228156,0,0,2.228156,0.11971233,-18.68248)" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;stroke-width:0.264583"
+       x="-79.531517"
+       y="142.61401"
+       id="text850"><tspan
+         sodipodi:role="line"
+         id="tspan848"
+         x="-79.531517"
+         y="142.61401"
+         style="font-style:oblique;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:70.5555px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold Oblique';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583">P</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.6458332;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m -55.716682,53.749394 h 23.814833"
+       id="path854" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.6458332;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m -57.701252,68.302903 h 25.358387"
+       id="path858" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -31.77919,86.8587 c 0,66.7648 0,66.43591 0,66.43591"
+       id="path922" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M -60.043902,97.512629 H -32.05113"
+       id="path924" />
+    <path
+       style="fill:none;stroke:#ffbb10;stroke-width:7.93749961;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 53.752254,58.045755 H 77.140557"
+       id="path926"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#bf5000;stroke-width:7.93749961;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 53.752254,65.349338 H 87.627989"
+       id="path928" />
+    <path
+       style="fill:none;stroke:#c72a1c;stroke-width:7.93749961;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 53.752254,72.773158 H 97.330261"
+       id="path930" />
+    <path
+       style="fill:none;stroke:#a81897;stroke-width:7.93749961;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 53.752254,80.196984 H 87.627989"
+       id="path928-1" />
+    <path
+       style="fill:none;stroke:#3a70b2;stroke-width:7.93749961;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 53.752254,87.741047 H 77.140557"
+       id="path926-0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#2f3941;stroke-width:11.2965;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 42.185666,114.26479 53.752254,58.045755"
+       id="path852" />
   </g>
 </svg>

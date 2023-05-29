@@ -12,11 +12,11 @@
    width="45"
    height="45"
    viewBox="0 0 45 45"
-   sodipodi:docname="CreateString.svg"
+   sodipodi:docname="AddIcon.svg"
    inkscape:version="1.0.2 (e86c8708, 2021-01-15)"
-   inkscape:export-filename="/Users/abigger/Code/andrewbigger/stringer/app/src/main/resources/icons/CreateString.png"
-   inkscape:export-xdpi="95.400002"
-   inkscape:export-ydpi="95.400002">
+   inkscape:export-filename="/Users/abigger/Code/andrewbigger/projectus/app/src/main/resources/icons/AddIcon16x16.png"
+   inkscape:export-xdpi="34.130001"
+   inkscape:export-ydpi="34.130001">
   <metadata
      id="metadata9447">
     <rdf:RDF>
@@ -55,10 +55,10 @@
      inkscape:window-height="1368"
      id="namedview9443"
      showgrid="false"
-     inkscape:zoom="20.987371"
-     inkscape:cx="24.119595"
-     inkscape:cy="16.286851"
-     inkscape:window-x="0"
+     inkscape:zoom="32.526352"
+     inkscape:cx="26.594511"
+     inkscape:cy="13.827307"
+     inkscape:window-x="1339"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg9441"
