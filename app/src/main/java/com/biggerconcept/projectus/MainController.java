@@ -2,6 +2,7 @@ package com.biggerconcept.projectus;
 
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
 import com.biggerconcept.projectus.platform.OperatingSystem;
 import com.biggerconcept.projectus.ui.Date;
@@ -10,6 +11,8 @@ import com.biggerconcept.projectus.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.projectus.ui.dialogs.SaveFileDialog;
 import com.biggerconcept.projectus.ui.dialogs.TextPrompt;
 import com.biggerconcept.projectus.ui.dialogs.YesNoPrompt;
+import com.biggerconcept.projectus.ui.tables.EpicsTable;
+import com.biggerconcept.projectus.ui.tables.TasksTable;
 import java.io.File;
 import java.io.IOException;
 import javafx.scene.control.Button;
@@ -31,11 +34,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -50,6 +55,11 @@ public class MainController implements Initializable {
      * The document being edited in the main window.
      */
     private Document currentDocument;
+    
+    /**
+     * The currently selected epic.
+     */
+    private Epic currentEpic;
     
     /**
      * Extension filter for files.
@@ -148,6 +158,30 @@ public class MainController implements Initializable {
     public TableView epicsTableView;
     
     /**
+     * Selected epic panel.
+     */
+    @FXML
+    public BorderPane selectedEpicPanel;
+    
+    /**
+     * Selected epic name text field.
+     */
+    @FXML
+    public TextField epicNameTextField;
+    
+    /**
+     * Selected epic estimate label.
+     */
+    @FXML
+    public Label estimateLabel;
+    
+    /**
+     * Selected epic tasks table view.
+     */
+    @FXML
+    public TableView tasksTableView;
+    
+    /**
      * Initializes the main window.
      * 
      * @param url
@@ -162,6 +196,14 @@ public class MainController implements Initializable {
                 "JSON File",
                 Arrays.asList("json")
         );
+        
+        epicsTableView.setPlaceholder(
+               new Label(
+                       bundle.getString("project.table.empty")
+               )
+       );
+
+        selectedEpicPanel.setVisible(false);
         
         if (OperatingSystem.isMac()) {
             mainMenu.useSystemMenuBarProperty().set(true);
@@ -211,30 +253,35 @@ public class MainController implements Initializable {
         projectStartDatePicker.setValue(Date.fromEpoch(doc.getStart()));
         projectEndDatePicker.setValue(Date.fromEpoch(doc.getEnd()));
         
-        epicsTableView.setItems(
-            FXCollections.observableArrayList(currentDocument.getEpics())
+        EpicsTable epicsTable = new EpicsTable(
+                bundle,
+                currentDocument.getEpics()
         );
         
-        // TODO: String
-        TableColumn<Epic, String> idCol = new TableColumn<>("#");
-        TableColumn<Epic, String> nameCol = new TableColumn<>("Name");
+        epicsTable.build(epicsTableView);
         
-        idCol.setSortable(false);
-        idCol.setMinWidth(100);
-        idCol.setCellValueFactory(data -> {
-            return new SimpleStringProperty(
+        if (currentEpic != null) {
+            selectedEpicPanel.setVisible(true);
+            epicNameTextField.setText(currentEpic.getName());
+            estimateLabel.setText(
                     String.valueOf(
-                            currentDocument
-                                    .getEpics()
-                                    .indexOf(data.getValue()) + 1)
+                        currentEpic.getSize(
+                                currentDocument.getPreferences()
+                        )
+                    )
             );
-        });
-        
-        nameCol.setSortable(false);
-        nameCol.setMinWidth(500);
-        nameCol.setCellValueFactory(new PropertyValueFactory("name"));
-        
-        epicsTableView.getColumns().setAll(idCol, nameCol);
+            
+            TasksTable tasksTable = new TasksTable(
+                    bundle,
+                    currentEpic.getTasks(),
+                    currentDocument.getPreferences()
+            );
+            
+            tasksTable.build(tasksTableView);
+            
+        } else {
+            selectedEpicPanel.setVisible(false);
+        }
     }
     
     /**
@@ -257,6 +304,10 @@ public class MainController implements Initializable {
         );
         
         currentDocument.setEnd(Date.toEpoch(projectEndDatePicker.getValue()));
+        
+        if (currentEpic != null) {
+            currentEpic.setName(epicNameTextField.getText());
+        }
     }
     
     /**
@@ -476,6 +527,109 @@ public class MainController implements Initializable {
         } catch (Exception e) {
             // TODO: String
             ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    @FXML
+    private void handleEpicSelect() {
+        try {
+            ObservableList<Epic> items = epicsTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                currentEpic = null;
+            } else {
+                currentEpic = items.get(0);
+            }
+            
+            mapDocumentToWindow(currentDocument);
+        } catch (Exception e) {
+            //TODO: Add strings
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    @FXML
+    private void handleApplyEpicChanges() {
+        try {
+            mapWindowToDocument();
+            mapDocumentToWindow(currentDocument);
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    @FXML
+    private void handleCancelEpicChanges() {
+        try {
+            currentEpic = null;
+            epicsTableView.getSelectionModel().clearSelection();
+            mapDocumentToWindow(currentDocument);
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    private void openTaskWindow(Task t) throws IOException {
+        URL location = getClass().getResource("/fxml/Task.fxml");
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(location);
+        loader.setResources(bundle);
+        loader.setBuilderFactory(new JavaFXBuilderFactory());
+
+        Parent taskPane = (Parent) loader.load();
+
+        TaskController controller = (TaskController) loader
+            .getController();
+
+        controller.setTask(t);
+
+        Stage stage = new Stage();
+
+        stage.setAlwaysOnTop(true);
+        stage.setScene(new Scene(taskPane));
+        stage.setTitle(t.getName());
+        stage.initStyle(StageStyle.UTILITY);
+        stage.resizableProperty().setValue(false);
+
+        stage.showAndWait();
+    }
+    
+    @FXML
+    private void handleAddTask() {
+        try {
+            
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    @FXML
+    private void handleRemoveTask() {
+        try {
+            
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    @FXML
+    private void handleMoveTaskUp() {
+        try {
+            
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    @FXML
+    private void handleMoveTaskDown() {
+        try {
+            
+        } catch (Exception e) {
+            
         }
     }
     
