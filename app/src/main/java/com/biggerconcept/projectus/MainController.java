@@ -399,10 +399,9 @@ public class MainController implements Initializable {
     @FXML
     private void handleAddEpic() {
         try {
-            // TODO: Add strings:
             String name = TextPrompt.show(
-                    "Add epic",
-                    "Please enter the name of the epic"
+                    bundle.getString("epic.dialogs.add.title"),
+                    bundle.getString("epic.dialogs.add.description")
             );
             
             currentDocument.createEpic(name);
@@ -411,8 +410,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch(Exception e) {
-            // TODO: String
-            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+            ErrorAlert.show(bundle, bundle.getString("errors.addEpic"), e);
         }
     }
     
@@ -432,8 +430,8 @@ public class MainController implements Initializable {
             
             ButtonType answer = YesNoPrompt.show(
                     AlertType.CONFIRMATION,
-                    "Remove selected epics",
-                    "Are you sure you want to remove the selected epic?"
+                    bundle.getString("epic.dialogs.remove.title"),
+                    bundle.getString("epic.dialogs.remove.description")
             );
             
             if (answer == ButtonType.YES) {
@@ -446,8 +444,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            // TODO: String
-            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+            ErrorAlert.show(bundle, bundle.getString("errors.removeEpic"), e);
         }
         
     }
@@ -486,8 +483,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            // TODO: String
-            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+            ErrorAlert.show(bundle, bundle.getString("errors.moveEpic"), e);
         }
     }
     
@@ -525,8 +521,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            // TODO: String
-            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+            ErrorAlert.show(bundle, bundle.getString("errors.moveEpic"), e);
         }
     }
     
@@ -545,8 +540,7 @@ public class MainController implements Initializable {
             
             mapDocumentToWindow(currentDocument);
         } catch (Exception e) {
-            //TODO: Add strings
-            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+            ErrorAlert.show(bundle, bundle.getString("errors.selectEpic"), e);
         }
     }
     
@@ -668,8 +662,11 @@ public class MainController implements Initializable {
             
             stage.showAndWait();
         } catch (IOException e) {
-            //TODO: Add strings
-            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.preferences.open"),
+                    e
+            );
         }
     }
     
@@ -698,8 +695,7 @@ public class MainController implements Initializable {
             
             applyPreferencesToWindow();
         } catch (IOException e) {
-            //TODO: Add string
-            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+            ErrorAlert.show(bundle, bundle.getString("errors.about.open"), e);
         }
     }
     
@@ -712,8 +708,7 @@ public class MainController implements Initializable {
         try {
             OperatingSystem.goToUrl(App.HELP_URL);
         } catch (Exception e) {
-            //TODO: Add string
-            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+            ErrorAlert.show(bundle, bundle.getString("errors.help.open"), e);
         }
     }
     

@@ -306,4 +306,59 @@ parts:
     title: "Label for empty table state"
     value: "No tasks"
     variants: {}
+- translation:
+    key: "epic.dialogs.add.title"
+    title: "Text for add epic dialog title"
+    value: "Add epic"
+    variants: {}
+- translation:
+    key: "epic.dialogs.add.description"
+    title: "Text for add epic dialog description"
+    value: "Please enter the name of the epic"
+    variants: {}
+- translation:
+    key: "errors.addEpic"
+    title: "Error string for add epic"
+    value: "Unable to add new epic"
+    variants: {}
+- translation:
+    key: "errors.removeEpic"
+    title: "Text for remove epic error message"
+    value: "Unable to remove selected epic"
+    variants: {}
+- translation:
+    key: "epic.dialogs.remove.title"
+    title: "Title for remove epic dialog"
+    value: "Remove selected epic"
+    variants: {}
+- translation:
+    key: "epic.dialogs.remove.description"
+    title: "Text for remove epic confirmation"
+    value: "Are you sure you want to remove the selected epic?"
+    variants: {}
+- translation:
+    key: "errors.moveEpic"
+    title: "Text for move epic errors"
+    value: "Unable to move epic."
+    variants: {}
+- translation:
+    key: "errors.selectEpic"
+    title: "Text for select epic error"
+    value: "Unable to select epic"
+    variants: {}
+- translation:
+    key: "errors.preferences.open"
+    title: "Text for unable to open preferences error alert"
+    value: "Unable to open preferences"
+    variants: {}
+- translation:
+    key: "errors.about.open"
+    title: "Error message for inability to open about dialog"
+    value: "Unable to open about dialog"
+    variants: {}
+- translation:
+    key: "errors.help.open"
+    title: "Error message for inability to open docs site"
+    value: "Unable to open documentation site"
+    variants: {}
 sourceLanguage: "en"

@@ -42,9 +42,7 @@ public class EpicsTable {
         view.getColumns().setAll(idCol(), nameCol());
     }
     
-    private TableColumn idCol() {
-        // TODO: String
-                
+    private TableColumn idCol() {               
         TableColumn<Epic, String> idCol = new TableColumn<>(
                 bundle.getString("project.table.id")
         );
