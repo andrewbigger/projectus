@@ -429,4 +429,49 @@ parts:
     title: "Label for acceptance criteria label"
     value: "Acceptance Criteria"
     variants: {}
+- translation:
+    key: "toolbar.add.tooltip"
+    title: "Tooltip for add epic button"
+    value: "Adds a new epic to the project"
+    variants: {}
+- translation:
+    key: "toolbar.remove.tooltip"
+    title: "Tooltip for remove epic button"
+    value: "Removes selected epic from project."
+    variants: {}
+- translation:
+    key: "toolbar.moveUp.tooltip"
+    title: "Tooltip for move epic up button"
+    value: "Moves selected epic up one position."
+    variants: {}
+- translation:
+    key: "toolbar.moveDown.tooltip"
+    title: "Tooltip for move epic down button"
+    value: "Moves selected epic down one position."
+    variants: {}
+- translation:
+    key: "epic.toolbar.add.tooltip"
+    title: "Tooltip for add task button"
+    value: "Adds task to epic"
+    variants: {}
+- translation:
+    key: "epic.toolbar.remove.tooltip"
+    title: "Tooltip for remove task button"
+    value: "Remove selected task from epic."
+    variants: {}
+- translation:
+    key: "epic.toolbar.moveUp.tooltip"
+    title: "Tooltip for move task up button"
+    value: "Moves selected task up one position."
+    variants: {}
+- translation:
+    key: "epic.toolbar.moveDown.tooltip"
+    title: "Tooltip for move task down button."
+    value: "Moves selected task down one position."
+    variants: {}
+- translation:
+    key: "epic.toolbar.edit.tooltip"
+    title: "Tooltip for edit task button"
+    value: "Open manage task form for selected epic."
+    variants: {}
 sourceLanguage: "en"

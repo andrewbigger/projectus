@@ -179,6 +179,30 @@ public class MainController implements Initializable {
     public TableView tasksTableView;
     
     /**
+     * Add task to epic button.
+     */
+    @FXML
+    public Button addTaskButton;
+    
+    /**
+     * Remove task from epic button.
+     */
+    @FXML
+    public Button removeTaskButton;
+    
+    /**
+     * Move task up button.
+     */
+    @FXML
+    public Button moveTaskUpButton;
+    
+    /**
+     * Move task down button.
+     */
+    @FXML
+    public Button moveTaskDownButton;
+    
+    /**
      * Edit selected task button.
      */
     @FXML
@@ -228,6 +252,33 @@ public class MainController implements Initializable {
         );
         newFileButton.setTooltip(
                 new Tooltip(bundle.getString("toolbar.new.tooltip"))
+        );
+        addEpicButton.setTooltip(
+                new Tooltip(bundle.getString("toolbar.add.tooltip"))
+        );
+        removeEpicButton.setTooltip(
+                new Tooltip(bundle.getString("toolbar.remove.tooltip"))
+        );
+        moveEpicUpButton.setTooltip(
+                new Tooltip(bundle.getString("toolbar.moveUp.tooltip"))
+        );
+        moveEpicDownButton.setTooltip(
+                new Tooltip(bundle.getString("toolbar.moveDown.tooltip"))
+        );
+        addTaskButton.setTooltip(
+                new Tooltip(bundle.getString("epic.toolbar.add.tooltip"))
+        );
+        removeTaskButton.setTooltip(
+                new Tooltip(bundle.getString("epic.toolbar.remove.tooltip"))
+        );
+        moveTaskUpButton.setTooltip(
+                new Tooltip(bundle.getString("epic.toolbar.moveUp.tooltip"))
+        );
+        moveTaskDownButton.setTooltip(
+                new Tooltip(bundle.getString("epic.toolbar.moveDown.tooltip"))
+        );
+        editTaskButton.setTooltip(
+                new Tooltip(bundle.getString("epic.toolbar.edit.tooltip"))
         );
     }
     
@@ -447,6 +498,8 @@ public class MainController implements Initializable {
                     currentDocument.removeEpic(e);
                 }
             }
+
+            currentEpic = null;
             
             mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
