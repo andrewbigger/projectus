@@ -609,4 +609,14 @@ parts:
     title: "Error alert when unable to edit story"
     value: "Unable to edit story"
     variants: {}
+- translation:
+    key: "epic.tabs.overview"
+    title: "label for the overview tab"
+    value: "Overview"
+    variants: {}
+- translation:
+    key: "epic.tabs.tasks"
+    title: "label for the tasks tab"
+    value: "Tasks"
+    variants: {}
 sourceLanguage: "en"

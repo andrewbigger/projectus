@@ -34,6 +34,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -158,7 +159,7 @@ public class MainController implements Initializable {
      * Selected epic panel.
      */
     @FXML
-    public BorderPane selectedEpicPanel;
+    public TabPane selectedEpicPanel;
     
     /**
      * Selected epic name text field.

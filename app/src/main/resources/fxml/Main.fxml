@@ -9,6 +9,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -165,71 +167,76 @@
                   </TableView>
                </center>
             </BorderPane>
-            <BorderPane fx:id="selectedEpicPanel" prefHeight="706.0" prefWidth="555.0">
-               <top>
-                  <VBox fx:id="epicPanel" prefHeight="102.0" prefWidth="644.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label text="%epic.name">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <TextField fx:id="epicNameTextField">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <Label text="%epic.estimate">
+            <TabPane fx:id="selectedEpicPanel" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="%epic.tabs.overview">
+                     <content>
+                        <VBox fx:id="epicPanel" prefHeight="102.0" prefWidth="644.0">
+                           <children>
+                              <Label text="%epic.name">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="epicNameTextField">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label text="%epic.estimate">
+                                 <padding>
+                                    <Insets bottom="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="estimateLabel" text="0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
                            <padding>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
-                        </Label>
-                        <Label fx:id="estimateLabel" text="0">
-                           <VBox.margin>
-                              <Insets bottom="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label text="%epic.tasks.label">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
-               </top>
-               <center>
-                  <TableView fx:id="tasksTableView" prefHeight="539.0" prefWidth="644.0" BorderPane.alignment="CENTER">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="%epic.tasks.table.id" />
-                      <TableColumn minWidth="350.0" prefWidth="276.0" text="%epic.tasks.table.name" />
-                        <TableColumn text="%epic.tasks.table.size" />
-                        <TableColumn text="%epic.tasks.table.estimate" />
-                    </columns>
-                  </TableView>
-               </center>
-               <bottom>
-                  <BorderPane prefHeight="21.0" prefWidth="644.0" BorderPane.alignment="CENTER">
-                     <center>
-                        <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                          <items>
-                            <Button id="addTaskButton" fx:id="addTaskButton" mnemonicParsing="false" onMouseClicked="#handleAddTask" prefWidth="25.0" />
-                              <Button id="removeTaskButton" fx:id="removeTaskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveTask" prefWidth="25.0" />
-                              <Button id="moveTaskUpButton" fx:id="moveTaskUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskUp" prefWidth="25.0" />
-                              <Button id="moveTaskDownButton" fx:id="moveTaskDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskDown" prefWidth="25.0" />
-                              <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
-                              <Button id="editTaskButton" fx:id="editTaskButton" mnemonicParsing="false" onMouseClicked="#handleEditTask" prefWidth="25.0" />
-                          </items>
-                        </ToolBar>
-                     </center>
-                     <right>
-                        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="274.0" BorderPane.alignment="CENTER" />
-                     </right>
-                  </BorderPane>
-               </bottom>
-            </BorderPane>
+                        </VBox>
+                     </content>
+                </Tab>
+                <Tab text="%epic.tabs.tasks">
+                     <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <BorderPane prefHeight="21.0" prefWidth="644.0" BorderPane.alignment="CENTER">
+                                 <center>
+                                    <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                      <items>
+                                        <Button id="addTaskButton" fx:id="addTaskButton" mnemonicParsing="false" onMouseClicked="#handleAddTask" prefWidth="25.0" />
+                                          <Button id="removeTaskButton" fx:id="removeTaskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveTask" prefWidth="25.0" />
+                                          <Button id="moveTaskUpButton" fx:id="moveTaskUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskUp" prefWidth="25.0" />
+                                          <Button id="moveTaskDownButton" fx:id="moveTaskDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskDown" prefWidth="25.0" />
+                                          <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
+                                          <Button id="editTaskButton" fx:id="editTaskButton" mnemonicParsing="false" onMouseClicked="#handleEditTask" prefWidth="25.0" />
+                                      </items>
+                                    </ToolBar>
+                                 </center>
+                                 <right>
+                                    <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="274.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                           </top>
+                           <center>
+                              <TableView fx:id="tasksTableView" prefHeight="539.0" prefWidth="644.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="%epic.tasks.table.id" />
+                                  <TableColumn minWidth="350.0" prefWidth="276.0" text="%epic.tasks.table.name" />
+                                    <TableColumn text="%epic.tasks.table.size" />
+                                    <TableColumn text="%epic.tasks.table.estimate" />
+                                </columns>
+                              </TableView>
+                           </center>
+                        </BorderPane>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
         </items>
       </SplitPane>
    </center>
