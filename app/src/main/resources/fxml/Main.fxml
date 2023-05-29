@@ -216,16 +216,13 @@
                               <Button id="removeTaskButton" fx:id="removeTaskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveTask" prefWidth="25.0" />
                               <Button id="moveTaskUpButton" fx:id="moveTaskUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskUp" prefWidth="25.0" />
                               <Button id="moveTaskDownButton" fx:id="moveTaskDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskDown" prefWidth="25.0" />
+                              <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
+                              <Button id="editTaskButton" fx:id="editTaskButton" mnemonicParsing="false" onMouseClicked="#handleEditTask" prefWidth="25.0" />
                           </items>
                         </ToolBar>
                      </center>
                      <right>
-                        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="274.0" BorderPane.alignment="CENTER">
-                          <items>
-                              <Button fx:id="applyEpicButton" defaultButton="true" maxWidth="70.0" minWidth="60.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleApplyEpicChanges" text="%epic.actions.apply" />
-                            <Button fx:id="cancelEpicButton" maxWidth="70.0" minWidth="60.0" mnemonicParsing="false" onMouseClicked="#handleCancelEpicChanges" text="%epic.actions.close" />
-                          </items>
-                        </ToolBar>
+                        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="274.0" BorderPane.alignment="CENTER" />
                      </right>
                   </BorderPane>
                </bottom>

@@ -179,6 +179,12 @@ public class MainController implements Initializable {
     public TableView tasksTableView;
     
     /**
+     * Edit selected task button.
+     */
+    @FXML
+    public Button editTaskButton;
+    
+    /**
      * Initializes the main window.
      * 
      * @param url
@@ -321,6 +327,7 @@ public class MainController implements Initializable {
     private void handleCreateNewDocument() {
         try {
             currentDocument = new Document();
+            currentEpic = null;
             mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(bundle, bundle.getString("errors.new"), e);
@@ -554,43 +561,6 @@ public class MainController implements Initializable {
             ErrorAlert.show(bundle, bundle.getString("errors.selectEpic"), e);
         }
     }
-    
-    /**
-     * Handler for application of epic changes to document.
-     * 
-     * This will modify the current document pointer but not save it to disk.
-     * 
-     * The current form of the document will be placed on screen.
-     */
-    @FXML
-    private void handleApplyEpicChanges() {
-        try {
-            mapWindowToDocument();
-            mapDocumentToWindow();
-        } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.applyEpic"), e);
-        }
-    }
-    
-    /**
-     * Handler for when epic changes are cancelled.
-     * 
-     * Nulls the current epic pointer, and clears the epic table view selection.
-     */
-    @FXML
-    private void handleCancelEpicChanges() {
-        try {
-            currentEpic = null;
-            epicsTableView.getSelectionModel().clearSelection();
-            mapDocumentToWindow();
-        } catch (Exception e) {
-            ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.cancelEpicChanges"),
-                    e
-            );
-        }
-    }
 
     /**
      * Handler for the creation of a new epic task.
@@ -742,6 +712,36 @@ public class MainController implements Initializable {
             // do nothing
         } catch (Exception e) {
             ErrorAlert.show(bundle, bundle.getString("errors.moveTask"), e);
+        }
+    }
+    
+    /**
+     * Retrieves selected task and then launches manage task dialog.
+     */
+    @FXML
+    private void handleEditTask() {
+        try {
+            ObservableList<Task> items = tasksTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            TaskDialog manageTask = new TaskDialog(
+                    bundle,
+                    currentEpic,
+                    items.get(0)
+            );
+            
+            manageTask.show(mainStage());
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.editTask"), e);
         }
     }
     

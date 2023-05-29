@@ -83,3 +83,11 @@
   -fx-background-position: center center;
   -fx-background-size: 25px 25px;
 }
+
+#editTaskButton {
+  -fx-background-image: url('../icons/EditIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
