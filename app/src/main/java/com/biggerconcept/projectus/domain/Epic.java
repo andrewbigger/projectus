@@ -36,6 +36,12 @@ public class Epic {
         this.tasks = new ArrayList<>();
     }
     
+    /**
+     * Counts the estimates of all of the tasks in the epic.
+     * 
+     * @param p
+     * @return 
+     */
     public int getSize(Preferences p) {
         int size = 0;
         

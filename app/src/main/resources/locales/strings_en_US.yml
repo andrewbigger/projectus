@@ -474,4 +474,9 @@ parts:
     title: "Tooltip for edit task button"
     value: "Open manage task form for selected epic."
     variants: {}
+- translation:
+    key: "project.table.estimate"
+    title: "Column header for epic estimates"
+    value: "Estimate"
+    variants: {}
 sourceLanguage: "en"

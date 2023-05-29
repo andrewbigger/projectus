@@ -1,6 +1,7 @@
 package com.biggerconcept.projectus.ui.tables;
 
 import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.projectus.domain.Preferences;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -32,12 +33,22 @@ public class EpicsTable {
     /**
      * Width of name column in epics table.
      */
-    public static final int NAME_COL_MIN_WIDTH = 500;
+    public static final int NAME_COL_MIN_WIDTH = 350;
+    
+    /**
+     * Width of estimate column.
+     */
+    public static final int ESTIMATE_COL_MIN_WIDTH = 80;
     
     /**
      * Application resource bundle.
      */
     private ResourceBundle bundle;
+    
+    /**
+     * Document preferences.
+     */
+    private Preferences preferences;
     
     /**
      * List of epics for the table.
@@ -48,10 +59,12 @@ public class EpicsTable {
      * Constructor for epics table view model.
      * 
      * @param rb
+     * @param p
      * @param e 
      */
-    public EpicsTable(ResourceBundle rb, ArrayList<Epic> e) {
+    public EpicsTable(ResourceBundle rb, Preferences p, ArrayList<Epic> e) {
         bundle = rb;
+        preferences = p;
         epics = e;
     }
     
@@ -78,7 +91,7 @@ public class EpicsTable {
                )
        );
 
-        view.getColumns().setAll(idCol(), nameCol());
+        view.getColumns().setAll(idCol(), nameCol(), estimateCol());
     }
     
     /**
@@ -130,6 +143,31 @@ public class EpicsTable {
         nameCol.setCellValueFactory(new PropertyValueFactory("name"));
         
         return nameCol;
+    }
+    
+    /**
+     * Estimate column builder.
+     * 
+     * Constructs a column for the display of epic estimate.
+     * 
+     * @return
+     */
+    private TableColumn estimateCol() {
+        TableColumn<Epic, String> estimateCol = new TableColumn<>(
+                bundle.getString("project.table.estimate")
+        );
+        
+        estimateCol.setSortable(SORTABLE);
+        estimateCol.setMinWidth(ESTIMATE_COL_MIN_WIDTH);
+        
+        estimateCol.setCellValueFactory(data -> {
+            return new SimpleStringProperty(
+                    String.valueOf(
+                            data.getValue().getSize(preferences))
+            );
+        });
+        
+        return estimateCol;
     }
 
 }

@@ -312,6 +312,7 @@ public class MainController implements Initializable {
         
         EpicsTable epicsTable = new EpicsTable(
                 bundle,
+                currentDocument.getPreferences(),
                 currentDocument.getEpics()
         );
         

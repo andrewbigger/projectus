@@ -157,7 +157,8 @@
                   <TableView fx:id="epicsTableView" onMouseClicked="#handleEpicSelect" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <columns>
                         <TableColumn minWidth="100.0" prefWidth="75.0" text="%project.table.id" />
-                        <TableColumn minWidth="500.0" prefWidth="75.0" text="%project.table.name" />
+                        <TableColumn minWidth="350.0" prefWidth="350.0" text="%project.table.name" />
+                        <TableColumn minWidth="80.0" text="%project.table.estimate" />
                      </columns>
                   </TableView>
                </center>
