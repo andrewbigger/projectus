@@ -36,6 +36,16 @@ public class Epic {
         this.tasks = new ArrayList<>();
     }
     
+    public int getSize(Preferences p) {
+        int size = 0;
+        
+        for (Task t: tasks) {
+            size += p.estimateFor(t.getSize());
+        }
+        
+        return size;
+    }
+    
     /**
      * Creates a new task with given name.
      * 
