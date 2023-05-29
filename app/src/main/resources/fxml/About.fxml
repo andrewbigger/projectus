@@ -14,7 +14,7 @@
          <children>
             <ImageView id="AboutIconImage" fx:id="AboutIconImage" fitHeight="128.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icons/projectus.png" />
+                  <Image url="@../icons/projectus128x128.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="20.0" />
