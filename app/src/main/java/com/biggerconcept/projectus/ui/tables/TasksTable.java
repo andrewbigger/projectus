@@ -14,7 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 /**
  * View model for tasks table.
  * 
- * @author abigger
+ * @author Andrew Bigger
  */
 public class TasksTable {
     /**
@@ -51,6 +51,11 @@ public class TasksTable {
    private ResourceBundle bundle;
    
    /**
+    * Parent epic number.
+    */
+   private int epicID;
+   
+   /**
     * List of epic tasks.
     */
    private ArrayList<Task> tasks;
@@ -67,10 +72,16 @@ public class TasksTable {
     * @param t
     * @param p 
     */
-   public TasksTable(ResourceBundle rb, ArrayList<Task> t, Preferences p) {
+   public TasksTable(
+           ResourceBundle rb,
+           ArrayList<Task> t,
+           Preferences p,
+           int e
+   ) {
        bundle = rb;
        tasks = t;
        preferences = p;
+       epicID = e;
    }
    
    /**
@@ -120,7 +131,7 @@ public class TasksTable {
         
         idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
-                    String.valueOf(
+                    epicID + "." + String.valueOf(
                             tasks.indexOf(data.getValue()) + 1)
             );
         });

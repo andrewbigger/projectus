@@ -274,7 +274,8 @@ public class MainController implements Initializable {
             TasksTable tasksTable = new TasksTable(
                     bundle,
                     currentEpic.getTasks(),
-                    currentDocument.getPreferences()
+                    currentDocument.getPreferences(),
+                    currentDocument.getEpics().indexOf(currentEpic) + 1
             );
             
             tasksTable.build(tasksTableView);
