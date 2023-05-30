@@ -207,6 +207,18 @@ public class MainController implements Initializable {
     public Button editTaskButton;
     
     /**
+     * Defined summary progress bar.
+     */
+    @FXML
+    public ProgressBar definedSummaryProgressBar;
+    
+    /**
+     * Defined scope progress bar.
+     */
+    @FXML
+    public ProgressBar definedScopeProgressBar;
+    
+    /**
      * Defined status progress bar.
      */
     @FXML
@@ -279,16 +291,22 @@ public class MainController implements Initializable {
     public Label epicTotalPointsLabel;
     
     /**
-     * Scope include text area.
+     * Scope include list view.
      */
     @FXML
     public ListView includeScopeListView;
     
     /**
-     * Scope exclude text area.
+     * Scope exclude list view.
      */
     @FXML
     public ListView excludeScopeListView;
+    
+    /**
+     * Summary text area.
+     */
+    @FXML
+    public TextArea epicSummaryTextArea;
     
     /**
      * Initializes the main window.
@@ -409,15 +427,23 @@ public class MainController implements Initializable {
             // epic name text field
             epicNameTextField.setText(currentEpic.getName());
             
+            // epic summary text field
+            epicSummaryTextArea.setText(currentEpic.getSummary());
+            
             // status section
             // defined task status
-            definedTaskCountLabel.setText(
-                    String.valueOf(
-                            currentEpic.calculateTaskCount()
-                    )
+            
+            definedSummaryProgressBar.setProgress(
+                    currentEpic.calculateSummaryProgress()
             );
             
-            definedStatusProgressBar.setProgress(1);
+            definedScopeProgressBar.setProgress(
+                    currentEpic.calculateScopeProgress()
+            );
+            
+            definedStatusProgressBar.setProgress(
+                    currentEpic.calculateDefinitionProgress()
+            );
             
             // sized task status
             sizedCountLabel.setText(
@@ -530,6 +556,7 @@ public class MainController implements Initializable {
         
         if (currentEpic != null) {
             currentEpic.setName(epicNameTextField.getText());
+            currentEpic.setSummary(epicSummaryTextArea.getText());
             
             Scope s = new Scope();
             

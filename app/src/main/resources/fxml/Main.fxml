@@ -15,6 +15,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.input.KeyCodeCombination?>
@@ -187,9 +188,19 @@
                               </Label>
                               <TextField fx:id="epicNameTextField">
                                  <VBox.margin>
-                                    <Insets bottom="5.0" />
+                                    <Insets bottom="10.0" />
                                  </VBox.margin>
                               </TextField>
+                              <Label text="%epic.summary">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextArea fx:id="epicSummaryTextArea" prefHeight="200.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextArea>
                               <Label text="%epic.tabs.overview.status.label">
                                  <font>
                                     <Font size="14.0" />
@@ -205,16 +216,11 @@
                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="482.0" minWidth="10.0" prefWidth="83.0" />
                                 </columnConstraints>
                                 <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label text="%epic.tabs.overview.status.defined">
-                                       <padding>
-                                          <Insets bottom="5.0" />
-                                       </padding>
-                                    </Label>
                                     <Label text="%epic.tabs.overview.status.sized" GridPane.rowIndex="1">
                                        <padding>
                                           <Insets bottom="5.0" />
@@ -227,10 +233,52 @@
                                     </Label>
                                     <Label fx:id="describedCountLabel" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                     <Label fx:id="sizedCountLabel" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <Label fx:id="definedTaskCountLabel" text="0" GridPane.columnIndex="2" />
-                                    <ProgressBar fx:id="describedStatusProgressBar" prefWidth="20000.0" progress="0.5" styleClass="describedProgress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <ProgressBar fx:id="sizedStatusProgressBar" prefWidth="20000.0" progress="0.8" styleClass="sizedProgress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <ProgressBar fx:id="definedStatusProgressBar" prefWidth="20000.0" progress="1.0" styleClass="definedProgress" GridPane.columnIndex="1" />
+                                    <ProgressBar fx:id="describedStatusProgressBar" prefWidth="20000.0" progress="0.0" styleClass="describedProgress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ProgressBar fx:id="sizedStatusProgressBar" prefWidth="20000.0" progress="0.0" styleClass="sizedProgress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <GridPane GridPane.columnIndex="1">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <ProgressBar fx:id="definedSummaryProgressBar" prefWidth="20000.0" progress="0.0" styleClass="definedProgress">
+                                                   <HBox.margin>
+                                                      <Insets right="2.0" />
+                                                   </HBox.margin>
+                                                </ProgressBar>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                             <children>
+                                                <ProgressBar fx:id="definedScopeProgressBar" prefWidth="20000.0" progress="0.0" styleClass="definedProgress">
+                                                   <HBox.margin>
+                                                      <Insets left="2.0" right="2.0" />
+                                                   </HBox.margin>
+                                                </ProgressBar>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                             <children>
+                                                <ProgressBar fx:id="definedStatusProgressBar" prefWidth="20000.0" progress="0.0" styleClass="definedProgress">
+                                                   <HBox.margin>
+                                                      <Insets left="2.0" />
+                                                   </HBox.margin>
+                                                </ProgressBar>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </GridPane>
+                                    <Label text="%epic.tabs.overview.status.defined">
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </Label>
                                  </children>
                               </GridPane>
                               <Label text="%epic.tabs.overview.progress.label">
@@ -246,7 +294,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <ProgressBar fx:id="epicTaskProgressBar" prefWidth="20000.0" progress="0.1" styleClass="totalTasksCompleteProgress">
+                              <ProgressBar fx:id="epicTaskProgressBar" prefWidth="20000.0" progress="0.0" styleClass="totalTasksCompleteProgress">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -274,7 +322,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <ProgressBar fx:id="epicPointsProgressBar" prefWidth="20000.0" progress="0.1" styleClass="totalPointsCompleteProgress">
+                              <ProgressBar fx:id="epicPointsProgressBar" prefWidth="20000.0" progress="0.0" styleClass="totalPointsCompleteProgress">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>

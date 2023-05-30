@@ -715,7 +715,7 @@ parts:
 - translation:
     key: "epic.dialogs.scope.included.remove.title"
     title: "Remove scope"
-    value: "Are you sure you want to remove the selected item from scope?"
+    value: "Remove Scope"
     variants: {}
 - translation:
     key: "epic.dialogs.scope.excluded.add.title"
@@ -741,5 +741,14 @@ parts:
 - translation:
     key: "errors.scope.add"
     value: "Unable to add scope"
+    variants: {}
+- translation:
+    key: "epic.summary"
+    title: "Text for epic summary label"
+    value: "Summary"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.included.remove.description"
+    value: "Are you sure you want to remove the selected item from included scope?"
     variants: {}
 sourceLanguage: "en"

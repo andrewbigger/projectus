@@ -26,6 +26,12 @@ public class Epic {
     private Scope scope;
     
     /**
+     * Epic summary
+     */
+    @JsonInclude(Include.NON_NULL)
+    private String summary;
+    
+    /**
      * Epic tasks
      */
     @JsonInclude(Include.NON_NULL)
@@ -36,6 +42,7 @@ public class Epic {
      */
     public Epic() {
         this.name = "";
+        this.summary = "";
         this.tasks = new ArrayList<>();
         this.scope = new Scope();
     }
@@ -47,6 +54,7 @@ public class Epic {
      */
     public Epic(String name) {
         this.name = name;
+        this.summary = "";
         this.tasks = new ArrayList<>();
         this.scope = new Scope();
     }
@@ -78,6 +86,15 @@ public class Epic {
     }
     
     /**
+     * Getter for summary.
+     * 
+     * @return epic summary
+     */
+    public String getSummary() {
+        return summary;
+    }
+    
+    /**
      * Getter for epic tasks.
      * 
      * @return epic tasks
@@ -102,6 +119,15 @@ public class Epic {
      */
     public void setName(String value) {
         name = value;
+    }
+    
+    /**
+     * Setter for epic summary.
+     * 
+     * @param value value for epic summary.
+     */
+    public void setSummary(String value) {
+        summary = value;
     }
     
     /**
@@ -158,6 +184,51 @@ public class Epic {
         } 
         
         return TaskStatus.NOT_STARTED;
+    }
+    
+    /**
+     * Returns summary progress.
+     * 
+     * @return 
+     */
+    @JsonIgnore
+    public double calculateSummaryProgress() {
+        if ("".equals(summary.trim())) {
+            return 0;
+        }
+        
+        return 1;
+    }
+    
+    /**
+     * Returns scope definition progress.
+     * 
+     * @return 
+     */
+    @JsonIgnore
+    public double calculateScopeProgress() {
+        if (scope.getIncluded().isEmpty()) {
+            return 0;
+        }
+        
+        if (scope.getExcluded().isEmpty()) {
+            return 0;
+        }
+        
+        return 1;
+    }
+    
+    /**
+     * Returns task definition progress.
+     * 
+     * @return 
+     */
+    public double calculateDefinitionProgress() {
+        if (tasks.isEmpty()) {
+            return 0;
+        }
+        
+        return 1;
     }
     
     /**
