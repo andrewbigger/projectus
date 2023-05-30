@@ -11,6 +11,15 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  */
 public class Task {
     /**
+     * ENUM of task status.
+     */
+    public static enum TaskStatus {
+        NOT_STARTED,
+        IN_PROGRESS,
+        COMPLETE,
+    }
+    
+    /**
      * Task name.
      */
     @JsonInclude(Include.NON_NULL)
@@ -29,6 +38,12 @@ public class Task {
     private String acceptanceCriteria;
     
     /**
+     * Task status.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private TaskStatus status;
+    
+    /**
      * Task size.
      */
     private TaskSize size;
@@ -40,17 +55,20 @@ public class Task {
      * @param description description for task
      * @param acceptanceCriteria acceptance criteria of task
      * @param size size of task
+     * @param status status of the task
      */
     public Task(
             String name,
             String description,
             String acceptanceCriteria,
-            TaskSize size
+            TaskSize size,
+            TaskStatus status
     ) {
         this.name = name;
         this.description = description;
         this.acceptanceCriteria = acceptanceCriteria;
         this.size = size;
+        this.status = status;
     }
     
     /**
@@ -65,6 +83,7 @@ public class Task {
         this.description = "";
         this.acceptanceCriteria = "";
         this.size = TaskSize.ZERO;
+        this.status = TaskStatus.NOT_STARTED;
     }
     
     /**
@@ -77,6 +96,7 @@ public class Task {
         this.description = "";
         this.acceptanceCriteria = "";
         this.size = TaskSize.ZERO;
+        this.status = TaskStatus.NOT_STARTED;
     }
     
     /**
@@ -116,6 +136,15 @@ public class Task {
     }
     
     /**
+     * Getter for task status.
+     * 
+     * @return status for task
+     */
+    public TaskStatus getStatus() {
+        return status;
+    }
+    
+    /**
      * Setter for task name.
      * 
      * @param value task name value
@@ -149,5 +178,14 @@ public class Task {
      */
     public void setSize(TaskSize value) {
         size = value;
+    }
+    
+    /**
+     * Setter for task status.
+     * 
+     * @param value task status value
+     */
+    public void setStatus(TaskStatus value) {
+        status = value;
     }
 }

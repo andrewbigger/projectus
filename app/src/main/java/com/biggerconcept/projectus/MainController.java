@@ -34,11 +34,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -168,12 +168,6 @@ public class MainController implements Initializable {
     public TextField epicNameTextField;
     
     /**
-     * Selected epic estimate label.
-     */
-    @FXML
-    public Label estimateLabel;
-    
-    /**
      * Selected epic tasks table view.
      */
     @FXML
@@ -208,6 +202,78 @@ public class MainController implements Initializable {
      */
     @FXML
     public Button editTaskButton;
+    
+    /**
+     * Defined status progress bar.
+     */
+    @FXML
+    public ProgressBar definedStatusProgressBar;
+    
+    /**
+     * Defined status count label.
+     */
+    @FXML
+    public Label definedTaskCountLabel;
+    
+    /**
+     * Sized status progress bar.
+     */
+    @FXML
+    public ProgressBar sizedStatusProgressBar;
+    
+    /**
+     * Sized status count label.
+     */
+    @FXML
+    public Label sizedCountLabel;
+    
+    /**
+     * Described status progress bar.
+     */
+    @FXML
+    public ProgressBar describedStatusProgressBar;
+    
+    /**
+     * Described status count label.
+     */
+    @FXML
+    public Label describedCountLabel;
+    
+    /**
+     * Total progress bar.
+     */
+    @FXML
+    public ProgressBar epicTaskProgressBar;
+    
+    /**
+     * Complete task count label.
+     */
+    @FXML
+    public Label completeTaskCountLabel;
+    
+    /**
+     * Total task count label.
+     */
+    @FXML
+    public Label totalTaskCountLabel;
+    
+    /**
+     * Epic points progress bar.
+     */
+    @FXML
+    public ProgressBar epicPointsProgressBar;
+    
+    /**
+     * Completed point count label.
+     */
+    @FXML
+    public Label epicCompletedPointsLabel;
+    
+    /**
+     * Total point count label.
+     */
+    @FXML
+    public Label epicTotalPointsLabel;
     
     /**
      * Initializes the main window.
@@ -302,13 +368,17 @@ public class MainController implements Initializable {
     private void mapDocumentToWindow() {
         applyPreferencesToWindow();
         
+        // project title
         projectNameTextField.setText(currentDocument.getTitle());
+        
+        // project start and end dates
         projectStartDatePicker.setValue(
                 Date.fromEpoch(currentDocument.getStart())
         );
         
         projectEndDatePicker.setValue(Date.fromEpoch(currentDocument.getEnd()));
         
+        // epics table
         EpicsTable epicsTable = new EpicsTable(
                 bundle,
                 currentDocument.getPreferences(),
@@ -317,17 +387,87 @@ public class MainController implements Initializable {
         
         epicsTable.build(epicsTableView);
         
+        // selected epic panel
         if (currentEpic != null) {
             selectedEpicPanel.setVisible(true);
+            // overview tab
+            // epic name text field
             epicNameTextField.setText(currentEpic.getName());
-            estimateLabel.setText(
+            
+            // status section
+            // defined task status
+            definedTaskCountLabel.setText(
                     String.valueOf(
-                        currentEpic.getSize(
-                                currentDocument.getPreferences()
-                        )
+                            currentEpic.calculateTaskCount()
                     )
             );
             
+            definedStatusProgressBar.setProgress(1);
+            
+            // sized task status
+            sizedCountLabel.setText(
+                    String.valueOf(
+                            currentEpic.calculateSizedCount()
+                    )
+            );
+            
+            sizedStatusProgressBar.setProgress(currentEpic.calculateSizedProgress());
+            
+            // described task status
+            describedCountLabel.setText(
+                    String.valueOf(
+                            currentEpic.calculateDescribedCount()
+                    )
+            );
+            
+            describedStatusProgressBar.setProgress(
+                    currentEpic.calculateDescribedProgress()
+            );
+            
+            // progress section
+            // task progress
+            
+            epicTaskProgressBar.setProgress(
+                    currentEpic.calculateCompleteProgress()
+            );
+            
+            completeTaskCountLabel.setText(
+                    String.valueOf(
+                            currentEpic.calculateCompleteCount()
+                    )
+            );
+            
+            totalTaskCountLabel.setText(
+                    String.valueOf(
+                            currentEpic.calculateTaskCount()
+                    )
+            );
+            
+            // point progress
+            epicPointsProgressBar.setProgress(
+                    currentEpic.calculateCompletePointProgress(
+                            currentDocument.getPreferences()
+                    )
+            );
+            
+            epicCompletedPointsLabel.setText(
+                    String.valueOf(
+                            currentEpic.calculateCompletePointCount(
+                                    currentDocument.getPreferences()
+                            )
+                    )
+            );
+            
+            epicTotalPointsLabel.setText(
+                    String.valueOf(
+                            currentEpic.getSize(
+                                    currentDocument.getPreferences()
+                            )
+                    )
+            );
+            
+            // tasks tab
+            // tasks table
             TasksTable tasksTable = new TasksTable(
                     bundle,
                     currentEpic.getTasks(),

@@ -247,11 +247,6 @@ parts:
     value: "Epic name:"
     variants: {}
 - translation:
-    key: "epic.estimate"
-    title: "Estimate label text"
-    value: "Estimate:"
-    variants: {}
-- translation:
     key: "epic.tasks.label"
     title: "Label for epic tasks table"
     value: "Tasks:"
@@ -633,5 +628,55 @@ parts:
     key: "preferences.epics.numbering.description"
     title: "Description for numbering setting"
     value: "This is the number to start numbering epics (default: 1)"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.manage.status"
+    title: "Label for manage epic status combo box"
+    value: "Status"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.status.label"
+    title: "Label for status label"
+    value: "Status"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.status.defined"
+    title: "Label for defined status"
+    value: "Defined"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.status.sized"
+    title: "Label for sized status"
+    value: "Sized"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.status.described"
+    title: "Label for described status"
+    value: "Described"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.progress.label"
+    title: "Label for overview progress label"
+    value: "Progress"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.progress.totalTasks.description"
+    title: "Label for total tasks complete label"
+    value: "Total tasks complete"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.progress.totalTasks.qualifier"
+    title: "Qualifying text for task count"
+    value: "tasks of"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.progress.totalPoints.description"
+    title: "Description label for total points status"
+    value: "Total points complete"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.progress.totalPoints.qualifier"
+    title: "Label for points qualifier label"
+    value: "points of"
     variants: {}
 sourceLanguage: "en"

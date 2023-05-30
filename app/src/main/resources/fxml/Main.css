@@ -98,3 +98,23 @@
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
 }
+
+.definedProgress > .bar {
+  -fx-background-color: #FFBB10;
+}
+
+.sizedProgress > .bar {
+  -fx-background-color: #C72A1C;
+}
+
+.describedProgress > .bar {
+  -fx-background-color: #A81897;
+}
+
+.totalTasksCompleteProgress > .bar {
+  -fx-background-color: #3A70B2;
+}
+
+.totalPointsCompleteProgress > .bar {
+  -fx-background-color: #43b324;
+}

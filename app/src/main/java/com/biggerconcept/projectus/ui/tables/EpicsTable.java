@@ -119,7 +119,7 @@ public class EpicsTable {
         idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
                     String.valueOf(
-                            documentPreferences.getEpicStartNumber() - 1 + 
+                            documentPreferences.getEpicStartNumber() + 
                             currentEpics.indexOf(
                                     data.getValue()
                             ) + 1

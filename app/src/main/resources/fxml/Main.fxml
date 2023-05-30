@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
@@ -17,6 +18,10 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -183,16 +188,110 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </TextField>
-                              <Label text="%epic.estimate">
+                              <Label text="%epic.tabs.overview.status.label">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                                  <padding>
-                                    <Insets bottom="5.0" />
+                                    <Insets bottom="10.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="estimateLabel" text="0">
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="86.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="482.0" minWidth="10.0" prefWidth="474.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="482.0" minWidth="10.0" prefWidth="83.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="%epic.tabs.overview.status.defined">
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label text="%epic.tabs.overview.status.sized" GridPane.rowIndex="1">
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label text="%epic.tabs.overview.status.described" GridPane.rowIndex="2">
+                                       <padding>
+                                          <Insets bottom="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="describedCountLabel" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label fx:id="sizedCountLabel" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label fx:id="definedTaskCountLabel" text="0" GridPane.columnIndex="2" />
+                                    <ProgressBar fx:id="describedStatusProgressBar" prefWidth="20000.0" progress="0.5" styleClass="describedProgress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ProgressBar fx:id="sizedStatusProgressBar" prefWidth="20000.0" progress="0.8" styleClass="sizedProgress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ProgressBar fx:id="definedStatusProgressBar" prefWidth="20000.0" progress="1.0" styleClass="definedProgress" GridPane.columnIndex="1" />
+                                 </children>
+                              </GridPane>
+                              <Label text="%epic.tabs.overview.progress.label">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="%epic.tabs.overview.progress.totalTasks.description">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <ProgressBar fx:id="epicTaskProgressBar" prefWidth="20000.0" progress="0.1" styleClass="totalTasksCompleteProgress">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </ProgressBar>
+                              <HBox prefHeight="21.0" prefWidth="624.0">
+                                 <children>
+                                    <Label fx:id="completeTaskCountLabel" text="0">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label text="%epic.tabs.overview.progress.totalTasks.qualifier">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="totalTaskCountLabel" text="0" />
+                                 </children>
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
+                              </HBox>
+                              <Label text="%epic.tabs.overview.progress.totalPoints.description">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
                               </Label>
+                              <ProgressBar fx:id="epicPointsProgressBar" prefWidth="20000.0" progress="0.1" styleClass="totalPointsCompleteProgress">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </ProgressBar>
+                              <HBox prefHeight="21.0" prefWidth="624.0">
+                                 <children>
+                                    <Label fx:id="epicCompletedPointsLabel" text="0">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label text="%epic.tabs.overview.progress.totalPoints.qualifier">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="epicTotalPointsLabel" text="0" />
+                                 </children>
+                              </HBox>
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

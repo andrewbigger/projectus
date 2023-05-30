@@ -3,6 +3,7 @@ package com.biggerconcept.projectus.ui.dialogs;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Size.TaskSize;
 import com.biggerconcept.projectus.domain.Task;
+import com.biggerconcept.projectus.domain.Task.TaskStatus;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonBar.ButtonData;
@@ -47,6 +48,11 @@ public class TaskDialog {
     private final ComboBox sizeField;
     
     /**
+     * Task status combo box.
+     */
+    private final ComboBox statusField;
+    
+    /**
      * Task description text area.
      */
     private final TextArea descriptionField;
@@ -73,6 +79,10 @@ public class TaskDialog {
         sizeField = new ComboBox();
         sizeField.getItems().addAll(TaskSize.values());
         sizeField.getSelectionModel().select(currentTask.getSize());
+        
+        statusField = new ComboBox();
+        statusField.getItems().addAll(TaskStatus.values());
+        statusField.getSelectionModel().select(currentTask.getStatus());
         
         descriptionField = new TextArea(currentTask.getDescription());
         acceptanceCriteriaField = new TextArea(
@@ -113,6 +123,7 @@ public class TaskDialog {
         wrapper.getChildren().addAll(
                 nameAttribute(),
                 sizeAttribute(),
+                statusAttribute(),
                 descriptionAttribute(),
                 acceptanceCriteriaAttribute()
         );
@@ -163,6 +174,10 @@ public class TaskDialog {
         currentTask.setName(nameField.getText());
         currentTask.setSize(
                 (TaskSize) sizeField.getSelectionModel().getSelectedItem()
+        );
+        
+        currentTask.setStatus(
+                (TaskStatus) statusField.getSelectionModel().getSelectedItem()
         );
 
         currentTask.setDescription(descriptionField.getText());
@@ -216,6 +231,21 @@ public class TaskDialog {
         return attributeFor(
                 new Label(bundle.getString("epic.tasks.dialogs.manage.size")),
                 sizeField
+        );
+    }
+    
+    /**
+     * Status attribute builder.
+     * 
+     * Builds a VBox with the size label and a combo box for selecting task
+     * status.
+     * 
+     * @return size attribute
+     */
+    private VBox statusAttribute() {
+        return attributeFor(
+                new Label(bundle.getString("epic.tasks.dialogs.manage.status")),
+                statusField
         );
     }
     

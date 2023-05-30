@@ -1,5 +1,8 @@
 package com.biggerconcept.projectus.domain;
 
+import com.biggerconcept.projectus.domain.Size.TaskSize;
+import com.biggerconcept.projectus.domain.Task.TaskStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.ArrayList;
@@ -55,6 +58,141 @@ public class Epic {
         }
         
         return size;
+    }
+    
+    /**
+     * Counts total number of tasks in epic.
+     * 
+     * @return task count
+     */
+    @JsonIgnore
+    public int calculateTaskCount() {
+        return tasks.size();
+    }
+    
+    /**
+     * Counts the number of tasks with sizes.
+     * 
+     * @return number of tasks with sizes
+     */
+    @JsonIgnore
+    public int calculateSizedCount() {
+        int count = 0;
+        
+        for (Task t : tasks) {
+            if (t.getSize() != TaskSize.ZERO) {
+                count += 1;
+            }
+        }
+        
+        return count;
+    }
+    
+    /**
+     * Returns sized number in proportion to the total number of
+     * tasks.
+     * 
+     * @return progress of sized cards
+     */
+    @JsonIgnore
+    public double calculateSizedProgress() {
+        return calculateSizedCount() / calculateTaskCount();
+    }
+    
+    /**
+     * Counts the number of tasks with descriptions.
+     * 
+     * @return number of cards with a description
+     */
+    @JsonIgnore
+    public int calculateDescribedCount() {
+        int count = 0;
+        
+        for (Task t : tasks) {
+            if (!"".equals(t.getDescription().trim())) {
+                count += 1;
+            }
+        }
+        
+        return count;
+    }
+    
+    /**
+     * Returns the number of described tasks in proportion to the total
+     * number of tasks.
+     * 
+     * @return progress of described cards
+     */
+    @JsonIgnore
+    public double calculateDescribedProgress() {
+        return calculateDescribedCount() / calculateTaskCount();
+    }
+    
+    /**
+     * Returns count of completed tasks.
+     * 
+     * @return number of complete tasks
+     */
+    @JsonIgnore
+    public int calculateCompleteCount() {
+        int count = 0;
+        
+        for (Task t : tasks) {
+            if (t.getStatus() == TaskStatus.COMPLETE) {
+                count += 1;
+            }
+        }
+        
+        return count;
+    }
+    
+    /**
+     * Returns the number of completed tasks in proportion to the total
+     * number of tasks.
+     * 
+     * @return progress of complete tasks
+     */
+    @JsonIgnore
+    public double calculateCompleteProgress() {
+        double prog = (double) calculateCompleteCount() / calculateTaskCount();
+        
+        return prog;
+    }
+    
+    /**
+     * Returns the number of completed points.
+     * 
+     * @param preferences document preferences
+     * 
+     * @return 
+     */
+    @JsonIgnore
+    public int calculateCompletePointCount(Preferences preferences) {
+        int count = 0;
+        
+        for (Task t : tasks) {
+            if (t.getStatus() == TaskStatus.COMPLETE) {
+                count += preferences.estimateFor(t.getSize());
+            }
+        }
+        
+        return count;
+    }
+    
+    /**
+     * Returns completed point count in proportion to the total number of
+     * points.
+     * 
+     * @param preferences document preferences
+     * 
+     * @return 
+     */
+    @JsonIgnore
+    public double calculateCompletePointProgress(Preferences preferences) {
+        double prog = (double) calculateCompletePointCount(preferences) / 
+                getSize(preferences);
+        
+        return prog;
     }
     
     /**
