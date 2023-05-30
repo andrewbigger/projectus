@@ -2,6 +2,7 @@ package com.biggerconcept.projectus;
 
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.projectus.domain.Scope;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
 import com.biggerconcept.projectus.platform.OperatingSystem;
@@ -34,9 +35,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -276,6 +279,18 @@ public class MainController implements Initializable {
     public Label epicTotalPointsLabel;
     
     /**
+     * Scope include text area.
+     */
+    @FXML
+    public ListView includeScopeListView;
+    
+    /**
+     * Scope exclude text area.
+     */
+    @FXML
+    public ListView excludeScopeListView;
+    
+    /**
      * Initializes the main window.
      * 
      * @param url URL of main FXML
@@ -466,6 +481,18 @@ public class MainController implements Initializable {
                     )
             );
             
+            // scope tab
+            includeScopeListView.getItems().clear();
+            
+            for (String in : currentEpic.getScope().getIncluded()) {
+                includeScopeListView.getItems().add(in);
+            }
+            
+            excludeScopeListView.getItems().clear();
+            for (String out : currentEpic.getScope().getExcluded()) {
+                excludeScopeListView.getItems().add(out);
+            }
+            
             // tasks tab
             // tasks table
             TasksTable tasksTable = new TasksTable(
@@ -503,6 +530,18 @@ public class MainController implements Initializable {
         
         if (currentEpic != null) {
             currentEpic.setName(epicNameTextField.getText());
+            
+            Scope s = new Scope();
+            
+            for (Object in : includeScopeListView.getItems()) {
+                s.getIncluded().add(in.toString());
+            }
+            
+            for (Object out : excludeScopeListView.getItems()) {
+                s.getExcluded().add(out.toString());
+            }
+
+            currentEpic.setScope(s);
         }
     }
     
@@ -1011,6 +1050,130 @@ public class MainController implements Initializable {
              ErrorAlert.show(
                     bundle,
                     bundle.getString("errors.stories.open"),
+                    e
+            );
+        }
+    }
+    
+    @FXML
+    private void handleAddScope() {
+        try {
+            String scope = TextPrompt.show(
+                    bundle.getString("epic.dialogs.scope.included.add.title"),
+                    bundle.getString(
+                            "epic.dialogs.scope.included.add.description"
+                    )
+            );
+            
+            currentEpic.getScope().getIncluded().add(scope);
+            mapDocumentToWindow();
+            
+        } catch(NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.scope.add"),
+                    e
+            );
+        }
+    }
+    
+    @FXML
+    private void handleRemoveScope() {
+        try {
+            String item = (String) includeScopeListView
+                    .getSelectionModel()
+                    .getSelectedItem();
+            
+            if (item == null) {
+                throw new NoChoiceMadeException();
+            }
+            
+            ButtonType answer = YesNoPrompt.show(
+                    AlertType.CONFIRMATION,
+                    bundle.getString(
+                            "epic.dialogs.scope.included.remove.title"
+                    ),
+                    bundle.getString(
+                            "epic.dialogs.scope.included.remove.description"
+                    )
+            );
+            
+            if (answer == ButtonType.YES) {
+                currentEpic.getScope().getIncluded().remove(item);
+            }
+            
+            mapDocumentToWindow();
+            
+        } catch(NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.scope.remove"),
+                    e
+            );
+        }
+    }
+    
+    @FXML
+    private void handleAddExcludedScope() {
+        try {
+            String scope = TextPrompt.show(
+                    bundle.getString("epic.dialogs.scope.excluded.add.title"),
+                    bundle.getString(
+                            "epic.dialogs.scope.excluded.add.description"
+                    )
+            );
+            
+            currentEpic.getScope().getExcluded().add(scope);
+            mapDocumentToWindow();
+            
+        } catch(NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.scope.add"),
+                    e
+            );
+        }
+    }
+    
+    @FXML
+    private void handleRemoveExcludedScope() {
+        try {
+            String item = (String) excludeScopeListView
+                    .getSelectionModel()
+                    .getSelectedItem();
+            
+            if (item == null) {
+                throw new NoChoiceMadeException();
+            }
+            
+            ButtonType answer = YesNoPrompt.show(
+                    AlertType.CONFIRMATION,
+                    bundle.getString(
+                            "epic.dialogs.scope.excluded.remove.title"
+                    ),
+                    bundle.getString(
+                            "epic.dialogs.scope.excluded.remove.description"
+                    )
+            );
+            
+            if (answer == ButtonType.YES) {
+                currentEpic.getScope().getExcluded().remove(item);
+            }
+            
+            mapDocumentToWindow();
+            
+        } catch(NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.scope.remove"),
                     e
             );
         }

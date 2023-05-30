@@ -689,4 +689,57 @@ parts:
     title: "Label for task status column"
     value: "Status"
     variants: {}
+- translation:
+    key: "epic.tabs.scope.label"
+    title: "Label for scope tab"
+    value: "Scope"
+    variants: {}
+- translation:
+    key: "epic.tabs.scope.include.label"
+    title: "Text for scope include label"
+    value: "Include"
+    variants: {}
+- translation:
+    key: "epic.tabs.scope.exclude.label"
+    title: "Text for scope exclude label"
+    value: "Exclude"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.included.add.title"
+    value: "Add item to included scope"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.included.add.description"
+    value: "Please enter a description of the included scope you'd like to add."
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.included.remove.title"
+    title: "Remove scope"
+    value: "Are you sure you want to remove the selected item from scope?"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.excluded.add.title"
+    title: ""
+    value: "Add item to excluded scope"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.excluded.add.description"
+    value: "Please enter a description of the excluded scope you'd like to add."
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.excluded.remove.title"
+    value: "Remove excluded scope"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.excluded.remove.description"
+    value: "Are you sure you want to remove the selected item from excluded scope?"
+    variants: {}
+- translation:
+    key: "errors.scope.remove"
+    value: "Unable to remove scope"
+    variants: {}
+- translation:
+    key: "errors.scope.add"
+    value: "Unable to add scope"
+    variants: {}
 sourceLanguage: "en"

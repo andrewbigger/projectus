@@ -20,6 +20,12 @@ public class Epic {
     private String name;
     
     /**
+     * Epic Scope
+     */
+    @JsonInclude(Include.NON_NULL)
+    private Scope scope;
+    
+    /**
      * Epic tasks
      */
     @JsonInclude(Include.NON_NULL)
@@ -31,6 +37,7 @@ public class Epic {
     public Epic() {
         this.name = "";
         this.tasks = new ArrayList<>();
+        this.scope = new Scope();
     }
     
     /**
@@ -41,6 +48,7 @@ public class Epic {
     public Epic(String name) {
         this.name = name;
         this.tasks = new ArrayList<>();
+        this.scope = new Scope();
     }
     
     /**
@@ -61,6 +69,60 @@ public class Epic {
     }
     
     /**
+     * Getter for name.
+     * 
+     * @return epic name
+     */
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * Getter for epic tasks.
+     * 
+     * @return epic tasks
+     */
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
+    
+    /**
+     * Getter for epic scope.
+     * 
+     * @return epic scope
+     */
+    public Scope getScope() {
+        return scope;
+    }
+    
+    /**
+     * Setter for epic name.
+     * 
+     * @param value value for project name
+     */
+    public void setName(String value) {
+        name = value;
+    }
+    
+    /**
+     * Setter for epic tasks.
+     * 
+     * @param value list of tasks
+     */
+    public void setTasks(ArrayList<Task> value) {
+        tasks = value;
+    }
+    
+    /**
+     * Setter for epic scope.
+     * 
+     * @param value to set as scope
+     */
+    public void setScope(Scope value) {
+        scope = value;
+    }
+    
+     /**
      * Returns epic status.
      * 
      * If any task is in progress then the epic is in progress.
@@ -267,42 +329,6 @@ public class Epic {
      */
     public void removeTask(Task task) {
         tasks.remove(task);
-    }
-    
-    /**
-     * Getter for name.
-     * 
-     * @return epic name
-     */
-    public String getName() {
-        return name;
-    }
-    
-    /**
-     * Getter for project tasks.
-     * 
-     * @return project tasks
-     */
-    public ArrayList<Task> getTasks() {
-        return tasks;
-    }
-    
-    /**
-     * Setter for project name.
-     * 
-     * @param value value for project name
-     */
-    public void setName(String value) {
-        name = value;
-    }
-    
-    /**
-     * Setter for project tasks.
-     * 
-     * @param value list of tasks
-     */
-    public void setTasks(ArrayList<Task> value) {
-        tasks = value;
     }
     
 }
