@@ -619,4 +619,19 @@ parts:
     title: "label for the tasks tab"
     value: "Tasks"
     variants: {}
+- translation:
+    key: "preferences.epics.title"
+    title: "Epics tab label"
+    value: "Epics"
+    variants: {}
+- translation:
+    key: "preferences.epics.numbering.title"
+    title: "Epic numbering label"
+    value: "Numbering"
+    variants: {}
+- translation:
+    key: "preferences.epics.numbering.description"
+    title: "Description for numbering setting"
+    value: "This is the number to start numbering epics (default: 1)"
+    variants: {}
 sourceLanguage: "en"

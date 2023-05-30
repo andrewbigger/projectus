@@ -75,12 +75,25 @@ public class Preferences {
     private int extraLargeTaskSize;
     
     /**
+     * Start number for epics.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private int epicStartNumber;
+    
+    /**
+     * Default epic start number.
+     */
+    private static final int DEFAULT_EPIC_START_NUMBER = 1;
+    
+    /**
      * Builds a set of default preferences.
      * 
      * @return default preferences
      */
     public static Preferences defaultPreferences() {
         Preferences p = new Preferences();
+        
+        p.epicStartNumber = DEFAULT_EPIC_START_NUMBER;
         
         p.extraSmallTaskSize = DEFAULT_XS_TASK_SIZE;
         p.smallTaskSize = DEFAULT_S_TASK_SIZE;
@@ -89,6 +102,15 @@ public class Preferences {
         p.extraLargeTaskSize = DEFAULT_XL_TASK_SIZE;
         
         return p;
+    }
+    
+    /**
+     * Getter of epic start number.
+     * 
+     * @return epic start number
+     */
+    public int getEpicStartNumber() {
+        return epicStartNumber;
     }
     
     /**
@@ -134,6 +156,28 @@ public class Preferences {
      */
     public int getExtraLargeTaskSize() {
         return extraLargeTaskSize;
+    }
+    
+    /**
+     * String setter for epic start number.
+     * 
+     * @param value string representation of start number.
+     */
+    public void setEpicStartNumber(String value) {
+        setEpicStartNumber(
+                Integer.parseInt(value)
+        );
+    }
+    
+    /**
+     * Setter for epic start number.
+     * 
+     * This is the number to start counting epics from.
+     * 
+     * @param value value to set start epic number to
+     */
+    public void setEpicStartNumber(int value) {
+        epicStartNumber = value;
     }
     
     /**

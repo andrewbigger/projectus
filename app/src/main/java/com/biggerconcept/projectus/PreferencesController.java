@@ -70,6 +70,12 @@ public class PreferencesController implements Initializable {
     }
     
     /**
+     * Epic start number text field.
+     */
+    @FXML
+    public TextField epicStartNumberTextField;
+    
+    /**
      * Extra small size text field.
      */
     @FXML
@@ -130,6 +136,9 @@ public class PreferencesController implements Initializable {
      * @param doc open document
      */
     private void mapPreferencesToWindow(Preferences prefs) {
+        epicStartNumberTextField.setText(
+                String.valueOf(prefs.getEpicStartNumber())
+        );
         extraSmallSizeTextField.setText(
                 String.valueOf(prefs.getExtraSmallTaskSize())
         );
@@ -155,6 +164,7 @@ public class PreferencesController implements Initializable {
     private Preferences mapWindowToPreferences() {
         Preferences p = new Preferences();
         
+        p.setEpicStartNumber(epicStartNumberTextField.getText());
         p.setExtraSmallSize(extraSmallSizeTextField.getText());
         p.setSmallSize(smallSizeTextField.getText());
         p.setMediumSize(mediumSizeTextField.getText());

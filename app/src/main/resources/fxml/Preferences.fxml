@@ -30,6 +30,34 @@
    <center>
       <TabPane fx:id="preferenceTabs" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
+            <Tab text="%preferences.epics.title">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <Label text="%preferences.epics.numbering.title">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="%preferences.epics.numbering.description">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="epicStartNumberTextField">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                     </children></VBox>
+               </content>
+            </Tab>
           <Tab fx:id="generalPreferenceTab" text="%preferences.tasks.title">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
