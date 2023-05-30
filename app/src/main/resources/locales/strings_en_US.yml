@@ -679,4 +679,14 @@ parts:
     title: "Label for points qualifier label"
     value: "points of"
     variants: {}
+- translation:
+    key: "project.table.status"
+    title: "Column header for status column"
+    value: "Status"
+    variants: {}
+- translation:
+    key: "epic.tasks.table.status"
+    title: "Label for task status column"
+    value: "Status"
+    variants: {}
 sourceLanguage: "en"

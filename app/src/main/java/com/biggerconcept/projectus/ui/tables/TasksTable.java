@@ -46,6 +46,12 @@ public class TasksTable {
    public static final int ESTIMATE_COL_MIN_WIDTH = 80;
    
    /**
+     * Width of status column.
+     */
+    public static final int STATUS_COL_MIN_WIDTH = 110;
+    
+   
+   /**
     * Application resource bundle.
     */
    private final ResourceBundle bundle;
@@ -107,7 +113,13 @@ public class TasksTable {
                )
        );
 
-       view.getColumns().setAll(idCol(), nameCol(), sizeCol(), estimateCol());
+       view.getColumns().setAll(
+               idCol(), 
+               nameCol(), 
+               sizeCol(), 
+               estimateCol(),
+               statusCol()
+       );
    }
    
    /**
@@ -209,4 +221,28 @@ public class TasksTable {
         
         return estimateCol;
    }
+   
+    /**
+     * Status column builder.
+     * 
+     * @return status column
+     */
+    private TableColumn statusCol() {               
+        TableColumn<Task, String> statusCol = new TableColumn<>(
+                bundle.getString("epic.tasks.table.status")
+        );
+        
+        statusCol.setSortable(SORTABLE);
+        statusCol.setMinWidth(STATUS_COL_MIN_WIDTH);
+        
+        statusCol.setCellValueFactory(data -> {
+            return new SimpleStringProperty(
+                    String.valueOf(
+                            data.getValue().getStatus()
+                    )
+            );
+        });
+        
+        return statusCol;
+    }
 }

@@ -41,6 +41,11 @@ public class EpicsTable {
     public static final int ESTIMATE_COL_MIN_WIDTH = 80;
     
     /**
+     * Width of status column.
+     */
+    public static final int STATUS_COL_MIN_WIDTH = 110;
+    
+    /**
      * Application resource bundle.
      */
     private final ResourceBundle bundle;
@@ -94,7 +99,12 @@ public class EpicsTable {
                )
        );
 
-        view.getColumns().setAll(idCol(), nameCol(), estimateCol());
+        view.getColumns().setAll(
+                idCol(), 
+                nameCol(), 
+                estimateCol(), 
+                statusCol()
+        );
     }
     
     /**
@@ -174,6 +184,30 @@ public class EpicsTable {
         });
         
         return estimateCol;
+    }
+    
+    /**
+     * Status column builder.
+     * 
+     * @return status column
+     */
+    private TableColumn statusCol() {               
+        TableColumn<Epic, String> statusCol = new TableColumn<>(
+                bundle.getString("project.table.status")
+        );
+        
+        statusCol.setSortable(SORTABLE);
+        statusCol.setMinWidth(STATUS_COL_MIN_WIDTH);
+        
+        statusCol.setCellValueFactory(data -> {
+            return new SimpleStringProperty(
+                    String.valueOf(
+                            data.getValue().calculateStatus()
+                    )
+            );
+        });
+        
+        return statusCol;
     }
 
 }

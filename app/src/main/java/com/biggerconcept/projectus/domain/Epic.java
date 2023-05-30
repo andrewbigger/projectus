@@ -61,6 +61,44 @@ public class Epic {
     }
     
     /**
+     * Returns epic status.
+     * 
+     * If any task is in progress then the epic is in progress.
+     * 
+     * If any task is complete then the epic is in progress.
+     * 
+     * If all tasks are complete, then the epic is complete.
+     * 
+     * Otherwise it's not started.
+     * 
+     * @return epic status as task status
+     */
+    @JsonIgnore
+    public TaskStatus calculateStatus() {
+        int completeCount = 0;
+        
+        for (Task t : tasks) {            
+            if (t.getStatus() == TaskStatus.IN_PROGRESS) {
+                return TaskStatus.IN_PROGRESS;
+            }
+            
+            if (t.getStatus() == TaskStatus.COMPLETE) {
+                completeCount += 1;
+            }
+        }
+        
+        if (completeCount > 0) {
+            return TaskStatus.IN_PROGRESS;
+        }
+        
+        if (completeCount == tasks.size() - 1) {
+            return TaskStatus.COMPLETE;
+        } 
+        
+        return TaskStatus.NOT_STARTED;
+    }
+    
+    /**
      * Counts total number of tasks in epic.
      * 
      * @return task count
@@ -96,7 +134,7 @@ public class Epic {
      */
     @JsonIgnore
     public double calculateSizedProgress() {
-        return calculateSizedCount() / calculateTaskCount();
+        return (double) calculateSizedCount() / calculateTaskCount();
     }
     
     /**
@@ -125,7 +163,7 @@ public class Epic {
      */
     @JsonIgnore
     public double calculateDescribedProgress() {
-        return calculateDescribedCount() / calculateTaskCount();
+        return (double) calculateDescribedCount() / calculateTaskCount();
     }
     
     /**
@@ -154,9 +192,7 @@ public class Epic {
      */
     @JsonIgnore
     public double calculateCompleteProgress() {
-        double prog = (double) calculateCompleteCount() / calculateTaskCount();
-        
-        return prog;
+        return (double) calculateCompleteCount() / calculateTaskCount();
     }
     
     /**
@@ -189,10 +225,8 @@ public class Epic {
      */
     @JsonIgnore
     public double calculateCompletePointProgress(Preferences preferences) {
-        double prog = (double) calculateCompletePointCount(preferences) / 
+        return (double) calculateCompletePointCount(preferences) / 
                 getSize(preferences);
-        
-        return prog;
     }
     
     /**
