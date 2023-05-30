@@ -1,0 +1,209 @@
+package com.biggerconcept.projectus.ui.tables;
+
+import com.biggerconcept.projectus.domain.Risk;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+
+/**
+ * View model for the currentRisks table.
+ * 
+ * @author Andrew Bigger
+ */
+public class RiskTable {
+    /**
+     * Sortable constant.
+     * 
+     * This should be false as risks are presented in user specified order.
+     * view.
+     */
+    public static final boolean SORTABLE = false;
+    
+    /**
+     * Default width of ID column.
+     */
+    public static final int ID_COL_MIN_WIDTH = 100;
+    
+    /**
+     * Default width of name column.
+     */
+    public static final int NAME_COL_MIN_WIDTH = 300;
+    
+    /**
+     * Default width of likelihood column.
+     */
+    public static final int LIKELIHOOD_COL_MIN_WIDTH = 150;
+    
+    /**
+     * Default width of impact column.
+     */
+    public static final int IMPACT_COL_MIN_WIDTH = 150;
+    
+    /**
+     * Default width of status column.
+     */
+    public static final int STATUS_COL_MIN_WIDTH = 150;
+    
+    /**
+     * Application resource bundle.
+     */
+    private final ResourceBundle bundle;
+    
+    /**
+     * List of currentRisks.
+     */
+    private final ArrayList<Risk> currentRisks;
+    
+    /**
+     * Constructor for the currentRisks table view model.
+     * 
+     * @param rb application resource bundle
+     * @param risks list of currentRisks
+     */
+    public RiskTable(
+            ResourceBundle rb,
+            ArrayList<Risk> risks
+    ) {
+        bundle = rb;
+        currentRisks = risks;
+    }
+    
+    /**
+     * Builds story table view.
+     * 
+     * @param view story table view
+     */
+    public void build(TableView view) {
+        view.setItems(
+                FXCollections.observableArrayList(currentRisks)
+        );
+        
+        view.setPlaceholder(
+                new Label(
+                        bundle.getString("risks.table.empty")
+                )
+        );
+        
+        view.getColumns().setAll(
+                idCol(),
+                nameCol(),
+                likelihoodCol(),
+                impactCol(),
+                statusCol()
+        );
+    }
+    
+    /**
+     * ID attribute column builder.
+     * 
+     * @return ID column
+     */
+    private TableColumn idCol() {
+        TableColumn<Risk, String> idCol = new TableColumn<>(
+               bundle.getString("risks.table.id")
+       );
+        
+        idCol.setSortable(SORTABLE);
+        idCol.setMinWidth(ID_COL_MIN_WIDTH);
+        
+        idCol.setCellValueFactory(data -> {
+            return new SimpleStringProperty(
+                    String.valueOf(currentRisks.indexOf(data.getValue()) + 1)
+            );
+        });
+        
+        return idCol;
+    }
+    
+    /**
+     * Actor attribute column builder.
+     * 
+     * @return name column
+     */
+    private TableColumn nameCol() {
+        TableColumn<Risk, String> nameCol = new TableColumn<>(
+               bundle.getString("risks.table.name")
+       );
+        
+        nameCol.setSortable(SORTABLE);
+        nameCol.setMinWidth(NAME_COL_MIN_WIDTH);
+        
+        nameCol.setCellValueFactory(data -> {
+            return new SimpleStringProperty(
+                    data.getValue().getName()
+            );
+        });
+        
+        return nameCol;
+    }
+    
+    /**
+     * Likelihood attribute column builder.
+     * 
+     * @return Likelihood column
+     */
+    private TableColumn likelihoodCol() {
+      TableColumn<Risk, String> likelihoodCol = new TableColumn<>(
+             bundle.getString("risks.table.likelihood")
+     );
+      
+      likelihoodCol.setSortable(SORTABLE);
+      likelihoodCol.setMinWidth(LIKELIHOOD_COL_MIN_WIDTH);
+      
+      likelihoodCol.setCellValueFactory(data -> {
+          return new SimpleStringProperty(
+                  String.valueOf(data.getValue().getLikelihood())
+          );
+      });
+      
+      return likelihoodCol;
+  }
+
+  /**
+     * Impact attribute column builder.
+     * 
+     * @return Impact column
+     */
+    private TableColumn impactCol() {
+      TableColumn<Risk, String> impactCol = new TableColumn<>(
+             bundle.getString("risks.table.impact")
+     );
+      
+      impactCol.setSortable(SORTABLE);
+      impactCol.setMinWidth(IMPACT_COL_MIN_WIDTH);
+      
+      impactCol.setCellValueFactory(data -> {
+          return new SimpleStringProperty(
+                  String.valueOf(data.getValue().getImpact())
+          );
+      });
+      
+      return impactCol;
+  }
+    
+    /**
+     * Status attribute column builder.
+     * 
+     * @return Impact column
+     */
+    private TableColumn statusCol() {
+      TableColumn<Risk, String> statusCol = new TableColumn<>(
+             bundle.getString("risks.table.status")
+     );
+      
+      statusCol.setSortable(SORTABLE);
+      statusCol.setMinWidth(STATUS_COL_MIN_WIDTH);
+      
+      statusCol.setCellValueFactory(data -> {
+          return new SimpleStringProperty(
+                  String.valueOf(data.getValue().getStatus())
+          );
+      });
+      
+      return statusCol;
+  }
+}

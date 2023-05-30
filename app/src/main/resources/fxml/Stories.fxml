@@ -39,10 +39,10 @@
          <center>
             <TableView fx:id="storyTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
-                  <TableColumn prefWidth="100.0" text="#" />
-                <TableColumn prefWidth="150.0" text="As a..." />
-                <TableColumn prefWidth="200.0" text="I want to..." />
-                  <TableColumn prefWidth="200.0" text="And I expect..." />
+                  <TableColumn prefWidth="100.0" text="%stories.table.id" />
+                  <TableColumn prefWidth="150.0" text="%stories.table.actor" />
+                  <TableColumn prefWidth="200.0" text="%stories.table.intention" />
+                  <TableColumn prefWidth="200.0" text="%stories.table.expectation" />
               </columns>
             </TableView>
          </center>

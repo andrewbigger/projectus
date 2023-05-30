@@ -160,7 +160,7 @@ public class StoryTable {
     */
    private TableColumn expectationCol() {
         TableColumn<Story, String> expectationCol = new TableColumn<>(
-                bundle.getString("stories.table.intention")
+                bundle.getString("stories.table.expectation")
         );
         
         expectationCol.setSortable(SORTABLE);

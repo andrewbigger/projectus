@@ -99,6 +99,13 @@
   -fx-background-position: center center;
 }
 
+#manageRisksButton {
+  -fx-background-image: url('../icons/RisksIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
 .definedProgress > .bar {
   -fx-background-color: #FFBB10;
 }

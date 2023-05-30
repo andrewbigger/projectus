@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="869.0" stylesheets="Risks.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.RisksController">
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <items>
+                  <Button id="addRiskButton" fx:id="addRiskButton" mnemonicParsing="false" onMouseClicked="#handleAddRisk" prefWidth="26.0" />
+                  <Button id="removeRiskButton" fx:id="removeRiskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveRisk" prefWidth="26.0" />
+                  <Button id="editRiskButton" fx:id="editRiskButton" mnemonicParsing="false" onMouseClicked="#handleEditRisk" prefWidth="26.0" />
+               </items>
+            </ToolBar>
+         </top>
+         <center>
+            <TableView fx:id="riskTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                  <TableColumn minWidth="100.0" prefWidth="100.0" text="%risks.table.id" />
+                  <TableColumn minWidth="200.0" prefWidth="300.0" text="%risks.table.name" />
+                  <TableColumn minWidth="100.0" prefWidth="150.0" text="%risks.table.likelihood" />
+                  <TableColumn minWidth="100.0" prefWidth="150.0" text="%risks.table.impact" />
+                  <TableColumn minWidth="100.0" prefWidth="150.0" text="%risks.table.status" />
+              </columns>
+            </TableView>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

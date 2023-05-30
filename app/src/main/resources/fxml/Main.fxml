@@ -43,6 +43,7 @@
                   <Button id="moveEpicDownButton" fx:id="moveEpicDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpicDown" prefHeight="55.0" prefWidth="55.0" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="9.0" />
                   <Button id="manageStoriesButton" fx:id="manageStoriesButton" mnemonicParsing="false" onMouseClicked="#handleManageStories" prefHeight="55.0" prefWidth="55.0" />
+                  <Button id="manageRisksButton" fx:id="manageRisksButton" mnemonicParsing="false" onMouseClicked="#handleManageRisks" prefHeight="55.0" prefWidth="55.0" />
               </items>
             </ToolBar>
          </center>

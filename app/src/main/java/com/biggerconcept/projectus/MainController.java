@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.ResourceBundle;
@@ -71,6 +72,11 @@ public class MainController implements Initializable {
      * Resource bundle for application.
      */
     private ResourceBundle bundle;
+    
+    /**
+     * List of open windows.
+     */
+    private ArrayList<Stage> openWindows;
     
     /**
      * Application menu.
@@ -336,6 +342,8 @@ public class MainController implements Initializable {
             mainMenu.useSystemMenuBarProperty().set(true);
             quitMenuItem.visibleProperty().set(false);
         }
+        
+        openWindows = new ArrayList<Stage>();
 
         applyTooltips();
     }
@@ -573,6 +581,23 @@ public class MainController implements Initializable {
     }
     
     /**
+     * Closes dependent windows.
+     * 
+     * Any exception thrown is ignored.
+     */
+    private void closeAllDependentWindows() {
+        for (Stage s : openWindows) {
+            try {
+                s.close();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
+        
+        openWindows.clear();
+    }
+    
+    /**
      * Creates a new document.
      * 
      * This will replace the currentDocument with a new one, having the effect
@@ -581,6 +606,8 @@ public class MainController implements Initializable {
     @FXML
     private void handleCreateNewDocument() {
         try {
+            closeAllDependentWindows();
+            
             currentDocument = new Document();
             currentEpic = null;
             mapDocumentToWindow();
@@ -610,6 +637,8 @@ public class MainController implements Initializable {
                     mainStage(),
                     fileExtFilter
             );
+            
+            closeAllDependentWindows();
 
             currentDocument = Document.load(documentFile);
             mapDocumentToWindow();
@@ -1036,6 +1065,7 @@ public class MainController implements Initializable {
                     
             );
             
+            openWindows.add(stage);
             stage.showAndWait();
         } catch (IOException e) {
             ErrorAlert.show(
@@ -1072,11 +1102,49 @@ public class MainController implements Initializable {
                     StageStyle.UTILITY
             );
             
+            openWindows.add(stage);
             stage.showAndWait();
         } catch (Exception e) {
              ErrorAlert.show(
                     bundle,
                     bundle.getString("errors.stories.open"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Shows manage risks window.
+     */
+    @FXML
+    private void handleManageRisks() {
+        try {
+            FXMLLoader loader = Window.load(
+                    this,
+                    bundle,
+                    "/fxml/Risks.fxml"
+            );
+            
+            Parent storiesPane = (Parent) loader.load();
+            
+            RisksController controller = (RisksController) loader
+                    .getController();
+            
+            controller.setDocument(currentDocument);
+            
+            Stage stage = Window.setup(
+                    storiesPane,
+                    bundle.getString("dialogs.risks.title"),
+                    "/fxml/Risks.css",
+                    StageStyle.UTILITY
+            );
+            
+            openWindows.add(stage);
+            stage.showAndWait();
+        } catch (Exception e) {
+             ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.risks.open"),
                     e
             );
         }
@@ -1227,9 +1295,8 @@ public class MainController implements Initializable {
                     bundle.getString("application.about.windowTitle")
             );
             
+            openWindows.add(aboutStage);
             aboutStage.showAndWait();
-            
-            applyPreferencesToWindow();
         } catch (IOException e) {
             ErrorAlert.show(bundle, bundle.getString("errors.about.open"), e);
         }

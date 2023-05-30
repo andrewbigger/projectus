@@ -751,4 +751,79 @@ parts:
     key: "epic.dialogs.scope.included.remove.description"
     value: "Are you sure you want to remove the selected item from included scope?"
     variants: {}
+- translation:
+    key: "dialogs.risks.title"
+    title: "Risks window title"
+    value: "Manage Risks"
+    variants: {}
+- translation:
+    key: "errors.risks.open"
+    title: "Error message when unable to open risk manager"
+    value: "Unable to open risk manager"
+    variants: {}
+- translation:
+    key: "risks.table.id"
+    title: "Column header for risk ID"
+    value: "#"
+    variants: {}
+- translation:
+    key: "risks.table.name"
+    title: "Column header for risk name"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "risks.table.likelihood"
+    title: "Column header for risk likelihood"
+    value: "Likelihood"
+    variants: {}
+- translation:
+    key: "risks.table.impact"
+    title: "Column header for risk impact"
+    value: "Impact"
+    variants: {}
+- translation:
+    key: "risks.dialogs.risk.title"
+    title: "Title for manage risk dialog"
+    value: "Manage risk"
+    variants: {}
+- translation:
+    key: "risks.dialogs.risk.actions.save"
+    title: "Save risk action"
+    value: "Save"
+    variants: {}
+- translation:
+    key: "risks.dialogs.risk.actions.cancel"
+    title: "Cancel manage risk dialog"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "risks.dialogs.risk.name"
+    title: "Label for risk name attribute"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "risks.dialogs.risk.likelihood"
+    title: "Label for the likelihood attribute"
+    value: "Likelihood"
+    variants: {}
+- translation:
+    key: "risks.dialogs.risk.impact"
+    title: "label for the risk impact attribute"
+    value: "Impact"
+    variants: {}
+- translation:
+    key: "risks.table.empty"
+    title: "Empty state for risks manager"
+    value: "No risks"
+    variants: {}
+- translation:
+    key: "risks.dialogs.risk.status"
+    title: "Label for status attribute for risk dialog"
+    value: "Status"
+    variants: {}
+- translation:
+    key: "risks.table.status"
+    title: "Label for status column header"
+    value: "Status"
+    variants: {}
 sourceLanguage: "en"

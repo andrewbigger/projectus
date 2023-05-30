@@ -61,6 +61,12 @@ public class Document {
      */
     @JsonInclude(Include.NON_NULL)
     private ArrayList<Story> stories;
+
+    /**
+     * Document risks.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private ArrayList<Risk> risks;
     
     /**
      * Loads file from disk.
@@ -144,6 +150,17 @@ public class Document {
     public boolean hasStory(Story story) {
         return stories.contains(story);
     }
+
+    /**
+     * Returns true if document has risk.
+     * 
+     * @param risk risk to look for
+     * 
+     * @return result
+     */
+    public boolean hasRisk(Risk risk) {
+        return risks.contains(risk);
+    }
     
     /**
      * Adds actor story actor to the document.
@@ -169,6 +186,19 @@ public class Document {
         }
         
         stories.add(story);
+    }
+
+    /**
+     * Adds a risk to the document.
+     * 
+     * @param risk
+     */
+    public void addRisk(Risk risk) {
+        if (risks == null) {
+            risks = new ArrayList<>();
+        }
+
+        risks.add(risk);
     }
     
     /**
@@ -200,6 +230,15 @@ public class Document {
      */
     public void removeStory(Story story) {
         stories.remove(story);
+    }
+
+    /**
+     * Removes a risk from the document.
+     * 
+     * @param risk risk to remove
+     */
+    public void removeRisk(Risk risk) {
+        risks.remove(risk);
     }
     
     /**
@@ -271,6 +310,19 @@ public class Document {
         }
         
         return stories;
+    }
+
+    /**
+     * Getter for risks.
+     * 
+     * @return list of risks
+     */
+    public ArrayList<Risk> getRisks() {
+        if (risks == null) {
+            risks = new ArrayList<>();
+        }
+
+        return risks;
     }
     
     /**
