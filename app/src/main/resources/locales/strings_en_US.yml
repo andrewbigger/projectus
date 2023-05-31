@@ -924,4 +924,14 @@ parts:
     title: "Error when unable to move risk"
     value: "Unable to move risk"
     variants: {}
+- translation:
+    key: "stories.dialogs.removeRisk.title"
+    title: "Title for remove risk dialog"
+    value: "Remove Risk"
+    variants: {}
+- translation:
+    key: "stories.dialogs.removeRisk.description"
+    title: "Description for remove risk dialog"
+    value: "Are you sure you want to remove the selected risk?"
+    variants: {}
 sourceLanguage: "en"

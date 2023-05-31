@@ -2,6 +2,8 @@ package com.biggerconcept.projectus.serializers.helpers;
 
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.projectus.domain.Risk;
+import com.biggerconcept.projectus.domain.Story;
 import java.util.ArrayList;
 
 /**
@@ -22,7 +24,6 @@ public class Tables {
         
         headers.add("#"); // TODO: strings
         headers.add("Description");
-        headers.add("Story");
         headers.add("Estimate");
         
         return headers;
@@ -48,11 +49,144 @@ public class Tables {
             ArrayList<String> row = new ArrayList<>();
             row.add(String.valueOf(taskCount)); // TODO: Epic Number
             row.add(t.getName());
-            row.add(""); // TODO: Stories
             row.add(""); // TODO: size
             
             rows.add(row);
         }
+        
+        return rows;
+    }
+    
+    /**
+     * Creates headers for story table.
+     * 
+     * This is used by the discovery document serializer.
+     * 
+     * @return 
+     */
+    public static ArrayList<String> storyTableHeaders() {
+        ArrayList<String> headers = new ArrayList<>();
+        
+        headers.add("#");
+        headers.add("As a...");
+        headers.add("I want to...");
+        headers.add("And I expect...");
+        
+        return headers;
+    }
+    
+    /**
+     * Creates a table body for an epic's stories.
+     * 
+     * This is used by the discovery document serializer.
+     * 
+     * @param epic
+     * 
+     * @return
+    */
+    public static ArrayList<ArrayList<String>> storyTableBody(Epic epic) {
+        ArrayList<ArrayList<String>> rows = new ArrayList();
+        
+        int storyCount = 0;
+
+        for (Story s : epic.getStories()) {
+            storyCount += 1;
+            
+            ArrayList<String> row = new ArrayList<>();
+            row.add("S" + String.valueOf(storyCount));
+            row.add(s.getActor().getName());
+            row.add(s.getIntention());
+            row.add(s.getExpectation());
+            
+            rows.add(row);
+        }
+        
+        return rows;
+    }
+    
+    /**
+     * Creates headers for risk table.
+     * 
+     * This is used by the discovery document serializer.
+     * 
+     * @return 
+     */
+    public static ArrayList<String> riskTableHeaders() {
+        ArrayList<String> headers = new ArrayList<>();
+        
+        headers.add("#");
+        headers.add("Name");
+        headers.add("Likelihood");
+        headers.add("Impact");
+        
+        return headers;
+    }
+    
+    /**
+     * Creates a table body for an epic's risks.
+     * 
+     * This is used by the discovery document serializer.
+     * 
+     * @param epic
+     * 
+     * @return
+    */
+    public static ArrayList<ArrayList<String>> riskTableBody(Epic epic) {
+        ArrayList<ArrayList<String>> rows = new ArrayList();
+        
+        int riskCount = 0;
+
+        for (Risk r : epic.getRisks()) {
+            riskCount += 1;
+            
+            ArrayList<String> row = new ArrayList<>();
+            row.add("R" + String.valueOf(riskCount));
+            row.add(r.getName());
+            row.add(String.valueOf(r.getLikelihood()));
+            row.add(String.valueOf(r.getImpact()));
+            
+            rows.add(row);
+        }
+        
+        return rows;
+    }
+    
+    /**
+     * Creates headers for risk table.
+     * 
+     * This is used by the discovery document serializer.
+     * 
+     * @return 
+     */
+    public static ArrayList<String> riskSummaryTableHeaders() {
+        ArrayList<String> headers = new ArrayList<>();
+        
+        headers.add("Likelihood");
+        headers.add("Impact");
+        headers.add("Status");
+        
+        return headers;
+    }
+    
+    /**
+     * Creates a table body for an epic's risks.This is used by the discovery
+     * document serializer.
+     * 
+     *
+     * @param risk 
+     * 
+     * @return
+    */
+    public static ArrayList<ArrayList<String>> riskSummaryTableBody(Risk risk) {       
+        ArrayList<ArrayList<String>> rows = new ArrayList();
+        
+        ArrayList<String> row = new ArrayList<>();
+        
+        row.add(String.valueOf(risk.getLikelihood()));
+        row.add(String.valueOf(risk.getImpact()));
+        row.add(String.valueOf(risk.getStatus()));
+        
+        rows.add(row);
         
         return rows;
     }

@@ -39,6 +39,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
         taskSummaryPage();
         tasksPages();
         riskSummaryPage();
+        riskPages();
 
         docx.save();
     }
@@ -84,7 +85,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      */
     private void storiesPage() {
         docx.h1("Stories"); // TODO: String
-        // TODO: Add stories table
+        docx.table(Tables.storyTableHeaders(), Tables.storyTableBody(epic));
         docx.br();
     }
     
@@ -125,7 +126,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      */
     private void riskSummaryPage() {
         docx.h1("Risks"); // TODO: String
-        // TODO: Add risks table
+        docx.table(Tables.riskTableHeaders(), Tables.riskTableBody(epic));
         docx.br();
     }
     
@@ -133,7 +134,9 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      * Iterates over each risk and builds a page for each of them.
      */
     private void riskPages() {
-        
+        for (Risk r : epic.getRisks()) {
+            riskPage(r);
+        }
     }
     
     /**
@@ -143,6 +146,13 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      */
     private void riskPage(Risk r) {
         docx.h2(r.getName());
+        docx.table(
+                Tables.riskSummaryTableHeaders(),
+                Tables.riskSummaryTableBody(r)
+        );
+        
+        docx.strong("Details");
+        // TODO: Details
         
         docx.br();
     }
