@@ -20,7 +20,7 @@ public class Tables {
     public static ArrayList<String> taskTableHeaders() {
         ArrayList<String> headers = new ArrayList<>();
         
-        headers.add("#");
+        headers.add("#"); // TODO: strings
         headers.add("Description");
         headers.add("Story");
         headers.add("Estimate");

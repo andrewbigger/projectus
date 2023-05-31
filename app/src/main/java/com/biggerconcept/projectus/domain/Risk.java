@@ -179,4 +179,20 @@ public class Risk {
   public void setStatus(RiskStatus value) {
       status = value;
   }
+  
+  /**
+     * Returns true if given risk matches.
+     * 
+     * TODO: Things could have IDs for matching instead
+     * 
+     * @param r
+     * @return 
+     */
+    public boolean match(Risk r) {
+        if (r.getName() == name) {
+            return true;
+        }
+        
+        return false;
+    }
 }

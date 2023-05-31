@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import org.apache.xmlbeans.XmlException;
 
 /**

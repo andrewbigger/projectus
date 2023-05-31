@@ -112,6 +112,7 @@ public class RiskTable {
         
         idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
+                    "R" +
                     String.valueOf(currentRisks.indexOf(data.getValue()) + 1)
             );
         });

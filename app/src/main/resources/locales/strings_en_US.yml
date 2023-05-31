@@ -826,4 +826,102 @@ parts:
     title: "Label for status column header"
     value: "Status"
     variants: {}
+- translation:
+    key: "epic.tabs.story.label"
+    title: "Label for stories tab"
+    value: "Stories"
+    variants: {}
+- translation:
+    key: "epic.tabs.risks.label"
+    title: "Risks tab label"
+    value: "Risks"
+    variants: {}
+- translation:
+    key: "dialogs.storyChooser.title"
+    title: "Title for story chooser"
+    value: "Choose Story"
+    variants: {}
+- translation:
+    key: "dialogs.storyChooser.actions.choose"
+    title: "Label for choose button"
+    value: "Choose"
+    variants: {}
+- translation:
+    key: "dialogs.storyChooser.actions.cancel"
+    title: "Label for story chooser cancel button"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "dialogs.storyChooser.description"
+    title: "Description for story chooser"
+    value: "Please select a story from the list below."
+    variants: {}
+- translation:
+    key: "dialogs.riskChooser.title"
+    title: "Title of risk chooser dialog"
+    value: "Choose Risk"
+    variants: {}
+- translation:
+    key: "dialogs.riskChooser.actions.choose"
+    title: "Choose action label for risk chooser dialog"
+    value: "Choose"
+    variants: {}
+- translation:
+    key: "dialogs.riskChooser.actions.cancel"
+    title: "Cancel risk chooser dialog"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "dialogs.riskChooser.description"
+    title: "Description for risk chooser dialog"
+    value: "Choose a risk from the risks below"
+    variants: {}
+- translation:
+    key: "errors.addStory"
+    variants: {}
+- translation:
+    key: "errors.addRisk"
+    title: "Error when unable to add risk"
+    value: "Unable to add risk"
+    variants: {}
+- translation:
+    key: "errors.removeStory"
+    title: "Error message when unable to remove story"
+    value: "Unable to remove story"
+    variants: {}
+- translation:
+    key: "errors.removeRisk"
+    title: "Error message when unable to remove risk"
+    value: "Unable to remove risk"
+    variants: {}
+- translation:
+    key: "epic.stories.dialogs.remove.title"
+    title: "Remove story confirmation title"
+    value: "Remove Story"
+    variants: {}
+- translation:
+    key: "epic.stories.dialogs.remove.description"
+    title: "Confirmation message on delete  story dialog"
+    value: "Are you sure you want to remove the story link from this epic?"
+    variants: {}
+- translation:
+    key: "epic.risks.dialogs.remove.title"
+    title: "Title for remove risk link dialog"
+    value: "Remove Risk"
+    variants: {}
+- translation:
+    key: "epic.risks.dialogs.remove.description"
+    title: "Confirmation message when deleting risk"
+    value: "Are you sure you want to remove the risk link from this epic?"
+    variants: {}
+- translation:
+    key: "errors.moveStory"
+    title: "Error when unable to move story"
+    value: "Unable to move Story"
+    variants: {}
+- translation:
+    key: "errors.moveRisk"
+    title: "Error when unable to move risk"
+    value: "Unable to move risk"
+    variants: {}
 sourceLanguage: "en"

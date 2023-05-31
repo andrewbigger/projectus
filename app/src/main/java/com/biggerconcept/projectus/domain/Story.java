@@ -113,4 +113,18 @@ public class Story {
     public void setExpectation(String value) {
         expectation = value;
     }
+    
+    /**
+     * Returns true if given story matches.
+     * 
+     * @param s
+     * @return 
+     */
+    public boolean match(Story s) {
+        if (s.getExpectation() == expectation && s.getIntention() == intention) {
+            return true;
+        }
+        
+        return false;
+    }
 }

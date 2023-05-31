@@ -411,28 +411,35 @@
                         </VBox>
                      </content>
                   </Tab>
-                <Tab text="%epic.tabs.tasks">
+                  <Tab text="%epic.tabs.story.label">
                      <content>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <top>
-                              <BorderPane prefHeight="21.0" prefWidth="644.0" BorderPane.alignment="CENTER">
-                                 <center>
-                                    <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                      <items>
-                                        <Button id="addTaskButton" fx:id="addTaskButton" mnemonicParsing="false" onMouseClicked="#handleAddTask" prefWidth="25.0" />
-                                          <Button id="removeTaskButton" fx:id="removeTaskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveTask" prefWidth="25.0" />
-                                          <Button id="moveTaskUpButton" fx:id="moveTaskUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskUp" prefWidth="25.0" />
-                                          <Button id="moveTaskDownButton" fx:id="moveTaskDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskDown" prefWidth="25.0" />
-                                          <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
-                                          <Button id="editTaskButton" fx:id="editTaskButton" mnemonicParsing="false" onMouseClicked="#handleEditTask" prefWidth="25.0" />
-                                      </items>
-                                    </ToolBar>
-                                 </center>
-                                 <right>
-                                    <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="274.0" BorderPane.alignment="CENTER" />
-                                 </right>
-                              </BorderPane>
+                              <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <items>
+                                    <Button id="addStoryLinkButton" fx:id="addStoryLinkButton" mnemonicParsing="false" onMouseClicked="#handleAddStoryLink" prefWidth="25.0" />
+                                    <Button id="removeStoryLinkButton" fx:id="removeStoryLinkButton" mnemonicParsing="false" onMouseClicked="#handleRemoveStoryLink" prefWidth="25.0" />
+                                    <Button id="moveStoryUpButton" fx:id="moveStoryUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveStoryUp" prefWidth="25.0" />
+                                    <Button id="moveStoryDownButton" fx:id="moveStoryDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveStoryDown" prefWidth="25.0" />
+                                 </items>
+                              </ToolBar>
                            </top>
+                           <center>
+                              <TableView fx:id="storiesTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn prefWidth="100.0" text="%stories.table.id" />
+                                  <TableColumn prefWidth="150.0" text="%stories.table.actor" />
+                                    <TableColumn prefWidth="150.0" text="%stories.table.intention" />
+                                    <TableColumn prefWidth="150.0" text="%stories.table.expectation" />
+                                </columns>
+                              </TableView>
+                           </center>
+                        </BorderPane>
+                     </content>
+                  </Tab>
+                <Tab text="%epic.tabs.tasks">
+                     <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <center>
                               <TableView fx:id="tasksTableView" prefHeight="539.0" prefWidth="644.0" BorderPane.alignment="CENTER">
                                 <columns>
@@ -443,9 +450,48 @@
                                 </columns>
                               </TableView>
                            </center>
+                           <top>
+                              <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                <items>
+                                  <Button id="addTaskButton" fx:id="addTaskButton" mnemonicParsing="false" onMouseClicked="#handleAddTask" prefWidth="25.0" />
+                                    <Button id="removeTaskButton" fx:id="removeTaskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveTask" prefWidth="25.0" />
+                                    <Button id="moveTaskUpButton" fx:id="moveTaskUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskUp" prefWidth="25.0" />
+                                    <Button id="moveTaskDownButton" fx:id="moveTaskDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskDown" prefWidth="25.0" />
+                                    <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
+                                    <Button id="editTaskButton" fx:id="editTaskButton" mnemonicParsing="false" onMouseClicked="#handleEditTask" prefWidth="25.0" />
+                                </items>
+                              </ToolBar>
+                           </top>
                         </BorderPane>
                      </content>
                 </Tab>
+                  <Tab text="%epic.tabs.risks.label">
+                     <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <items>
+                                    <Button id="addRiskLinkButton" fx:id="addRiskLinkButton" mnemonicParsing="false" onMouseClicked="#handleAddRiskLink" prefWidth="25.0" />
+                                    <Button id="removeRiskLinkButton" fx:id="removeRiskLinkButton" mnemonicParsing="false" onMouseClicked="#handleRemoveRiskLink" prefWidth="25.0" />
+                                    <Button id="moveRiskUpButton" fx:id="moveRiskUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveRiskUp" prefWidth="25.0" />
+                                    <Button id="moveRiskDownButton" fx:id="moveRiskDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveRiskDown" prefWidth="25.0" />
+                                 </items>
+                              </ToolBar>
+                           </top>
+                           <center>
+                              <TableView fx:id="risksTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn prefWidth="100.0" text="%risks.table.id" />
+                                  <TableColumn prefWidth="150.0" text="%risks.table.name" />
+                                    <TableColumn prefWidth="150.0" text="%risks.table.likelihood" />
+                                    <TableColumn prefWidth="150.0" text="%risks.table.impact" />
+                                    <TableColumn prefWidth="150.0" text="%risks.table.status" />
+                                </columns>
+                              </TableView>
+                           </center>
+                        </BorderPane>
+                     </content>
+                  </Tab>
               </tabs>
             </TabPane>
         </items>

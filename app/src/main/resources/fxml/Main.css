@@ -106,6 +106,70 @@
   -fx-background-position: center center;
 }
 
+#addStoryLinkButton {
+  -fx-background-image: url('../icons/AddIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
+
+#removeStoryLinkButton {
+  -fx-background-image: url('../icons/RemoveIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
+
+#moveStoryUpButton {
+  -fx-background-image: url('../icons/MoveUpIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
+
+#moveStoryDownButton {
+  -fx-background-image: url('../icons/MoveDownIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
+
+#addRiskLinkButton {
+  -fx-background-image: url('../icons/AddIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
+
+#removeRiskLinkButton {
+  -fx-background-image: url('../icons/RemoveIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
+
+#moveRiskUpButton {
+  -fx-background-image: url('../icons/MoveUpIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
+
+#moveRiskDownButton {
+  -fx-background-image: url('../icons/MoveDownIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+  -fx-background-size: 25px 25px;
+}
+
 .definedProgress > .bar {
   -fx-background-color: #FFBB10;
 }

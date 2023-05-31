@@ -107,6 +107,7 @@ public class StoryTable {
         
         idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
+                    "S" + 
                     String.valueOf(currentStories.indexOf(data.getValue()) + 1)
             );
         });

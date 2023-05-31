@@ -2,6 +2,7 @@ package com.biggerconcept.projectus.domain;
 
 import com.biggerconcept.projectus.domain.Size.TaskSize;
 import com.biggerconcept.projectus.domain.Task.TaskStatus;
+import com.biggerconcept.projectus.exceptions.DuplicateItemException;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -38,6 +39,18 @@ public class Epic {
     private ArrayList<Task> tasks;
     
     /**
+     * Epic stories
+     */
+    @JsonInclude(Include.NON_NULL)
+    private ArrayList<Story> stories;
+    
+    /**
+     * Epic risks
+     */
+    @JsonInclude(Include.NON_NULL)
+    private ArrayList<Risk> risks;
+    
+    /**
      * Default constructor.
      */
     public Epic() {
@@ -45,6 +58,8 @@ public class Epic {
         this.summary = "";
         this.tasks = new ArrayList<>();
         this.scope = new Scope();
+        this.stories = new ArrayList<>();
+        this.risks = new ArrayList<>();
     }
     
     /**
@@ -57,6 +72,86 @@ public class Epic {
         this.summary = "";
         this.tasks = new ArrayList<>();
         this.scope = new Scope();
+        this.stories = new ArrayList<>();
+        this.risks = new ArrayList<>();
+    }
+    
+    /**
+     * Returns true if story has been added to collection.
+     * 
+     * @param story
+     * @return 
+     */
+    public boolean hasStory(Story story) {       
+        for (Story s : stories) {
+            if (s.match(story) == true) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Adds story link to epic.
+     * 
+     * @param story to add
+     * @throws com.biggerconcept.projectus.exceptions.DuplicateItemException
+     */
+    public void addStory(Story story) throws DuplicateItemException {
+        if (hasStory(story) == true) {
+            throw new DuplicateItemException();
+        }
+        
+        stories.add(story);
+    }
+    
+    /**
+     * Remove story from epic.
+     * 
+     * @param story to remove
+     */
+    public void removeStory(Story story) {
+        stories.remove(story);
+    }
+    
+    /**
+     * Returns true if risk has been added to collection.
+     * 
+     * @param risk
+     * @return 
+     */
+    public boolean hasRisk(Risk risk) {
+        for (Risk r : risks) {
+            if (r.match(risk) == true) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Adds risk to epic.
+     * 
+     * @param risk to add
+     * @throws com.biggerconcept.projectus.exceptions.DuplicateItemException
+     */
+    public void addRisk(Risk risk) throws DuplicateItemException {
+        if (hasRisk(risk) == true) {
+            throw new DuplicateItemException();
+        }
+        
+        risks.add(risk);
+    }
+    
+    /**
+     * Removes risk from epic.
+     * 
+     * @param risk to remove
+     */
+    public void removeRisk(Risk risk) {
+        risks.remove(risk);
     }
     
     /**
@@ -113,6 +208,24 @@ public class Epic {
     }
     
     /**
+     * Getter for epic stories.
+     * 
+     * @return epic stories
+     */
+    public ArrayList<Story> getStories() {
+        return stories;
+    }
+    
+    /**
+     * Getter for epic risks.
+     * 
+     * @return epic risks
+     */
+    public ArrayList<Risk> getRisks() {
+        return risks;
+    }
+    
+    /**
      * Setter for epic name.
      * 
      * @param value value for project name
@@ -146,6 +259,24 @@ public class Epic {
      */
     public void setScope(Scope value) {
         scope = value;
+    }
+    
+    /**
+     * Setter for epic stories
+     * 
+     * @param value to set as stories
+     */
+    public void setStories(ArrayList<Story> value) {
+        stories = value;
+    }
+    
+    /**
+     * Setter for epic risks
+     * 
+     * @param value to set as risks
+     */
+    public void setRisks(ArrayList<Risk> value) {
+        risks = value;
     }
     
      /**

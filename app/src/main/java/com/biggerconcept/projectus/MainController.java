@@ -2,19 +2,26 @@ package com.biggerconcept.projectus;
 
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.projectus.domain.Risk;
 import com.biggerconcept.projectus.domain.Scope;
+import com.biggerconcept.projectus.domain.Story;
 import com.biggerconcept.projectus.domain.Task;
+import com.biggerconcept.projectus.exceptions.DuplicateItemException;
 import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
 import com.biggerconcept.projectus.platform.OperatingSystem;
 import com.biggerconcept.projectus.serializers.DiscoveryDocumentSerializer;
 import com.biggerconcept.projectus.ui.Date;
 import com.biggerconcept.projectus.ui.dialogs.ErrorAlert;
 import com.biggerconcept.projectus.ui.dialogs.OpenFileDialog;
+import com.biggerconcept.projectus.ui.dialogs.RiskChooserDialog;
 import com.biggerconcept.projectus.ui.dialogs.SaveFileDialog;
+import com.biggerconcept.projectus.ui.dialogs.StoryChooserDialog;
 import com.biggerconcept.projectus.ui.dialogs.TaskDialog;
 import com.biggerconcept.projectus.ui.dialogs.TextPrompt;
 import com.biggerconcept.projectus.ui.dialogs.YesNoPrompt;
 import com.biggerconcept.projectus.ui.tables.EpicsTable;
+import com.biggerconcept.projectus.ui.tables.RiskTable;
+import com.biggerconcept.projectus.ui.tables.StoryTable;
 import com.biggerconcept.projectus.ui.tables.TasksTable;
 import com.biggerconcept.projectus.ui.windows.Window;
 import java.io.File;
@@ -182,6 +189,18 @@ public class MainController implements Initializable {
      */
     @FXML
     public TableView tasksTableView;
+    
+    /**
+     * Epic stories table view.
+     */
+    @FXML
+    public TableView storiesTableView;
+    
+    /**
+     * Epic risks table view.
+     */
+    @FXML
+    public TableView risksTableView;
     
     /**
      * Add task to epic button.
@@ -529,6 +548,16 @@ public class MainController implements Initializable {
                 excludeScopeListView.getItems().add(out);
             }
             
+            // stories tab
+            // stories table
+            
+            StoryTable storiesTable = new StoryTable(
+                    bundle,
+                    currentEpic.getStories()
+            );
+            
+            storiesTable.build(storiesTableView);
+            
             // tasks tab
             // tasks table
             TasksTable tasksTable = new TasksTable(
@@ -540,6 +569,14 @@ public class MainController implements Initializable {
             
             tasksTable.build(tasksTableView);
             
+            // risks tab
+            // risks table
+            RiskTable risksTable = new RiskTable(
+                    bundle,
+                    currentEpic.getRisks()
+            );
+            
+            risksTable.build(risksTableView);
         } else {
             selectedEpicPanel.setVisible(false);
         }
@@ -1030,6 +1067,249 @@ public class MainController implements Initializable {
             // do nothing
         } catch (Exception e) {
             ErrorAlert.show(bundle, bundle.getString("errors.editTask"), e);
+        }
+    }
+    
+    @FXML
+    private void handleAddStoryLink() {
+        try {
+            StoryChooserDialog pickStory = new StoryChooserDialog(
+                    bundle,
+                    currentDocument.getStories()
+            );
+            
+            Story chosenStory = pickStory.show(mainStage());
+            
+            currentEpic.addStory(chosenStory);
+            
+            mapDocumentToWindow();
+        } catch (DuplicateItemException | NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.addStory"), e);
+        }
+    }
+    
+    @FXML
+    private void handleRemoveStoryLink() {
+        try {
+            ObservableList<Story> items = storiesTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            ButtonType answer = YesNoPrompt.show(
+                    AlertType.CONFIRMATION,
+                    bundle.getString("epic.stories.dialogs.remove.title"),
+                    bundle.getString("epic.stories.dialogs.remove.description")
+            );
+            
+            if (answer == ButtonType.YES) {
+                for (Story s: items) {
+                    currentEpic.removeStory(s);
+                }
+            }
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.removeStory"), e);
+        }
+    }
+    
+    @FXML
+    private void handleMoveStoryUp() {
+        try {
+            ObservableList<Story> items = storiesTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            int selectedIndex = storiesTableView
+                    .getItems()
+                    .indexOf(items.get(0));
+            
+            int targetIndex = selectedIndex - 1;
+            
+            if (targetIndex < 0) {
+                throw new NoChoiceMadeException();
+            }
+            
+            Collections.swap(
+                    currentEpic.getStories(),
+                    selectedIndex,
+                    targetIndex
+            );
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.moveStory"), e);
+        }
+    }
+    
+    @FXML
+    private void handleMoveStoryDown() {
+        try {
+            ObservableList<Story> items = storiesTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            int selectedIndex = storiesTableView
+                    .getItems()
+                    .indexOf(items.get(0));
+            
+            int targetIndex = selectedIndex + 1;
+            
+            if (targetIndex > storiesTableView.getItems().size() - 1) {
+                throw new NoChoiceMadeException();
+            }
+            
+            Collections.swap(
+                    currentEpic.getStories(),
+                    selectedIndex,
+                    targetIndex
+            );
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.moveStory"), e);
+        }
+    }
+    
+    @FXML
+    private void handleAddRiskLink() {
+        try {
+            RiskChooserDialog pickRisk = new RiskChooserDialog(
+                    bundle,
+                    currentDocument.getRisks()
+            );
+            
+            Risk chosenRisk = pickRisk.show(mainStage());
+            
+            currentEpic.addRisk(chosenRisk);
+            
+            mapDocumentToWindow();
+        } catch (DuplicateItemException | NoChoiceMadeException ncm) {
+        }
+        // do nothing
+         catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.addRisk"), e);
+        }
+    }
+    
+    @FXML
+    private void handleRemoveRiskLink() {
+        try {
+            ObservableList<Risk> items = risksTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            ButtonType answer = YesNoPrompt.show(
+                    AlertType.CONFIRMATION,
+                    bundle.getString("epic.risks.dialogs.remove.title"),
+                    bundle.getString("epic.risks.dialogs.remove.description")
+            );
+            
+            if (answer == ButtonType.YES) {
+                for (Risk r: items) {
+                    currentEpic.removeRisk(r);
+                }
+            }
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.remoeRisk"), e);
+        }
+    }
+    
+    @FXML
+    private void handleMoveRiskUp() {
+        try {
+            ObservableList<Risk> items = risksTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            int selectedIndex = risksTableView
+                    .getItems()
+                    .indexOf(items.get(0));
+            
+            int targetIndex = selectedIndex - 1;
+            
+            if (targetIndex < 0) {
+                throw new NoChoiceMadeException();
+            }
+            
+            Collections.swap(
+                    currentEpic.getRisks(),
+                    selectedIndex,
+                    targetIndex
+            );
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.moveRisk"), e);
+        }
+    }
+    
+    @FXML
+    private void handleMoveRiskDown() {
+        try {
+            ObservableList<Risk> items = risksTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            int selectedIndex = risksTableView
+                    .getItems()
+                    .indexOf(items.get(0));
+            
+            int targetIndex = selectedIndex + 1;
+            
+            if (targetIndex > risksTableView.getItems().size() - 1) {
+                throw new NoChoiceMadeException();
+            }
+            
+            Collections.swap(
+                    currentEpic.getRisks(),
+                    selectedIndex,
+                    targetIndex
+            );
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.moveRisk"), e);
         }
     }
     
