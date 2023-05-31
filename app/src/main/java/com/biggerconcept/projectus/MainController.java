@@ -6,6 +6,7 @@ import com.biggerconcept.projectus.domain.Scope;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
 import com.biggerconcept.projectus.platform.OperatingSystem;
+import com.biggerconcept.projectus.serializers.DiscoveryDocumentSerializer;
 import com.biggerconcept.projectus.ui.Date;
 import com.biggerconcept.projectus.ui.dialogs.ErrorAlert;
 import com.biggerconcept.projectus.ui.dialogs.OpenFileDialog;
@@ -436,6 +437,7 @@ public class MainController implements Initializable {
             epicNameTextField.setText(currentEpic.getName());
             
             // epic summary text field
+            epicSummaryTextArea.setWrapText(true);
             epicSummaryTextArea.setText(currentEpic.getSummary());
             
             // status section
@@ -1271,6 +1273,35 @@ public class MainController implements Initializable {
                     bundle.getString("errors.scope.remove"),
                     e
             );
+        }
+    }
+    
+    /**
+     * Generates epic discovery document.
+     */
+    @FXML
+    private void handleGenerateDiscoveryDocument() {
+        try {
+            File f = SaveFileDialog.show(
+                    bundle.getString("dialogs.save.title"),
+                    mainStage(),
+                    fileExtFilter
+            );
+
+            if (f == null) {
+                throw new NoChoiceMadeException();
+            }
+           
+            DiscoveryDocumentSerializer dds = new DiscoveryDocumentSerializer(
+                    currentEpic,
+                    f
+            );
+            
+            dds.save();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.saveFile"), e);
         }
     }
     

@@ -85,9 +85,12 @@ public class TaskDialog {
         statusField.getSelectionModel().select(currentTask.getStatus());
         
         descriptionField = new TextArea(currentTask.getDescription());
+        descriptionField.setWrapText(true);
+
         acceptanceCriteriaField = new TextArea(
                 currentTask.getAcceptanceCriteria()
         );
+        acceptanceCriteriaField.setWrapText(true);
     }
     
     /**

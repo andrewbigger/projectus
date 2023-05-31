@@ -68,7 +68,10 @@ public class StoryDialog {
         actorField.getSelectionModel().select(currentStory.getActor());
         
         intentionField = new TextArea(currentStory.getIntention());
+        intentionField.setWrapText(true);
+
         expectationField = new TextArea(currentStory.getExpectation());
+        intentionField.setWrapText(true);
     }
     
     public void show(Stage stage) {
