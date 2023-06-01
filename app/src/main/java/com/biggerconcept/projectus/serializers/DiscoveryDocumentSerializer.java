@@ -3,7 +3,7 @@ package com.biggerconcept.projectus.serializers;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Risk;
 import com.biggerconcept.projectus.domain.Task;
-import com.biggerconcept.projectus.serializers.documents.Docx;
+import com.biggerconcept.appengine.serializers.documents.Docx;
 import com.biggerconcept.projectus.serializers.helpers.Tables;
 import java.io.File;
 import java.io.IOException;
