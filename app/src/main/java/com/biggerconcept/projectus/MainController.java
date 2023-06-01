@@ -8,7 +8,7 @@ import com.biggerconcept.projectus.domain.Story;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.exceptions.DuplicateItemException;
 import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
-import com.biggerconcept.projectus.platform.OperatingSystem;
+import com.biggerconcept.appengine.platform.OperatingSystem;
 import com.biggerconcept.projectus.serializers.DiscoveryDocumentSerializer;
 import com.biggerconcept.projectus.ui.Date;
 import com.biggerconcept.projectus.ui.dialogs.ErrorAlert;

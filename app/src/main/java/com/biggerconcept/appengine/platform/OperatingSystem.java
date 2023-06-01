@@ -1,4 +1,4 @@
-package com.biggerconcept.projectus.platform;
+package com.biggerconcept.appengine.platform;
 
 import java.awt.Desktop;
 import java.io.IOException;
