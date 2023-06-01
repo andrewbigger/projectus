@@ -110,7 +110,7 @@ public class RiskDialog {
         );
         
         Dialog<String> dialog = StandardDialog.dialog(
-            bundle.getString("stories.dialogs.risk.title"),
+            bundle.getString("risks.dialogs.risk.title"),
             attributes,
             actions
         );

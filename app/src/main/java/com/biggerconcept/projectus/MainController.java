@@ -717,10 +717,9 @@ public class MainController implements Initializable {
                     window,
                     bundle.getString("application.name"),
                     "/fxml/Main.css",
-                    true,
+                    false,
                     StageStyle.DECORATED,
                     false
-                    
             );
             
             stage.show();
@@ -1432,8 +1431,8 @@ public class MainController implements Initializable {
                     preferencePane,
                     bundle.getString("dialogs.preferences.title"),
                     null,
-                    true,
-                    StageStyle.UTILITY,
+                    false,
+                    StageStyle.DECORATED,
                     false
                     
             );
@@ -1472,7 +1471,7 @@ public class MainController implements Initializable {
                     storiesPane,
                     bundle.getString("dialogs.stories.title"),
                     "/fxml/Stories.css",
-                    StageStyle.UTILITY
+                    StageStyle.DECORATED
             );
             
             openWindows.add(stage);
@@ -1507,9 +1506,9 @@ public class MainController implements Initializable {
             
             Stage stage = StandardWindow.setup(
                     storiesPane,
-                    bundle.getString("dialogs.risks.title"),
+                    bundle.getString("risks.dialogs.risk.title"),
                     "/fxml/Risks.css",
-                    StageStyle.UTILITY
+                    StageStyle.DECORATED
             );
             
             openWindows.add(stage);
