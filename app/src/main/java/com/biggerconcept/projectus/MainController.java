@@ -23,7 +23,7 @@ import com.biggerconcept.projectus.ui.tables.EpicsTable;
 import com.biggerconcept.projectus.ui.tables.RiskTable;
 import com.biggerconcept.projectus.ui.tables.StoryTable;
 import com.biggerconcept.projectus.ui.tables.TasksTable;
-import com.biggerconcept.projectus.ui.windows.Window;
+import com.biggerconcept.appengine.ui.window.StandardWindow;
 import java.io.File;
 import java.io.IOException;
 import javafx.scene.control.Button;
@@ -1324,7 +1324,7 @@ public class MainController implements Initializable {
     @FXML
     private void handleOpenPreferencesDialog() {
         try {
-            FXMLLoader loader = Window.load(
+            FXMLLoader loader = StandardWindow.load(
                     this,
                     bundle,
                     "/fxml/Preferences.fxml"
@@ -1337,7 +1337,7 @@ public class MainController implements Initializable {
         
             controller.setDocument(currentDocument);
             
-            Stage stage = Window.setup(
+            Stage stage = StandardWindow.setup(
                     preferencePane,
                     bundle.getString("dialogs.preferences.title"),
                     null,
@@ -1364,7 +1364,7 @@ public class MainController implements Initializable {
     @FXML
     private void handleManageStories() {
         try {
-            FXMLLoader loader = Window.load(
+            FXMLLoader loader = StandardWindow.load(
                     this,
                     bundle,
                     "/fxml/Stories.fxml"
@@ -1377,7 +1377,7 @@ public class MainController implements Initializable {
             
             controller.setDocument(currentDocument);
             
-            Stage stage = Window.setup(
+            Stage stage = StandardWindow.setup(
                     storiesPane,
                     bundle.getString("dialogs.stories.title"),
                     "/fxml/Stories.css",
@@ -1401,7 +1401,7 @@ public class MainController implements Initializable {
     @FXML
     private void handleManageRisks() {
         try {
-            FXMLLoader loader = Window.load(
+            FXMLLoader loader = StandardWindow.load(
                     this,
                     bundle,
                     "/fxml/Risks.fxml"
@@ -1414,7 +1414,7 @@ public class MainController implements Initializable {
             
             controller.setDocument(currentDocument);
             
-            Stage stage = Window.setup(
+            Stage stage = StandardWindow.setup(
                     storiesPane,
                     bundle.getString("dialogs.risks.title"),
                     "/fxml/Risks.css",

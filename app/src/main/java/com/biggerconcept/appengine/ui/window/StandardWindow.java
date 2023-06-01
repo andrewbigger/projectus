@@ -1,4 +1,4 @@
-package com.biggerconcept.projectus.ui.windows;
+package com.biggerconcept.appengine.ui.window;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +14,7 @@ import javafx.stage.StageStyle;
  * 
  * @author Andrew Bigger
  */
-public class Window {
+public class StandardWindow {
     /**
      * Default window style.
      */
