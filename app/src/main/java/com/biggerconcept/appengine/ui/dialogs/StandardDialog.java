@@ -104,8 +104,7 @@ public class StandardDialog {
         
         DialogPane pane = dialog.getDialogPane();
         
-        pane.setContent(StandardDialog.wrap(nodes)
-        );
+        pane.setContent(StandardDialog.wrap(nodes));
         
         for (ButtonType action : actions) {
             pane.getButtonTypes().add(action);

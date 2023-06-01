@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
@@ -110,7 +109,11 @@ public class TaskDialog {
      */
     public void show(Stage stage) {
         List<Node> attributes = Arrays.asList(
-                nameAttribute()
+                nameAttribute(),
+                sizeAttribute(),
+                statusAttribute(),
+                descriptionAttribute(),
+                acceptanceCriteriaAttribute()
         );
         
         ButtonType apply = StandardDialog.applyAction(
