@@ -2,7 +2,7 @@ package com.biggerconcept.projectus;
 
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Preferences;
-import com.biggerconcept.projectus.ui.dialogs.ErrorAlert;
+import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
