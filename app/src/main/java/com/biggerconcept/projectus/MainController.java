@@ -427,19 +427,21 @@ public class MainController implements Initializable {
      * Maps given document to window.
      */
     private void mapDocumentToWindow() {
-        applyPreferencesToWindow();
-        
-        // project title
+        mapProjectDetailsToWindow();
+        mapEpicsToWindow();
+        mapSelectedEpicToWindow();
+    }
+    
+    private void mapProjectDetailsToWindow() {
         projectNameTextField.setText(currentDocument.getTitle());
-        
-        // project start and end dates
         projectStartDatePicker.setValue(
                 Date.fromEpoch(currentDocument.getStart())
         );
         
         projectEndDatePicker.setValue(Date.fromEpoch(currentDocument.getEnd()));
-        
-        // epics table
+    }
+    
+    private void mapEpicsToWindow() {
         EpicsTable epicsTable = new EpicsTable(
                 bundle,
                 currentDocument.getPreferences(),
@@ -447,146 +449,185 @@ public class MainController implements Initializable {
         );
         
         epicsTable.apply(epicsTableView);
-        
-        // selected epic panel
+    }
+    
+    private void mapSelectedEpicToWindow() {
         if (currentEpic != null) {
             selectedEpicPanel.setVisible(true);
-            // overview tab
-            // epic name text field
-            epicNameTextField.setText(currentEpic.getName());
             
-            // epic summary text field
-            epicSummaryTextArea.setWrapText(true);
-            epicSummaryTextArea.setText(currentEpic.getSummary());
-            
-            // status section
-            // defined task status
-            
-            definedSummaryProgressBar.setProgress(
-                    currentEpic.calculateSummaryProgress()
-            );
-            
-            definedScopeProgressBar.setProgress(
-                    currentEpic.calculateScopeProgress()
-            );
-            
-            definedStatusProgressBar.setProgress(
-                    currentEpic.calculateDefinitionProgress()
-            );
-            
-            // sized task status
-            sizedCountLabel.setText(
-                    String.valueOf(
-                            currentEpic.calculateSizedCount()
-                    )
-            );
-            
-            sizedStatusProgressBar.setProgress(currentEpic.calculateSizedProgress());
-            
-            // described task status
-            describedCountLabel.setText(
-                    String.valueOf(
-                            currentEpic.calculateDescribedCount()
-                    )
-            );
-            
-            describedStatusProgressBar.setProgress(
-                    currentEpic.calculateDescribedProgress()
-            );
-            
-            // progress section
-            // task progress
-            
-            epicTaskProgressBar.setProgress(
-                    currentEpic.calculateCompleteProgress()
-            );
-            
-            completeTaskCountLabel.setText(
-                    String.valueOf(
-                            currentEpic.calculateCompleteCount()
-                    )
-            );
-            
-            totalTaskCountLabel.setText(
-                    String.valueOf(
-                            currentEpic.calculateTaskCount()
-                    )
-            );
-            
-            // point progress
-            epicPointsProgressBar.setProgress(
-                    currentEpic.calculateCompletePointProgress(
-                            currentDocument.getPreferences()
-                    )
-            );
-            
-            epicCompletedPointsLabel.setText(
-                    String.valueOf(
-                            currentEpic.calculateCompletePointCount(
-                                    currentDocument.getPreferences()
-                            )
-                    )
-            );
-            
-            epicTotalPointsLabel.setText(
-                    String.valueOf(
-                            currentEpic.getSize(
-                                    currentDocument.getPreferences()
-                            )
-                    )
-            );
-            
-            // scope tab
-            includeScopeListView.getItems().clear();
-            
-            for (String in : currentEpic.getScope().getIncluded()) {
-                includeScopeListView.getItems().add(in);
-            }
-            
-            excludeScopeListView.getItems().clear();
-            for (String out : currentEpic.getScope().getExcluded()) {
-                excludeScopeListView.getItems().add(out);
-            }
-            
-            // stories tab
-            // stories table
-            
-            StoryTable storiesTable = new StoryTable(
-                    bundle,
-                    currentEpic.getStories()
-            );
-            
-            storiesTable.build(storiesTableView);
-            
-            // tasks tab
-            // tasks table
-            TasksTable tasksTable = new TasksTable(
-                    bundle,
-                    currentEpic.getTasks(),
-                    currentDocument.getPreferences(),
-                    currentDocument.getEpics().indexOf(currentEpic) + 1
-            );
-            
-            tasksTable.build(tasksTableView);
-            
-            // risks tab
-            // risks table
-            RiskTable risksTable = new RiskTable(
-                    bundle,
-                    currentEpic.getRisks()
-            );
-            
-            risksTable.apply(risksTableView);
+            mapEpicOverviewToWindow();
+            mapEpicScopeToWindow();
+            mapEpicStoriesToWindow();
+            mapEpicTasksToWindow();
+            mapEpicRisksToWindow();
         } else {
             selectedEpicPanel.setVisible(false);
         }
     }
     
-    /**
-     * Applies document settings to window.
-     */
-    private void applyPreferencesToWindow() {
-        // TODO: apply preferences
+    private void mapEpicOverviewToWindow() {
+        if (currentEpic == null) {
+            return;
+        }
+        
+        // overview tab
+        // epic name text field
+        epicNameTextField.setText(currentEpic.getName());
+
+        // epic summary text field
+        epicSummaryTextArea.setWrapText(true);
+        epicSummaryTextArea.setText(currentEpic.getSummary());
+
+        mapEpicOverviewStatusToWindow();
+    }
+    
+    private void mapEpicOverviewStatusToWindow() {
+        if (currentEpic == null) {
+            return;
+        }
+        
+        // status section
+        // defined task status
+        definedSummaryProgressBar.setProgress(
+                currentEpic.calculateSummaryProgress()
+        );
+
+        definedScopeProgressBar.setProgress(
+                currentEpic.calculateScopeProgress()
+        );
+
+        definedStatusProgressBar.setProgress(
+                currentEpic.calculateDefinitionProgress()
+        );
+
+        // sized task status
+        sizedCountLabel.setText(
+                String.valueOf(
+                        currentEpic.calculateSizedCount()
+                )
+        );
+
+        sizedStatusProgressBar.setProgress(currentEpic.calculateSizedProgress());
+
+        // described task status
+        describedCountLabel.setText(
+                String.valueOf(
+                        currentEpic.calculateDescribedCount()
+                )
+        );
+
+        describedStatusProgressBar.setProgress(
+                currentEpic.calculateDescribedProgress()
+        );
+
+        // progress section
+        // task progress
+
+        epicTaskProgressBar.setProgress(
+                currentEpic.calculateCompleteProgress()
+        );
+
+        completeTaskCountLabel.setText(
+                String.valueOf(
+                        currentEpic.calculateCompleteCount()
+                )
+        );
+
+        totalTaskCountLabel.setText(
+                String.valueOf(
+                        currentEpic.calculateTaskCount()
+                )
+        );
+
+        // point progress
+        epicPointsProgressBar.setProgress(
+                currentEpic.calculateCompletePointProgress(
+                        currentDocument.getPreferences()
+                )
+        );
+
+        epicCompletedPointsLabel.setText(
+                String.valueOf(
+                        currentEpic.calculateCompletePointCount(
+                                currentDocument.getPreferences()
+                        )
+                )
+        );
+
+        epicTotalPointsLabel.setText(
+                String.valueOf(
+                        currentEpic.getSize(
+                                currentDocument.getPreferences()
+                        )
+                )
+        );
+    }
+    
+    private void mapEpicScopeToWindow() {
+        if (currentEpic == null) {
+            return;
+        }
+        
+        // scope tab
+        includeScopeListView.getItems().clear();
+
+        for (String in : currentEpic.getScope().getIncluded()) {
+            includeScopeListView.getItems().add(in);
+        }
+
+        excludeScopeListView.getItems().clear();
+        
+        for (String out : currentEpic.getScope().getExcluded()) {
+            excludeScopeListView.getItems().add(out);
+        }
+
+    }
+    
+    private void mapEpicStoriesToWindow() {
+        if (currentEpic == null) {
+            return;
+        }
+
+        // stories tab
+        // stories table
+        StoryTable storiesTable = new StoryTable(
+                bundle,
+                currentEpic.getStories()
+        );
+
+        storiesTable.build(storiesTableView);
+    }
+    
+    private void mapEpicTasksToWindow() {
+        if (currentEpic == null) {
+            return;
+        }
+
+        // tasks tab
+        // tasks table
+        TasksTable tasksTable = new TasksTable(
+                bundle,
+                currentEpic.getTasks(),
+                currentDocument.getPreferences(),
+                currentDocument.getEpics().indexOf(currentEpic) + 1
+        );
+
+        tasksTable.build(tasksTableView);
+    }
+    
+    private void mapEpicRisksToWindow() {
+        if (currentEpic == null) {
+            return;
+        }
+        
+        // risks tab
+        // risks table
+        RiskTable risksTable = new RiskTable(
+                bundle,
+                currentEpic.getRisks()
+        );
+
+        risksTable.apply(risksTableView);
     }
     
     /**
