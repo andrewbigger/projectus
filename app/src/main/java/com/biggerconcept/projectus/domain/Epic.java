@@ -310,7 +310,7 @@ public class Epic {
             return TaskStatus.IN_PROGRESS;
         }
         
-        if (completeCount == tasks.size() - 1) {
+        if (tasks.size() > 1 && completeCount == tasks.size() - 1) {
             return TaskStatus.COMPLETE;
         } 
         

@@ -364,8 +364,30 @@ public class MainController implements Initializable {
         }
         
         openWindows = new ArrayList<Stage>();
-
+        
         applyTooltips();
+    }
+    
+    /**
+     * Assembles window title.
+     * 
+     * @return 
+     */
+    private String buildWindowTitle() {
+        String title = currentDocument.getTitle();
+        
+        if (title == null || title.trim() == "") {
+            title = bundle.getString("document.defaultTitle");
+        }
+        
+        return title + " - " + bundle.getString("application.name");
+    }
+    
+    /**
+     * Sets window title to main stage.
+     */
+    private void setWindowTitle() {
+        window().setTitle(buildWindowTitle());
     }
 
     /**
@@ -411,22 +433,22 @@ public class MainController implements Initializable {
     }
     
     /**
-     * Returns the main window stage.
+     * Returns the main window.
      * 
      * The main window stage is the window that the new file button control is
      * in. 
      * 
      * @return controller window
      */
-    private Stage mainStage() {
-        Stage stage = (Stage) newFileButton.getScene().getWindow();
-        return stage;
+    private Stage window() {
+        return (Stage) newFileButton.getScene().getWindow();
     }
     
     /**
      * Maps given document to window.
      */
     private void mapDocumentToWindow() {
+        setWindowTitle();
         mapProjectDetailsToWindow();
         mapEpicsToWindow();
         mapSelectedEpicToWindow();
@@ -678,6 +700,36 @@ public class MainController implements Initializable {
     }
     
     /**
+     * Creates new Projectus window.
+     */
+    @FXML
+    private void handleNewWindow() {
+        try {
+             FXMLLoader loader = StandardWindow.load(
+                    this,
+                    bundle,
+                    "/fxml/Main.fxml"
+            );
+            
+            Parent window = (Parent) loader.load();
+            
+            Stage stage = StandardWindow.setup(
+                    window,
+                    bundle.getString("application.name"),
+                    "/fxml/Main.css",
+                    true,
+                    StageStyle.DECORATED,
+                    false
+                    
+            );
+            
+            stage.show();
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    /**
      * Creates a new document.
      * 
      * This will replace the currentDocument with a new one, having the effect
@@ -712,9 +764,8 @@ public class MainController implements Initializable {
     @FXML
     private void handleOpenDocument() {
         try {
-            File documentFile = OpenFileDialog.show(
-                    bundle.getString("dialogs.open.title"),
-                    mainStage(),
+            File documentFile = OpenFileDialog.show(bundle.getString("dialogs.open.title"),
+                    window(),
                     fileExtFilter
             );
             
@@ -743,9 +794,8 @@ public class MainController implements Initializable {
             mapWindowToDocument();
 
             if (currentDocument.getFile() == null) {
-                File f = SaveFileDialog.show(
-                        bundle.getString("dialogs.save.title"),
-                        mainStage(),
+                File f = SaveFileDialog.show(bundle.getString("dialogs.save.title"),
+                        window(),
                         fileExtFilter
                 );
 
@@ -945,7 +995,7 @@ public class MainController implements Initializable {
                     new Task()
             );
             
-            addTask.show(mainStage());
+            addTask.show(window());
             mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(bundle, bundle.getString("errors.addTask"), e);
@@ -1101,7 +1151,7 @@ public class MainController implements Initializable {
                     items.get(0)
             );
             
-            manageTask.show(mainStage());
+            manageTask.show(window());
             
             mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
@@ -1119,7 +1169,7 @@ public class MainController implements Initializable {
                     currentDocument.getStories()
             );
             
-            Story chosenStory = pickStory.show(mainStage());
+            Story chosenStory = pickStory.show(window());
             
             currentEpic.addStory(chosenStory);
             
@@ -1240,7 +1290,7 @@ public class MainController implements Initializable {
                     currentDocument.getRisks()
             );
             
-            Risk chosenRisk = pickRisk.show(mainStage());
+            Risk chosenRisk = pickRisk.show(window());
             
             currentEpic.addRisk(chosenRisk);
             
@@ -1603,9 +1653,8 @@ public class MainController implements Initializable {
     @FXML
     private void handleGenerateDiscoveryDocument() {
         try {
-            File f = SaveFileDialog.show(
-                    bundle.getString("dialogs.save.title"),
-                    mainStage(),
+            File f = SaveFileDialog.show(bundle.getString("dialogs.save.title"),
+                    window(),
                     fileExtFilter
             );
 

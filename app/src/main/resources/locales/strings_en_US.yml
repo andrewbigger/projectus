@@ -934,4 +934,19 @@ parts:
     title: "Description for remove risk dialog"
     value: "Are you sure you want to remove the selected risk?"
     variants: {}
+- translation:
+    key: "menu.window.title"
+    title: "Title for window menu"
+    value: "Window"
+    variants: {}
+- translation:
+    key: "menu.window.new"
+    title: "Title for new window button"
+    value: "New Window"
+    variants: {}
+- translation:
+    key: "document.defaultTitle"
+    title: "Default title for a document"
+    value: "New Project"
+    variants: {}
 sourceLanguage: "en"

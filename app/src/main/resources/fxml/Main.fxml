@@ -106,6 +106,15 @@
                         </MenuItem>
                     </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="%menu.window.title">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#handleNewWindow" text="%menu.window.new">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="N" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                    </items>
+                  </Menu>
                 <Menu fx:id="helpMenu" mnemonicParsing="false" text="%menu.help.title">
                   <items>
                     <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#handleOpenAboutDialog" text="%menu.help.about">
