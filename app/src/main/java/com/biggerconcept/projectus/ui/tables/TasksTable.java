@@ -1,12 +1,14 @@
 package com.biggerconcept.projectus.ui.tables;
 
+import com.biggerconcept.appengine.ui.tables.StandardTable;
+import com.biggerconcept.appengine.ui.tables.StandardTableColumn;
 import com.biggerconcept.projectus.domain.Preferences;
 import com.biggerconcept.projectus.domain.Task;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -104,21 +106,17 @@ public class TasksTable {
     * @param view currentTasks table view
     */
    public void build(TableView view) {
-       view.setItems(FXCollections.observableArrayList(currentTasks)
-       );
-       
-       view.setPlaceholder(
-               new Label(
-                       bundle.getString("epic.tasks.table.empty")
+       StandardTable.apply(
+               view,
+               bundle.getString("epic.tasks.table.empty"),
+               FXCollections.observableArrayList(currentTasks),
+               Arrays.asList(
+                    idCol(), 
+                    nameCol(), 
+                    sizeCol(), 
+                    estimateCol(),
+                    statusCol()
                )
-       );
-
-       view.getColumns().setAll(
-               idCol(), 
-               nameCol(), 
-               sizeCol(), 
-               estimateCol(),
-               statusCol()
        );
    }
    
@@ -138,16 +136,15 @@ public class TasksTable {
                bundle.getString("epic.tasks.table.id")
        );
         
-        idCol.setSortable(SORTABLE);
-        idCol.setMinWidth(ID_COL_MIN_WIDTH);
+       StandardTableColumn.apply(idCol, ID_COL_MIN_WIDTH);
         
-        idCol.setCellValueFactory(data -> {
+       idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
                     parentEpicNumber + "." + String.valueOf(currentTasks.indexOf(data.getValue()) + 1)
             );
-        });
+       });
         
-        return idCol;
+       return idCol;
    }
    
    /**
@@ -165,8 +162,8 @@ public class TasksTable {
                 bundle.getString("epic.tasks.table.name")
         );
         
-        nameCol.setSortable(SORTABLE);
-        nameCol.setMinWidth(NAME_COL_MIN_WIDTH);
+        StandardTableColumn.apply(nameCol, NAME_COL_MIN_WIDTH);
+        
         nameCol.setCellValueFactory(new PropertyValueFactory("name"));
         
         return nameCol;
@@ -187,8 +184,8 @@ public class TasksTable {
                 bundle.getString("epic.tasks.table.size")
         );
         
-        sizeCol.setSortable(SORTABLE);
-        sizeCol.setMinWidth(SIZE_COL_MIN_WIDTH);
+        StandardTableColumn.apply(sizeCol, SIZE_COL_MIN_WIDTH);
+
         sizeCol.setCellValueFactory(new PropertyValueFactory("size"));
         
         return sizeCol;
@@ -208,18 +205,17 @@ public class TasksTable {
                bundle.getString("epic.tasks.table.estimate")
        );
         
-        estimateCol.setSortable(SORTABLE);
-        estimateCol.setMinWidth(ESTIMATE_COL_MIN_WIDTH);
+       StandardTableColumn.apply(estimateCol, ESTIMATE_COL_MIN_WIDTH);
         
-        estimateCol.setCellValueFactory(data -> {
+       estimateCol.setCellValueFactory(data -> {
             
             return new SimpleStringProperty(
                     String.valueOf(documentPreferences.estimateFor(data.getValue().getSize())
                     )
             );
-        });
+       });
         
-        return estimateCol;
+       return estimateCol;
    }
    
     /**
@@ -232,8 +228,7 @@ public class TasksTable {
                 bundle.getString("epic.tasks.table.status")
         );
         
-        statusCol.setSortable(SORTABLE);
-        statusCol.setMinWidth(STATUS_COL_MIN_WIDTH);
+        StandardTableColumn.apply(statusCol, STATUS_COL_MIN_WIDTH);
         
         statusCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(

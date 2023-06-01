@@ -1,12 +1,14 @@
 package com.biggerconcept.projectus.ui.tables;
 
+import com.biggerconcept.appengine.ui.tables.StandardTable;
+import com.biggerconcept.appengine.ui.tables.StandardTableColumn;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Preferences;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -89,21 +91,17 @@ public class EpicsTable {
      * 
      * @param view table view for currentEpics
      */
-    public void build(TableView view) {        
-        view.setItems(FXCollections.observableArrayList(currentEpics)
-        );
-        
-        view.setPlaceholder(
-               new Label(
-                       bundle.getString("project.table.empty")
-               )
-       );
-
-        view.getColumns().setAll(
-                idCol(), 
-                nameCol(), 
-                estimateCol(), 
-                statusCol()
+    public void apply(TableView view) {
+        StandardTable.apply(
+                view,
+                bundle.getString("project.table.empty"),
+                FXCollections.observableArrayList(currentEpics),
+                Arrays.asList(
+                        idCol(), 
+                        nameCol(), 
+                        estimateCol(), 
+                        statusCol()
+                )
         );
     }
     
@@ -123,8 +121,7 @@ public class EpicsTable {
                 bundle.getString("project.table.id")
         );
         
-        idCol.setSortable(SORTABLE);
-        idCol.setMinWidth(ID_COL_MIN_WIDTH);
+        StandardTableColumn.apply(idCol, ID_COL_MIN_WIDTH);
         
         idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
@@ -155,8 +152,8 @@ public class EpicsTable {
                 bundle.getString("project.table.name")
         );
         
-        nameCol.setSortable(SORTABLE);
-        nameCol.setMinWidth(NAME_COL_MIN_WIDTH);
+        StandardTableColumn.apply(nameCol, NAME_COL_MIN_WIDTH);
+        
         nameCol.setCellValueFactory(new PropertyValueFactory("name"));
         
         return nameCol;
@@ -174,8 +171,7 @@ public class EpicsTable {
                 bundle.getString("project.table.estimate")
         );
         
-        estimateCol.setSortable(SORTABLE);
-        estimateCol.setMinWidth(ESTIMATE_COL_MIN_WIDTH);
+        StandardTableColumn.apply(estimateCol, ESTIMATE_COL_MIN_WIDTH);
         
         estimateCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
@@ -196,8 +192,7 @@ public class EpicsTable {
                 bundle.getString("project.table.status")
         );
         
-        statusCol.setSortable(SORTABLE);
-        statusCol.setMinWidth(STATUS_COL_MIN_WIDTH);
+        StandardTableColumn.apply(statusCol, STATUS_COL_MIN_WIDTH);
         
         statusCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(

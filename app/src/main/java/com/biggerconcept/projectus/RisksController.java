@@ -109,7 +109,7 @@ public class RisksController implements Initializable {
                 currentDocument.getRisks()
         );
         
-        riskTable.build(riskTableView);
+        riskTable.apply(riskTableView);
     }
     
     /**

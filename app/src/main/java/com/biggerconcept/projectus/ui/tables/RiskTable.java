@@ -1,11 +1,13 @@
 package com.biggerconcept.projectus.ui.tables;
 
+import com.biggerconcept.appengine.ui.tables.StandardTable;
+import com.biggerconcept.appengine.ui.tables.StandardTableColumn;
 import com.biggerconcept.projectus.domain.Risk;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -77,24 +79,20 @@ public class RiskTable {
      * 
      * @param view story table view
      */
-    public void build(TableView view) {
-        view.setItems(
-                FXCollections.observableArrayList(currentRisks)
-        );
-        
-        view.setPlaceholder(
-                new Label(
-                        bundle.getString("risks.table.empty")
+    public void apply(TableView view) {
+        StandardTable.apply(
+                view,
+                bundle.getString("risks.table.empty"),
+                FXCollections.observableArrayList(currentRisks),
+                Arrays.asList(
+                    idCol(),
+                    nameCol(),
+                    likelihoodCol(),
+                    impactCol(),
+                    statusCol()
                 )
         );
-        
-        view.getColumns().setAll(
-                idCol(),
-                nameCol(),
-                likelihoodCol(),
-                impactCol(),
-                statusCol()
-        );
+
     }
     
     /**
@@ -107,8 +105,7 @@ public class RiskTable {
                bundle.getString("risks.table.id")
        );
         
-        idCol.setSortable(SORTABLE);
-        idCol.setMinWidth(ID_COL_MIN_WIDTH);
+        StandardTableColumn.apply(idCol, ID_COL_MIN_WIDTH);
         
         idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
@@ -130,8 +127,7 @@ public class RiskTable {
                bundle.getString("risks.table.name")
        );
         
-        nameCol.setSortable(SORTABLE);
-        nameCol.setMinWidth(NAME_COL_MIN_WIDTH);
+        StandardTableColumn.apply(nameCol, NAME_COL_MIN_WIDTH);
         
         nameCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
@@ -152,8 +148,7 @@ public class RiskTable {
              bundle.getString("risks.table.likelihood")
      );
       
-      likelihoodCol.setSortable(SORTABLE);
-      likelihoodCol.setMinWidth(LIKELIHOOD_COL_MIN_WIDTH);
+      StandardTableColumn.apply(likelihoodCol, LIKELIHOOD_COL_MIN_WIDTH);
       
       likelihoodCol.setCellValueFactory(data -> {
           return new SimpleStringProperty(
@@ -174,8 +169,7 @@ public class RiskTable {
              bundle.getString("risks.table.impact")
      );
       
-      impactCol.setSortable(SORTABLE);
-      impactCol.setMinWidth(IMPACT_COL_MIN_WIDTH);
+      StandardTableColumn.apply(impactCol, IMPACT_COL_MIN_WIDTH);
       
       impactCol.setCellValueFactory(data -> {
           return new SimpleStringProperty(
@@ -196,8 +190,7 @@ public class RiskTable {
              bundle.getString("risks.table.status")
      );
       
-      statusCol.setSortable(SORTABLE);
-      statusCol.setMinWidth(STATUS_COL_MIN_WIDTH);
+      StandardTableColumn.apply(statusCol, STATUS_COL_MIN_WIDTH);
       
       statusCol.setCellValueFactory(data -> {
           return new SimpleStringProperty(

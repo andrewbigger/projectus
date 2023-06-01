@@ -1,8 +1,11 @@
 package com.biggerconcept.projectus.ui.tables;
 
+import com.biggerconcept.appengine.ui.tables.StandardTable;
+import com.biggerconcept.appengine.ui.tables.StandardTableColumn;
 import com.biggerconcept.projectus.domain.Story;
 import com.biggerconcept.projectus.domain.Task;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -75,20 +78,16 @@ public class StoryTable {
      * @param view story table view
      */
     public void build(TableView view) {
-        view.setItems(FXCollections.observableArrayList(currentStories)
-        );
-        
-        view.setPlaceholder(
-                new Label(
-                        bundle.getString("stories.table.empty")
+        StandardTable.apply(
+                view,
+                bundle.getString("stories.table.empty"),
+                FXCollections.observableArrayList(currentStories),
+                Arrays.asList(
+                    idCol(),
+                    actorCol(),
+                    intentionCol(),
+                    expectationCol()
                 )
-        );
-        
-        view.getColumns().setAll(
-                idCol(),
-                actorCol(),
-                intentionCol(),
-                expectationCol()
         );
     }
     
@@ -102,8 +101,7 @@ public class StoryTable {
                bundle.getString("stories.table.id")
        );
         
-        idCol.setSortable(SORTABLE);
-        idCol.setMinWidth(ID_COL_MIN_WIDTH);
+        StandardTableColumn.apply(idCol, ID_COL_MIN_WIDTH);
         
         idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
@@ -125,8 +123,7 @@ public class StoryTable {
                bundle.getString("stories.table.actor")
        );
         
-        actorCol.setSortable(SORTABLE);
-        actorCol.setMinWidth(ACTOR_COL_MIN_WIDTH);
+        StandardTableColumn.apply(actorCol, ACTOR_COL_MIN_WIDTH);
         
         actorCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
@@ -147,8 +144,7 @@ public class StoryTable {
                 bundle.getString("stories.table.intention")
         );
         
-        intentCol.setSortable(SORTABLE);
-        intentCol.setMinWidth(INTENTION_COL_MIN_WIDTH);
+        StandardTableColumn.apply(intentCol, INTENTION_COL_MIN_WIDTH);
         intentCol.setCellValueFactory(new PropertyValueFactory("intention"));
         
         return intentCol;
@@ -164,8 +160,8 @@ public class StoryTable {
                 bundle.getString("stories.table.expectation")
         );
         
-        expectationCol.setSortable(SORTABLE);
-        expectationCol.setMinWidth(EXPECTATION_COL_MIN_WIDTH);
+        StandardTableColumn.apply(expectationCol, EXPECTATION_COL_MIN_WIDTH);
+
         expectationCol.setCellValueFactory(
                 new PropertyValueFactory("expectation")
         );

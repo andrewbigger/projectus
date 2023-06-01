@@ -446,7 +446,7 @@ public class MainController implements Initializable {
                 currentDocument.getEpics()
         );
         
-        epicsTable.build(epicsTableView);
+        epicsTable.apply(epicsTableView);
         
         // selected epic panel
         if (currentEpic != null) {
@@ -576,7 +576,7 @@ public class MainController implements Initializable {
                     currentEpic.getRisks()
             );
             
-            risksTable.build(risksTableView);
+            risksTable.apply(risksTableView);
         } else {
             selectedEpicPanel.setVisible(false);
         }
