@@ -1,11 +1,13 @@
 package com.biggerconcept.projectus.ui.dialogs;
 
+import com.biggerconcept.appengine.ui.dialogs.StandardDialog;
 import com.biggerconcept.projectus.domain.Risk;
 import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
@@ -60,28 +62,29 @@ public class RiskChooserDialog {
      * @throws NoChoiceMadeException 
      */
     public Risk show(Stage stage) throws NoChoiceMadeException {
-        Dialog<String> dialog = new Dialog<>();
-        
-        dialog.setTitle(bundle.getString("dialogs.riskChooser.title"));
-        
-        ButtonType apply = new ButtonType(
-                bundle.getString("dialogs.riskChooser.actions.choose"),
-                ButtonData.APPLY
+        List<Node> attributes = Arrays.asList(
+                riskListAttribute()
         );
         
-        ButtonType cancel = new ButtonType(
-                bundle.getString("dialogs.riskChooser.actions.cancel"),
-                ButtonData.CANCEL_CLOSE
+        ButtonType apply = StandardDialog.applyAction(
+                bundle.getString(
+                    "dialogs.riskChooser.actions.choose"
+                )
         );
         
-        VBox wrapper = new VBox();
-        wrapper.setSpacing(10);
+        List<ButtonType> actions = Arrays.asList(
+                StandardDialog.cancelAction(
+                        bundle.getString(
+                                "dialogs.riskChooser.actions.cancel"
+                        )
+                )
+        );
         
-        wrapper.getChildren().addAll(riskListAttribute());
-        
-        dialog.getDialogPane().setContent(wrapper);
-        dialog.getDialogPane().getButtonTypes().add(apply);
-        dialog.getDialogPane().getButtonTypes().add(cancel);
+        Dialog<String> dialog = StandardDialog.dialog(
+                bundle.getString("dialogs.riskChooser.title"),
+                attributes,
+                actions
+        );
         
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == apply) {
@@ -100,27 +103,7 @@ public class RiskChooserDialog {
         
         return chosenRisk;
     }
-    
-    /**
-     * Attribute builder function.
-     * 
-     * This takes a label and a control for modifying the attribute and 
-     * returns it in a VBox wrapper.
-     * 
-     * @param label attribute label node
-     * @param value node for presenting and editing attribute
-     * 
-     * @return attribute wrapped in VBox
-     */
-    private VBox attributeFor(Label label, Node value) {
-        VBox wrapper = new VBox();
-        
-        wrapper.setSpacing(5);
-        wrapper.getChildren().addAll(label, value);
-        
-        return wrapper;
-    }
-    
+
      /**
      * Story list attribute builder.
      * 
@@ -130,7 +113,7 @@ public class RiskChooserDialog {
      * @return name attribute
      */
     private VBox riskListAttribute() {        
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(
                     bundle.getString("dialogs.riskChooser.description")
                 ),

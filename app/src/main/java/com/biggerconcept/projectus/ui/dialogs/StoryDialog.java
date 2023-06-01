@@ -1,8 +1,11 @@
 package com.biggerconcept.projectus.ui.dialogs;
 
+import com.biggerconcept.appengine.ui.dialogs.StandardDialog;
 import com.biggerconcept.projectus.domain.Actor;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Story;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonBar.ButtonData;
@@ -75,33 +78,32 @@ public class StoryDialog {
     }
     
     public void show(Stage stage) {
-        Dialog<String> dialog = new Dialog<>();
-        dialog.initStyle(StageStyle.UTILITY);
-        
-        dialog.setTitle(bundle.getString("stories.dialogs.story.title"));
-        
-        ButtonType apply = new ButtonType(
-                bundle.getString("stories.dialogs.story.actions.save"),
-                ButtonData.APPLY
-        );
-        
-        ButtonType cancel = new ButtonType(
-                bundle.getString("stories.dialogs.story.actions.cancel"),
-                ButtonData.CANCEL_CLOSE
-        );
-        
-        VBox wrapper = new VBox();
-        wrapper.setSpacing(10);
-        
-        wrapper.getChildren().addAll(
+         List<Node> attributes = Arrays.asList(
                 actorAttribute(),
                 intentionAttribute(),
                 expectationAttribute()
         );
         
-        dialog.getDialogPane().setContent(wrapper);
-        dialog.getDialogPane().getButtonTypes().add(apply);
-        dialog.getDialogPane().getButtonTypes().add(cancel);
+        ButtonType apply = StandardDialog.applyAction(
+                bundle.getString(
+                       "stories.dialogs.story.actions.save" 
+                )
+        );
+        
+        List<ButtonType> actions = Arrays.asList(
+                StandardDialog.cancelAction(
+                        bundle.getString(
+                                "stories.dialogs.actor.actions.cancel"
+                        )
+                ),
+                apply
+        );
+        
+        Dialog<String> dialog = StandardDialog.dialog(
+            bundle.getString("stories.dialogs.story.title"),
+            attributes,
+            actions
+        );
         
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == apply) {
@@ -148,26 +150,6 @@ public class StoryDialog {
     }
     
     /**
-     * Attribute builder function.
-     * 
-     * Takes a label and control for modifying the attribute and returns
-     * it in a VBox wrapper.
-     * 
-     * @param label label node for the attribute
-     * @param value node for presenting and editing attribute
-     * 
-     * @return attribute wrapped in VBox
-     */
-    private VBox attributeFor(Label label, Node value) {
-        VBox wrapper = new VBox();
-        
-        wrapper.setSpacing(5);
-        wrapper.getChildren().addAll(label, value);
-        
-        return wrapper;
-    }
-    
-    /**
      * Actor attribute builder.
      * 
      * Builds VBox with the name label and text field for managing actor.
@@ -175,7 +157,7 @@ public class StoryDialog {
      * @return actor attribute
      */
     private VBox actorAttribute() {
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(bundle.getString("stories.dialogs.story.actor")),
                 actorField
         );
@@ -189,7 +171,7 @@ public class StoryDialog {
      * @return intention attribute
      */
     private VBox intentionAttribute() {
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(bundle.getString("stories.dialogs.story.intention")),
                 intentionField
         );
@@ -203,7 +185,7 @@ public class StoryDialog {
      * @return expectation attribute
      */
     private VBox expectationAttribute() {
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(bundle.getString("stories.dialogs.story.expectation")),
                 expectationField
         );

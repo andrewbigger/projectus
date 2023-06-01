@@ -1,13 +1,15 @@
 package com.biggerconcept.projectus.ui.dialogs;
 
+import com.biggerconcept.appengine.ui.dialogs.StandardDialog;
 import com.biggerconcept.projectus.domain.Risk;
 import com.biggerconcept.projectus.domain.Risk.RiskImpact;
 import com.biggerconcept.projectus.domain.Risk.RiskLikelihood;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Risk.RiskStatus;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
@@ -15,7 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * Risk management dialog.
@@ -86,34 +87,33 @@ public class RiskDialog {
     }
     
     public void show(Stage stage) {
-        Dialog<String> dialog = new Dialog<>();
-        dialog.initStyle(StageStyle.UTILITY);
-        
-        dialog.setTitle(bundle.getString("risks.dialogs.risk.title"));
-        
-        ButtonType apply = new ButtonType(
-                bundle.getString("risks.dialogs.risk.actions.save"),
-                ButtonData.APPLY
-        );
-        
-        ButtonType cancel = new ButtonType(
-                bundle.getString("risks.dialogs.risk.actions.cancel"),
-                ButtonData.CANCEL_CLOSE
-        );
-        
-        VBox wrapper = new VBox();
-        wrapper.setSpacing(10);
-        
-        wrapper.getChildren().addAll(
+        List<Node> attributes = Arrays.asList(
                 nameAttribute(),
                 likelihoodAttribute(),
                 impactAttribute(),
                 statusAttribute()
         );
         
-        dialog.getDialogPane().setContent(wrapper);
-        dialog.getDialogPane().getButtonTypes().add(apply);
-        dialog.getDialogPane().getButtonTypes().add(cancel);
+        ButtonType apply = StandardDialog.applyAction(
+                bundle.getString(
+                       "risks.dialogs.risk.actions.save" 
+                )
+        );
+        
+        List<ButtonType> actions = Arrays.asList(
+                StandardDialog.cancelAction(
+                        bundle.getString(
+                                "risks.dialogs.risk.actions.cancel"
+                        )
+                ),
+                apply
+        );
+        
+        Dialog<String> dialog = StandardDialog.dialog(
+            bundle.getString("stories.dialogs.risk.title"),
+            attributes,
+            actions
+        );
         
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == apply) {
@@ -162,26 +162,6 @@ public class RiskDialog {
     }
     
     /**
-     * Attribute builder function.
-     * 
-     * Takes a label and control for modifying the attribute and returns
-     * it in a VBox wrapper.
-     * 
-     * @param label label node for the attribute
-     * @param value node for presenting and editing attribute
-     * 
-     * @return attribute wrapped in VBox
-     */
-    private VBox attributeFor(Label label, Node value) {
-        VBox wrapper = new VBox();
-        
-        wrapper.setSpacing(5);
-        wrapper.getChildren().addAll(label, value);
-        
-        return wrapper;
-    }
-    
-    /**
      * Name attribute builder.
      * 
      * Builds VBox with the name label and text field for managing name.
@@ -189,7 +169,7 @@ public class RiskDialog {
      * @return name attribute
      */
     private VBox nameAttribute() {
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(bundle.getString("risks.dialogs.risk.name")),
                 nameField
         );
@@ -204,7 +184,7 @@ public class RiskDialog {
      * @return likelihood attribute
      */
     private VBox likelihoodAttribute() {
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(bundle.getString("risks.dialogs.risk.likelihood")),
                 likelihoodField
         );
@@ -218,7 +198,7 @@ public class RiskDialog {
      * @return impact attribute
      */
     private VBox impactAttribute() {
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(bundle.getString("risks.dialogs.risk.impact")),
                 impactField
         );
@@ -232,7 +212,7 @@ public class RiskDialog {
      * @return status attribute
      */
     private VBox statusAttribute() {
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(bundle.getString("risks.dialogs.risk.status")),
                 statusField
         );

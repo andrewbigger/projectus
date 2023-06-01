@@ -1,17 +1,18 @@
 package com.biggerconcept.projectus.ui.dialogs;
 
+import com.biggerconcept.appengine.ui.dialogs.StandardDialog;
 import com.biggerconcept.projectus.domain.Actor;
 import com.biggerconcept.projectus.domain.Document;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * Actor management dialog.
@@ -60,31 +61,30 @@ public class ActorDialog {
      * @param stage parent window to show dialog from
      */
     public void show(Stage stage) {
-        Dialog<String> dialog = new Dialog<>();
-        
-        dialog.initStyle(StageStyle.UTILITY);
-        dialog.setTitle(bundle.getString("stories.dialogs.actor.title"));
-        
-        ButtonType apply = new ButtonType(
-                bundle.getString("stories.dialogs.actor.actions.save"),
-                ButtonData.APPLY
-        );
-        
-        ButtonType cancel = new ButtonType(
-                bundle.getString("stories.dialogs.actor.actions.cancel"),
-                ButtonData.CANCEL_CLOSE
-        );
-        
-        VBox wrapper = new VBox();
-        wrapper.setSpacing(10);
-        
-        wrapper.getChildren().addAll(
+        List<Node> attributes = Arrays.asList(
                 nameAttribute()
         );
         
-        dialog.getDialogPane().setContent(wrapper);
-        dialog.getDialogPane().getButtonTypes().add(apply);
-        dialog.getDialogPane().getButtonTypes().add(cancel);
+        ButtonType apply = StandardDialog.applyAction(
+                bundle.getString(
+                       "stories.dialogs.actor.actions.save" 
+                )
+        );
+        
+        List<ButtonType> actions = Arrays.asList(
+                StandardDialog.cancelAction(
+                        bundle.getString(
+                                "stories.dialogs.actor.actions.cancel"
+                        )
+                ),
+                apply
+        );
+        
+        Dialog<String> dialog = StandardDialog.dialog(
+            bundle.getString("stories.dialogs.actor.title"),
+            attributes,
+            actions
+        );
         
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == apply) {
@@ -126,26 +126,6 @@ public class ActorDialog {
     }
     
     /**
-     * Attribute builder function.
-     * 
-     * Takes a label and control for modifying the attribute and returns
-     * it in a VBox wrapper.
-     * 
-     * @param label label node for attribute
-     * @param value field node for editing attribute
-     * 
-     * @return attribute wrapped in VBox
-     */
-    private VBox attributeFor(Label label, Node value) {
-        VBox wrapper = new VBox();
-        
-        wrapper.setSpacing(5);
-        wrapper.getChildren().addAll(label, value);
-        
-        return wrapper;
-    }
-    
-    /**
      * Name attribute builder.
      * 
      * Builds VBox with the name label and text field for managing actor name.
@@ -153,7 +133,7 @@ public class ActorDialog {
      * @return name attribute
      */
     private VBox nameAttribute() {
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(bundle.getString("stories.dialogs.actor.name")),
                 nameField
         );

@@ -1,9 +1,12 @@
 package com.biggerconcept.projectus.ui.dialogs;
 
+import com.biggerconcept.appengine.ui.dialogs.StandardDialog;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Size.TaskSize;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.domain.Task.TaskStatus;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonBar.ButtonData;
@@ -106,35 +109,30 @@ public class TaskDialog {
      * @param stage parent window for dialog
      */
     public void show(Stage stage) {
-        Dialog<String> dialog = new Dialog<>();
-        
-        dialog.setTitle(bundle.getString("epic.tasks.dialogs.manage.title"));
-        
-        ButtonType apply = new ButtonType(
-                bundle.getString("epic.tasks.dialogs.manage.actions.save"),
-                ButtonData.APPLY
+        List<Node> attributes = Arrays.asList(
+                nameAttribute()
         );
         
-        ButtonType cancel = new ButtonType(
-                bundle.getString("epic.tasks.dialogs.manage.actions.cancel"),
-                ButtonData.CANCEL_CLOSE
+        ButtonType apply = StandardDialog.applyAction(
+                bundle.getString(
+                       "epic.tasks.dialogs.manage.actions.save" 
+                )
         );
         
-        VBox wrapper = new VBox();
-        wrapper.setSpacing(10);
-        
-        wrapper.getChildren().addAll(
-                nameAttribute(),
-                sizeAttribute(),
-                statusAttribute(),
-                descriptionAttribute(),
-                acceptanceCriteriaAttribute()
+        List<ButtonType> actions = Arrays.asList(
+                StandardDialog.cancelAction(
+                        bundle.getString(
+                                "epic.tasks.dialogs.manage.actions.cancel"
+                        )
+                ),
+                apply
         );
         
-        dialog.getDialogPane().setContent(wrapper);
-        
-        dialog.getDialogPane().getButtonTypes().add(apply);
-        dialog.getDialogPane().getButtonTypes().add(cancel);
+        Dialog<String> dialog = StandardDialog.dialog(
+            bundle.getString("epic.tasks.dialogs.manage.title"),
+            attributes,
+            actions
+        );
         
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == apply) {
@@ -188,26 +186,6 @@ public class TaskDialog {
     }
     
     /**
-     * Attribute builder function.
-     * 
-     * This takes a label and a control for modifying the attribute and 
-     * returns it in a VBox wrapper.
-     * 
-     * @param label attribute label node
-     * @param value node for presenting and editing attribute
-     * 
-     * @return attribute wrapped in VBox
-     */
-    private VBox attributeFor(Label label, Node value) {
-        VBox wrapper = new VBox();
-        
-        wrapper.setSpacing(5);
-        wrapper.getChildren().addAll(label, value);
-        
-        return wrapper;
-    }
-    
-    /**
      * Name attribute builder.
      * 
      * Builds a VBox with the name label and text field for managing a task
@@ -216,7 +194,7 @@ public class TaskDialog {
      * @return name attribute
      */
     private VBox nameAttribute() {        
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(bundle.getString("epic.tasks.dialogs.manage.name")),
                 nameField
         );
@@ -231,7 +209,7 @@ public class TaskDialog {
      * @return size attribute
      */
     private VBox sizeAttribute() {
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(bundle.getString("epic.tasks.dialogs.manage.size")),
                 sizeField
         );
@@ -246,7 +224,7 @@ public class TaskDialog {
      * @return size attribute
      */
     private VBox statusAttribute() {
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(bundle.getString("epic.tasks.dialogs.manage.status")),
                 statusField
         );
@@ -261,7 +239,7 @@ public class TaskDialog {
      * @return description attribute
      */
     private VBox descriptionAttribute() {
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(
                         bundle.getString(
                                 "epic.tasks.dialogs.manage.description"
@@ -280,7 +258,7 @@ public class TaskDialog {
      * @return acceptance criteria attribute
      */
     private VBox acceptanceCriteriaAttribute() {
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(
                         bundle.getString(
                                 "epic.tasks.dialogs.manage.acceptanceCriteria"

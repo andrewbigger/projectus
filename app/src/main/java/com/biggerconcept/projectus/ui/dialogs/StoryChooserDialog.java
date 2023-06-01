@@ -1,11 +1,13 @@
 package com.biggerconcept.projectus.ui.dialogs;
 
+import com.biggerconcept.appengine.ui.dialogs.StandardDialog;
 import com.biggerconcept.projectus.domain.Story;
 import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
@@ -32,7 +34,7 @@ public class StoryChooserDialog {
     /**
      * List view of stories.
      */
-    private ListView storiesListView;
+    private final ListView storiesListView;
     
     /**
      * Chosen story to return to caller.
@@ -60,28 +62,30 @@ public class StoryChooserDialog {
      * @throws NoChoiceMadeException 
      */
     public Story show(Stage stage) throws NoChoiceMadeException {
-        Dialog<String> dialog = new Dialog<>();
-        
-        dialog.setTitle(bundle.getString("dialogs.storyChooser.title"));
-        
-        ButtonType apply = new ButtonType(
-                bundle.getString("dialogs.storyChooser.actions.choose"),
-                ButtonData.APPLY
+        List<Node> attributes = Arrays.asList(
+                storyListAttribute()
         );
         
-        ButtonType cancel = new ButtonType(
-                bundle.getString("dialogs.storyChooser.actions.cancel"),
-                ButtonData.CANCEL_CLOSE
+        ButtonType apply = StandardDialog.applyAction(
+                bundle.getString(
+                       "dialogs.storyChooser.actions.choose" 
+                )
         );
         
-        VBox wrapper = new VBox();
-        wrapper.setSpacing(10);
+        List<ButtonType> actions = Arrays.asList(
+                StandardDialog.cancelAction(
+                        bundle.getString(
+                                "dialogs.storyChooser.actions.cancel"
+                        )
+                ),
+                apply
+        );
         
-        wrapper.getChildren().addAll(storyListAttribute());
-        
-        dialog.getDialogPane().setContent(wrapper);
-        dialog.getDialogPane().getButtonTypes().add(apply);
-        dialog.getDialogPane().getButtonTypes().add(cancel);
+        Dialog<String> dialog = StandardDialog.dialog(
+            bundle.getString("dialogs.storyChooser.title"),
+            attributes,
+            actions
+        );
         
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == apply) {
@@ -100,27 +104,7 @@ public class StoryChooserDialog {
         
         return chosenStory;
     }
-    
-    /**
-     * Attribute builder function.
-     * 
-     * This takes a label and a control for modifying the attribute and 
-     * returns it in a VBox wrapper.
-     * 
-     * @param label attribute label node
-     * @param value node for presenting and editing attribute
-     * 
-     * @return attribute wrapped in VBox
-     */
-    private VBox attributeFor(Label label, Node value) {
-        VBox wrapper = new VBox();
-        
-        wrapper.setSpacing(5);
-        wrapper.getChildren().addAll(label, value);
-        
-        return wrapper;
-    }
-    
+
      /**
      * Story list attribute builder.
      * 
@@ -130,7 +114,7 @@ public class StoryChooserDialog {
      * @return name attribute
      */
     private VBox storyListAttribute() {        
-        return attributeFor(
+        return StandardDialog.attribute(
                 new Label(bundle.getString("dialogs.storyChooser.description")),
                 storiesListView
         );
