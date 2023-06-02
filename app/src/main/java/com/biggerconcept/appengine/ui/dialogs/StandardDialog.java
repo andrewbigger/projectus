@@ -3,6 +3,7 @@ package com.biggerconcept.appengine.ui.dialogs;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -46,7 +47,8 @@ public class StandardDialog {
                 title,
                 DEFAULT_WIDTH,
                 new ArrayList<>(),
-                new ArrayList<>()
+                new ArrayList<>(),
+                null
         );
     }
     
@@ -58,18 +60,21 @@ public class StandardDialog {
      * @param title
      * @param nodes
      * @param actions
+     * @param defaultAction
      * @return 
      */
     public static Dialog<String> dialog(
             String title,
             List<Node> nodes,
-            List<ButtonType> actions
+            List<ButtonType> actions,
+            ButtonType defaultAction
     ) {
         return dialog(
                 title,
                 DEFAULT_WIDTH,
                 nodes,
-                actions
+                actions,
+                defaultAction
         );
     }
     
@@ -87,6 +92,7 @@ public class StandardDialog {
      * @param width
      * @param nodes
      * @param actions
+     * @param defaultAction
      * 
      * @return 
      */
@@ -94,7 +100,8 @@ public class StandardDialog {
             String title,
             double width,
             List<Node> nodes,
-            List<ButtonType> actions
+            List<ButtonType> actions,
+            ButtonType defaultAction
     ) {
         javafx.scene.control.Dialog<String> dialog = 
                 new javafx.scene.control.Dialog<>();
@@ -110,6 +117,11 @@ public class StandardDialog {
             pane.getButtonTypes().add(action);
         }
         
+        if (defaultAction != null) {
+            Button d = (Button) pane.lookupButton(defaultAction);
+            d.setDefaultButton(true);
+        }
+        
         return dialog;
     }
     
@@ -121,6 +133,7 @@ public class StandardDialog {
     public static VBox wrap() {
         return wrap(
                 DEFAULT_PADDING,
+                DEFAULT_WIDTH,
                 new ArrayList<>()
         );
     }
@@ -136,6 +149,7 @@ public class StandardDialog {
     ) {
         return wrap(
                 DEFAULT_PADDING,
+                DEFAULT_WIDTH,
                 nodes
         );
     }
@@ -144,16 +158,19 @@ public class StandardDialog {
      * Wraps given nodes in VBox with specified padding.
      * 
      * @param padding padding for VBox
+     * @param width min width for VBox
      * @param nodes nodes for VBox
      * 
      * @return 
      */
     public static VBox wrap(
             double padding,
+            double width,
             List<Node> nodes
     ) {
         VBox wrapper = new VBox();
         
+        wrapper.setMinWidth(width);
         wrapper.setSpacing(padding);
         wrapper.getChildren().addAll(nodes);
         

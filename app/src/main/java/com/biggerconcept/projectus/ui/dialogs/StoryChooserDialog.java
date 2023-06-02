@@ -84,7 +84,8 @@ public class StoryChooserDialog {
         Dialog<String> dialog = StandardDialog.dialog(
             bundle.getString("dialogs.storyChooser.title"),
             attributes,
-            actions
+            actions,
+            apply
         );
         
         dialog.setResultConverter(dialogButton -> {

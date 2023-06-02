@@ -48,7 +48,7 @@ public class App extends Application {
         );
         
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/fxml/Main.css");
+        scene.getStylesheets().add("/fxml/Application.css");
         
         stage.setTitle(bundle.getString("application.name"));
         stage.setScene(scene);

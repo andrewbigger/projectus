@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -27,23 +28,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="901.0" prefHeight="800.0" prefWidth="1500.0" stylesheets="Main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="901.0" prefHeight="800.0" prefWidth="1500.0" stylesheets="Application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.MainController">
    <top>
       <BorderPane prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <center>
             <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <items>
-                  <Button id="newFileButton" fx:id="newFileButton" mnemonicParsing="false" onMouseClicked="#handleCreateNewDocument" prefHeight="55.0" prefWidth="55.0" />
-                  <Button id="openFileButton" fx:id="openFileButton" mnemonicParsing="false" onMouseClicked="#handleOpenDocument" prefHeight="55.0" prefWidth="55.0" />
-                  <Button id="saveFileButton" fx:id="saveFileButton" mnemonicParsing="false" onMouseClicked="#handleSaveDocument" prefHeight="55.0" prefWidth="55.0" />
+                  <Button id="newFileButton" fx:id="newFileButton" mnemonicParsing="false" onMouseClicked="#handleCreateNewDocument" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
+                  <Button id="openFileButton" fx:id="openFileButton" mnemonicParsing="false" onMouseClicked="#handleOpenDocument" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
+                  <Button id="saveFileButton" fx:id="saveFileButton" mnemonicParsing="false" onMouseClicked="#handleSaveDocument" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="9.0" />
-                  <Button id="addEpicButton" fx:id="addEpicButton" mnemonicParsing="false" onMouseClicked="#handleAddEpic" prefHeight="55.0" prefWidth="55.0" />
-                  <Button id="removeEpicButton" fx:id="removeEpicButton" mnemonicParsing="false" onMouseClicked="#handleRemoveEpic" prefHeight="55.0" prefWidth="55.0" />
-                  <Button id="moveEpicUpButton" fx:id="moveEpicUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpicUp" prefHeight="55.0" prefWidth="55.0" />
-                  <Button id="moveEpicDownButton" fx:id="moveEpicDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpicDown" prefHeight="55.0" prefWidth="55.0" />
-                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="9.0" />
-                  <Button id="manageStoriesButton" fx:id="manageStoriesButton" mnemonicParsing="false" onMouseClicked="#handleManageStories" prefHeight="55.0" prefWidth="55.0" />
-                  <Button id="manageRisksButton" fx:id="manageRisksButton" mnemonicParsing="false" onMouseClicked="#handleManageRisks" prefHeight="55.0" prefWidth="55.0" />
+                  <Button id="manageStoriesButton" fx:id="manageStoriesButton" mnemonicParsing="false" onMouseClicked="#handleManageStories" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
+                  <Button id="manageRisksButton" fx:id="manageRisksButton" mnemonicParsing="false" onMouseClicked="#handleManageRisks" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
               </items>
             </ToolBar>
          </center>
@@ -184,6 +180,40 @@
                      </columns>
                   </TableView>
                </center>
+               <top>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <items>
+                        <Button id="addEpicButton" fx:id="addEpicButton" mnemonicParsing="false" onMouseClicked="#handleAddEpic" prefWidth="25.0">
+                           <styleClass>
+                              <String fx:value="iconButton" />
+                              <String fx:value="smallIcon" />
+                              <String fx:value="addButton" />
+                           </styleClass>
+                        </Button>
+                        <Button id="removeEpicButton" fx:id="removeEpicButton" mnemonicParsing="false" onMouseClicked="#handleRemoveEpic" prefWidth="25.0">
+                           <styleClass>
+                              <String fx:value="iconButton" />
+                              <String fx:value="smallIcon" />
+                              <String fx:value="removeButton" />
+                           </styleClass>
+                        </Button>
+                        <Button id="moveEpicUpButton" fx:id="moveEpicUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpicUp" prefWidth="25.0">
+                           <styleClass>
+                              <String fx:value="iconButton" />
+                              <String fx:value="smallIcon" />
+                              <String fx:value="moveUpButton" />
+                           </styleClass>
+                        </Button>
+                        <Button id="moveEpicDownButton" fx:id="moveEpicDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpicDown" prefWidth="25.0">
+                           <styleClass>
+                              <String fx:value="iconButton" />
+                              <String fx:value="smallIcon" />
+                              <String fx:value="moveDownButton" />
+                           </styleClass>
+                        </Button>
+                     </items>
+                  </ToolBar>
+               </top>
             </BorderPane>
             <TabPane fx:id="selectedEpicPanel" minWidth="300.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
@@ -243,8 +273,8 @@
                                     </Label>
                                     <Label fx:id="describedCountLabel" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                     <Label fx:id="sizedCountLabel" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <ProgressBar fx:id="describedStatusProgressBar" prefWidth="20000.0" progress="0.0" styleClass="describedProgress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <ProgressBar fx:id="sizedStatusProgressBar" prefWidth="20000.0" progress="0.0" styleClass="sizedProgress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ProgressBar id="describedProgress" fx:id="describedStatusProgressBar" prefWidth="20000.0" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ProgressBar id="sizedProgress" fx:id="sizedStatusProgressBar" prefWidth="20000.0" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <GridPane GridPane.columnIndex="1">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -257,7 +287,7 @@
                                        <children>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <ProgressBar fx:id="definedSummaryProgressBar" prefWidth="20000.0" progress="0.0" styleClass="definedProgress">
+                                                <ProgressBar id="definedProgress" fx:id="definedSummaryProgressBar" prefWidth="20000.0" progress="0.0" styleClass="definedProgress">
                                                    <HBox.margin>
                                                       <Insets right="2.0" />
                                                    </HBox.margin>
@@ -266,7 +296,7 @@
                                           </HBox>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                              <children>
-                                                <ProgressBar fx:id="definedScopeProgressBar" prefWidth="20000.0" progress="0.0" styleClass="definedProgress">
+                                                <ProgressBar id="definedScope" fx:id="definedScopeProgressBar" prefWidth="20000.0" progress="0.0" styleClass="definedProgress">
                                                    <HBox.margin>
                                                       <Insets left="2.0" right="2.0" />
                                                    </HBox.margin>
@@ -275,7 +305,7 @@
                                           </HBox>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                                              <children>
-                                                <ProgressBar fx:id="definedStatusProgressBar" prefWidth="20000.0" progress="0.0" styleClass="definedProgress">
+                                                <ProgressBar id="definedStatusProgressBar" fx:id="definedStatusProgressBar" prefWidth="20000.0" progress="0.0" styleClass="definedProgress">
                                                    <HBox.margin>
                                                       <Insets left="2.0" />
                                                    </HBox.margin>
@@ -304,7 +334,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <ProgressBar fx:id="epicTaskProgressBar" prefWidth="20000.0" progress="0.0" styleClass="totalTasksCompleteProgress">
+                              <ProgressBar id="totalTasksCompleteProgress" fx:id="epicTaskProgressBar" prefWidth="20000.0" progress="0.0">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -332,7 +362,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <ProgressBar fx:id="epicPointsProgressBar" prefWidth="20000.0" progress="0.0" styleClass="totalPointsCompleteProgress">
+                              <ProgressBar id="totalPointsCompleteProgress" fx:id="epicPointsProgressBar" prefWidth="20000.0" progress="0.0">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -385,12 +415,22 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                                  <children>
-                                    <Button minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleAddScope" text="+">
+                                    <Button minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleAddScope">
                                        <HBox.margin>
                                           <Insets right="5.0" />
                                        </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="addButton" />
+                                       </styleClass>
                                     </Button>
-                                    <Button minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleRemoveScope" text="-" />
+                                    <Button minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleRemoveScope">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="removeButton" />
+                                       </styleClass></Button>
                                  </children>
                               </HBox>
                               <Label text="%epic.tabs.scope.exclude.label">
@@ -405,12 +445,22 @@
                               </ListView>
                               <HBox prefHeight="28.0" prefWidth="623.0">
                                  <children>
-                                    <Button minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleAddExcludedScope" text="+">
+                                    <Button minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleAddExcludedScope">
                                        <HBox.margin>
                                           <Insets right="5.0" />
                                        </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="addButton" />
+                                       </styleClass>
                                     </Button>
-                                    <Button minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleRemoveExcludedScope" text="-" />
+                                    <Button minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleRemoveExcludedScope">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="removeButton" />
+                                       </styleClass></Button>
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
@@ -426,10 +476,30 @@
                            <top>
                               <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                  <items>
-                                    <Button id="addStoryLinkButton" fx:id="addStoryLinkButton" mnemonicParsing="false" onMouseClicked="#handleAddStoryLink" prefWidth="25.0" />
-                                    <Button id="removeStoryLinkButton" fx:id="removeStoryLinkButton" mnemonicParsing="false" onMouseClicked="#handleRemoveStoryLink" prefWidth="25.0" />
-                                    <Button id="moveStoryUpButton" fx:id="moveStoryUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveStoryUp" prefWidth="25.0" />
-                                    <Button id="moveStoryDownButton" fx:id="moveStoryDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveStoryDown" prefWidth="25.0" />
+                                    <Button id="addStoryLinkButton" fx:id="addStoryLinkButton" mnemonicParsing="false" onMouseClicked="#handleAddStoryLink" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="addButton" />
+                                       </styleClass></Button>
+                                    <Button id="removeStoryLinkButton" fx:id="removeStoryLinkButton" mnemonicParsing="false" onMouseClicked="#handleRemoveStoryLink" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="removeButton" />
+                                       </styleClass></Button>
+                                    <Button id="moveStoryUpButton" fx:id="moveStoryUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveStoryUp" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="moveUpButton" />
+                                       </styleClass></Button>
+                                    <Button id="moveStoryDownButton" fx:id="moveStoryDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveStoryDown" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="moveDownButton" />
+                                       </styleClass></Button>
                                  </items>
                               </ToolBar>
                            </top>
@@ -462,12 +532,37 @@
                            <top>
                               <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                 <items>
-                                  <Button id="addTaskButton" fx:id="addTaskButton" mnemonicParsing="false" onMouseClicked="#handleAddTask" prefWidth="25.0" />
-                                    <Button id="removeTaskButton" fx:id="removeTaskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveTask" prefWidth="25.0" />
-                                    <Button id="moveTaskUpButton" fx:id="moveTaskUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskUp" prefWidth="25.0" />
-                                    <Button id="moveTaskDownButton" fx:id="moveTaskDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskDown" prefWidth="25.0" />
+                                  <Button id="addTaskButton" fx:id="addTaskButton" mnemonicParsing="false" onMouseClicked="#handleAddTask" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="addButton" />
+                                       </styleClass></Button>
+                                    <Button id="removeTaskButton" fx:id="removeTaskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveTask" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="removeButton" />
+                                       </styleClass></Button>
+                                    <Button id="moveTaskUpButton" fx:id="moveTaskUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskUp" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="moveUpButton" />
+                                       </styleClass></Button>
+                                    <Button id="moveTaskDownButton" fx:id="moveTaskDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveTaskDown" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="moveDownButton" />
+                                       </styleClass></Button>
                                     <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
-                                    <Button id="editTaskButton" fx:id="editTaskButton" mnemonicParsing="false" onMouseClicked="#handleEditTask" prefWidth="25.0" />
+                                    <Button id="editTaskButton" fx:id="editTaskButton" mnemonicParsing="false" onMouseClicked="#handleEditTask" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="editButton" />
+                                       </styleClass></Button>
                                 </items>
                               </ToolBar>
                            </top>
@@ -480,10 +575,30 @@
                            <top>
                               <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                  <items>
-                                    <Button id="addRiskLinkButton" fx:id="addRiskLinkButton" mnemonicParsing="false" onMouseClicked="#handleAddRiskLink" prefWidth="25.0" />
-                                    <Button id="removeRiskLinkButton" fx:id="removeRiskLinkButton" mnemonicParsing="false" onMouseClicked="#handleRemoveRiskLink" prefWidth="25.0" />
-                                    <Button id="moveRiskUpButton" fx:id="moveRiskUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveRiskUp" prefWidth="25.0" />
-                                    <Button id="moveRiskDownButton" fx:id="moveRiskDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveRiskDown" prefWidth="25.0" />
+                                    <Button id="addRiskLinkButton" fx:id="addRiskLinkButton" mnemonicParsing="false" onMouseClicked="#handleAddRiskLink" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="addButton" />
+                                       </styleClass></Button>
+                                    <Button id="removeRiskLinkButton" fx:id="removeRiskLinkButton" mnemonicParsing="false" onMouseClicked="#handleRemoveRiskLink" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="removeButton" />
+                                       </styleClass></Button>
+                                    <Button id="moveRiskUpButton" fx:id="moveRiskUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveRiskUp" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="moveUpButton" />
+                                       </styleClass></Button>
+                                    <Button id="moveRiskDownButton" fx:id="moveRiskDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveRiskDown" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="moveDownButton" />
+                                       </styleClass></Button>
                                  </items>
                               </ToolBar>
                            </top>

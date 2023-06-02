@@ -102,7 +102,8 @@ public class StoryDialog {
         Dialog<String> dialog = StandardDialog.dialog(
             bundle.getString("stories.dialogs.story.title"),
             attributes,
-            actions
+            actions,
+            apply
         );
         
         dialog.setResultConverter(dialogButton -> {

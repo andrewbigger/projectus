@@ -134,7 +134,8 @@ public class TaskDialog {
         Dialog<String> dialog = StandardDialog.dialog(
             bundle.getString("epic.tasks.dialogs.manage.title"),
             attributes,
-            actions
+            actions,
+            apply
         );
         
         dialog.setResultConverter(dialogButton -> {

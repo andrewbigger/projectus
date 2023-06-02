@@ -83,7 +83,8 @@ public class RiskChooserDialog {
         Dialog<String> dialog = StandardDialog.dialog(
                 bundle.getString("dialogs.riskChooser.title"),
                 attributes,
-                actions
+                actions,
+                apply
         );
         
         dialog.setResultConverter(dialogButton -> {

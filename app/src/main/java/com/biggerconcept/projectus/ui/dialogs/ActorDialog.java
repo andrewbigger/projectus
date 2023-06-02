@@ -83,7 +83,8 @@ public class ActorDialog {
         Dialog<String> dialog = StandardDialog.dialog(
             bundle.getString("stories.dialogs.actor.title"),
             attributes,
-            actions
+            actions,
+            apply
         );
         
         dialog.setResultConverter(dialogButton -> {

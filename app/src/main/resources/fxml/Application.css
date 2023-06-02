@@ -1,0 +1,84 @@
+.iconButton {
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+.smallIcon {
+  -fx-background-size: 25px 25px;
+}
+
+.addButton {
+  -fx-background-image: url('../icons/AddIcon.png');
+}
+
+.removeButton {
+  -fx-background-image: url('../icons/RemoveIcon.png');
+}
+
+.moveUpButton {
+  -fx-background-image: url('../icons/MoveUpIcon.png');
+}
+
+.moveDownButton {
+  -fx-background-image: url('../icons/MoveDownIcon.png');
+}
+
+.editButton {
+  -fx-background-image: url('../icons/EditIcon.png');
+}
+
+.definedProgress > .bar {
+  -fx-background-color: #FFBB10;
+}
+
+#openFileButton {
+  -fx-background-image:url('../icons/OpenFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#saveFileButton {
+  -fx-background-image: url('../icons/SaveFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#newFileButton {
+  -fx-background-image: url('../icons/NewFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#manageStoriesButton {
+  -fx-background-image: url('../icons/StoryIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#manageRisksButton {
+  -fx-background-image: url('../icons/RisksIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#sizedProgress > .bar {
+  -fx-background-color: #C72A1C;
+}
+
+#describedProgress > .bar {
+  -fx-background-color: #A81897;
+}
+
+#totalTasksCompleteProgress > .bar {
+  -fx-background-color: #3A70B2;
+}
+
+#totalPointsCompleteProgress > .bar {
+  -fx-background-color: #43b324;
+}

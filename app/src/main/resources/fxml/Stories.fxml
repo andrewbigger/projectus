@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
@@ -7,16 +8,30 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.StoriesController" stylesheets="Stories.css">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="869.0" stylesheets="Application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.StoriesController">
    <left>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
             <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <items>
-                <Button id="addActorButton" fx:id="addActorButton" mnemonicParsing="false" onMouseClicked="#handleAddActor" prefWidth="26.0" />
-                  <Button id="removeActorButton" fx:id="removeActorButton" mnemonicParsing="false" onMouseClicked="#handleRemoveActor" prefWidth="26.0" />
-                  <Button id="editActorButton" fx:id="editActorButton" mnemonicParsing="false" onMouseClicked="#handleEditActor" prefWidth="26.0" />
+                <Button id="addActorButton" fx:id="addActorButton" mnemonicParsing="false" onMouseClicked="#handleAddActor" prefWidth="26.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="addButton" />
+                     </styleClass></Button>
+                  <Button id="removeActorButton" fx:id="removeActorButton" mnemonicParsing="false" onMouseClicked="#handleRemoveActor" prefWidth="26.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="removeButton" />
+                     </styleClass></Button>
+                  <Button id="editActorButton" fx:id="editActorButton" mnemonicParsing="false" onMouseClicked="#handleEditActor" prefWidth="26.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="editButton" />
+                     </styleClass></Button>
               </items>
             </ToolBar>
          </top>
@@ -30,9 +45,24 @@
          <top>
             <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <items>
-                  <Button id="addStoryButton" fx:id="addStoryButton" mnemonicParsing="false" onMouseClicked="#handleAddStory" prefWidth="26.0" />
-                  <Button id="removeStoryButton" fx:id="RemoveStoryButton" mnemonicParsing="false" onMouseClicked="#handleRemoveStory" prefWidth="26.0" />
-                  <Button id="editStoryButton" fx:id="editStoryButton" mnemonicParsing="false" onMouseClicked="#handleEditStory" prefWidth="26.0" />
+                  <Button id="addStoryButton" fx:id="addStoryButton" mnemonicParsing="false" onMouseClicked="#handleAddStory" prefWidth="26.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="addButton" />
+                     </styleClass></Button>
+                  <Button id="removeStoryButton" fx:id="removeStoryButton" mnemonicParsing="false" onMouseClicked="#handleRemoveStory" prefWidth="26.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="removeButton" />
+                     </styleClass></Button>
+                  <Button id="editStoryButton" fx:id="editStoryButton" mnemonicParsing="false" onMouseClicked="#handleEditStory" prefWidth="26.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="editButton" />
+                     </styleClass></Button>
                </items>
             </ToolBar>
          </top>

@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="869.0" stylesheets="Risks.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.RisksController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="869.0" stylesheets="Application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.RisksController">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
             <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <items>
-                  <Button id="addRiskButton" fx:id="addRiskButton" mnemonicParsing="false" onMouseClicked="#handleAddRisk" prefWidth="26.0" />
-                  <Button id="removeRiskButton" fx:id="removeRiskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveRisk" prefWidth="26.0" />
-                  <Button id="editRiskButton" fx:id="editRiskButton" mnemonicParsing="false" onMouseClicked="#handleEditRisk" prefWidth="26.0" />
+                  <Button id="addRiskButton" fx:id="addRiskButton" mnemonicParsing="false" onMouseClicked="#handleAddRisk" prefWidth="26.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="addButton" />
+                     </styleClass></Button>
+                  <Button id="removeRiskButton" fx:id="removeRiskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveRisk" prefWidth="26.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="removeButton" />
+                     </styleClass></Button>
+                  <Button id="editRiskButton" fx:id="editRiskButton" mnemonicParsing="false" onMouseClicked="#handleEditRisk" prefWidth="26.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="editButton" />
+                     </styleClass></Button>
                </items>
             </ToolBar>
          </top>
