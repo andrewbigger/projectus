@@ -220,14 +220,13 @@ public class Docx {
     }
    
     /**
-     * Adds a paragraph to the document.
-     * 
-     * The style will be set to that specified by the id.
+     * Adds a paragraph to the document.The style will be set to that specified by the id.
      * 
      * The content of the paragraph will be the text supplied in the
      * text parameter.
      * @param id
      * @param text 
+     * @return  
      */
     public void p(String id, String text) {
         XWPFParagraph p = doc.createParagraph();

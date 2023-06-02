@@ -40,41 +40,53 @@ public class Risk {
   }
 
   /**
-   * Name of risk
+   * Name of risk.
    */
   @JsonInclude(Include.NON_NULL)
   private String name;
 
   /**
-   * Likelihood of risk
+   * Likelihood of risk.
    */
   @JsonInclude(Include.NON_NULL)
   private RiskLikelihood likelihood;
 
   /**
-   * Impact of risk
+   * Impact of risk.
    */
   @JsonInclude(Include.NON_NULL)
   private RiskImpact impact;
 
   /**
-   * Status of risk
+   * Status of risk.
    */
   @JsonInclude(Include.NON_NULL)
   private RiskStatus status;
+  
+  /**
+   * Detail of risk.
+   */
+  @JsonInclude(Include.NON_NULL)
+  private String detail;
+  
+  /**
+   * Mitigation details of risk.
+   */
+  @JsonInclude(Include.NON_NULL)
+  private String mitigation;
 
   /**
-   * Default likelihood
+   * Default likelihood.
    */
   public static final RiskLikelihood DEFAULT_LIKELIHOOD = RiskLikelihood.UNLIKELY;
 
   /**
-   * Default impact
+   * Default impact.
    */
   public static final RiskImpact DEFAULT_IMPACT = RiskImpact.NONE;
 
   /**
-   * Default status
+   * Default status.
    */
   public static final RiskStatus DEFAULT_STATUS = RiskStatus.PRESENT;
 
@@ -96,6 +108,8 @@ public class Risk {
       this.likelihood = likelihood;
       this.impact = impact;
       this.status = status;
+      this.detail = "";
+      this.mitigation = "";
   }
 
   /**
@@ -106,10 +120,12 @@ public class Risk {
       this.likelihood = DEFAULT_LIKELIHOOD;
       this.impact = DEFAULT_IMPACT;
       this.status = DEFAULT_STATUS;
+      this.detail = "";
+      this.mitigation = "";
   }
 
   /**
-   * Getter for risk name
+   * Getter for risk name.
    * 
    * @return risk name
    */
@@ -118,7 +134,7 @@ public class Risk {
   }
 
   /**
-   * Getter for risk likelihood
+   * Getter for risk likelihood.
    * 
    * @return risk likelihood
    */
@@ -127,7 +143,7 @@ public class Risk {
   }
 
   /**
-   * Getter for impact
+   * Getter for impact.
    * 
    * @return risk impact
    */
@@ -136,7 +152,7 @@ public class Risk {
   }
 
   /**
-   * Getter for status
+   * Getter for status.
    * 
    * @return risk status
    */
@@ -145,7 +161,25 @@ public class Risk {
   }
   
   /**
-   * Setter for name
+   * Getter for risk detail.
+   * 
+   * @return 
+   */
+  public String getDetail() {
+      return detail;
+  }
+  
+  /**
+   * Getter for risk mitigation strategy.
+   * 
+   * @return 
+   */
+  public String getMitigationStrategy() {
+      return mitigation;
+  }
+  
+  /**
+   * Setter for name.
    * 
    * @param value new name
    */
@@ -154,7 +188,7 @@ public class Risk {
   }
 
   /**
-   * Setter for likelihood
+   * Setter for likelihood.
    * 
    * @param value likelihood to set
    */
@@ -163,7 +197,7 @@ public class Risk {
   }
 
   /**
-   * Setter for impact
+   * Setter for impact.
    * 
    * @param value impact to set
    */
@@ -172,12 +206,30 @@ public class Risk {
   }
 
   /**
-   * Setter for status
+   * Setter for status.
    * 
    * @param value status to set
    */
   public void setStatus(RiskStatus value) {
       status = value;
+  }
+  
+  /**
+   * Setter for detail.
+   * 
+   * @param value 
+   */
+  public void setDetail(String value) {
+      detail = value;
+  }
+  
+  /**
+   * Setter for mitigation strategy.
+   * 
+   * @param value 
+   */
+  public void setMitigationStrategy(String value) {
+      mitigation = value;
   }
   
   /**

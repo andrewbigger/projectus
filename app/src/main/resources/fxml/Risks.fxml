@@ -1,50 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="869.0" stylesheets="Application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.RisksController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="1116.0" stylesheets="Application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.RisksController">
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-            <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <items>
-                  <Button id="addRiskButton" fx:id="addRiskButton" mnemonicParsing="false" onMouseClicked="#handleAddRisk" prefWidth="26.0">
-                     <styleClass>
-                        <String fx:value="iconButton" />
-                        <String fx:value="smallIcon" />
-                        <String fx:value="addButton" />
-                     </styleClass></Button>
-                  <Button id="removeRiskButton" fx:id="removeRiskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveRisk" prefWidth="26.0">
-                     <styleClass>
-                        <String fx:value="iconButton" />
-                        <String fx:value="smallIcon" />
-                        <String fx:value="removeButton" />
-                     </styleClass></Button>
-                  <Button id="editRiskButton" fx:id="editRiskButton" mnemonicParsing="false" onMouseClicked="#handleEditRisk" prefWidth="26.0">
-                     <styleClass>
-                        <String fx:value="iconButton" />
-                        <String fx:value="smallIcon" />
-                        <String fx:value="editButton" />
-                     </styleClass></Button>
-               </items>
-            </ToolBar>
-         </top>
-         <center>
-            <TableView fx:id="riskTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <columns>
-                  <TableColumn minWidth="100.0" prefWidth="100.0" text="%risks.table.id" />
-                  <TableColumn minWidth="200.0" prefWidth="300.0" text="%risks.table.name" />
-                  <TableColumn minWidth="100.0" prefWidth="150.0" text="%risks.table.likelihood" />
-                  <TableColumn minWidth="100.0" prefWidth="150.0" text="%risks.table.impact" />
-                  <TableColumn minWidth="100.0" prefWidth="150.0" text="%risks.table.status" />
-              </columns>
-            </TableView>
-         </center>
-      </BorderPane>
+      <SplitPane dividerPositions="0.7244165170556554" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <items>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <TableView fx:id="riskTableView" onMouseClicked="#handleChooseRisk" prefHeight="621.0" prefWidth="449.0" BorderPane.alignment="CENTER">
+                    <columns>
+                        <TableColumn minWidth="100.0" prefWidth="100.0" text="%risks.table.id" />
+                        <TableColumn minWidth="200.0" prefWidth="200.0" text="%risks.table.name" />
+                        <TableColumn minWidth="150.0" prefWidth="150.0" text="%risks.table.likelihood" />
+                        <TableColumn minWidth="150.0" prefWidth="150.0" text="%risks.table.impact" />
+                        <TableColumn minWidth="150.0" prefWidth="150.0" text="%risks.table.status" />
+                    </columns>
+                  </TableView>
+               </center>
+            </BorderPane>
+            <VBox fx:id="risksPanel" minWidth="200.0" prefHeight="200.0" prefWidth="200.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Label text="%risks.panel.name.label">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="riskNameTextField">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label text="%risks.panel.likelihood.label">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ComboBox fx:id="riskLikelihoodComboBox" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </ComboBox>
+                  <Label text="%risks.panel.impact.label">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ComboBox fx:id="riskImpactComboBox" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </ComboBox>
+                  <Label text="%risks.panel.status.label">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ComboBox fx:id="riskStatusComboBox" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </ComboBox>
+                  <Label text="%risks.panel.detail.label">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextArea fx:id="riskDetailTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <Label text="%risks.panel.mitigation.label">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextArea fx:id="riskMitigationTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <BorderPane prefHeight="8.0" prefWidth="239.0">
+                     <right>
+                        <Button fx:id="applyRiskButton" defaultButton="true" mnemonicParsing="false" onMouseClicked="#handleChangeRisk" text="%risks.panel.actions.apply" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+               </children>
+            </VBox>
+         </items>
+      </SplitPane>
    </center>
+   <top>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <items>
+            <Button id="addRiskButton" fx:id="addRiskButton" mnemonicParsing="false" onMouseClicked="#handleAddRisk" prefWidth="26.0">
+               <styleClass>
+                  <String fx:value="iconButton" />
+                  <String fx:value="smallIcon" />
+                  <String fx:value="addButton" />
+               </styleClass>
+            </Button>
+            <Button id="removeRiskButton" fx:id="removeRiskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveRisk" prefWidth="26.0">
+               <styleClass>
+                  <String fx:value="iconButton" />
+                  <String fx:value="smallIcon" />
+                  <String fx:value="removeButton" />
+               </styleClass>
+            </Button>
+         </items>
+      </ToolBar>
+   </top>
 </BorderPane>

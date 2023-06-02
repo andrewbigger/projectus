@@ -119,7 +119,9 @@ public class StandardDialog {
         
         if (defaultAction != null) {
             Button d = (Button) pane.lookupButton(defaultAction);
-            d.setDefaultButton(true);
+            if (d != null) {
+                d.setDefaultButton(true);
+            }
         }
         
         return dialog;

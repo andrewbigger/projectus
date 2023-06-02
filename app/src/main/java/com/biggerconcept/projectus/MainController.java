@@ -1296,10 +1296,6 @@ public class MainController implements Initializable {
             mapDocumentToWindow();
         } catch (DuplicateItemException | NoChoiceMadeException ncm) {
         }
-        // do nothing
-         catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.addRisk"), e);
-        }
     }
     
     @FXML
@@ -1497,7 +1493,7 @@ public class MainController implements Initializable {
                     "/fxml/Risks.fxml"
             );
             
-            Parent storiesPane = (Parent) loader.load();
+            Parent risksPane = (Parent) loader.load();
             
             RisksController controller = (RisksController) loader
                     .getController();
@@ -1505,7 +1501,7 @@ public class MainController implements Initializable {
             controller.setDocument(currentDocument);
             
             Stage stage = StandardWindow.setup(
-                    storiesPane,
+                    risksPane,
                     bundle.getString("risks.dialogs.risk.title"),
                     "/fxml/Application.css",
                     StageStyle.DECORATED
@@ -1662,6 +1658,7 @@ public class MainController implements Initializable {
             }
            
             DiscoveryDocumentSerializer dds = new DiscoveryDocumentSerializer(
+                    bundle,
                     currentEpic,
                     f
             );

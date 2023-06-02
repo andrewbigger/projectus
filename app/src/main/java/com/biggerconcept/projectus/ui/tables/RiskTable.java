@@ -33,7 +33,7 @@ public class RiskTable {
     /**
      * Default width of name column.
      */
-    public static final int NAME_COL_MIN_WIDTH = 300;
+    public static final int NAME_COL_MIN_WIDTH = 200;
     
     /**
      * Default width of likelihood column.

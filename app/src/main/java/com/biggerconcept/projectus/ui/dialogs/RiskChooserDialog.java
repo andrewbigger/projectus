@@ -77,7 +77,8 @@ public class RiskChooserDialog {
                         bundle.getString(
                                 "dialogs.riskChooser.actions.cancel"
                         )
-                )
+                ),
+                apply
         );
         
         Dialog<String> dialog = StandardDialog.dialog(

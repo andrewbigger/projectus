@@ -784,7 +784,7 @@ parts:
 - translation:
     key: "risks.dialogs.risk.title"
     title: "Title for manage risk dialog"
-    value: "Manage risk"
+    value: "Manage Risk"
     variants: {}
 - translation:
     key: "risks.dialogs.risk.actions.save"
@@ -948,5 +948,95 @@ parts:
     key: "document.defaultTitle"
     title: "Default title for a document"
     value: "New Project"
+    variants: {}
+- translation:
+    key: "risks.panel.name.label"
+    title: "Label for risk name"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "risks.panel.likelihood.label"
+    title: "Label for risk likelihood"
+    value: "Likelihood"
+    variants: {}
+- translation:
+    key: "risks.panel.impact.label"
+    title: "Label for risk impact label"
+    value: "Impact"
+    variants: {}
+- translation:
+    key: "risks.panel.detail.label"
+    title: "Label for risk detail field"
+    value: "Details"
+    variants: {}
+- translation:
+    key: "risks.panel.mitigation.label"
+    title: "Label for risk mitigation field"
+    value: "Mitigation Strategy"
+    variants: {}
+- translation:
+    key: "risks.panel.status.label"
+    title: "Label for status field"
+    value: "Status"
+    variants: {}
+- translation:
+    key: "risks.panel.actions.apply"
+    title: "Label for apply risk changes button"
+    value: "Apply"
+    variants: {}
+- translation:
+    key: "documents.discovery.title"
+    title: "Title for discovery document"
+    value: "Discovery"
+    variants: {}
+- translation:
+    key: "documents.discovery.headings.overview"
+    title: "Overview heading"
+    value: "Overview"
+    variants: {}
+- translation:
+    key: "documents.discovery.headings.scope"
+    title: "Scop e heading"
+    value: "Scope"
+    variants: {}
+- translation:
+    key: "documents.discovery.headings.outOfScope"
+    title: "Heading for out of scope"
+    value: "Out of Scope"
+    variants: {}
+- translation:
+    key: "documents.discovery.headings.stories"
+    title: "Heading for stories document section"
+    value: "Stories"
+    variants: {}
+- translation:
+    key: "documents.discovery.headings.tasks"
+    title: "Heading for tasks heading"
+    value: "Tasks"
+    variants: {}
+- translation:
+    key: "documents.discovery.headings.task.description"
+    title: "Heading for task description"
+    value: "Description"
+    variants: {}
+- translation:
+    key: "documents.discovery.headings.task.acceptanceCriteria"
+    title: "Heading for acceptance criteria"
+    value: "Acceptance Criteria"
+    variants: {}
+- translation:
+    key: "documents.discovery.headings.risks"
+    title: "Risks document heading"
+    value: "Risks"
+    variants: {}
+- translation:
+    key: "documents.discovery.headings.risk.details"
+    title: "Heading for risk details"
+    value: "Details"
+    variants: {}
+- translation:
+    key: "documents.discovery.headings.risk.mitigation"
+    title: "Heading for risk mitigation strategy"
+    value: "Mitigation Strategy"
     variants: {}
 sourceLanguage: "en"

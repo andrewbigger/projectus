@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ResourceBundle;
 import org.apache.xmlbeans.XmlException;
 
 /**
@@ -18,10 +19,16 @@ import org.apache.xmlbeans.XmlException;
  * @author Andrew Bigger
  */
 public class DiscoveryDocumentSerializer implements ISerializer {
+    private final ResourceBundle bundle;
     private final Epic epic;
     private final Docx docx;
     
-    public DiscoveryDocumentSerializer(Epic epic, File outputFile) throws IOException, XmlException {
+    public DiscoveryDocumentSerializer(
+            ResourceBundle rb,
+            Epic epic, 
+            File outputFile
+    ) throws IOException, XmlException {
+        this.bundle = rb;
         this.epic = epic;
         this.docx = new Docx(outputFile);
     }
@@ -49,7 +56,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
         docx.title(epic.getName());
         
         docx.nl();
-        docx.subtitle("Discovery");
+        docx.subtitle(bundle.getString("documents.discovery.title"));
         docx.nl();
         
         LocalDate today = LocalDate.now(ZoneId.of("Australia/Sydney"));
@@ -75,16 +82,16 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      * Builds epic overview page.
      */
     private void overviewPage() {
-        docx.h1("Overview"); // TODO: String
+        docx.h1(bundle.getString("documents.discovery.headings.overview"));
         
         Paragraphs.format(
             epic.getSummary(),
             docx
         );
         
-        docx.h2("Scope");
+        docx.h2(bundle.getString("documents.discovery.headings.scope"));
         docx.ol(epic.getScope().getIncluded());
-        docx.h2("Out of Scope");
+        docx.h2(bundle.getString("documents.discovery.headings.outOfScope"));
         docx.ol(epic.getScope().getExcluded());
         docx.br();
     }
@@ -93,7 +100,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      * Builds story summary page.
      */
     private void storiesPage() {
-        docx.h1("Stories"); // TODO: String
+        docx.h1(bundle.getString("documents.discovery.headings.stories"));
         docx.table(Tables.storyTableHeaders(), Tables.storyTableBody(epic));
         docx.br();
     }
@@ -102,7 +109,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      * Builds task summary page.
      */
     private void taskSummaryPage() {
-        docx.h1("Tasks"); // TODO: String
+        docx.h1(bundle.getString("documents.discovery.headings.tasks"));
         docx.table(Tables.taskTableHeaders(), Tables.taskTableBody(epic));
         docx.br();
     }
@@ -123,14 +130,22 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      */
     private void taskPage(Task t) {
         docx.h2(t.getName());
-        docx.strong("Description"); // TODO: String
+        docx.strong(
+                bundle.getString(
+                        "documents.discovery.headings.task.description"
+                )
+        );
         
         Paragraphs.format(
             t.getDescription(),
             docx
         );
         
-        docx.strong("Acceptance Criteria");
+        docx.strong(
+                bundle.getString(
+                        "documents.discovery.headings.task.acceptanceCriteria"
+                )
+        );
         
         Paragraphs.format(
             t.getAcceptanceCriteria(),
@@ -144,7 +159,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      * Builds a risk summary page.
      */
     private void riskSummaryPage() {
-        docx.h1("Risks"); // TODO: String
+        docx.h1(bundle.getString("documents.discovery.headings.risks"));
         docx.table(Tables.riskTableHeaders(), Tables.riskTableBody(epic));
         docx.br();
     }
@@ -170,8 +185,21 @@ public class DiscoveryDocumentSerializer implements ISerializer {
                 Tables.riskSummaryTableBody(r)
         );
         
-        docx.strong("Details");
-        // TODO: Details
+        docx.strong(
+                bundle.getString(
+                        "documents.discovery.headings.risk.details"
+                )
+        );
+        
+        Paragraphs.format(r.getDetail(), docx);
+        
+        docx.strong(
+                bundle.getString(
+                        "documents.discovery.headings.risk.mitigation"
+                )
+        );
+        
+        Paragraphs.format(r.getMitigationStrategy(), docx);
         
         docx.br();
     }
