@@ -4,6 +4,7 @@ import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Risk;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.appengine.serializers.documents.Docx;
+import com.biggerconcept.projectus.serializers.helpers.Paragraphs;
 import com.biggerconcept.projectus.serializers.helpers.Tables;
 import java.io.File;
 import java.io.IOException;
@@ -47,11 +48,14 @@ public class DiscoveryDocumentSerializer implements ISerializer {
     private void titlePage() {
         docx.title(epic.getName());
         
+        docx.nl();
+        docx.subtitle("Discovery");
+        docx.nl();
+        
         LocalDate today = LocalDate.now(ZoneId.of("Australia/Sydney"));
         
         docx.subtitle(
-                "Discovery - " 
-                        + String.valueOf(today.getMonth()) 
+                        String.valueOf(today.getMonth()) 
                         + " " 
                         + String.valueOf(today.getYear())
         );
@@ -72,7 +76,12 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      */
     private void overviewPage() {
         docx.h1("Overview"); // TODO: String
-        docx.p(epic.getSummary());
+        
+        Paragraphs.format(
+            epic.getSummary(),
+            docx
+        );
+        
         docx.h2("Scope");
         docx.ol(epic.getScope().getIncluded());
         docx.h2("Out of Scope");
@@ -115,9 +124,19 @@ public class DiscoveryDocumentSerializer implements ISerializer {
     private void taskPage(Task t) {
         docx.h2(t.getName());
         docx.strong("Description"); // TODO: String
-        docx.p(t.getDescription());
+        
+        Paragraphs.format(
+            t.getDescription(),
+            docx
+        );
+        
         docx.strong("Acceptance Criteria");
-        docx.p(t.getAcceptanceCriteria());
+        
+        Paragraphs.format(
+            t.getAcceptanceCriteria(),
+            docx
+        );
+        
         docx.br();
     }
     
