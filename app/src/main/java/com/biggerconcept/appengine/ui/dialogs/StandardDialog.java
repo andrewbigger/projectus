@@ -37,8 +37,9 @@ public class StandardDialog {
      * 
      * Returns a dialog with a specified title.
      * 
-     * @param title
-     * @return 
+     * @param title title for dialog
+     * 
+     * @return configured dialog
      */
     public static Dialog<String> dialog(
             String title
@@ -57,11 +58,12 @@ public class StandardDialog {
      * 
      * Builds a dialog with standard width.
      * 
-     * @param title
-     * @param nodes
-     * @param actions
-     * @param defaultAction
-     * @return 
+     * @param title title for dialog
+     * @param nodes nodes for dialog content
+     * @param actions action buttons for dialog
+     * @param defaultAction default action
+     * 
+     * @return configured dialog
      */
     public static Dialog<String> dialog(
             String title,
@@ -88,13 +90,13 @@ public class StandardDialog {
      * 
      * Dialog object is returned to caller.
      * 
-     * @param title
-     * @param width
-     * @param nodes
-     * @param actions
-     * @param defaultAction
+     * @param title title for the dialog
+     * @param width width for the dialog
+     * @param nodes nodes for dialog content
+     * @param actions button actions for dialog
+     * @param defaultAction default action
      * 
-     * @return 
+     * @return configured dialog
      */
     public static Dialog<String> dialog(
             String title,
@@ -130,7 +132,7 @@ public class StandardDialog {
     /**
      * Returns empty dialog control wrapper with standard padding.
      * 
-     * @return 
+     * @return wrapper VBox
      */
     public static VBox wrap() {
         return wrap(
@@ -144,7 +146,8 @@ public class StandardDialog {
      * Wraps given nodes in VBox with default padding.
      * 
      * @param nodes nodes for VBox
-     * @return 
+     * 
+     * @return wrapping VBox
      */
     public static VBox wrap(
             List<Node> nodes
@@ -163,7 +166,7 @@ public class StandardDialog {
      * @param width min width for VBox
      * @param nodes nodes for VBox
      * 
-     * @return 
+     * @return wrapping VBox
      */
     public static VBox wrap(
             double padding,
@@ -186,7 +189,8 @@ public class StandardDialog {
      * APPLY.
      * 
      * @param title for apply button
-     * @return 
+     * 
+     * @return apply action button type
      */
     public static ButtonType applyAction(String title) {
         return action(
@@ -203,7 +207,7 @@ public class StandardDialog {
      * 
      * @param title for cancel button
      * 
-     * @return cancel button type
+     * @return cancel action button type
      */
     public static ButtonType cancelAction(String title) {
         return action(
@@ -221,7 +225,7 @@ public class StandardDialog {
      * @param title for button
      * @param data for button
      * 
-     * @return 
+     * @return button type for a dialog action
      */
     public static ButtonType action(String title, ButtonData data) {
         return new ButtonType(

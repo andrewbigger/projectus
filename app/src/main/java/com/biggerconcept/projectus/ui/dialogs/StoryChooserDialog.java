@@ -57,8 +57,10 @@ public class StoryChooserDialog {
     /**
      * Shows story picker dialog.
      * 
-     * @param stage
-     * @return
+     * @param stage window to show dialog in
+     * 
+     * @return chosen story
+     * 
      * @throws NoChoiceMadeException 
      */
     public Story show(Stage stage) throws NoChoiceMadeException {
@@ -124,9 +126,10 @@ public class StoryChooserDialog {
     /**
      * Builds story name for presentation.
      * 
-     * @param pos
-     * @param s
-     * @return 
+     * @param pos position of story in epic story list
+     * @param s story to render name for
+     * 
+     * @return story name as a one line string
      */
     private String buildStoryName(int pos, Story s) {
         String name = "";

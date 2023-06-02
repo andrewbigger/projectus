@@ -17,8 +17,8 @@ public class StandardTable {
     /**
      * Configures table view with empty state placeholder.
      * 
-     * @param view
-     * @param placeholder 
+     * @param view view to apply table to
+     * @param placeholder placeholder text for empty state
      */
     public static void apply(TableView view, String placeholder) {
         StandardTable.apply(
@@ -32,9 +32,9 @@ public class StandardTable {
     /**
      * Configures table view with placeholder and data.
      * 
-     * @param view
-     * @param placeholder
-     * @param data 
+     * @param view view to apply table to
+     * @param placeholder placeholder text for empty state
+     * @param data data for table
      */
     public static void apply(
             TableView view,
@@ -47,10 +47,10 @@ public class StandardTable {
     /**
      * Configures the given table view with placeholder, data and columns.
      * 
-     * @param view
-     * @param placeholder
-     * @param data
-     * @param columns 
+     * @param view view to apply table to
+     * @param placeholder placeholder text for empty table
+     * @param data data for table
+     * @param columns columns for table
      */
     public static void apply(
             TableView view,

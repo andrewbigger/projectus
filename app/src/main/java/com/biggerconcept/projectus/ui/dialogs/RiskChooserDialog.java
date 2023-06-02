@@ -57,8 +57,10 @@ public class RiskChooserDialog {
     /**
      * Shows risk picker dialog.
      * 
-     * @param stage
-     * @return
+     * @param stage window to show dialog in
+     * 
+     * @return chosen risk
+     * 
      * @throws NoChoiceMadeException 
      */
     public Risk show(Stage stage) throws NoChoiceMadeException {
@@ -126,8 +128,8 @@ public class RiskChooserDialog {
     /**
      * Builds risk name for presentation.
      * 
-     * @param pos
-     * @param r
+     * @param pos position of risk in epic list
+     * @param r risk to build name for
      * @return 
      */
     private String buildRiskName(int pos, Risk r) {

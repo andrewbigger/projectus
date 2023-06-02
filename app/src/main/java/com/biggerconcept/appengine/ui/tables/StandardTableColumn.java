@@ -21,7 +21,7 @@ public class StandardTableColumn {
     /**
      * Apply default standard settings to column.
      * 
-     * @param col 
+     * @param col table column to apply standard settings to.
      */
     public static void apply(TableColumn col) {
         StandardTableColumn.apply(col,
@@ -33,8 +33,8 @@ public class StandardTableColumn {
     /**
      * Applies standard settings to column with default sortable setting.
      * 
-     * @param col
-     * @param sortable 
+     * @param col table column to apply standard settings to
+     * @param sortable is sortable directive
      */
     public static void apply(TableColumn col, boolean sortable) {
         StandardTableColumn.apply(col, sortable, DEFAULT_COLUMN_MIN_WIDTH);
@@ -43,8 +43,8 @@ public class StandardTableColumn {
     /**
      * Applies standard settings to column with default minimum width setting.
      * 
-     * @param col
-     * @param minWidth 
+     * @param col column to apply standard settings to
+     * @param minWidth minimum width of column
      */
     public static void apply(TableColumn col, double minWidth) {
         StandardTableColumn.apply(col, DEFAULT_SORTABLE, minWidth);

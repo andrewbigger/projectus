@@ -117,8 +117,9 @@ public class Story {
     /**
      * Returns true if given story matches.
      * 
-     * @param s
-     * @return 
+     * @param s story to search for
+     * 
+     * @return whether the story was found
      */
     public boolean match(Story s) {
         if (s.getExpectation() == expectation && s.getIntention() == intention) {

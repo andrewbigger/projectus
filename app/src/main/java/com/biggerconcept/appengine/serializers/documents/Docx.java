@@ -127,7 +127,8 @@ public class Docx {
      * Sets pointers to files and then reads styles from template
      * to apply them to the generated document.
      * 
-     * @param file
+     * @param file on disk file for document
+     * 
      * @throws IOException
      * @throws XmlException 
      */
@@ -162,8 +163,8 @@ public class Docx {
      * The style ID and text for the heading need to be supplied
      * to add the heading to the document.
      * 
-     * @param id
-     * @param text 
+     * @param id id for heading paragraph style
+     * @param text text for heading
      */
     public void h(String id, String text) {
         XWPFParagraph h = doc.createParagraph();
@@ -177,7 +178,7 @@ public class Docx {
     /**
      * Adds a title paragraph with the specified text.
      * 
-     * @param text 
+     * @param text text for heading
      */
     public void title(String text) {
         h(TITLE_ID, text);
@@ -186,7 +187,7 @@ public class Docx {
     /**
      * Adds a h1 paragraph with the specified text.
      * 
-     * @param text 
+     * @param text text for heading
      */
     public void h1(String text) {
         h(H1_ID, text);
@@ -195,7 +196,7 @@ public class Docx {
     /**
      * Adds a h2 paragraph with the specified text.
      * 
-     * @param text 
+     * @param text text for heading
      */
     public void h2(String text) {
         h(H2_ID, text);
@@ -204,7 +205,7 @@ public class Docx {
     /**
      * Adds a h3 paragraph with the specified text.
      * 
-     * @param text 
+     * @param text text for heading
      */
     public void h3(String text) {
         h(H3_ID, text);
@@ -213,7 +214,7 @@ public class Docx {
     /**
      * Adds a h4 paragraph with the specified text.
      * 
-     * @param text 
+     * @param text text for heading
      */
     public void h4(String text) {
         h(H4_ID, text);
@@ -224,9 +225,9 @@ public class Docx {
      * 
      * The content of the paragraph will be the text supplied in the
      * text parameter.
-     * @param id
-     * @param text 
-     * @return  
+     * 
+     * @param id id of paragraph style
+     * @param text text for paragraph
      */
     public void p(String id, String text) {
         XWPFParagraph p = doc.createParagraph();
@@ -239,7 +240,7 @@ public class Docx {
     /**
      * Adds a normal paragraph to the document.
      * 
-     * @param text 
+     * @param text text for paragraph
      */
     public void p(String text) {
         p(NORMAL_ID, text);
@@ -248,7 +249,7 @@ public class Docx {
     /**
      * Adds a subtitle paragraph to the document.
      * 
-     * @param text 
+     * @param text text for paragraph
      */
     public void subtitle(String text) {
         p(SUBTITLE_ID, text);
@@ -257,7 +258,7 @@ public class Docx {
     /**
      * Adds a strong paragraph to the document.
      * 
-     * @param text 
+     * @param text text for paragraph
      */
     public void strong(String text) {
         p(STRONG_ID, text);
@@ -269,7 +270,7 @@ public class Docx {
      * The list number attribute is incremented to differentiate the 
      * numbering between calls of this function.
      * 
-     * @param items 
+     * @param items items for ordered list
      */
     public void ol(ArrayList<String> items) {      
         listNumber += 1;
@@ -296,8 +297,8 @@ public class Docx {
      * Header width needs to match the width of the cells provided in the
      * body.
      * 
-     * @param headers
-     * @param body 
+     * @param headers headers for table
+     * @param body body for table
      */
     public void table(
             ArrayList<String> headers,
@@ -368,7 +369,11 @@ public class Docx {
      * This is used to set the styles for the document.
      * 
      * To modify styles, open the docx.dotx file in word and edit.
-     * @return
+     * 
+     * TODO: This doesn't ship with the bundle, only works in development
+     * 
+     * @return template document
+     * 
      * @throws IOException 
      */
     private XWPFDocument template() throws IOException {
@@ -386,7 +391,7 @@ public class Docx {
      * 
      * This can only be called from the ol method.
      * 
-     * @param text 
+     * @param text for the list item
      */
     private void li(String text) {
         XWPFParagraph para = doc.createParagraph();

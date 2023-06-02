@@ -15,9 +15,9 @@ public class Tables {
     /**
      * Creates a header row array for the task table.
      * 
-     * The task table is used in the discovery document serializer.
+     * The task table is used in the discovery document serialize-er.
      * 
-     * @return 
+     * @return headers as an array list
      */
     public static ArrayList<String> taskTableHeaders() {
         ArrayList<String> headers = new ArrayList<>();
@@ -32,11 +32,11 @@ public class Tables {
     /**
      * Creates a table body for an epic's tasks.
      * 
-     * This is used by the discovery document serializer.
+     * This is used by the discovery document serialize-er.
      * 
-     * @param epic
+     * @param epic epic to build table body for
      * 
-     * @return
+     * @return epic body table as array list of array list.
     */
     public static ArrayList<ArrayList<String>> taskTableBody(Epic epic) {
         ArrayList<ArrayList<String>> rows = new ArrayList();
@@ -62,7 +62,7 @@ public class Tables {
      * 
      * This is used by the discovery document serializer.
      * 
-     * @return 
+     * @return story table headers
      */
     public static ArrayList<String> storyTableHeaders() {
         ArrayList<String> headers = new ArrayList<>();
@@ -80,9 +80,9 @@ public class Tables {
      * 
      * This is used by the discovery document serializer.
      * 
-     * @param epic
+     * @param epic epic to retrieve stories from
      * 
-     * @return
+     * @return story details as array list of array list
     */
     public static ArrayList<ArrayList<String>> storyTableBody(Epic epic) {
         ArrayList<ArrayList<String>> rows = new ArrayList();
@@ -107,9 +107,9 @@ public class Tables {
     /**
      * Creates headers for risk table.
      * 
-     * This is used by the discovery document serializer.
+     * This is used by the discovery document serialize-er.
      * 
-     * @return 
+     * @return risk table headers
      */
     public static ArrayList<String> riskTableHeaders() {
         ArrayList<String> headers = new ArrayList<>();
@@ -125,11 +125,11 @@ public class Tables {
     /**
      * Creates a table body for an epic's risks.
      * 
-     * This is used by the discovery document serializer.
+     * This is used by the discovery document serialize-er.
      * 
-     * @param epic
+     * @param epic epic to retrieve risks from
      * 
-     * @return
+     * @return risk details as array list of array list
     */
     public static ArrayList<ArrayList<String>> riskTableBody(Epic epic) {
         ArrayList<ArrayList<String>> rows = new ArrayList();
@@ -154,9 +154,9 @@ public class Tables {
     /**
      * Creates headers for risk table.
      * 
-     * This is used by the discovery document serializer.
+     * This is used by the discovery document serialize-er.
      * 
-     * @return 
+     * @return headers for risk summary table
      */
     public static ArrayList<String> riskSummaryTableHeaders() {
         ArrayList<String> headers = new ArrayList<>();
@@ -170,12 +170,12 @@ public class Tables {
     
     /**
      * Creates a table body for an epic's risks.This is used by the discovery
-     * document serializer.
+     * document serialize-er.
      * 
      *
-     * @param risk 
+     * @param risk risk to summarize
      * 
-     * @return
+     * @return risk status as array list of array list
     */
     public static ArrayList<ArrayList<String>> riskSummaryTableBody(Risk risk) {       
         ArrayList<ArrayList<String>> rows = new ArrayList();

@@ -163,7 +163,7 @@ public class Risk {
   /**
    * Getter for risk detail.
    * 
-   * @return 
+   * @return further details about risk
    */
   public String getDetail() {
       return detail;
@@ -172,7 +172,7 @@ public class Risk {
   /**
    * Getter for risk mitigation strategy.
    * 
-   * @return 
+   * @return risk mitigation strategy
    */
   public String getMitigationStrategy() {
       return mitigation;
@@ -217,7 +217,7 @@ public class Risk {
   /**
    * Setter for detail.
    * 
-   * @param value 
+   * @param value details for risk
    */
   public void setDetail(String value) {
       detail = value;
@@ -226,7 +226,7 @@ public class Risk {
   /**
    * Setter for mitigation strategy.
    * 
-   * @param value 
+   * @param value mitigation strategy for risk
    */
   public void setMitigationStrategy(String value) {
       mitigation = value;

@@ -15,37 +15,37 @@ import java.util.ArrayList;
  */
 public class Epic {
     /**
-     * Epic name
+     * Epic name.
      */
     @JsonInclude(Include.NON_NULL)
     private String name;
     
     /**
-     * Epic Scope
+     * Epic Scope.
      */
     @JsonInclude(Include.NON_NULL)
     private Scope scope;
     
     /**
-     * Epic summary
+     * Epic summary.
      */
     @JsonInclude(Include.NON_NULL)
     private String summary;
     
     /**
-     * Epic tasks
+     * Epic tasks.
      */
     @JsonInclude(Include.NON_NULL)
     private ArrayList<Task> tasks;
     
     /**
-     * Epic stories
+     * Epic stories.
      */
     @JsonInclude(Include.NON_NULL)
     private ArrayList<Story> stories;
     
     /**
-     * Epic risks
+     * Epic risks.
      */
     @JsonInclude(Include.NON_NULL)
     private ArrayList<Risk> risks;
@@ -79,8 +79,9 @@ public class Epic {
     /**
      * Returns true if story has been added to collection.
      * 
-     * @param story
-     * @return 
+     * @param story to look for
+     * 
+     * @return whether the story is in the list
      */
     public boolean hasStory(Story story) {       
         for (Story s : stories) {
@@ -96,6 +97,7 @@ public class Epic {
      * Adds story link to epic.
      * 
      * @param story to add
+     * 
      * @throws com.biggerconcept.projectus.exceptions.DuplicateItemException
      */
     public void addStory(Story story) throws DuplicateItemException {
@@ -118,8 +120,9 @@ public class Epic {
     /**
      * Returns true if risk has been added to collection.
      * 
-     * @param risk
-     * @return 
+     * @param risk risk to look for
+     * 
+     * @return whether risk exists in the list
      */
     public boolean hasRisk(Risk risk) {
         for (Risk r : risks) {
@@ -320,7 +323,9 @@ public class Epic {
     /**
      * Returns summary progress.
      * 
-     * @return 
+     * This is true when there is content in the epic summary.
+     * 
+     * @return summary progress
      */
     @JsonIgnore
     public double calculateSummaryProgress() {
@@ -334,7 +339,9 @@ public class Epic {
     /**
      * Returns scope definition progress.
      * 
-     * @return 
+     * This is true when there are items in the scope and out of scope.
+     * 
+     * @return scope definition progress
      */
     @JsonIgnore
     public double calculateScopeProgress() {
@@ -352,7 +359,9 @@ public class Epic {
     /**
      * Returns task definition progress.
      * 
-     * @return 
+     * This returns true if there are tasks defined in the epic.
+     * 
+     * @return scope definition progress
      */
     public double calculateDefinitionProgress() {
         if (tasks.isEmpty()) {
@@ -485,7 +494,7 @@ public class Epic {
      * 
      * @param preferences document preferences
      * 
-     * @return 
+     * @return complete number of points as a proportion to the total points
      */
     @JsonIgnore
     public double calculateCompletePointProgress(Preferences preferences) {

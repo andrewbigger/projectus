@@ -27,25 +27,25 @@ public class Document {
     private Preferences preferences;
     
     /**
-     * Project title
+     * Project title.
      */
     @JsonInclude(Include.NON_NULL)
     private String title;
     
     /**
-     * Project start date
+     * Project start date.
      */
     @JsonInclude(Include.NON_NULL)
     private long start;
     
     /**
-     * Project end date
+     * Project end date.
      */
     @JsonInclude(Include.NON_NULL)
     private long end;
     
     /**
-     * Document epics
+     * Document epics.
      */
     @JsonInclude(Include.NON_NULL)
     private ArrayList<Epic> epics;
@@ -145,6 +145,7 @@ public class Document {
      * Returns true if document has story.
      * 
      * @param story story to look for
+     * 
      * @return result
      */
     public boolean hasStory(Story story) {
@@ -191,7 +192,7 @@ public class Document {
     /**
      * Adds a risk to the document.
      * 
-     * @param risk
+     * @param risk risk to add to the document
      */
     public void addRisk(Risk risk) {
         if (risks == null) {
