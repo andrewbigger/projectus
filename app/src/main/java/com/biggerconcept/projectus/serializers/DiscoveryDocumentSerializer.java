@@ -101,7 +101,10 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      */
     private void storiesPage() {
         docx.h1(bundle.getString("documents.discovery.headings.stories"));
-        docx.table(Tables.storyTableHeaders(), Tables.storyTableBody(epic));
+        docx.table(
+                Tables.storyTableHeaders(bundle),
+                Tables.storyTableBody(epic)
+        );
         docx.br();
     }
     
@@ -110,7 +113,11 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      */
     private void taskSummaryPage() {
         docx.h1(bundle.getString("documents.discovery.headings.tasks"));
-        docx.table(Tables.taskTableHeaders(), Tables.taskTableBody(epic));
+        docx.table(
+                Tables.taskTableHeaders(bundle),
+                Tables.taskTableBody(epic)
+        );
+
         docx.br();
     }
     
@@ -160,7 +167,10 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      */
     private void riskSummaryPage() {
         docx.h1(bundle.getString("documents.discovery.headings.risks"));
-        docx.table(Tables.riskTableHeaders(), Tables.riskTableBody(epic));
+        docx.table(
+                Tables.riskTableHeaders(bundle), 
+                Tables.riskTableBody(epic)
+        );
         docx.br();
     }
     
@@ -181,7 +191,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
     private void riskPage(Risk r) {
         docx.h2(r.getName());
         docx.table(
-                Tables.riskSummaryTableHeaders(),
+                Tables.riskSummaryTableHeaders(bundle),
                 Tables.riskSummaryTableBody(r)
         );
         

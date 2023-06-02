@@ -5,6 +5,7 @@ import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Risk;
 import com.biggerconcept.projectus.domain.Story;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * Helper methods for generating tables.
@@ -13,18 +14,19 @@ import java.util.ArrayList;
  */
 public class Tables {
     /**
-     * Creates a header row array for the task table.
+     * Creates a header row array for the task table.The task table is used in 
+     * the discovery document serialize-er.
      * 
-     * The task table is used in the discovery document serialize-er.
+     * @param bundle application resource bundle
      * 
      * @return headers as an array list
      */
-    public static ArrayList<String> taskTableHeaders() {
+    public static ArrayList<String> taskTableHeaders(ResourceBundle bundle) {
         ArrayList<String> headers = new ArrayList<>();
         
-        headers.add("#"); // TODO: strings
-        headers.add("Description");
-        headers.add("Estimate");
+        headers.add(bundle.getString("epic.tasks.table.id"));
+        headers.add(bundle.getString("epic.tasks.table.name"));
+        headers.add(bundle.getString("epic.tasks.table.size"));
         
         return headers;
     }
@@ -47,9 +49,9 @@ public class Tables {
             taskCount += 1;
             
             ArrayList<String> row = new ArrayList<>();
-            row.add(String.valueOf(taskCount)); // TODO: Epic Number
+            row.add(String.valueOf(taskCount));
             row.add(t.getName());
-            row.add(""); // TODO: size
+            row.add(String.valueOf(t.getSize()));
             
             rows.add(row);
         }
@@ -62,15 +64,17 @@ public class Tables {
      * 
      * This is used by the discovery document serializer.
      * 
+     * @param bundle application resource bundle
+     * 
      * @return story table headers
      */
-    public static ArrayList<String> storyTableHeaders() {
+    public static ArrayList<String> storyTableHeaders(ResourceBundle bundle) {
         ArrayList<String> headers = new ArrayList<>();
         
-        headers.add("#");
-        headers.add("As a...");
-        headers.add("I want to...");
-        headers.add("And I expect...");
+        headers.add(bundle.getString("stories.table.id"));
+        headers.add(bundle.getString("stories.table.actor"));
+        headers.add(bundle.getString("stories.table.intention"));
+        headers.add(bundle.getString("stories.table.expectation"));
         
         return headers;
     }
@@ -109,15 +113,18 @@ public class Tables {
      * 
      * This is used by the discovery document serialize-er.
      * 
+     * @param bundle application resource bundle
+     * 
      * @return risk table headers
      */
-    public static ArrayList<String> riskTableHeaders() {
+    public static ArrayList<String> riskTableHeaders(ResourceBundle bundle) {
         ArrayList<String> headers = new ArrayList<>();
         
-        headers.add("#");
-        headers.add("Name");
-        headers.add("Likelihood");
-        headers.add("Impact");
+        headers.add(bundle.getString("risks.table.id"));
+        headers.add(bundle.getString("risks.table.name"));
+        headers.add(bundle.getString("risks.table.likelihood"));
+        headers.add(bundle.getString("risks.table.impact"));
+        headers.add(bundle.getString("risks.table.status"));
         
         return headers;
     }
@@ -144,6 +151,7 @@ public class Tables {
             row.add(r.getName());
             row.add(String.valueOf(r.getLikelihood()));
             row.add(String.valueOf(r.getImpact()));
+            row.add(String.valueOf(r.getStatus()));
             
             rows.add(row);
         }
@@ -156,14 +164,18 @@ public class Tables {
      * 
      * This is used by the discovery document serialize-er.
      * 
+     * @param bundle application resource bundle
+     * 
      * @return headers for risk summary table
      */
-    public static ArrayList<String> riskSummaryTableHeaders() {
+    public static ArrayList<String> riskSummaryTableHeaders(
+            ResourceBundle bundle
+    ) {
         ArrayList<String> headers = new ArrayList<>();
         
-        headers.add("Likelihood");
-        headers.add("Impact");
-        headers.add("Status");
+        headers.add(bundle.getString("risks.table.likelihood"));
+        headers.add(bundle.getString("risks.table.impact"));
+        headers.add(bundle.getString("risks.table.status"));
         
         return headers;
     }

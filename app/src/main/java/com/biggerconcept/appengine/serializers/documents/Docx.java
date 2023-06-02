@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import org.apache.poi.xwpf.usermodel.TextAlignment;
@@ -370,19 +371,16 @@ public class Docx {
      * 
      * To modify styles, open the docx.dotx file in word and edit.
      * 
-     * TODO: This doesn't ship with the bundle, only works in development
-     * 
      * @return template document
      * 
      * @throws IOException 
      */
     private XWPFDocument template() throws IOException {
+        InputStream template = getClass()
+                .getResourceAsStream("/docs/docx.dotx");
+        
         return new XWPFDocument(
-                new FileInputStream(
-                        new File(
-                            getClass().getResource("/docs/docx.dotx").getFile()
-                        )
-                )
+                template
         );
     }
     
