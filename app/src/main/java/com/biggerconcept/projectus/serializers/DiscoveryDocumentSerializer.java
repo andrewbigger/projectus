@@ -101,10 +101,12 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      */
     private void storiesPage() {
         docx.h1(bundle.getString("documents.discovery.headings.stories"));
+        docx.nl();
         docx.table(
                 Tables.storyTableHeaders(bundle),
                 Tables.storyTableBody(epic)
         );
+        docx.nl();
         docx.br();
     }
     
@@ -113,11 +115,12 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      */
     private void taskSummaryPage() {
         docx.h1(bundle.getString("documents.discovery.headings.tasks"));
+        docx.nl();
         docx.table(
                 Tables.taskTableHeaders(bundle),
                 Tables.taskTableBody(epic)
         );
-
+        docx.nl();
         docx.br();
     }
     
@@ -137,6 +140,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      */
     private void taskPage(Task t) {
         docx.h2(t.getName());
+        docx.nl();
         docx.strong(
                 bundle.getString(
                         "documents.discovery.headings.task.description"
@@ -148,6 +152,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
             docx
         );
         
+        docx.nl();
         docx.strong(
                 bundle.getString(
                         "documents.discovery.headings.task.acceptanceCriteria"
@@ -167,10 +172,12 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      */
     private void riskSummaryPage() {
         docx.h1(bundle.getString("documents.discovery.headings.risks"));
+        docx.nl();
         docx.table(
                 Tables.riskTableHeaders(bundle), 
                 Tables.riskTableBody(epic)
         );
+        docx.nl();
         docx.br();
     }
     
@@ -190,11 +197,13 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      */
     private void riskPage(Risk r) {
         docx.h2(r.getName());
+        docx.nl();
         docx.table(
                 Tables.riskSummaryTableHeaders(bundle),
                 Tables.riskSummaryTableBody(r)
         );
         
+        docx.nl();
         docx.strong(
                 bundle.getString(
                         "documents.discovery.headings.risk.details"
@@ -203,6 +212,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
         
         Paragraphs.format(r.getDetail(), docx);
         
+        docx.nl();
         docx.strong(
                 bundle.getString(
                         "documents.discovery.headings.risk.mitigation"

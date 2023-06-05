@@ -96,6 +96,11 @@ public class Docx {
     public static final String DEFAULT_HEADER_BG_COLOR = "DAEDED";
     
     /**
+     * Default bordered table style.
+     */
+    public static final String BORDERED_TABLE_ID = "BorderedTable";
+    
+    /**
      * Pointer to output file on disk.
      */
     private final File file;
@@ -150,7 +155,7 @@ public class Docx {
     public void toc() {
         doc.createTOC();
         
-        XWPFParagraph paragraph = h(H1_ID, "Table of Contents");
+        XWPFParagraph paragraph = p("");
 
         CTP ctP = paragraph.getCTP();
         CTSimpleField toc = ctP.addNewFldSimple();
@@ -233,22 +238,28 @@ public class Docx {
      * 
      * @param id id of paragraph style
      * @param text text for paragraph
+     * 
+     * @return
      */
-    public void p(String id, String text) {
+    public XWPFParagraph p(String id, String text) {
         XWPFParagraph p = doc.createParagraph();
         p.setStyle(id);
         
         XWPFRun pRun = p.createRun();
         pRun.setText(text);
+        
+        return p;
     }
     
     /**
      * Adds a normal paragraph to the document.
      * 
      * @param text text for paragraph
+     * 
+     * @return 
      */
-    public void p(String text) {
-        p(NORMAL_ID, text);
+    public XWPFParagraph p(String text) {
+        return p(NORMAL_ID, text);
     }
     
     /**
@@ -310,12 +321,11 @@ public class Docx {
             ArrayList<ArrayList<String>> body
     ) {
         XWPFTable table = doc.createTable();
-        
+        table.setStyleID(BORDERED_TABLE_ID);
         XWPFTableRow headerRow = table.getRow(0);
         
         XWPFTableCell hc = headerRow.getCell(0);
         hc.setText(headers.get(0));
-        hc.setColor(DEFAULT_HEADER_BG_COLOR);
         
         for (String s : headers) {
             if (s == headers.get(0)) {
@@ -323,7 +333,6 @@ public class Docx {
             }
             
             XWPFTableCell c = headerRow.addNewTableCell();
-            c.setColor(DEFAULT_HEADER_BG_COLOR);
             c.setText(s);
         }
         

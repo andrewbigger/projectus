@@ -11,3 +11,5 @@ nbactions*
 *.DS_Store
 
 /.env
+
+*~*.dotx
