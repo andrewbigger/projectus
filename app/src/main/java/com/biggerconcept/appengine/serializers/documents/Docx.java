@@ -150,7 +150,7 @@ public class Docx {
     public void toc() {
         doc.createTOC();
         
-        XWPFParagraph paragraph = doc.createParagraph();
+        XWPFParagraph paragraph = h(H1_ID, "Table of Contents");
 
         CTP ctP = paragraph.getCTP();
         CTSimpleField toc = ctP.addNewFldSimple();
@@ -166,14 +166,18 @@ public class Docx {
      * 
      * @param id id for heading paragraph style
      * @param text text for heading
+     * 
+     * @return heading paragraph
      */
-    public void h(String id, String text) {
+    public XWPFParagraph h(String id, String text) {
         XWPFParagraph h = doc.createParagraph();
         h.setStyle(id);
         
         XWPFRun hRun = h.createRun();
         hRun.setText(text);
         hRun.setStyle(id);
+        
+        return h;
     }
     
     /**
@@ -340,6 +344,8 @@ public class Docx {
      * Adds a page break to the document.
      */
     public void br() {
+        nl();
+
         XWPFParagraph p = doc.createParagraph();
         p.setPageBreak(true);
     }

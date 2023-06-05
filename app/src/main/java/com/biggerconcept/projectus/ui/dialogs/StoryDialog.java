@@ -74,7 +74,7 @@ public class StoryDialog {
         intentionField.setWrapText(true);
 
         expectationField = new TextArea(currentStory.getExpectation());
-        intentionField.setWrapText(true);
+        expectationField.setWrapText(true);
     }
     
     public void show(Stage stage) {

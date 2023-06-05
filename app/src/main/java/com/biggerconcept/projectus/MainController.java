@@ -719,7 +719,7 @@ public class MainController implements Initializable {
                     "/fxml/Application.css",
                     false,
                     StageStyle.DECORATED,
-                    false
+                    true
             );
             
             stage.show();
