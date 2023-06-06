@@ -447,7 +447,7 @@ public class MainController implements Initializable {
     /**
      * Maps given document to window.
      */
-    private void mapDocumentToWindow() {
+    private void mapDocumentToWindow() {       
         setWindowTitle();
         mapProjectDetailsToWindow();
         mapEpicsToWindow();
@@ -968,6 +968,7 @@ public class MainController implements Initializable {
             if (items.isEmpty()) {
                 currentEpic = null;
             } else {
+                mapWindowToDocument();
                 currentEpic = items.get(0);
             }
             
