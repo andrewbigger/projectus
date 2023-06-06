@@ -73,12 +73,12 @@ public class StoryTable {
     }
     
     /**
-     * Builds story table view.
+     * Binds data to story table view.
      * 
      * @param view story table view
      */
-    public void build(TableView view) {
-        StandardTable.apply(
+    public void bind(TableView view) {
+        StandardTable.bind(
                 view,
                 bundle.getString("stories.table.empty"),
                 FXCollections.observableArrayList(currentStories),

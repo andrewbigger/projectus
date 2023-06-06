@@ -470,7 +470,7 @@ public class MainController implements Initializable {
                 currentDocument.getEpics()
         );
         
-        epicsTable.apply(epicsTableView);
+        epicsTable.bind(epicsTableView);
     }
     
     private void mapSelectedEpicToWindow() {
@@ -617,7 +617,7 @@ public class MainController implements Initializable {
                 currentEpic.getStories()
         );
 
-        storiesTable.build(storiesTableView);
+        storiesTable.bind(storiesTableView);
     }
     
     private void mapEpicTasksToWindow() {
@@ -634,7 +634,7 @@ public class MainController implements Initializable {
                 currentDocument.getEpics().indexOf(currentEpic) + 1
         );
 
-        tasksTable.build(tasksTableView);
+        tasksTable.bind(tasksTableView);
     }
     
     private void mapEpicRisksToWindow() {
@@ -649,7 +649,7 @@ public class MainController implements Initializable {
                 currentEpic.getRisks()
         );
 
-        risksTable.apply(risksTableView);
+        risksTable.bind(risksTableView);
     }
     
     /**

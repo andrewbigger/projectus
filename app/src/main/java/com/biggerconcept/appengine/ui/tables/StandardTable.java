@@ -20,8 +20,8 @@ public class StandardTable {
      * @param view view to apply table to
      * @param placeholder placeholder text for empty state
      */
-    public static void apply(TableView view, String placeholder) {
-        StandardTable.apply(
+    public static void bind(TableView view, String placeholder) {
+        StandardTable.bind(
                 view,
                 placeholder,
                 FXCollections.observableArrayList(new ArrayList<>()),
@@ -36,12 +36,12 @@ public class StandardTable {
      * @param placeholder placeholder text for empty state
      * @param data data for table
      */
-    public static void apply(
+    public static void bind(
             TableView view,
             String placeholder,
             ObservableList data
     ) {
-        StandardTable.apply(view, placeholder, data, new ArrayList<>());
+        StandardTable.bind(view, placeholder, data, new ArrayList<>());
     }
     
     /**
@@ -52,7 +52,7 @@ public class StandardTable {
      * @param data data for table
      * @param columns columns for table
      */
-    public static void apply(
+    public static void bind(
             TableView view,
             String placeholder,
             ObservableList data,

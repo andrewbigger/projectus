@@ -175,7 +175,7 @@ public class RisksController implements Initializable {
                 currentDocument.getRisks()
         );
         
-        riskTable.apply(riskTableView);
+        riskTable.bind(riskTableView);
         
         if (currentRisk != null) {
             risksPanel.setVisible(true);

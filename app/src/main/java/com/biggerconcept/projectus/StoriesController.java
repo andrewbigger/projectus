@@ -142,7 +142,7 @@ public class StoriesController implements Initializable {
                 currentDocument.getStories()
         );
         
-        storiesTable.build(storyTableView);
+        storiesTable.bind(storyTableView);
     }
     
     /**

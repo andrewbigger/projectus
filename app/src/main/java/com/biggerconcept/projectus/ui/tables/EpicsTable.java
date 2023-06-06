@@ -80,7 +80,7 @@ public class EpicsTable {
     }
     
     /**
-     * Builds epic table view.
+     * Binds data to epic table view.
      * 
      * This sets the items of the given view to an observable list of epics.
      * 
@@ -91,8 +91,8 @@ public class EpicsTable {
      * 
      * @param view table view for currentEpics
      */
-    public void apply(TableView view) {
-        StandardTable.apply(
+    public void bind(TableView view) {
+        StandardTable.bind(
                 view,
                 bundle.getString("project.table.empty"),
                 FXCollections.observableArrayList(currentEpics),

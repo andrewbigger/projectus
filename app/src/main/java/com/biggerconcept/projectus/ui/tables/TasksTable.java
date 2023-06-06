@@ -94,7 +94,7 @@ public class TasksTable {
    }
    
    /**
-    * Builds tasks table view.
+    * Binds data to tasks table view.
     * 
     * This sets the items of the tasks view to the list of epic tasks.
     * 
@@ -105,8 +105,8 @@ public class TasksTable {
     * 
     * @param view currentTasks table view
     */
-   public void build(TableView view) {
-       StandardTable.apply(
+   public void bind(TableView view) {
+       StandardTable.bind(
                view,
                bundle.getString("epic.tasks.table.empty"),
                FXCollections.observableArrayList(currentTasks),

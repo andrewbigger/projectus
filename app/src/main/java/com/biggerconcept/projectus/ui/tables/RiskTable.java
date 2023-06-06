@@ -75,12 +75,12 @@ public class RiskTable {
     }
     
     /**
-     * Builds story table view.
+     * Binds data to story table view.
      * 
      * @param view story table view
      */
-    public void apply(TableView view) {
-        StandardTable.apply(
+    public void bind(TableView view) {
+        StandardTable.bind(
                 view,
                 bundle.getString("risks.table.empty"),
                 FXCollections.observableArrayList(currentRisks),
