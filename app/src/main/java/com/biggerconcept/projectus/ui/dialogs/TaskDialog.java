@@ -9,10 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
@@ -20,7 +18,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -293,6 +290,9 @@ public class TaskDialog {
      * The previous action will change the task to the previous task in the
      * dialog.
      * 
+     * Button will be disabled if the parent epic does not include the
+     * task.
+     * 
      * @return 
      */
     private Button prevTaskButton() {
@@ -304,6 +304,10 @@ public class TaskDialog {
             mapTaskToDialog();
         });
         
+        if (parentEpic.hasTask(currentTask) == false) {
+            prevTaskBtn.setDisable(true);
+        }
+        
         return prevTaskBtn;
     }
     
@@ -311,6 +315,9 @@ public class TaskDialog {
      * Builds next action button.
      * 
      * The next action will change the task to the next task in the dialog.
+     * 
+     * Button will be disabled if the parent epic does not include the
+     * task.
      * 
      * @return 
      */
@@ -323,13 +330,17 @@ public class TaskDialog {
             mapTaskToDialog();
         });
         
+        if (parentEpic.hasTask(currentTask) == false) {
+            nextTaskBtn.setDisable(true);
+        } 
+        
         return nextTaskBtn;
     }
         
     /**
      * Sets the value of controls to the value set in currentTask.
      */
-    private void mapTaskToDialog() {
+    private void mapTaskToDialog() {        
         nameField.setText(currentTask.getName());
         sizeField.getSelectionModel().select(currentTask.getSize());
         statusField.getSelectionModel().select(currentTask.getStatus());
