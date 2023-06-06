@@ -131,6 +131,21 @@ public class Document {
     }
     
     /**
+     * Returns true if document has epic.
+     * 
+     * @param epic epic to look for
+     * 
+     * @return result
+     */
+    public boolean hasEpic(Epic epic) {
+        if (epics == null) {
+            return false;
+        }
+        
+        return epics.contains(epic);
+    }
+    
+    /**
      * Returns true if document has actor.
      * 
      * @param actor actor to look for

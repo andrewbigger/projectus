@@ -24,6 +24,8 @@ import com.biggerconcept.projectus.ui.tables.RiskTable;
 import com.biggerconcept.projectus.ui.tables.StoryTable;
 import com.biggerconcept.projectus.ui.tables.TasksTable;
 import com.biggerconcept.appengine.ui.window.StandardWindow;
+import com.biggerconcept.projectus.ui.dialogs.EpicDialog;
+import com.biggerconcept.projectus.ui.dialogs.ScopeDialog;
 import java.io.File;
 import java.io.IOException;
 import javafx.scene.control.Button;
@@ -820,16 +822,14 @@ public class MainController implements Initializable {
     @FXML
     private void handleAddEpic() {
         try {
-            String name = TextPrompt.show(
-                    bundle.getString("epic.dialogs.add.title"),
-                    bundle.getString("epic.dialogs.add.description")
+             EpicDialog addEpic = new EpicDialog(
+                    bundle,
+                    currentDocument,
+                    new Epic()
             );
             
-            currentDocument.createEpic(name);
+            addEpic.show(window());
             mapDocumentToWindow();
-
-        } catch (NoChoiceMadeException ncm) {
-            // do nothing
         } catch(Exception e) {
             ErrorAlert.show(bundle, bundle.getString("errors.addEpic"), e);
         }
@@ -1522,18 +1522,14 @@ public class MainController implements Initializable {
     @FXML
     private void handleAddScope() {
         try {
-            String scope = TextPrompt.show(
-                    bundle.getString("epic.dialogs.scope.included.add.title"),
-                    bundle.getString(
-                            "epic.dialogs.scope.included.add.description"
-                    )
+            ScopeDialog addScope = new ScopeDialog(
+                    bundle,
+                    currentEpic.getScope().getIncluded(),
+                    ""
             );
             
-            currentEpic.getScope().getIncluded().add(scope);
+            addScope.show(window());
             mapDocumentToWindow();
-            
-        } catch(NoChoiceMadeException ncm) {
-            // do nothing
         } catch (Exception e) {
             ErrorAlert.show(
                     bundle,
@@ -1584,18 +1580,14 @@ public class MainController implements Initializable {
     @FXML
     private void handleAddExcludedScope() {
         try {
-            String scope = TextPrompt.show(
-                    bundle.getString("epic.dialogs.scope.excluded.add.title"),
-                    bundle.getString(
-                            "epic.dialogs.scope.excluded.add.description"
-                    )
+            ScopeDialog addExcludedScope = new ScopeDialog(
+                    bundle,
+                    currentEpic.getScope().getExcluded(),
+                    ""
             );
             
-            currentEpic.getScope().getExcluded().add(scope);
+            addExcludedScope.show(window());
             mapDocumentToWindow();
-            
-        } catch(NoChoiceMadeException ncm) {
-            // do nothing
         } catch (Exception e) {
             ErrorAlert.show(
                     bundle,

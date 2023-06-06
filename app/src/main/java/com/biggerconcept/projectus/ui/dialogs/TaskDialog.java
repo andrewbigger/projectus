@@ -298,7 +298,7 @@ public class TaskDialog {
     private Button prevTaskButton() {
         Button prevTaskBtn = new Button();
         
-        prevTaskBtn.setText("Previous");
+        prevTaskBtn.setText(bundle.getString("dialogs.nav.previous"));
         prevTaskBtn.setOnAction((ActionEvent event) -> {
             currentTask = parentEpic.getPrevTask(currentTask);
             mapTaskToDialog();
@@ -324,7 +324,7 @@ public class TaskDialog {
     private Button nextTaskButton() {
         Button nextTaskBtn = new Button();
         
-        nextTaskBtn.setText("Next");
+        nextTaskBtn.setText(bundle.getString("dialogs.nav.next"));
         nextTaskBtn.setOnAction((ActionEvent event) -> {
             currentTask = parentEpic.getNextTask(currentTask);
             mapTaskToDialog();

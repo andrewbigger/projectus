@@ -1039,4 +1039,54 @@ parts:
     title: "Heading for risk mitigation strategy"
     value: "Mitigation Strategy"
     variants: {}
+- translation:
+    key: "dialogs.nav.previous"
+    title: "String for previous item button"
+    value: "Previous"
+    variants: {}
+- translation:
+    key: "dialogs.nav.next"
+    title: "String for next item button"
+    value: "Next"
+    variants: {}
+- translation:
+    key: "epic.dialogs.manage.actions.save"
+    title: "Manage epic dialog save button label"
+    value: "Save"
+    variants: {}
+- translation:
+    key: "epic.dialogs.manage.actions.cancel"
+    title: "Manage epic cancel button label"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "epic.dialogs.manage.title"
+    title: "Manage epic dialog title"
+    value: "Manage Epic"
+    variants: {}
+- translation:
+    key: "epic.dialogs.manage.name"
+    title: "Label for epic name attribute"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.actions.save"
+    title: "Label for scope save action"
+    value: "Save"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.actions.cancel"
+    title: "Label for cancel scope action"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.title"
+    title: "Title for manage scope dialog"
+    value: "Manage Scope"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.manage.scope"
+    title: "Label for scope label"
+    value: "Scope"
+    variants: {}
 sourceLanguage: "en"
