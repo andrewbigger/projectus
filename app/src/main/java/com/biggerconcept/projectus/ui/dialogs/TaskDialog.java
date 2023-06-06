@@ -8,13 +8,19 @@ import com.biggerconcept.projectus.domain.Task.TaskStatus;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -37,7 +43,7 @@ public class TaskDialog {
     /**
      * Task currently being managed by the dialog.
      */
-    private final Task currentTask;
+    private Task currentTask;
     
     /**
      * Task name text field.
@@ -76,23 +82,21 @@ public class TaskDialog {
         parentEpic = epic;
         currentTask = task;
         
-        nameField = new TextField(currentTask.getName());
-        
+        nameField = new TextField();
+ 
         sizeField = new ComboBox();
         sizeField.getItems().addAll(TaskSize.values());
-        sizeField.getSelectionModel().select(currentTask.getSize());
-        
+               
         statusField = new ComboBox();
         statusField.getItems().addAll(TaskStatus.values());
-        statusField.getSelectionModel().select(currentTask.getStatus());
         
-        descriptionField = new TextArea(currentTask.getDescription());
+        descriptionField = new TextArea();
         descriptionField.setWrapText(true);
 
-        acceptanceCriteriaField = new TextArea(
-                currentTask.getAcceptanceCriteria()
-        );
+        acceptanceCriteriaField = new TextArea();
         acceptanceCriteriaField.setWrapText(true);
+        
+        mapTaskToDialog();
     }
     
     /**
@@ -109,6 +113,7 @@ public class TaskDialog {
      */
     public void show(Stage stage) {
         List<Node> attributes = Arrays.asList(
+                taskNav(),
                 nameAttribute(),
                 sizeAttribute(),
                 statusAttribute(),
@@ -141,7 +146,8 @@ public class TaskDialog {
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == apply) {
                 applyToTask();
-            }
+                return null;
+            } 
             
             return null;
         });
@@ -271,5 +277,64 @@ public class TaskDialog {
                 acceptanceCriteriaField
         );
     }
-
+    
+    private BorderPane taskNav() {
+        BorderPane wrapper = new BorderPane();
+        
+        wrapper.setLeft(prevTaskButton());
+        wrapper.setRight(nextTaskButton());
+        
+        return wrapper;
+    }
+    
+    /**
+     * Builds previous action button.
+     * 
+     * The previous action will change the task to the previous task in the
+     * dialog.
+     * 
+     * @return 
+     */
+    private Button prevTaskButton() {
+        Button prevTaskBtn = new Button();
+        
+        prevTaskBtn.setText("Previous");
+        prevTaskBtn.setOnAction((ActionEvent event) -> {
+            currentTask = parentEpic.getPrevTask(currentTask);
+            mapTaskToDialog();
+        });
+        
+        return prevTaskBtn;
+    }
+    
+    /**
+     * Builds next action button.
+     * 
+     * The next action will change the task to the next task in the dialog.
+     * 
+     * @return 
+     */
+    private Button nextTaskButton() {
+        Button nextTaskBtn = new Button();
+        
+        nextTaskBtn.setText("Next");
+        nextTaskBtn.setOnAction((ActionEvent event) -> {
+            currentTask = parentEpic.getNextTask(currentTask);
+            mapTaskToDialog();
+        });
+        
+        return nextTaskBtn;
+    }
+        
+    /**
+     * Sets the value of controls to the value set in currentTask.
+     */
+    private void mapTaskToDialog() {
+        nameField.setText(currentTask.getName());
+        sizeField.getSelectionModel().select(currentTask.getSize());
+        statusField.getSelectionModel().select(currentTask.getStatus());
+        descriptionField.setText(currentTask.getDescription());
+        acceptanceCriteriaField.setText(currentTask.getAcceptanceCriteria());
+    }
+    
 }

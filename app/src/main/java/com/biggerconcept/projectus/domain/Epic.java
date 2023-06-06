@@ -202,6 +202,46 @@ public class Epic {
     }
     
     /**
+     * Returns previous task in list from given task.
+     * 
+     * When at the start of the epic, the last task will be returned.
+     * 
+     * @param t
+     * @return 
+     */
+    public Task getPrevTask(Task t) {
+        ArrayList<Task> tasks = getTasks();
+        
+        int idx = tasks.indexOf(t);
+        
+        if (idx == 0) {
+            return tasks.get(tasks.size() - 1);
+        }
+        
+        return tasks.get(idx - 1);
+    }
+    
+    /**
+     * Returns next task in list from given task.
+     * 
+     * When at end of the epic, the first task will be returned.
+     * 
+     * @param t
+     * @return 
+     */
+    public Task getNextTask(Task t) {
+        ArrayList<Task> tasks = getTasks();
+        
+        int idx = tasks.indexOf(t);
+        
+        if (idx + 1 > tasks.size() - 1) {
+            return tasks.get(0);
+        }
+        
+        return tasks.get(idx + 1);
+    }
+    
+    /**
      * Getter for epic scope.
      * 
      * @return epic scope
