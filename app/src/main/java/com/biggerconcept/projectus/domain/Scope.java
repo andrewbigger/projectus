@@ -3,6 +3,7 @@ package com.biggerconcept.projectus.domain;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Representation of epic scope.
@@ -10,6 +11,12 @@ import java.util.ArrayList;
  * @author Andrew Bigger
  */
 public class Scope {
+    /**
+     * Scope ID.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private UUID id;
+    
     /**
      * Holds items that are in scope.
      */
@@ -26,8 +33,18 @@ public class Scope {
      * Default constructor for scope.
      */
     public Scope() {
+        this.id = UUID.randomUUID();
         this.include = new ArrayList<>();
         this.exclude = new ArrayList<>();
+    }
+    
+    /**
+     * Returns ID.
+     * 
+     * @return 
+     */
+    public UUID getId() {
+        return id;
     }
     
     /**
@@ -46,6 +63,24 @@ public class Scope {
      */
     public ArrayList<String> getExcluded() {
         return exclude;
+    }
+    
+    /**
+     * Setter for ID.
+     * 
+     * @param value 
+     */
+    public void setId(UUID value) {
+        id = value;
+    }
+    
+    /**
+     * String based setter for ID.
+     * 
+     * @param value 
+     */
+    public void setId(String value) {
+        id = UUID.fromString(value);
     }
     
     /**

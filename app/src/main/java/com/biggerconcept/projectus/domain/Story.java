@@ -1,7 +1,9 @@
 package com.biggerconcept.projectus.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.util.UUID;
 
 /**
  * Representation of a user story.
@@ -9,6 +11,18 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * @author Andrew Bigger
  */
 public class Story {
+    /**
+     * Story ID.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private UUID id;
+    
+    /**
+     * Story identifier.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private int identifier;
+    
     /**
      * Reference to story actor.
      */
@@ -28,9 +42,17 @@ public class Story {
     private String expectation;
     
     /**
+     * Parent document pointer.
+     */
+    @JsonIgnore
+    private Document parent;
+    
+    /**
      * Default constructor for story.
      */
     public Story() {
+        this.id = UUID.randomUUID();
+        this.identifier = -1;
         this.actor = null;
         this.intention = "";
         this.expectation = "";
@@ -42,6 +64,8 @@ public class Story {
      * @param actor actor that the story belongs to
      */
     public Story(Actor actor) {
+        this.id = UUID.randomUUID();
+        this.identifier = -1;
         this.actor = actor;
         this.intention = "";
         this.expectation = "";
@@ -55,9 +79,29 @@ public class Story {
      * @param expectation  story expectation strings (and i expect)
      */
     public Story(Actor actor, String intention, String expectation) {
+        this.id = UUID.randomUUID();
+        this.identifier = -1;
         this.actor = actor;
         this.intention = intention;
         this.expectation = expectation;
+    }
+    
+    /**
+     * Getter for ID.
+     * 
+     * @return 
+     */
+    public UUID getId() {
+        return id;
+    }
+    
+    /**
+     * Getter for identifier.
+     * 
+     * @return 
+     */
+    public int getIdentifier() {
+        return identifier;
     }
     
     /**
@@ -85,6 +129,42 @@ public class Story {
      */
     public String getExpectation() {
         return expectation;
+    }
+    
+    /**
+     * Setter for parent document pointer.
+     * 
+     * @param value 
+     */
+    public void setParent(Document value) {
+        parent = value;
+    }
+    
+    /**
+     * Setter for ID.
+     * 
+     * @param value 
+     */
+    public void setId(UUID value) {
+        id = value;
+    }
+    
+    /**
+     * String based setter for ID.
+     * 
+     * @param value 
+     */
+    public void setId(String value) {
+        id = UUID.fromString(value);
+    }
+    
+    /**
+     * Setter for identifier.
+     * 
+     * @param value 
+     */
+    public void setIdentifier(int value) {
+        identifier = value;
     }
     
     /**
@@ -122,7 +202,7 @@ public class Story {
      * @return whether the story was found
      */
     public boolean match(Story s) {
-        if (s.getExpectation() == expectation && s.getIntention() == intention) {
+        if (id == s.getId()) {
             return true;
         }
         

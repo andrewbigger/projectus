@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * In memory representation of file.
@@ -14,6 +15,12 @@ import java.util.ArrayList;
  * @author Andrew Bigger
  */
 public class Document {
+    /**
+     * Document id.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private UUID id;
+    
     /**
      * Document file.
      */
@@ -98,6 +105,13 @@ public class Document {
     }
     
     /**
+     * Constructor for document.
+     */
+    public Document() {
+        this.id = UUID.randomUUID();
+    }
+    
+    /**
      * Creates an actor.
      * 
      * @param name name of actor
@@ -142,7 +156,7 @@ public class Document {
             return false;
         }
         
-        return epics.contains(epic);
+        return findEpic(epic.getId()) != null;
     }
     
     /**
@@ -153,7 +167,7 @@ public class Document {
      * @return result
      */
     public boolean hasActor(Actor actor) {
-        return actors.contains(actor);
+        return findActor(actor.getId()) != null;
     }
     
     /**
@@ -164,7 +178,7 @@ public class Document {
      * @return result
      */
     public boolean hasStory(Story story) {
-        return stories.contains(story);
+        return findStory(story.getId()) != null;
     }
 
     /**
@@ -175,7 +189,7 @@ public class Document {
      * @return result
      */
     public boolean hasRisk(Risk risk) {
-        return risks.contains(risk);
+        return findRisk(risk.getId()) != null;
     }
     
     /**
@@ -187,6 +201,8 @@ public class Document {
         if (actors == null) {
             actors = new ArrayList<>();
         }
+        
+        actor.setParent(this);
         
         actors.add(actor);
     }
@@ -201,6 +217,8 @@ public class Document {
             stories = new ArrayList<>();
         }
         
+        story.setParent(this);
+        
         stories.add(story);
     }
 
@@ -213,6 +231,8 @@ public class Document {
         if (risks == null) {
             risks = new ArrayList<>();
         }
+        
+        risk.setParent(this);
 
         risks.add(risk);
     }
@@ -226,6 +246,8 @@ public class Document {
         if (epics == null) {
             epics = new ArrayList<>();
         }
+        
+        epic.setParent(this);
 
         epics.add(epic);
     }
@@ -267,6 +289,150 @@ public class Document {
     }
     
     /**
+     * Find actor by id.
+     * 
+     * If not found, null will be returned.
+     * 
+     * @param id
+     * @return 
+     */
+    public Actor findActor(UUID id) {
+        for (Actor a : actors) {
+            if (a.getId() == id) {
+                return a;
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Find actors by ids.
+     * 
+     * @param ids
+     * @return 
+     */
+    public ArrayList<Actor> findActors(ArrayList<UUID> ids) {
+        ArrayList<Actor> found = new ArrayList<>();
+        
+        for (Actor a : actors) {
+            if (ids.contains(a.getId())) {
+                found.add(a);
+            }
+        }
+        
+        return found;
+    }
+    
+    /**
+     * Find epic by id.
+     * 
+     * If not found, null will be returned.
+     * 
+     * @param id
+     * @return 
+     */
+    public Epic findEpic(UUID id) {
+        for (Epic e : epics) {
+            if (e.getId() == id) {
+                return e;
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Find epics by ids.
+     * 
+     * @param ids
+     * @return 
+     */
+    public ArrayList<Epic> findEpics(ArrayList<UUID> ids) {
+        ArrayList<Epic> found = new ArrayList<>();
+        
+        for (Epic e : epics) {
+            if (ids.contains(e.getId())) {
+                found.add(e);
+            }
+        }
+        
+        return found;
+    }
+    
+    /**
+     * Find risk by id.
+     * 
+     * If not found, null will be returned.
+     * 
+     * @param id
+     * @return 
+     */
+    public Risk findRisk(UUID id) {
+        for (Risk r : risks) {
+            if (r.getId() == id) {
+                return r;
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Find risks by ids.
+     * 
+     * @param ids
+     * @return 
+     */
+    public ArrayList<Risk> findRisks(ArrayList<UUID> ids) {
+        ArrayList<Risk> found = new ArrayList<>();
+        
+        for (Risk r : risks) {
+            if (ids.contains(r.getId())) {
+                found.add(r);
+            }
+        }
+        
+        return found;
+    }
+    
+    /**
+     * Find story by id.
+     * 
+     * If not found, null will be returned.
+     * 
+     * @param id
+     * @return 
+     */
+    public Story findStory(UUID id) {
+        for (Story s : stories) {
+            if (s.getId() == id) {
+                return s;
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Find stories by ids.
+     * 
+     * @param ids
+     * @return 
+     */
+    public ArrayList<Story> findStories(ArrayList<UUID> ids) {
+        ArrayList<Story> found = new ArrayList<>();
+        
+        for (Story s : stories) {
+            if (ids.contains(s.getId())) {
+                found.add(s);
+            }
+        }
+        
+        return found;
+    }
+    
+    /**
      * Saves document to disk.
      * 
      * @throws IOException when unable to save document to disk
@@ -278,6 +444,15 @@ public class Document {
         oMap.setSerializationInclusion(Include.NON_EMPTY);
         
         oMap.writeValue(file, this);
+    }
+    
+    /**
+     * Getter for document ID.
+     * 
+     * @return 
+     */
+    public UUID getId() {
+        return id;
     }
     
     /**
@@ -384,6 +559,24 @@ public class Document {
         
         return epics;
     }
+    
+    /**
+     * Setter for ID.
+     * 
+     * @param value 
+     */
+    public void setId(UUID value) {
+        id = value;
+    }
+    
+    /**
+     * String based setter for ID.
+     * 
+     * @param value 
+     */
+    public void setId(String value) {
+        id = UUID.fromString(value);
+    }
 
     /**
      * Setter for file.
@@ -410,6 +603,23 @@ public class Document {
      */
     public void setActors(ArrayList<Actor> value) {
         actors = value;
+        
+        for (Actor a : actors) {
+            a.setParent(this);
+        }
+    }
+    
+    /**
+     * Setter for risks.
+     * 
+     * @param value 
+     */
+    public void setRisks(ArrayList<Risk> value) {
+        risks = value;
+        
+        for (Risk r : risks) {
+            r.setParent(this);
+        }
     }
     
     /**
@@ -419,6 +629,10 @@ public class Document {
      */
     public void setStories(ArrayList<Story> value) {
         stories = value;
+        
+        for (Story s : stories) {
+            s.setParent(this);
+        }
     }
     
     /**
@@ -455,6 +669,57 @@ public class Document {
      */
     public void setEpics(ArrayList<Epic> value) {
         epics = value;
+        
+        for (Epic e : epics) {
+            e.setParent(this);
+        }
+    }
+    
+    /**
+     * Rebuilds document identifiers.
+     */
+    public void rebuildIdentifiers() {
+        identifyEpics();
+        identifyRisks();
+        identifyStories();
+    }
+    
+    /**
+     * Rebuilds identifiers for epics and their tasks.
+     */
+    private void identifyEpics() {
+        int idx = 0;
+        
+        for (Epic e : getEpics()) {
+            e.setIdentifier(idx++);
+            
+            int tidx = 0;
+            for (Task t: e.getTasks()) {
+                t.setIdentifier(tidx);
+            }
+        }
+    }
+    
+    /**
+     * Rebuilds identifiers for risks.
+     */
+    private void identifyRisks() {
+        int idx = 0;
+        
+        for (Risk r: getRisks()) {
+            r.setIdentifier(idx++);
+        }
+    }
+    
+    /**
+     * Rebuilds identifiers for stories.
+     */
+    private void identifyStories() {
+        int idx = 0;
+        
+        for (Story s : getStories()) {
+            s.setIdentifier(idx++);
+        }
     }
 
 }

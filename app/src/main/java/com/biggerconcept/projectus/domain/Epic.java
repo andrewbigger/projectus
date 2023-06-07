@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Representation of a project.
@@ -14,6 +15,18 @@ import java.util.ArrayList;
  * @author Andrew Bigger
  */
 public class Epic {
+    /**
+     * Epic id.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private UUID id;
+    
+    /**
+     * Epic identifier.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private int identifier;
+    
     /**
      * Epic name.
      */
@@ -42,18 +55,26 @@ public class Epic {
      * Epic stories.
      */
     @JsonInclude(Include.NON_NULL)
-    private ArrayList<Story> stories;
+    private ArrayList<UUID> stories;
     
     /**
      * Epic risks.
      */
     @JsonInclude(Include.NON_NULL)
-    private ArrayList<Risk> risks;
+    private ArrayList<UUID> risks;
+    
+    /**
+     * Parent document.
+     */
+    @JsonIgnore
+    private Document parent;
     
     /**
      * Default constructor.
      */
     public Epic() {
+        this.id = UUID.randomUUID();
+        this.identifier = -1;
         this.name = "";
         this.summary = "";
         this.tasks = new ArrayList<>();
@@ -68,6 +89,8 @@ public class Epic {
      * @param name name of epic
      */
     public Epic(String name) {
+        this.id = UUID.randomUUID();
+        this.identifier = -1;
         this.name = name;
         this.summary = "";
         this.tasks = new ArrayList<>();
@@ -84,7 +107,7 @@ public class Epic {
      * @return whether the story is in the list
      */
     public boolean hasStory(Story story) {       
-        for (Story s : stories) {
+        for (Story s : getDocumentStories()) {
             if (s.match(story) == true) {
                 return true;
             }
@@ -105,7 +128,7 @@ public class Epic {
             throw new DuplicateItemException();
         }
         
-        stories.add(story);
+        stories.add(story.getId());
     }
     
     /**
@@ -114,7 +137,7 @@ public class Epic {
      * @param story to remove
      */
     public void removeStory(Story story) {
-        stories.remove(story);
+        stories.remove(story.getId());
     }
     
     /**
@@ -125,7 +148,7 @@ public class Epic {
      * @return whether risk exists in the list
      */
     public boolean hasRisk(Risk risk) {
-        for (Risk r : risks) {
+        for (Risk r : getDocumentRisks()) {
             if (r.match(risk) == true) {
                 return true;
             }
@@ -145,7 +168,7 @@ public class Epic {
             throw new DuplicateItemException();
         }
         
-        risks.add(risk);
+        risks.add(risk.getId());
     }
     
     /**
@@ -154,7 +177,43 @@ public class Epic {
      * @param risk to remove
      */
     public void removeRisk(Risk risk) {
-        risks.remove(risk);
+        risks.remove(risk.getId());
+    }
+    
+    /**
+     * Find task by id.
+     * 
+     * If not found, null will be returned.
+     * 
+     * @param id
+     * @return 
+     */
+    public Task findTask(UUID id) {
+        for (Task t : tasks) {
+            if (t.getId() == id) {
+                return t;
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Getter for ID.
+     * 
+     * @return 
+     */
+    public UUID getId() {
+        return id;
+    }
+    
+    /**
+     * Getter for identifier.
+     * 
+     * @return 
+     */
+    public int getIdentifier() {
+        return identifier;
     }
     
     /**
@@ -251,21 +310,77 @@ public class Epic {
     }
     
     /**
-     * Getter for epic stories.
+     * Getter for epic story ids.
      * 
-     * @return epic stories
+     * @return epic story ids
      */
-    public ArrayList<Story> getStories() {
+    public ArrayList<UUID> getStories() {
         return stories;
     }
     
     /**
-     * Getter for epic risks.
+     * Returns document story models.
      * 
-     * @return epic risks
+     * @return 
      */
-    public ArrayList<Risk> getRisks() {
+    @JsonIgnore
+    public ArrayList<Story> getDocumentStories() {
+        return parent.findStories(stories);
+    }
+    
+    /**
+     * Getter for epic risk ids.
+     * 
+     * @return epic risk ids
+     */
+    public ArrayList<UUID> getRisks() {
         return risks;
+    }
+    
+    /**
+     * Return document risk models.
+     * 
+     * @return 
+     */
+    @JsonIgnore
+    public ArrayList<Risk> getDocumentRisks() {
+        return parent.findRisks(risks);
+    }
+    
+    /**
+     * Setter for ID.
+     * 
+     * @param value 
+     */
+    public void setId(UUID value) {
+        id = value;
+    }
+    
+    /**
+     * String based setter for ID.
+     * 
+     * @param value 
+     */
+    public void setId(String value) {
+        id = UUID.fromString(value);
+    }
+    
+    /**
+     * Setter for parent.
+     * 
+     * @param value
+     */
+    public void setParent(Document value) {
+        parent = value;
+    }
+    
+    /**
+     * Setter for identifier.
+     * 
+     * @param value
+     */
+    public void setIdentifier(int value) {
+        identifier = value;
     }
     
     /**
@@ -309,8 +424,8 @@ public class Epic {
      * 
      * @param value to set as stories
      */
-    public void setStories(ArrayList<Story> value) {
-        stories = value;
+    public void setStories(ArrayList<UUID> value) {
+       stories = value;
     }
     
     /**
@@ -318,10 +433,10 @@ public class Epic {
      * 
      * @param value to set as risks
      */
-    public void setRisks(ArrayList<Risk> value) {
+    public void setRisks(ArrayList<UUID> value) {
         risks = value;
     }
-    
+ 
      /**
      * Returns epic status.
      * 

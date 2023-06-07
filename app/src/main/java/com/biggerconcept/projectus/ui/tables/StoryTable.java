@@ -97,7 +97,7 @@ public class StoryTable {
      * @return ID column
      */
     private TableColumn idCol() {
-        TableColumn<Task, String> idCol = new TableColumn<>(
+        TableColumn<Story, String> idCol = new TableColumn<>(
                bundle.getString("stories.table.id")
        );
         
@@ -106,7 +106,7 @@ public class StoryTable {
         idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
                     "S" + 
-                    String.valueOf(currentStories.indexOf(data.getValue()) + 1)
+                    String.valueOf(data.getValue().getIdentifier() + 1)
             );
         });
         

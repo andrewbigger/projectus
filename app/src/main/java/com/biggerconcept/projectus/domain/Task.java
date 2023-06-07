@@ -3,6 +3,7 @@ package com.biggerconcept.projectus.domain;
 import com.biggerconcept.projectus.domain.Size.TaskSize;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.util.UUID;
 
 /**
  * Represents a task in a project.
@@ -18,6 +19,18 @@ public class Task {
         IN_PROGRESS,
         COMPLETE,
     }
+    
+    /**
+     * Task ID.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private UUID id;
+    
+    /**
+     * Task identifier.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private int identifier;
     
     /**
      * Task name.
@@ -64,6 +77,8 @@ public class Task {
             TaskSize size,
             TaskStatus status
     ) {
+        this.id = UUID.randomUUID();
+        this.identifier = -1;
         this.name = name;
         this.description = description;
         this.acceptanceCriteria = acceptanceCriteria;
@@ -79,6 +94,8 @@ public class Task {
      * @param name name of task
      */
     public Task(String name) {
+        this.id = UUID.randomUUID();
+        this.identifier = -1;
         this.name = name;
         this.description = "";
         this.acceptanceCriteria = "";
@@ -92,11 +109,31 @@ public class Task {
      * This is used by the de-serialize operation.
      */
     public Task() {
+        this.id = UUID.randomUUID();
+        this.identifier = -1;
         this.name = "";
         this.description = "";
         this.acceptanceCriteria = "";
         this.size = TaskSize.ZERO;
         this.status = TaskStatus.NOT_STARTED;
+    }
+    
+    /**
+     * Getter for ID.
+     * 
+     * @return 
+     */
+    public UUID getId() {
+        return id;
+    }
+    
+    /**
+     * Getter for identifier.
+     * 
+     * @return
+     */
+    public int getIdentifier() {
+        return identifier;
     }
     
     /**
@@ -142,6 +179,33 @@ public class Task {
      */
     public TaskStatus getStatus() {
         return status;
+    }
+    
+    /**
+     * Setter for ID.
+     * 
+     * @param value 
+     */
+    public void setId(UUID value) {
+        id = value;
+    }
+    
+    /**
+     * String based setter for ID.
+     * 
+     * @param value 
+     */
+    public void setId(String value) {
+        id = UUID.fromString(value);
+    }
+
+    /**
+     * Setter for identifier.
+     * 
+     * @param value 
+     */
+    public void setIdentifier(int value) {
+        identifier = value;
     }
     
     /**

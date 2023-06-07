@@ -1,7 +1,9 @@
 package com.biggerconcept.projectus.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.util.UUID;
 
 /**
  * Representation of a risk.
@@ -10,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  */
 public class Risk {
   /**
-   * ENUM of risk likelihoood.
+   * ENUM of risk likelihood.
    */
   public static enum RiskLikelihood {
       UNLIKELY,
@@ -38,6 +40,18 @@ public class Risk {
       MITIGATED,
       REALISED
   }
+  
+  /**
+   * Risk ID.
+   */
+  @JsonInclude(Include.NON_NULL)
+  private UUID id;
+  
+  /**
+   * Identifier for risk.
+   */
+  @JsonInclude(Include.NON_NULL)
+  private int identifier;
 
   /**
    * Name of risk.
@@ -74,6 +88,12 @@ public class Risk {
    */
   @JsonInclude(Include.NON_NULL)
   private String mitigation;
+  
+  /**
+   * Parent document pointer.
+   */
+  @JsonIgnore
+  private Document parent;
 
   /**
    * Default likelihood.
@@ -104,6 +124,8 @@ public class Risk {
     RiskImpact impact,
     RiskStatus status
   ) {
+      this.id = UUID.randomUUID();
+      this.identifier = -1;
       this.name = name;
       this.likelihood = likelihood;
       this.impact = impact;
@@ -116,12 +138,32 @@ public class Risk {
    * Default constructor for risk.
    */
   public Risk() {
+      this.id = UUID.randomUUID();
+      this.identifier = -1;
       this.name = "";
       this.likelihood = DEFAULT_LIKELIHOOD;
       this.impact = DEFAULT_IMPACT;
       this.status = DEFAULT_STATUS;
       this.detail = "";
       this.mitigation = "";
+  }
+  
+  /**
+   * Getter for ID.
+   * 
+   * @return 
+   */
+  public UUID getId() {
+      return id;
+  }
+  
+  /**
+   * Getter for risk identifier.
+   * 
+   * @return risk identifier
+   */
+  public int getIdentifier() {
+      return identifier;
   }
 
   /**
@@ -176,6 +218,42 @@ public class Risk {
    */
   public String getMitigationStrategy() {
       return mitigation;
+  }
+  
+  /**
+   * Setter for parent document pointer.
+   * 
+   * @param value 
+   */
+  public void setParent(Document value) {
+      parent = value;
+  }
+  
+  /**
+   * Setter for ID.
+   * 
+   * @param value 
+   */
+  public void setId(UUID value) {
+      id = value;
+  }
+  
+  /**
+   * String based setter for ID.
+   * 
+   * @param value 
+   */
+   public void setId(String value) {
+      id = UUID.fromString(value);
+   }
+  
+  /**
+   * Setter for identifier.
+   * 
+   * @param value new identifier
+   */
+  public void setIdentifier(int value) {
+      identifier = value;
   }
   
   /**
@@ -235,13 +313,11 @@ public class Risk {
   /**
      * Returns true if given risk matches.
      * 
-     * TODO: Things could have IDs for matching instead
-     * 
      * @param r
      * @return 
      */
     public boolean match(Risk r) {
-        if (r.getName() == name) {
+        if (r.getIdentifier() == identifier) {
             return true;
         }
         

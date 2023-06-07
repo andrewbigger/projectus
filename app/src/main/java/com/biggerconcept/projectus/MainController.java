@@ -449,7 +449,9 @@ public class MainController implements Initializable {
     /**
      * Maps given document to window.
      */
-    private void mapDocumentToWindow() {       
+    private void mapDocumentToWindow() {
+        currentDocument.rebuildIdentifiers();
+        
         setWindowTitle();
         mapProjectDetailsToWindow();
         mapEpicsToWindow();
@@ -616,7 +618,7 @@ public class MainController implements Initializable {
         // stories table
         StoryTable storiesTable = new StoryTable(
                 bundle,
-                currentEpic.getStories()
+                currentEpic.getDocumentStories()
         );
 
         storiesTable.bind(storiesTableView);
@@ -633,7 +635,7 @@ public class MainController implements Initializable {
                 bundle,
                 currentEpic.getTasks(),
                 currentDocument.getPreferences(),
-                currentDocument.getEpics().indexOf(currentEpic) + 1
+                currentEpic.getIdentifier() + 1
         );
 
         tasksTable.bind(tasksTableView);
@@ -648,7 +650,7 @@ public class MainController implements Initializable {
         // risks table
         RiskTable risksTable = new RiskTable(
                 bundle,
-                currentEpic.getRisks()
+                currentEpic.getDocumentRisks()
         );
 
         risksTable.bind(risksTableView);

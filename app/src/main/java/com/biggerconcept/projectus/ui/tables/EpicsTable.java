@@ -127,9 +127,7 @@ public class EpicsTable {
             return new SimpleStringProperty(
                     String.valueOf(
                             documentPreferences.getEpicStartNumber() + 
-                            currentEpics.indexOf(
-                                    data.getValue()
-                            ) + 1
+                            data.getValue().getIdentifier() + 1
                     )
             );
         });

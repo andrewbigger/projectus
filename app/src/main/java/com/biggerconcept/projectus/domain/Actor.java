@@ -1,7 +1,9 @@
 package com.biggerconcept.projectus.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.util.UUID;
 
 /**
  * Representation of an actor in a story.
@@ -10,15 +12,28 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  */
 public class Actor {
     /**
-     * Name of actor
+     * Actor ID.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private UUID id;
+    
+    /**
+     * Name of actor.
      */
     @JsonInclude(Include.NON_NULL)
     private String name;
     
     /**
-     * Default constructor
+     * Pointer to parent document.
+     */
+    @JsonIgnore
+    private Document parent;
+    
+    /**
+     * Default constructor.
      */
     public Actor() {
+        this.id = UUID.randomUUID();
         this.name = "";
     }
     
@@ -28,7 +43,26 @@ public class Actor {
      * @param name name of actor
      */
     public Actor(String name) {
+        this.id = UUID.randomUUID();
         this.name = name;
+    }
+    
+    /**
+     * Getter for ID.
+     * 
+     * @return 
+     */
+    public UUID getId() {
+        return id;
+    }
+    
+    /**
+     * Setter for document parent pointer.
+     * 
+     * @param value 
+     */
+    public void setParent(Document value) {
+        parent = value;
     }
     
     /**
@@ -38,6 +72,24 @@ public class Actor {
      */
     public String getName() {
         return name;
+    }
+    
+    /**
+     * Setter for id.
+     * 
+     * @param value 
+     */
+    public void setId(UUID value) {
+        id = value;
+    }
+    
+    /**
+     * String based setter for ID.
+     * 
+     * @param value 
+     */
+    public void setId(String value) {
+        id = UUID.fromString(value);
     }
     
     /**

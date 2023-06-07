@@ -93,7 +93,7 @@ public class Tables {
         
         int storyCount = 0;
 
-        for (Story s : epic.getStories()) {
+        for (Story s : epic.getDocumentStories()) {
             storyCount += 1;
             
             ArrayList<String> row = new ArrayList<>();
@@ -143,7 +143,7 @@ public class Tables {
         
         int riskCount = 0;
 
-        for (Risk r : epic.getRisks()) {
+        for (Risk r : epic.getDocumentRisks()) {
             riskCount += 1;
             
             ArrayList<String> row = new ArrayList<>();

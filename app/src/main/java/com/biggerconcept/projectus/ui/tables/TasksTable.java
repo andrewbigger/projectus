@@ -140,7 +140,11 @@ public class TasksTable {
         
        idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
-                    parentEpicNumber + "." + String.valueOf(currentTasks.indexOf(data.getValue()) + 1)
+                    parentEpicNumber 
+                            + "." 
+                            + String.valueOf(
+                                    data.getValue().getIdentifier() + 1
+                            )
             );
        });
         

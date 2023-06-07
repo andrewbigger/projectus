@@ -185,7 +185,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      * Iterates over each risk and builds a page for each of them.
      */
     private void riskPages() {
-        for (Risk r : epic.getRisks()) {
+        for (Risk r : epic.getDocumentRisks()) {
             riskPage(r);
         }
     }
