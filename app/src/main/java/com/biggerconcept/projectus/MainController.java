@@ -661,7 +661,7 @@ public class MainController implements Initializable {
                 bundle,
                 currentEpic.getTasks(),
                 currentDocument.getPreferences(),
-                currentEpic.getIdentifier() + 1
+                currentEpic.getIdentifier()
         );
 
         tasksTable.bind(tasksTableView);
@@ -836,8 +836,11 @@ public class MainController implements Initializable {
 
                 currentDocument.setFile(f);
             }
-
+            
+            currentDocument.rebuildIdentifiers();
             currentDocument.save();
+            
+            mapDocumentToWindow();
 
         } catch (NoChoiceMadeException ncm) {
             // do nothing
@@ -1466,6 +1469,9 @@ public class MainController implements Initializable {
             
             openWindows.add(stage);
             stage.showAndWait();
+            
+            currentDocument.rebuildIdentifiers();
+            mapDocumentToWindow();
         } catch (IOException e) {
             ErrorAlert.show(
                     bundle,

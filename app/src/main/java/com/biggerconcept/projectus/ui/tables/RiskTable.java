@@ -110,7 +110,7 @@ public class RiskTable {
         idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
                     "R" +
-                    String.valueOf(data.getValue().getIdentifier() + 1)
+                    String.valueOf(data.getValue().getIdentifier())
             );
         });
         

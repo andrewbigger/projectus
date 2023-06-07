@@ -688,13 +688,15 @@ public class Document {
      * Rebuilds identifiers for epics and their tasks.
      */
     private void identifyEpics() {
-        int idx = 0;
+        int idx = getPreferences().getEpicStartNumber();
         
         for (Epic e : getEpics()) {
-            e.setIdentifier(idx++);
+            e.setIdentifier(idx);
+            idx += 1;
             
             int tidx = 0;
             for (Task t: e.getTasks()) {
+                tidx += 1;
                 t.setIdentifier(tidx);
             }
         }
@@ -707,7 +709,8 @@ public class Document {
         int idx = 0;
         
         for (Risk r: getRisks()) {
-            r.setIdentifier(idx++);
+            idx += 1;
+            r.setIdentifier(idx);
         }
     }
     
@@ -718,7 +721,8 @@ public class Document {
         int idx = 0;
         
         for (Story s : getStories()) {
-            s.setIdentifier(idx++);
+            idx += 1;
+            s.setIdentifier(idx);
         }
     }
 

@@ -126,8 +126,7 @@ public class EpicsTable {
         idCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
                     String.valueOf(
-                            documentPreferences.getEpicStartNumber() + 
-                            data.getValue().getIdentifier() + 1
+                            data.getValue().getIdentifier()
                     )
             );
         });

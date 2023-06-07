@@ -143,7 +143,7 @@ public class TasksTable {
                     parentEpicNumber 
                             + "." 
                             + String.valueOf(
-                                    data.getValue().getIdentifier() + 1
+                                    data.getValue().getIdentifier()
                             )
             );
        });
