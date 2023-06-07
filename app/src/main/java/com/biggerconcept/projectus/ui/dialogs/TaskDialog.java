@@ -300,6 +300,7 @@ public class TaskDialog {
         
         prevTaskBtn.setText(bundle.getString("dialogs.nav.previous"));
         prevTaskBtn.setOnAction((ActionEvent event) -> {
+            applyToTask();
             currentTask = parentEpic.getPrevTask(currentTask);
             mapTaskToDialog();
         });
@@ -326,6 +327,7 @@ public class TaskDialog {
         
         nextTaskBtn.setText(bundle.getString("dialogs.nav.next"));
         nextTaskBtn.setOnAction((ActionEvent event) -> {
+            applyToTask();
             currentTask = parentEpic.getNextTask(currentTask);
             mapTaskToDialog();
         });
