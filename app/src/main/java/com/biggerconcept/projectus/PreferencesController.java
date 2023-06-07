@@ -27,7 +27,7 @@ public class PreferencesController implements Initializable {
      * Document domain model.
      */
     private Document currentDocument;
-    
+
     /**
      * Initialize-er for the preference window
      * 
@@ -39,6 +39,7 @@ public class PreferencesController implements Initializable {
         bundle = rb;
 
         applyTooltips();
+        
     }
     
     /**

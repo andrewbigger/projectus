@@ -17,7 +17,6 @@ import com.biggerconcept.projectus.ui.dialogs.RiskChooserDialog;
 import com.biggerconcept.appengine.ui.dialogs.SaveFileDialog;
 import com.biggerconcept.projectus.ui.dialogs.StoryChooserDialog;
 import com.biggerconcept.projectus.ui.dialogs.TaskDialog;
-import com.biggerconcept.appengine.ui.dialogs.TextPrompt;
 import com.biggerconcept.appengine.ui.dialogs.YesNoPrompt;
 import com.biggerconcept.projectus.ui.tables.EpicsTable;
 import com.biggerconcept.projectus.ui.tables.RiskTable;
@@ -468,6 +467,11 @@ public class MainController implements Initializable {
     }
     
     private void mapEpicsToWindow() {
+        if (currentDocument.getEpics() == null) {
+            epicsTableView.getItems().clear();
+            
+            return;
+        }
         EpicsTable epicsTable = new EpicsTable(
                 bundle,
                 currentDocument.getPreferences(),
@@ -478,14 +482,14 @@ public class MainController implements Initializable {
     }
     
     private void mapSelectedEpicToWindow() {
+        mapEpicOverviewToWindow();
+        mapEpicScopeToWindow();
+        mapEpicStoriesToWindow();
+        mapEpicTasksToWindow();
+        mapEpicRisksToWindow();
+
         if (currentEpic != null) {
             selectedEpicPanel.setVisible(true);
-            
-            mapEpicOverviewToWindow();
-            mapEpicScopeToWindow();
-            mapEpicStoriesToWindow();
-            mapEpicTasksToWindow();
-            mapEpicRisksToWindow();
         } else {
             selectedEpicPanel.setVisible(false);
         }
@@ -493,6 +497,9 @@ public class MainController implements Initializable {
     
     private void mapEpicOverviewToWindow() {
         if (currentEpic == null) {
+            epicNameTextField.setText("");
+            epicSummaryTextArea.setText("");
+            
             return;
         }
         
@@ -509,6 +516,20 @@ public class MainController implements Initializable {
     
     private void mapEpicOverviewStatusToWindow() {
         if (currentEpic == null) {
+            definedSummaryProgressBar.setProgress(0);
+            definedScopeProgressBar.setProgress(0);
+            definedStatusProgressBar.setProgress(0);
+            sizedCountLabel.setText("");
+            sizedStatusProgressBar.setProgress(0);
+            describedCountLabel.setText("");
+            describedStatusProgressBar.setProgress(0);
+            epicTaskProgressBar.setProgress(0);
+            completeTaskCountLabel.setText("");
+            totalTaskCountLabel.setText("");
+            epicPointsProgressBar.setProgress(0);
+            epicCompletedPointsLabel.setText("");
+            epicTotalPointsLabel.setText("");
+            
             return;
         }
         
@@ -533,7 +554,9 @@ public class MainController implements Initializable {
                 )
         );
 
-        sizedStatusProgressBar.setProgress(currentEpic.calculateSizedProgress());
+        sizedStatusProgressBar.setProgress(
+                currentEpic.calculateSizedProgress()
+        );
 
         // described task status
         describedCountLabel.setText(
@@ -591,6 +614,9 @@ public class MainController implements Initializable {
     
     private void mapEpicScopeToWindow() {
         if (currentEpic == null) {
+            includeScopeListView.getItems().clear();
+            excludeScopeListView.getItems().clear();
+            
             return;
         }
         
@@ -775,6 +801,8 @@ public class MainController implements Initializable {
             closeAllDependentWindows();
 
             currentDocument = Document.load(documentFile);
+            currentEpic = null;
+            
             mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
