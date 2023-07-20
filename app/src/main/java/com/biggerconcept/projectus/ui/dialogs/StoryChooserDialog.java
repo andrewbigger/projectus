@@ -49,7 +49,7 @@ public class StoryChooserDialog {
         
         int pos = 0;
         for (Story s : storiesList) {
-            storiesListView.getItems().add(buildStoryName(pos, s));
+            storiesListView.getItems().add(buildStoryName(s));
             
             pos += 1;
         }
@@ -126,16 +126,15 @@ public class StoryChooserDialog {
     /**
      * Builds story name for presentation.
      * 
-     * @param pos position of story in epic story list
      * @param s story to render name for
      * 
      * @return story name as a one line string
      */
-    private String buildStoryName(int pos, Story s) {
+    private String buildStoryName(Story s) {
         String name = "";
             
         name += "S";
-        name += String.valueOf(pos + 1);
+        name += String.valueOf(s.getIdentifier());
         name += " ";
         name += bundle.getString("stories.table.actor");
         name += " ";

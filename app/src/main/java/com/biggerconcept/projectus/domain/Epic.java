@@ -464,13 +464,13 @@ public class Epic {
             }
         }
         
+        if (tasks.size() > 1 && completeCount == tasks.size()) {
+            return TaskStatus.COMPLETE;
+        } 
+        
         if (completeCount > 0) {
             return TaskStatus.IN_PROGRESS;
         }
-        
-        if (tasks.size() > 1 && completeCount == tasks.size() - 1) {
-            return TaskStatus.COMPLETE;
-        } 
         
         return TaskStatus.NOT_STARTED;
     }

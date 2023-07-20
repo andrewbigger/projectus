@@ -49,7 +49,7 @@ public class RiskChooserDialog {
         
         int pos = 0;
         for (Risk r : risksList) {
-            risksListView.getItems().add(buildRiskName(pos, r));
+            risksListView.getItems().add(buildRiskName(r));
             
             pos += 1;
         }
@@ -128,17 +128,14 @@ public class RiskChooserDialog {
     /**
      * Builds risk name for presentation.
      * 
-     * @param pos position of risk in epic list
      * @param r risk to build name for
      * @return 
      */
-    private String buildRiskName(int pos, Risk r) {
+    private String buildRiskName(Risk r) {
         String name = "";
             
         name += "R";
-        name += String.valueOf(pos + 1);
-        name += " ";
-        name += bundle.getString("risks.table.name");
+        name += String.valueOf(r.getIdentifier());
         name += " ";
         name += r.getName();
         
