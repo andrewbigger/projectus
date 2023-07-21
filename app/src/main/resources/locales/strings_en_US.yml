@@ -1089,4 +1089,9 @@ parts:
     title: "Label for scope label"
     value: "Scope"
     variants: {}
+- translation:
+    key: "stories.panel.actions.apply"
+    title: "Label for story apply button"
+    value: "Apply"
+    variants: {}
 sourceLanguage: "en"

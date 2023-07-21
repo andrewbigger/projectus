@@ -17,8 +17,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -38,6 +41,11 @@ public class StoriesController implements Initializable {
     private Document currentDocument;
     
     /**
+     * Current story.
+     */
+    private Story currentStory;
+    
+    /**
      * Initialize-er for the stories window.
      * 
      * @param url URL for stories FXML
@@ -46,6 +54,8 @@ public class StoriesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         bundle = rb;
+        
+        storyPanel.setVisible(false);
         
         applyTooltips();
     }
@@ -116,6 +126,36 @@ public class StoriesController implements Initializable {
     public TableView storyTableView;
     
     /**
+     * Panel for story editor.
+     */
+    @FXML
+    public VBox storyPanel;
+    
+    /**
+     * Combo box for actor selection.
+     */
+    @FXML
+    public ComboBox storyActorDropdown;
+    
+    /**
+     * Text area for story intention text.
+     */
+    @FXML
+    public TextArea storyIntentionTextArea;
+    
+    /**
+     * Text area for story expectation text.
+     */
+    @FXML
+    public TextArea storyExpectationTextArea;
+    
+    /**
+     * Button for applying changes to story.
+     */
+    @FXML
+    public Button applyStoryButton;
+    
+    /**
      * Returns the stories window stage.
      * 
      * The stories window stage is the window with the add story button.
@@ -143,6 +183,56 @@ public class StoriesController implements Initializable {
         );
         
         storiesTable.bind(storyTableView);
+        
+        mapStoryToWindow();
+    }
+    
+    /**
+     * Maps selected story to story panel.
+     */
+    private void mapStoryToWindow() {
+        if (currentStory != null) {
+            storyActorDropdown.getItems().clear();
+            
+            for (Actor a : currentDocument.getActors()) {
+                storyActorDropdown.getItems().add(a);
+            }
+            
+            storyActorDropdown
+                    .getSelectionModel()
+                    .select(currentStory.getActor()
+            );
+
+            storyIntentionTextArea.setText(
+                    currentStory.getIntention()
+            );
+            
+            storyExpectationTextArea.setText(
+                    currentStory.getExpectation()
+            );
+            
+            storyPanel.setVisible(true);
+        } else {
+            storyPanel.setVisible(false);
+        }
+    }
+    
+    /**
+     * Maps changes to story to document
+     */
+    private void mapStoryToDocument() {
+        if (currentStory == null) {
+            return;
+        }
+        
+        currentStory.setActor(
+                (Actor) storyActorDropdown.getSelectionModel().getSelectedItem()
+        );
+        
+        currentStory.setIntention(storyIntentionTextArea.getText());
+        currentStory.setExpectation(storyExpectationTextArea.getText());
+        
+        mapDocumentToWindow();
     }
     
     /**
@@ -310,6 +400,40 @@ public class StoriesController implements Initializable {
             mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.editStory"), e);
+        }
+    }
+    
+    /**
+     * Handles choice of story from story table.
+     */
+    @FXML
+    private void handleChooseStory() {
+        try {
+            ObservableList<Story> items = storyTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                currentStory = null;
+            } else {
+                currentStory = items.get(0);
+            }
+            
+            mapStoryToWindow();
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    /**
+     * Handles update to story.
+     */
+    @FXML
+    private void handleChangeStory() {
+        try {
+            mapStoryToDocument();
         } catch (Exception e) {
             ErrorAlert.show(bundle, bundle.getString("errors.editStory"), e);
         }
