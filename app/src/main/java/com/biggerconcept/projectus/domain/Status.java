@@ -167,7 +167,7 @@ public class Status {
         int total = 0;
         
         for (Epic e : doc.getEpics()) {
-            total += e.calculateCompletePointCount(doc.getPreferences());
+            total += e.getSize(doc.getPreferences());
         }
         return total;
     }
@@ -181,7 +181,7 @@ public class Status {
         int completed = 0;
         
         for (Epic e : doc.getEpics()) {
-            completed += e.calculateCompleteCount();
+            completed += e.calculateCompletePointCount(doc.getPreferences());
         }
         
         return completed;
