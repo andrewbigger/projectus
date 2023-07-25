@@ -1094,4 +1094,62 @@ parts:
     title: "Label for story apply button"
     value: "Apply"
     variants: {}
+- translation:
+    key: "preferences.sprint.title"
+    title: "Title for sprint tab"
+    value: "Sprint"
+    variants: {}
+- translation:
+    key: "preferences.sprint.size.title"
+    title: "Label for sprint size label"
+    value: "Length"
+    variants: {}
+- translation:
+    key: "preferences.sprint.size.description"
+    title: "Description for sprint size"
+    value: "Please provide the number of weeks per sprint"
+    variants: {}
+- translation:
+    key: "project.status.sprint.title"
+    title: "Title of sprint status label"
+    value: "Sprint"
+    variants: {}
+- translation:
+    key: "project.status.sprint.qualifier"
+    title: "Qualifier for sprint status label"
+    value: "of"
+    variants: {}
+- translation:
+    key: "poroject.status.progress.title"
+    variants: {}
+- translation:
+    key: "project.status.sprint.progress.title"
+    title: "Title for status progress label"
+    value: "Progress"
+    variants: {}
+- translation:
+    key: "project.status.sprint.progress.qualifier"
+    title: "Qualifier for progress status label"
+    value: "points completed of"
+    variants: {}
+- translation:
+    key: "project.status.velocity.title"
+    title: "Title for project velocity status"
+    value: "Velocity"
+    variants: {}
+- translation:
+    key: "project.status.velocity.qualifier"
+    title: "Velocity qualifier label text"
+    value: "points per sprint"
+    variants: {}
+- translation:
+    key: "project.week.label"
+    title: "Label for week"
+    value: "Week"
+    variants: {}
+- translation:
+    key: "project.week.qualifier"
+    title: "Week qualifier"
+    value: "of"
+    variants: {}
 sourceLanguage: "en"

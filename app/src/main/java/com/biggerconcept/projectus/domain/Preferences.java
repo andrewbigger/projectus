@@ -81,9 +81,20 @@ public class Preferences {
     private int epicStartNumber;
     
     /**
+     * Size of sprint in weeks.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private int sprintLength;
+    
+    /**
      * Default epic start number.
      */
     private static final int DEFAULT_EPIC_START_NUMBER = 1;
+    
+    /**
+     * Default sprint size number.
+     */
+    private static final int DEFAULT_SPRINT_LENGTH = 2;
     
     /**
      * Builds a set of default preferences.
@@ -100,6 +111,7 @@ public class Preferences {
         p.mediumTaskSize = DEFAULT_M_TASK_SIZE;
         p.largeTaskSize = DEFAULT_L_TASK_SIZE;
         p.extraLargeTaskSize = DEFAULT_XL_TASK_SIZE;
+        p.sprintLength = DEFAULT_SPRINT_LENGTH;
         
         return p;
     }
@@ -156,6 +168,15 @@ public class Preferences {
      */
     public int getExtraLargeTaskSize() {
         return extraLargeTaskSize;
+    }
+    
+    /**
+     * Getter for sprint length.
+     * 
+     * @return sprint length
+     */
+    public int getSprintLength() {
+        return sprintLength;
     }
     
     /**
@@ -288,6 +309,26 @@ public class Preferences {
      */
     public void setExtraLargeSize(int value) {
         extraLargeTaskSize = value;
+    }
+    
+    /**
+     * Setter for sprint length.
+     * 
+     * @param value integer value to set as sprint length
+     */
+    public void setSprintLength(int value) {
+        sprintLength = value;
+    }
+    
+    /**
+     * String based setter for sprint length.
+     * 
+     * @param value 
+     */
+    public void setSprintLength(String value) {
+        setSprintLength(
+                Integer.parseInt(value)
+        );
     }
     
 }

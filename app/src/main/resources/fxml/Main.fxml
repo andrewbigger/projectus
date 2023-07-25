@@ -133,42 +133,168 @@
    <center>
       <SplitPane fx:id="documentSplitPane" dividerPositions="0.1341789052069426, 0.568090787716956" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-            <VBox fx:id="projectInfoPanel" minWidth="200.0" prefHeight="200.0" prefWidth="100.0">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <children>
-                  <Label fx:id="projectTitleLabel" text="%project.label">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="projectNameTextField">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label text="%project.startDate">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <DatePicker fx:id="projectStartDatePicker">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </DatePicker>
-                  <Label text="%project.endDate">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <DatePicker fx:id="projectEndDatePicker" />
-               </children>
-            </VBox>
+            <BorderPane maxWidth="250.0" prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <VBox fx:id="projectInfoPanel" minWidth="200.0" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <Label fx:id="projectTitleLabel" text="%project.label">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="projectNameTextField">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="%project.startDate">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <DatePicker fx:id="projectStartDatePicker">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </DatePicker>
+                        <Label text="%project.endDate">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <DatePicker fx:id="projectEndDatePicker">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </DatePicker>
+                        <HBox fx:id="weekSummary" prefHeight="12.0" prefWidth="180.0">
+                           <children>
+                              <Label text="%project.week.label">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="weeksElapsed" text="0">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label text="%project.week.qualifier">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="totalWeeks" text="0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </top>
+               <bottom>
+                  <VBox fx:id="statusPanel" prefHeight="232.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox prefHeight="11.0" prefWidth="180.0">
+                           <children>
+                              <Label text="%project.status.sprint.title">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ProgressBar fx:id="sprintProgress" prefWidth="200.0" progress="0.0">
+                           <VBox.margin>
+                              <Insets bottom="2.0" />
+                           </VBox.margin>
+                        </ProgressBar>
+                        <HBox prefHeight="12.0" prefWidth="180.0">
+                           <children>
+                              <Label fx:id="sprintsElapsed" text="0">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label text="%project.status.sprint.qualifier">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="totalSprints" text="0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label text="%project.status.sprint.progress.title">
+                           <VBox.margin>
+                              <Insets bottom="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ProgressBar id="totalPointsCompleteProgress" fx:id="pointProgress" prefWidth="200.0" progress="0.0">
+                           <VBox.margin>
+                              <Insets bottom="2.0" />
+                           </VBox.margin>
+                        </ProgressBar>
+                        <HBox prefHeight="6.0" prefWidth="180.0">
+                           <children>
+                              <Label fx:id="completedPoints" text="0">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label text="%project.status.sprint.progress.qualifier">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="totalPoints" text="0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label text="%project.status.velocity.title">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox prefHeight="15.0" prefWidth="180.0">
+                           <children>
+                              <Label fx:id="velocity" text="0">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label text="%project.status.velocity.qualifier" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label fx:id="tracking" text="ON_TRACK">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </bottom>
+            </BorderPane>
             <BorderPane minWidth="300.0" snapToPixel="false">
                <center>
                   <TableView fx:id="epicsTableView" onMouseClicked="#handleEpicSelect" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">

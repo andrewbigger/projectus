@@ -530,7 +530,7 @@ public class Document {
     }
     
     /**
-     * Getter for project start date.
+     * Getter for project start date as epoch days.
      * 
      * @return project start date
      */
@@ -539,7 +539,7 @@ public class Document {
     }
     
     /**
-     * Getter for project end date.
+     * Getter for project end date as epoch days.
      * 
      * @return project end date
      */
@@ -682,6 +682,15 @@ public class Document {
         identifyEpics();
         identifyRisks();
         identifyStories();
+    }
+    
+    /**
+     * Returns overall status.
+     * 
+     * @return 
+     */
+    public Status status() {
+        return new Status(this);
     }
     
     /**

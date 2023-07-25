@@ -107,6 +107,12 @@ public class PreferencesController implements Initializable {
     public TextField extraLargeSizeTextField;
     
     /**
+     * Sprint size text field.
+     */
+    @FXML
+    public TextField sprintSizeTextField;
+    
+    /**
      * Cancel preferences button.
      */
     @FXML
@@ -155,6 +161,9 @@ public class PreferencesController implements Initializable {
         extraLargeSizeTextField.setText(
                 String.valueOf(prefs.getExtraLargeTaskSize())
         );
+        sprintSizeTextField.setText(
+                String.valueOf(prefs.getSprintLength())
+        );
     }
     
     /**
@@ -171,6 +180,7 @@ public class PreferencesController implements Initializable {
         p.setMediumSize(mediumSizeTextField.getText());
         p.setLargeSize(largeSizeTextField.getText());
         p.setExtraLargeSize(extraLargeSizeTextField.getText());
+        p.setSprintLength(sprintSizeTextField.getText());
         
         return p;
     }

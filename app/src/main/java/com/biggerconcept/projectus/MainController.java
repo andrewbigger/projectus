@@ -10,7 +10,7 @@ import com.biggerconcept.projectus.exceptions.DuplicateItemException;
 import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
 import com.biggerconcept.appengine.platform.OperatingSystem;
 import com.biggerconcept.projectus.serializers.DiscoveryDocumentSerializer;
-import com.biggerconcept.projectus.ui.Date;
+import com.biggerconcept.projectus.helpers.Date;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.projectus.ui.dialogs.RiskChooserDialog;
@@ -23,6 +23,7 @@ import com.biggerconcept.projectus.ui.tables.RiskTable;
 import com.biggerconcept.projectus.ui.tables.StoryTable;
 import com.biggerconcept.projectus.ui.tables.TasksTable;
 import com.biggerconcept.appengine.ui.window.StandardWindow;
+import com.biggerconcept.projectus.domain.Status;
 import com.biggerconcept.projectus.ui.dialogs.EpicDialog;
 import com.biggerconcept.projectus.ui.dialogs.ScopeDialog;
 import java.io.File;
@@ -52,6 +53,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -336,6 +339,78 @@ public class MainController implements Initializable {
     public TextArea epicSummaryTextArea;
     
     /**
+     * Project overall status panel.
+     */
+    @FXML
+    public VBox statusPanel;
+    
+    /**
+     * Label to display total number of weeks available in project.
+     */
+    @FXML
+    public Label totalWeeks;
+    
+    /**
+     * Label to display total number of sprints available in project.
+     */
+    @FXML
+    public Label totalSprints;
+    
+    /**
+     * Label to display total number of weeks elapsed in project.
+     */
+    @FXML
+    public Label weeksElapsed;
+    
+    /**
+     * Label to display total number of sprints elapsed in project.
+    */
+    @FXML
+    public Label sprintsElapsed;
+    
+    /**
+     * Label for total number of points defined in project.
+     */
+    @FXML
+    public Label totalPoints;
+    
+    /**
+     * Label for completed points.
+     */
+    @FXML
+    public Label completedPoints;
+    
+    /**
+     * Label to show average number of points completed in a sprint.
+     */
+    @FXML
+    public Label velocity;
+    
+    /**
+     * Label to show status summary.
+     */
+    @FXML
+    public Label tracking;
+    
+    /**
+     * Container for week information.
+     */
+    @FXML
+    public HBox weekSummary;
+    
+    /**
+     * Progress bar for overall sprint progress.
+     */
+    @FXML
+    public ProgressBar sprintProgress;
+    
+    /**
+     * Progress bar for overall point progress.
+     */
+    @FXML
+    public ProgressBar pointProgress;
+    
+    /**
      * Initializes the main window.
      * 
      * @param url URL of main FXML
@@ -358,6 +433,8 @@ public class MainController implements Initializable {
        );
 
         selectedEpicPanel.setVisible(false);
+        statusPanel.setVisible(false);
+        weekSummary.setVisible(false);
         
         if (OperatingSystem.isMac()) {
             mainMenu.useSystemMenuBarProperty().set(true);
@@ -455,6 +532,51 @@ public class MainController implements Initializable {
         mapProjectDetailsToWindow();
         mapEpicsToWindow();
         mapSelectedEpicToWindow();
+        mapStatusToWindow();
+    }
+    
+    private void mapStatusToWindow() {
+        Status status = currentDocument.status();
+        
+        if (status.hasDates() && status.hasStarted() == true) {
+            statusPanel.setVisible(true);
+            weekSummary.setVisible(true);
+            
+            totalWeeks.setText(
+                    String.valueOf(status.totalWeeks())
+            );
+
+            totalSprints.setText(
+                    String.valueOf(status.totalSprints())
+            );
+
+            weeksElapsed.setText(
+                    String.valueOf(status.weeksElapsed())
+            );
+
+            sprintsElapsed.setText(
+                    String.valueOf(status.sprintsElapsed())
+            );
+
+            totalPoints.setText(
+                    String.valueOf(status.totalPoints())
+            );
+            
+            completedPoints.setText(
+                    String.valueOf(status.completedPoints())
+            );
+            
+            velocity.setText(
+                    String.valueOf(status.pointsPerSprint())
+            );
+            
+            tracking.setText(String.valueOf(status.summary()));
+            sprintProgress.setProgress(status.sprintProgress());
+            pointProgress.setProgress(status.pointProgress());
+        } else {
+            statusPanel.setVisible(false);
+            weekSummary.setVisible(false);
+        }
     }
     
     private void mapProjectDetailsToWindow() {
