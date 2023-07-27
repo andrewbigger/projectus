@@ -337,6 +337,13 @@
                               <String fx:value="moveDownButton" />
                            </styleClass>
                         </Button>
+                        <Button id="moveEpicButton" fx:id="moveEpicButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpic" prefWidth="25.0">
+                           <styleClass>
+                              <String fx:value="iconButton" />
+                              <String fx:value="smallIcon" />
+                              <String fx:value="moveButton" />
+                           </styleClass>
+                        </Button>
                      </items>
                   </ToolBar>
                </top>
@@ -682,6 +689,13 @@
                                           <String fx:value="smallIcon" />
                                           <String fx:value="moveDownButton" />
                                        </styleClass></Button>
+                                    <Button id="moveTaskButton" fx:id="moveTaskButton" mnemonicParsing="false" onMouseClicked="#handleMoveTask" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="moveButton" />
+                                       </styleClass>
+                                    </Button>
                                     <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
                                     <Button id="editTaskButton" fx:id="editTaskButton" mnemonicParsing="false" onMouseClicked="#handleEditTask" prefWidth="25.0">
                                        <styleClass>

@@ -12,6 +12,7 @@ import com.biggerconcept.appengine.platform.OperatingSystem;
 import com.biggerconcept.projectus.serializers.DiscoveryDocumentSerializer;
 import com.biggerconcept.projectus.helpers.Date;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
+import com.biggerconcept.appengine.ui.dialogs.MessageBox;
 import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.projectus.ui.dialogs.RiskChooserDialog;
 import com.biggerconcept.appengine.ui.dialogs.SaveFileDialog;
@@ -24,6 +25,7 @@ import com.biggerconcept.projectus.ui.tables.StoryTable;
 import com.biggerconcept.projectus.ui.tables.TasksTable;
 import com.biggerconcept.appengine.ui.window.StandardWindow;
 import com.biggerconcept.projectus.domain.Status;
+import com.biggerconcept.projectus.ui.dialogs.EpicChooserDialog;
 import com.biggerconcept.projectus.ui.dialogs.EpicDialog;
 import com.biggerconcept.projectus.ui.dialogs.ScopeDialog;
 import java.io.File;
@@ -1104,6 +1106,54 @@ public class MainController implements Initializable {
     }
     
     /**
+     * Moves epic to another document.
+     */
+    @FXML
+    private void handleMoveEpic() {
+        try {
+            ObservableList<Epic> items = epicsTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            File documentFile = OpenFileDialog.show(
+                    bundle.getString("dialogs.moveEpic.chooseProject"),
+                    window(),
+                    fileExtFilter
+            );
+            
+            ButtonType answer = YesNoPrompt.show(
+                    AlertType.CONFIRMATION,
+                    bundle.getString("dialogs.moveEpic.title"),
+                    bundle.getString("dialogs.moveEpic.description")
+            );
+            
+            if (answer == ButtonType.NO) {
+                throw new NoChoiceMadeException();
+            }
+
+            Document chosenDocument = Document.load(documentFile);
+            
+            for (Epic e : items) {
+                currentDocument.removeEpic(e);
+                chosenDocument.addEpic(e);
+            }
+            
+            currentDocument.save();
+            chosenDocument.save();
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.moveEpic"), e);
+        }
+    }
+    
+    /**
      * Handler for epic selection.
      * 
      * When triggered, the selection is checked to see if an epic has been
@@ -1313,6 +1363,40 @@ public class MainController implements Initializable {
             // do nothing
         } catch (Exception e) {
             ErrorAlert.show(bundle, bundle.getString("errors.editTask"), e);
+        }
+    }
+    
+    /**
+     * Moves task to another epic.
+     */
+    @FXML
+    private void handleMoveTask() {
+        try {
+            ObservableList<Task> items = tasksTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            EpicChooserDialog pickEpic = new EpicChooserDialog(
+                    bundle,
+                    currentDocument.getEpics()
+            );
+            
+            Epic chosenEpic = pickEpic.show(window());
+            
+            for (Task t : items) {
+                currentEpic.removeTask(t);
+                chosenEpic.addTask(t);
+            }
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.moveTask"), e);
         }
     }
     

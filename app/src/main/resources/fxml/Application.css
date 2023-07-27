@@ -28,6 +28,10 @@
   -fx-background-image: url('../icons/EditIcon.png');
 }
 
+.moveButton {
+  -fx-background-image: url('../icons/MoveIcon.png')
+}
+
 .definedProgress > .bar {
   -fx-background-color: #FFBB10;
 }
