@@ -7,7 +7,7 @@ import com.biggerconcept.projectus.domain.Scope;
 import com.biggerconcept.projectus.domain.Story;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.exceptions.DuplicateItemException;
-import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
+import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import com.biggerconcept.appengine.platform.OperatingSystem;
 import com.biggerconcept.projectus.serializers.DiscoveryDocumentSerializer;
 import com.biggerconcept.projectus.helpers.Date;
@@ -24,6 +24,7 @@ import com.biggerconcept.projectus.ui.tables.RiskTable;
 import com.biggerconcept.projectus.ui.tables.StoryTable;
 import com.biggerconcept.projectus.ui.tables.TasksTable;
 import com.biggerconcept.appengine.ui.window.StandardWindow;
+import com.biggerconcept.projectus.domain.Actor;
 import com.biggerconcept.projectus.domain.Status;
 import com.biggerconcept.projectus.ui.dialogs.EpicChooserDialog;
 import com.biggerconcept.projectus.ui.dialogs.EpicDialog;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -1137,7 +1139,27 @@ public class MainController implements Initializable {
 
             Document chosenDocument = Document.load(documentFile);
             
-            for (Epic e : items) {
+            for (Epic e : items) {                
+                for (UUID id : e.getStories()) {
+                    Story s = currentDocument.findStory(id);
+                    
+                    if (chosenDocument.findActor(s.getActor().getId()) == null) {
+                        chosenDocument.addActor(s.getActor());
+                    }
+
+                    if (chosenDocument.hasStory(s) == false) {
+                        chosenDocument.addStory(s);
+                    }
+                }
+                
+                for (UUID id : e.getRisks()) {
+                    Risk r = currentDocument.findRisk(id);
+                    
+                    if (chosenDocument.hasRisk(r) == false) {
+                        chosenDocument.addRisk(r);
+                    }
+                }
+                
                 currentDocument.removeEpic(e);
                 chosenDocument.addEpic(e);
             }

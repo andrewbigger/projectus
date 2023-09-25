@@ -2,7 +2,7 @@ package com.biggerconcept.projectus;
 
 import com.biggerconcept.projectus.domain.Risk;
 import com.biggerconcept.projectus.domain.Document;
-import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
+import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import com.biggerconcept.projectus.ui.dialogs.RiskDialog;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.dialogs.YesNoPrompt;

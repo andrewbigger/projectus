@@ -3,7 +3,7 @@ package com.biggerconcept.projectus;
 import com.biggerconcept.projectus.domain.Actor;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Story;
-import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
+import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import com.biggerconcept.projectus.ui.dialogs.ActorDialog;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.projectus.ui.dialogs.StoryDialog;

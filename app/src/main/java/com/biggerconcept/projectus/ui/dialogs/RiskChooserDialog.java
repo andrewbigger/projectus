@@ -2,7 +2,7 @@ package com.biggerconcept.projectus.ui.dialogs;
 
 import com.biggerconcept.appengine.ui.dialogs.StandardDialog;
 import com.biggerconcept.projectus.domain.Risk;
-import com.biggerconcept.projectus.exceptions.NoChoiceMadeException;
+import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
