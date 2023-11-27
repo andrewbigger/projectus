@@ -406,7 +406,7 @@ public class Document {
      */
     public Story findStory(UUID id) {
         for (Story s : stories) {
-            if (s.getId() == id) {
+            if (s.getId().toString() == id.toString()) {
                 return s;
             }
         }

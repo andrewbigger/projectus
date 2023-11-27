@@ -12,7 +12,6 @@ import com.biggerconcept.appengine.platform.OperatingSystem;
 import com.biggerconcept.projectus.serializers.DiscoveryDocumentSerializer;
 import com.biggerconcept.projectus.helpers.Date;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
-import com.biggerconcept.appengine.ui.dialogs.MessageBox;
 import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.projectus.ui.dialogs.RiskChooserDialog;
 import com.biggerconcept.appengine.ui.dialogs.SaveFileDialog;
@@ -24,7 +23,6 @@ import com.biggerconcept.projectus.ui.tables.RiskTable;
 import com.biggerconcept.projectus.ui.tables.StoryTable;
 import com.biggerconcept.projectus.ui.tables.TasksTable;
 import com.biggerconcept.appengine.ui.window.StandardWindow;
-import com.biggerconcept.projectus.domain.Actor;
 import com.biggerconcept.projectus.domain.Status;
 import com.biggerconcept.projectus.ui.dialogs.EpicChooserDialog;
 import com.biggerconcept.projectus.ui.dialogs.EpicDialog;
@@ -1140,9 +1138,7 @@ public class MainController implements Initializable {
             Document chosenDocument = Document.load(documentFile);
             
             for (Epic e : items) {                
-                for (UUID id : e.getStories()) {
-                    Story s = currentDocument.findStory(id);
-                    
+                for (Story s : e.getDocumentStories()) {
                     if (chosenDocument.findActor(s.getActor().getId()) == null) {
                         chosenDocument.addActor(s.getActor());
                     }
@@ -1152,9 +1148,7 @@ public class MainController implements Initializable {
                     }
                 }
                 
-                for (UUID id : e.getRisks()) {
-                    Risk r = currentDocument.findRisk(id);
-                    
+                for (Risk r : e.getDocumentRisks()) {
                     if (chosenDocument.hasRisk(r) == false) {
                         chosenDocument.addRisk(r);
                     }
