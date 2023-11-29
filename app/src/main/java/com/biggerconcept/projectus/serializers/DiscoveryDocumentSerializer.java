@@ -3,7 +3,7 @@ package com.biggerconcept.projectus.serializers;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Risk;
 import com.biggerconcept.projectus.domain.Task;
-import com.biggerconcept.appengine.serializers.documents.Docx;
+import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.projectus.serializers.helpers.Paragraphs;
 import com.biggerconcept.projectus.serializers.helpers.Tables;
 import java.io.File;
@@ -21,16 +21,17 @@ import org.apache.xmlbeans.XmlException;
 public class DiscoveryDocumentSerializer implements ISerializer {
     private final ResourceBundle bundle;
     private final Epic epic;
-    private final Docx docx;
+    private final Doc doc;
     
     public DiscoveryDocumentSerializer(
             ResourceBundle rb,
             Epic epic, 
-            File outputFile
+            File outputFile,
+            Doc document
     ) throws IOException, XmlException {
         this.bundle = rb;
         this.epic = epic;
-        this.docx = new Docx(outputFile);
+        this.doc = document;
     }
 
     /**
@@ -49,79 +50,78 @@ public class DiscoveryDocumentSerializer implements ISerializer {
         riskSummaryPage();
         riskPages();
 
-        docx.save();
+        doc.save();
     }
 
     private void titlePage() {
-        docx.title(epic.getName());
+        doc.title(epic.getName());
         
-        docx.nl();
-        docx.subtitle(bundle.getString("documents.discovery.title"));
-        docx.nl();
+        doc.nl();
+        doc.subtitle(bundle.getString("documents.discovery.title"));
+        doc.nl();
         
         LocalDate today = LocalDate.now(ZoneId.of("Australia/Sydney"));
         
-        docx.subtitle(
+        doc.subtitle(
                         String.valueOf(today.getMonth()) 
                         + " " 
                         + String.valueOf(today.getYear())
         );
         
-        docx.br();
+        doc.br();
     }
     
     /**
      * Builds Table of contents page.
      */
     private void tocPage() {
-        docx.toc();
-        docx.br();
+        doc.toc();
+        doc.br();
     }
     
     /**
      * Builds epic overview page.
      */
     private void overviewPage() {
-        docx.h1(bundle.getString("documents.discovery.headings.overview"));
+        doc.h1(bundle.getString("documents.discovery.headings.overview"));
         
-        Paragraphs.format(
-            epic.getSummary(),
-            docx
+        Paragraphs.format(epic.getSummary(),
+            doc
         );
         
-        docx.h2(bundle.getString("documents.discovery.headings.scope"));
-        docx.ol(epic.getScope().getIncluded());
-        docx.h2(bundle.getString("documents.discovery.headings.outOfScope"));
-        docx.ol(epic.getScope().getExcluded());
-        docx.br();
+        doc.h2(bundle.getString("documents.discovery.headings.scope"));
+        doc.ol(epic.getScope().getIncluded());
+        doc.h2(bundle.getString("documents.discovery.headings.outOfScope"));
+        doc.ol(epic.getScope().getExcluded());
+        doc.br();
     }
     
     /**
      * Builds story summary page.
      */
     private void storiesPage() {
-        docx.h1(bundle.getString("documents.discovery.headings.stories"));
-        docx.nl();
-        docx.table(
+        doc.h1(bundle.getString("documents.discovery.headings.stories"));
+        doc.nl();
+        doc.table(
                 Tables.storyTableHeaders(bundle),
                 Tables.storyTableBody(epic)
         );
-        docx.nl();
-        docx.br();
+        doc.nl();
+        doc.br();
     }
     
     /**
      * Builds task summary page.
      */
     private void taskSummaryPage() {
-        docx.h1(bundle.getString("documents.discovery.headings.tasks"));
-        docx.nl();
-        docx.table(
+        doc.h1(bundle.getString("documents.discovery.headings.tasks"));
+        doc.nl();
+        doc.table(
                 Tables.taskTableHeaders(bundle),
                 Tables.taskTableBody(epic)
         );
-        docx.nl();
-        docx.br();
+        doc.nl();
+        doc.br();
     }
     
     /**
@@ -139,46 +139,44 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      * @param t 
      */
     private void taskPage(Task t) {
-        docx.h2(t.getName());
-        docx.nl();
-        docx.strong(
+        doc.h2(t.getName());
+        doc.nl();
+        doc.strong(
                 bundle.getString(
                         "documents.discovery.headings.task.description"
                 )
         );
         
-        Paragraphs.format(
-            t.getDescription(),
-            docx
+        Paragraphs.format(t.getDescription(),
+            doc
         );
         
-        docx.nl();
-        docx.strong(
+        doc.nl();
+        doc.strong(
                 bundle.getString(
                         "documents.discovery.headings.task.acceptanceCriteria"
                 )
         );
         
-        Paragraphs.format(
-            t.getAcceptanceCriteria(),
-            docx
+        Paragraphs.format(t.getAcceptanceCriteria(),
+            doc
         );
         
-        docx.br();
+        doc.br();
     }
     
     /**
      * Builds a risk summary page.
      */
     private void riskSummaryPage() {
-        docx.h1(bundle.getString("documents.discovery.headings.risks"));
-        docx.nl();
-        docx.table(
+        doc.h1(bundle.getString("documents.discovery.headings.risks"));
+        doc.nl();
+        doc.table(
                 Tables.riskTableHeaders(bundle), 
                 Tables.riskTableBody(epic)
         );
-        docx.nl();
-        docx.br();
+        doc.nl();
+        doc.br();
     }
     
     /**
@@ -196,32 +194,32 @@ public class DiscoveryDocumentSerializer implements ISerializer {
      * @param r 
      */
     private void riskPage(Risk r) {
-        docx.h2(r.getName());
-        docx.nl();
-        docx.table(
+        doc.h2(r.getName());
+        doc.nl();
+        doc.table(
                 Tables.riskSummaryTableHeaders(bundle),
                 Tables.riskSummaryTableBody(r)
         );
         
-        docx.nl();
-        docx.strong(
+        doc.nl();
+        doc.strong(
                 bundle.getString(
                         "documents.discovery.headings.risk.details"
                 )
         );
         
-        Paragraphs.format(r.getDetail(), docx);
+        Paragraphs.format(r.getDetail(), doc);
         
-        docx.nl();
-        docx.strong(
+        doc.nl();
+        doc.strong(
                 bundle.getString(
                         "documents.discovery.headings.risk.mitigation"
                 )
         );
         
-        Paragraphs.format(r.getMitigationStrategy(), docx);
+        Paragraphs.format(r.getMitigationStrategy(), doc);
         
-        docx.br();
+        doc.br();
     }
     
     

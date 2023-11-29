@@ -9,6 +9,8 @@ import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.exceptions.DuplicateItemException;
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import com.biggerconcept.appengine.platform.OperatingSystem;
+import com.biggerconcept.appengine.serializers.documents.Docx;
+import com.biggerconcept.appengine.serializers.documents.Markdown;
 import com.biggerconcept.projectus.serializers.DiscoveryDocumentSerializer;
 import com.biggerconcept.projectus.helpers.Date;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
@@ -1907,11 +1909,14 @@ public class MainController implements Initializable {
             if (f == null) {
                 throw new NoChoiceMadeException();
             }
+            
+            Docx docx = new Docx(f);
            
             DiscoveryDocumentSerializer dds = new DiscoveryDocumentSerializer(
                     bundle,
                     currentEpic,
-                    f
+                    f,
+                    docx
             );
             
             dds.save();
@@ -1922,6 +1927,38 @@ public class MainController implements Initializable {
         }
     }
     
+    /**
+     * Generates epic discovery document.
+     */
+    @FXML
+    private void handleGenerateDiscoveryMarkdown() {
+        try {
+            File f = SaveFileDialog.show(bundle.getString("dialogs.save.title"),
+                    window(),
+                    fileExtFilter
+            );
+
+            if (f == null) {
+                throw new NoChoiceMadeException();
+            }
+            
+            Markdown md = new Markdown(f);
+           
+            DiscoveryDocumentSerializer dds = new DiscoveryDocumentSerializer(
+                    bundle,
+                    currentEpic,
+                    f,
+                    md
+            );
+            
+            dds.save();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.saveFile"), e);
+        }
+    }
+        
     /**
      * Opens about application dialog box.
      */
