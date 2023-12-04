@@ -1370,4 +1370,19 @@ parts:
     title: "label for completed points"
     value: "points"
     variants: {}
+- translation:
+    key: "preferences.estimates.referenceSprints.applyAll.description"
+    title: "Description for apply all button"
+    value: "Apply to all will replace all reference sprints all epic outlooks."
+    variants: {}
+- translation:
+    key: "preferences.estimates.referenceSprints.applyAll.button"
+    title: "Label for apply all button"
+    value: "Apply reference sprints to all epics"
+    variants: {}
+- translation:
+    key: "errors.preferences.applyReferenceSprints"
+    title: "Error when unable to apply reference sprints"
+    value: "Unable to apply reference sprints to all epic outlooks"
+    variants: {}
 sourceLanguage: "en"

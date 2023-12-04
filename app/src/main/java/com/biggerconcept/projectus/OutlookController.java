@@ -357,9 +357,6 @@ public class OutlookController implements Initializable {
         
         mapOutlookToTable();
         
-        pointsPerSprintTextField.getStyleClass().clear();
-        pointsPerSprintTextField.getStyleClass().add(pointsClass());
-        
         completedPointsLabel.setText(
                 String.valueOf(currentEpic.calculateCompletePointCount(prefs))
         );
@@ -534,46 +531,4 @@ public class OutlookController implements Initializable {
         );
     }
     
-    /**
-     * Determines display class for points field.
-     * 
-     * @return css class for points field
-     */
-    private String pointsClass() {
-        Integer pointsPerSprint = Integer.valueOf(
-                pointsPerSprintTextField.getText()
-        );
-        
-        if (isOptimistic(pointsPerSprint, currentOutlook)) {
-            return "bg-red";
-        } else if (isPessimistic(pointsPerSprint, currentOutlook)) {
-            return "bg-green";
-        }
-        
-        return "bg-amber";
-    }
-    
-    /**
-     * Determines whether points is optimistic to the outlook.
-     * 
-     * @param pointsPerSprint entered number of points per sprint.
-     * @param outlook current epic outlook
-     * @return whether the points are optimistic
-     */
-    private boolean isOptimistic(Integer pointsPerSprint, Outlook outlook) {
-        return pointsPerSprint > outlook.getEstimatePoints();
-    }
-    
-    /**
-     * Determines whether points is pessimistic to the outlook.
-     * 
-     * @param pointsPerSprint entered number of points per sprint.
-     * @param outlook current epic outlook
-     * @return whether the points are pessimistic
-     */
-    private boolean isPessimistic(Integer pointsPerSprint, Outlook outlook) {
-        return pointsPerSprint < (
-                outlook.getEstimateWithBuffer() - (outlook.deviation() * 2)
-        );
-    }
 }

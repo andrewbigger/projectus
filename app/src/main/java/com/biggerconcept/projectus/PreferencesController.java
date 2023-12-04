@@ -3,6 +3,7 @@ package com.biggerconcept.projectus;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Preferences;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
+import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Sprint;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,6 +29,11 @@ public class PreferencesController implements Initializable {
      * Document domain model.
      */
     private Document currentDocument;
+    
+    /**
+     * Document preferences
+     */
+    private Preferences currentPreferences;
 
     /**
      * Initialize-er for the preference window
@@ -68,7 +74,8 @@ public class PreferencesController implements Initializable {
      */
     public void setDocument(Document doc) {
         this.currentDocument = doc;
-        mapPreferencesToWindow(currentDocument.getPreferences());
+        this.currentPreferences = currentDocument.getPreferences();
+        mapPreferencesToWindow();
     }
     
     /**
@@ -197,54 +204,99 @@ public class PreferencesController implements Initializable {
      * 
      * @param doc open document
      */
-    private void mapPreferencesToWindow(Preferences prefs) {
+    private void mapPreferencesToWindow() {
+        mapEpicPreferencesToWindow();
+        mapSprintPreferencesToWindow();
+        mapEstimatePreferencesToWindow();
+    }
+    
+    /**
+     * Maps epic size preferences to window.
+     */
+    private void mapEpicPreferencesToWindow() {
         epicStartNumberTextField.setText(
-                String.valueOf(prefs.getEpicStartNumber())
+                String.valueOf(currentPreferences.getEpicStartNumber())
         );
         extraSmallSizeTextField.setText(
-                String.valueOf(prefs.getExtraSmallTaskSize())
+                String.valueOf(currentPreferences.getExtraSmallTaskSize())
         );
         smallSizeTextField.setText(
-                String.valueOf(prefs.getSmallTaskSize())
+                String.valueOf(currentPreferences.getSmallTaskSize())
         );
         mediumSizeTextField.setText(
-                String.valueOf(prefs.getMediumTaskSize())
+                String.valueOf(currentPreferences.getMediumTaskSize())
         );
         largeSizeTextField.setText(
-                String.valueOf(prefs.getLargeTaskSize())
+                String.valueOf(currentPreferences.getLargeTaskSize())
         );
         extraLargeSizeTextField.setText(
-                String.valueOf(prefs.getExtraLargeTaskSize())
+                String.valueOf(currentPreferences.getExtraLargeTaskSize())
         );
+    }
+    
+    /**
+     * Maps sprint preferences to window
+     */
+    private void mapSprintPreferencesToWindow() {
         sprintSizeTextField.setText(
-                String.valueOf(prefs.getSprintLength())
+                String.valueOf(currentPreferences.getSprintLength())
         );
+    }
+    
+    /**
+     * Maps estimate and reference sprints to window.
+     */
+    private void mapEstimatePreferencesToWindow() {
+        estimateBufferTextField.setText(
+                String.valueOf(currentPreferences.getEstimateBuffer())
+        );
+        
+        mapReferenceSprintsToWindow();
+    }
+    
+    /**
+     * Maps reference sprints to window.
+     */
+    private void mapReferenceSprintsToWindow() {
         refSprintOneNameTextField.setText(
-                prefs.getRefSprintOne().getName()
+                currentPreferences.getRefSprintOne().getName()
         );
         refSprintOneCompletedPointsTextField.setText(
-                String.valueOf(prefs.getRefSprintOne().getCompletedPoints())
+                String.valueOf(
+                        currentPreferences
+                                .getRefSprintOne()
+                                .getCompletedPoints()
+                )
         );
         refSprintTwoNameTextField.setText(
-                prefs.getRefSprintTwo().getName()
+                currentPreferences.getRefSprintTwo().getName()
         );
         refSprintTwoCompletedPointsTextField.setText(
-                String.valueOf(prefs.getRefSprintTwo().getCompletedPoints())
+                String.valueOf(
+                        currentPreferences
+                                .getRefSprintTwo()
+                                .getCompletedPoints()
+                )
         );
         refSprintThreeNameTextField.setText(
-                prefs.getRefSprintThree().getName()
+                currentPreferences.getRefSprintThree().getName()
         );
         refSprintThreeCompletedPointsTextField.setText(
-                String.valueOf(prefs.getRefSprintThree().getCompletedPoints())
+                String.valueOf(
+                        currentPreferences
+                                .getRefSprintThree()
+                                .getCompletedPoints()
+                )
         );
         refSprintFourNameTextField.setText(
-                prefs.getRefSprintFour().getName()
+                currentPreferences.getRefSprintFour().getName()
         );
         refSprintFourCompletedPointsTextField.setText(
-                String.valueOf(prefs.getRefSprintFour().getCompletedPoints())
-        );
-        estimateBufferTextField.setText(
-                String.valueOf(prefs.getEstimateBuffer())
+                String.valueOf(
+                        currentPreferences
+                            .getRefSprintFour()
+                            .getCompletedPoints()
+                )
         );
     }
     
@@ -253,17 +305,49 @@ public class PreferencesController implements Initializable {
      * 
      * @return built preference object
      */
-    private Preferences mapWindowToPreferences() {
-        Preferences p = new Preferences();
+    private void mapWindowToPreferences() {
+        mapWindowToEpicPreferences();
+        mapWindowToSprintPreferences();
+        mapWindowToEstimatePreferences();
+    }
+    
+    /**
+     * Maps window to epic preferences.
+     */
+     private void mapWindowToEpicPreferences() {
+        currentPreferences.setEpicStartNumber(
+                epicStartNumberTextField.getText()
+        );
+        currentPreferences.setExtraSmallSize(extraSmallSizeTextField.getText());
+        currentPreferences.setSmallSize(smallSizeTextField.getText());
+        currentPreferences.setMediumSize(mediumSizeTextField.getText());
+        currentPreferences.setLargeSize(largeSizeTextField.getText());
+        currentPreferences.setExtraLargeSize(extraLargeSizeTextField.getText());
+    }
+    
+     /**
+      * Maps window to sprint preferences
+      */
+    private void mapWindowToSprintPreferences() {
+        currentPreferences.setSprintLength(sprintSizeTextField.getText());
+    }
+    
+    /**
+     * Maps window to estimate preferences.
+     */
+    private void mapWindowToEstimatePreferences() {
+        currentPreferences.setEstimateBuffer(
+                Integer.valueOf(estimateBufferTextField.getText())
+        );
         
-        p.setEpicStartNumber(epicStartNumberTextField.getText());
-        p.setExtraSmallSize(extraSmallSizeTextField.getText());
-        p.setSmallSize(smallSizeTextField.getText());
-        p.setMediumSize(mediumSizeTextField.getText());
-        p.setLargeSize(largeSizeTextField.getText());
-        p.setExtraLargeSize(extraLargeSizeTextField.getText());
-        p.setSprintLength(sprintSizeTextField.getText());
-        p.setRefSprintOne(
+        mapWindowToReferenceSprintPreferences();
+    }
+    
+    /**
+     * Maps reference sprints to estimate preferences.
+     */
+    private void mapWindowToReferenceSprintPreferences() {
+        currentPreferences.setRefSprintOne(
                 new Sprint(
                         refSprintOneNameTextField.getText(),
                         Integer.valueOf(
@@ -272,7 +356,7 @@ public class PreferencesController implements Initializable {
                 )
         );
         
-        p.setRefSprintTwo(
+        currentPreferences.setRefSprintTwo(
                 new Sprint(
                         refSprintTwoNameTextField.getText(),
                         Integer.valueOf(
@@ -281,7 +365,7 @@ public class PreferencesController implements Initializable {
                 )
         );
         
-        p.setRefSprintThree(
+        currentPreferences.setRefSprintThree(
                 new Sprint(
                         refSprintThreeNameTextField.getText(),
                         Integer.valueOf(
@@ -290,7 +374,7 @@ public class PreferencesController implements Initializable {
                 )
         );
         
-        p.setRefSprintFour(
+        currentPreferences.setRefSprintFour(
                 new Sprint(
                         refSprintFourNameTextField.getText(),
                         Integer.valueOf(
@@ -298,10 +382,30 @@ public class PreferencesController implements Initializable {
                         )
                 )
         );
+    }
+    
         
-        p.setEstimateBuffer(Integer.valueOf(estimateBufferTextField.getText()));
+    /**
+     * Applies default reference sprint to all epic outlooks.
+     */
+    @FXML
+    private void handleApplyAllReferenceSprints() {
+        try {
+            mapWindowToReferenceSprintPreferences();
         
-        return p;
+            for (Epic e : currentDocument.getEpics()) {
+                e.getOutlook().setSprintOne(currentPreferences.getRefSprintOne());
+                e.getOutlook().setSprintTwo(currentPreferences.getRefSprintTwo());
+                e.getOutlook().setSprintThree(currentPreferences.getRefSprintThree());
+                e.getOutlook().setSprintFour(currentPreferences.getRefSprintFour());
+            }
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.preferences.applyReferenceSprints"),
+                    e
+            );
+        }
     }
     
     /**
@@ -326,7 +430,7 @@ public class PreferencesController implements Initializable {
     @FXML
     private void handleSavePreferences() {
         try {
-            currentDocument.setPreferences(mapWindowToPreferences());
+            mapWindowToPreferences();
             preferenceStage().close();
         } catch (Exception e) {
             ErrorAlert.show(

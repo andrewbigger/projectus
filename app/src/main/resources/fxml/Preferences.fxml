@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.PreferencesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.PreferencesController">
    <bottom>
       <BorderPane prefHeight="33.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <left>
@@ -252,6 +252,16 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </GridPane>
+                        <Label text="%preferences.estimates.referenceSprints.applyAll.description">
+                           <VBox.margin>
+                              <Insets bottom="3.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Button mnemonicParsing="false" onAction="#handleApplyAllReferenceSprints" text="%preferences.estimates.referenceSprints.applyAll.button">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Button>
                         <Label text="%preferences.estimates.buffer.title">
                            <font>
                               <Font size="14.0" />
