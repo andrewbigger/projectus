@@ -41,7 +41,16 @@ public class Projection {
             Preferences prefs
     ) {
         this.totalPoints = totalPoints;
-        this.pointsPerSprint = pointsPerSprint;
+        
+        // Points per sprint must be positive
+        // this will guard against a dived by zero error
+        // Default to deviation slice
+        if (pointsPerSprint == 0) {
+            this.pointsPerSprint = totalPoints / Outlook.DEVIATION_SLICE;
+        } else {
+            this.pointsPerSprint = pointsPerSprint;
+        }
+        
         this.adjustment = adjustment;
         this.prefs = prefs;        
     }

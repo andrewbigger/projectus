@@ -248,7 +248,7 @@ public class Outlook {
      * @return points per sprint
      */
     public Integer getPointsPerSprint() {
-        if (pointsPerSprint == null) {
+        if (pointsPerSprint == null || pointsPerSprint == 0) {
             return getAveragePoints();
         }
         
