@@ -64,6 +64,12 @@ public class Epic {
     private ArrayList<UUID> risks;
     
     /**
+     * Epic outlook.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private Outlook outlook;
+    
+    /**
      * Parent document.
      */
     @JsonIgnore
@@ -338,6 +344,19 @@ public class Epic {
     }
     
     /**
+     * Getter for epic outlook.
+     * 
+     * @return epic outlook
+     */
+    public Outlook getOutlook() {
+        if (outlook == null) {
+            return new Outlook(this, parent.getPreferences());
+        }
+        
+        return outlook;
+    }
+    
+    /**
      * Return document risk models.
      * 
      * @return 
@@ -435,6 +454,15 @@ public class Epic {
      */
     public void setRisks(ArrayList<UUID> value) {
         risks = value;
+    }
+    
+    /**
+     * Setter for epic outlook.
+     * 
+     * @param value to set as outlook
+     */
+    public void setOutlook(Outlook value) {
+        outlook = value;
     }
  
      /**
@@ -593,7 +621,7 @@ public class Epic {
     public double calculateDescribedProgress() {
         return (double) calculateDescribedCount() / calculateTaskCount();
     }
-    
+
     /**
      * Returns count of completed tasks.
      * 

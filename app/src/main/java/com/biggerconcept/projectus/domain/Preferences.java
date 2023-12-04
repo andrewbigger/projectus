@@ -97,6 +97,61 @@ public class Preferences {
     private static final int DEFAULT_SPRINT_LENGTH = 2;
     
     /**
+     * Example sprint for reference sprint one
+     */
+    private static final Sprint DEFAULT_REF_SPRINT_ONE = new Sprint("1", 20);
+    
+    /**
+     * Example sprint for reference sprint two
+     */
+    private static final Sprint DEFAULT_REF_SPRINT_TWO = new Sprint("2", 18);
+    
+    /**
+     * Example sprint for reference sprint three
+     */
+    private static final Sprint DEFAULT_REF_SPRINT_THREE = new Sprint("3", 22);
+    
+    /**
+     * Example sprint for reference sprint four
+     */
+    private static final Sprint DEFAULT_REF_SPRINT_FOUR = new Sprint("4", 12);
+    
+    /**
+     * Default estimate buffer
+     */
+    private static final Integer DEFAULT_ESTIMATE_BUFFER = 10;
+    
+    /**
+     * Reference sprint one
+     */
+    @JsonInclude(Include.NON_NULL)
+    private Sprint refSprintOne;
+    
+    /**
+     * Reference sprint two
+     */
+    @JsonInclude(Include.NON_NULL)
+    private Sprint refSprintTwo;
+    
+    /**
+     * Reference sprint three
+     */
+    @JsonInclude(Include.NON_NULL)
+    private Sprint refSprintThree;
+    
+    /**
+     * Reference sprint four
+     */
+    @JsonInclude(Include.NON_NULL)
+    private Sprint refSprintFour;
+    
+    /**
+     * Estimate buffer
+     */
+    @JsonInclude(Include.NON_NULL)
+    private Integer estimateBuffer;
+    
+    /**
      * Builds a set of default preferences.
      * 
      * @return default preferences
@@ -112,6 +167,11 @@ public class Preferences {
         p.largeTaskSize = DEFAULT_L_TASK_SIZE;
         p.extraLargeTaskSize = DEFAULT_XL_TASK_SIZE;
         p.sprintLength = DEFAULT_SPRINT_LENGTH;
+        p.refSprintOne = DEFAULT_REF_SPRINT_ONE;
+        p.refSprintTwo = DEFAULT_REF_SPRINT_TWO;
+        p.refSprintThree = DEFAULT_REF_SPRINT_THREE;
+        p.refSprintFour = DEFAULT_REF_SPRINT_FOUR;
+        p.estimateBuffer = DEFAULT_ESTIMATE_BUFFER;
         
         return p;
     }
@@ -177,6 +237,71 @@ public class Preferences {
      */
     public int getSprintLength() {
         return sprintLength;
+    }
+    
+    /**
+     * Getter for reference sprint one.
+     * 
+     * @return reference sprint
+     */
+    public Sprint getRefSprintOne() {
+        if (refSprintOne == null) {
+            return DEFAULT_REF_SPRINT_ONE;
+        }
+        
+        return refSprintOne;
+    }
+    
+    /**
+     * Getter for reference sprint two.
+     * 
+     * @return reference sprint
+     */
+    public Sprint getRefSprintTwo() {
+        if (refSprintTwo == null) {
+            return DEFAULT_REF_SPRINT_TWO;
+        }
+        
+        return refSprintTwo;
+    }
+    
+    /**
+     * Getter for reference sprint three.
+     * 
+     * @return reference sprint
+     */
+    public Sprint getRefSprintThree() {
+        if (refSprintThree == null) {
+            return DEFAULT_REF_SPRINT_THREE;
+        }
+        
+        return refSprintThree;
+    }
+    
+    /**
+     * Getter for reference sprint four.
+     * 
+     * @return reference sprint
+     */
+    public Sprint getRefSprintFour() {
+        if (refSprintFour == null) {
+            return DEFAULT_REF_SPRINT_FOUR;
+        }
+        
+        return refSprintFour;
+    }
+    
+    /**
+     * Getter for estimate buffer.
+     * 
+     * @return estimate buffer
+     */
+    public Integer getEstimateBuffer() {
+        if (estimateBuffer == null) {
+            return DEFAULT_ESTIMATE_BUFFER;
+        }
+        
+        return estimateBuffer;
     }
     
     /**
@@ -331,4 +456,48 @@ public class Preferences {
         );
     }
     
+    /**
+     * Setter for reference sprint one.
+     * 
+     * @param value new sprint
+     */
+    public void setRefSprintOne(Sprint value) {
+        refSprintOne = value;
+    }
+    
+    /**
+     * Setter for reference sprint two.
+     * 
+     * @param value new sprint
+     */
+    public void setRefSprintTwo(Sprint value) {
+        refSprintTwo = value;
+    }
+    
+    /**
+     * Setter for reference sprint three.
+     * 
+     * @param value new sprint
+     */
+    public void setRefSprintThree(Sprint value) {
+        refSprintThree = value;
+    }
+    
+    /**
+     * Setter for reference sprint four.
+     * 
+     * @param value new sprint
+     */
+    public void setRefSprintFour(Sprint value) {
+        refSprintFour = value;
+    }
+    
+    /**
+     * Setter for estimate buffer
+     * 
+     * @param value new estimate buffer
+     */
+    public void setEstimateBuffer(Integer value) {
+        estimateBuffer = value;
+    }
 }

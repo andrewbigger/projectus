@@ -307,45 +307,62 @@
                   </TableView>
                </center>
                <top>
-                  <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                     <items>
-                        <Button id="addEpicButton" fx:id="addEpicButton" mnemonicParsing="false" onMouseClicked="#handleAddEpic" prefWidth="25.0">
-                           <styleClass>
-                              <String fx:value="iconButton" />
-                              <String fx:value="smallIcon" />
-                              <String fx:value="addButton" />
-                           </styleClass>
-                        </Button>
-                        <Button id="removeEpicButton" fx:id="removeEpicButton" mnemonicParsing="false" onMouseClicked="#handleRemoveEpic" prefWidth="25.0">
-                           <styleClass>
-                              <String fx:value="iconButton" />
-                              <String fx:value="smallIcon" />
-                              <String fx:value="removeButton" />
-                           </styleClass>
-                        </Button>
-                        <Button id="moveEpicUpButton" fx:id="moveEpicUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpicUp" prefWidth="25.0">
-                           <styleClass>
-                              <String fx:value="iconButton" />
-                              <String fx:value="smallIcon" />
-                              <String fx:value="moveUpButton" />
-                           </styleClass>
-                        </Button>
-                        <Button id="moveEpicDownButton" fx:id="moveEpicDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpicDown" prefWidth="25.0">
-                           <styleClass>
-                              <String fx:value="iconButton" />
-                              <String fx:value="smallIcon" />
-                              <String fx:value="moveDownButton" />
-                           </styleClass>
-                        </Button>
-                        <Button id="moveEpicButton" fx:id="moveEpicButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpic" prefWidth="25.0">
-                           <styleClass>
-                              <String fx:value="iconButton" />
-                              <String fx:value="smallIcon" />
-                              <String fx:value="moveButton" />
-                           </styleClass>
-                        </Button>
-                     </items>
-                  </ToolBar>
+                  <BorderPane prefHeight="30.0" prefWidth="642.0" BorderPane.alignment="CENTER">
+                     <center>
+                        <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <items>
+                              <Button id="addEpicButton" fx:id="addEpicButton" mnemonicParsing="false" onMouseClicked="#handleAddEpic" prefWidth="25.0">
+                                 <styleClass>
+                                    <String fx:value="iconButton" />
+                                    <String fx:value="smallIcon" />
+                                    <String fx:value="addButton" />
+                                 </styleClass>
+                              </Button>
+                              <Button id="removeEpicButton" fx:id="removeEpicButton" mnemonicParsing="false" onMouseClicked="#handleRemoveEpic" prefWidth="25.0">
+                                 <styleClass>
+                                    <String fx:value="iconButton" />
+                                    <String fx:value="smallIcon" />
+                                    <String fx:value="removeButton" />
+                                 </styleClass>
+                              </Button>
+                              <Button id="moveEpicUpButton" fx:id="moveEpicUpButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpicUp" prefWidth="25.0">
+                                 <styleClass>
+                                    <String fx:value="iconButton" />
+                                    <String fx:value="smallIcon" />
+                                    <String fx:value="moveUpButton" />
+                                 </styleClass>
+                              </Button>
+                              <Button id="moveEpicDownButton" fx:id="moveEpicDownButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpicDown" prefWidth="25.0">
+                                 <styleClass>
+                                    <String fx:value="iconButton" />
+                                    <String fx:value="smallIcon" />
+                                    <String fx:value="moveDownButton" />
+                                 </styleClass>
+                              </Button>
+                              <Button id="moveEpicButton" fx:id="moveEpicButton" mnemonicParsing="false" onMouseClicked="#handleMoveEpic" prefWidth="25.0">
+                                 <styleClass>
+                                    <String fx:value="iconButton" />
+                                    <String fx:value="smallIcon" />
+                                    <String fx:value="moveButton" />
+                                 </styleClass>
+                              </Button>
+                           </items>
+                        </ToolBar>
+                     </center>
+                     <right>
+                        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <items>
+                              <Button id="openOutlookButton" fx:id="outlookButton" mnemonicParsing="false" onMouseClicked="#handleOpenOutlook" prefWidth="25.0">
+                                 <styleClass>
+                                    <String fx:value="iconButton" />
+                                    <String fx:value="smallIcon" />
+                                    <String fx:value="outlookButton" />
+                                 </styleClass>
+                              </Button>
+                           </items>
+                        </ToolBar>
+                     </right>
+                  </BorderPane>
                </top>
             </BorderPane>
             <TabPane fx:id="selectedEpicPanel" minWidth="300.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">

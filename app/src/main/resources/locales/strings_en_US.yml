@@ -1200,4 +1200,174 @@ parts:
     title: "Message for epic move confirmation"
     value: "Epic was moved successfully."
     variants: {}
+- translation:
+    key: "errors.outlook.open"
+    title: "Error when unable to open outlook window"
+    value: "Unable to open outlook"
+    variants: {}
+- translation:
+    key: "outlook.description"
+    title: "Description field in outlook window"
+    value: "Outlook"
+    variants: {}
+- translation:
+    key: "outlook.buffer"
+    title: "Label for buffer text field"
+    value: "Buffer"
+    variants: {}
+- translation:
+    key: "outlook.estimate.title"
+    title: "Label for estimate hbox"
+    value: "Estimate"
+    variants: {}
+- translation:
+    key: "outlook.estimate.points"
+    title: "Label for points"
+    value: "points"
+    variants: {}
+- translation:
+    key: "outlook.buffer.title"
+    title: "Title for buffer field"
+    value: "Estimate with Buffer"
+    variants: {}
+- translation:
+    key: "outlook.buffer.points"
+    title: "Label for points in buffer hbox"
+    value: "points"
+    variants: {}
+- translation:
+    key: "outlook.table.outlook"
+    title: "Outlook column header"
+    value: "Outlook"
+    variants: {}
+- translation:
+    key: "outlook.table.points"
+    title: "Points per sprint header label"
+    value: "Points per Sprint"
+    variants: {}
+- translation:
+    key: "outlook.table.sprints"
+    title: "Sprints column header"
+    value: "Sprints"
+    variants: {}
+- translation:
+    key: "outlook.table.weeks"
+    title: "Weeks column header"
+    value: "Weeks"
+    variants: {}
+- translation:
+    key: "outlook.table.oPlusThree"
+    title: "Label for O plus three row"
+    value: "O + 3"
+    variants: {}
+- translation:
+    key: "outlook.table.oPlusTwo"
+    title: "Label for O plus two row"
+    value: "O + 2"
+    variants: {}
+- translation:
+    key: "outlook.table.oPlusOne"
+    title: "Label for o plus one row"
+    value: "O + 1"
+    variants: {}
+- translation:
+    key: "outlook.table.o"
+    title: "Label for o row"
+    value: "O"
+    variants: {}
+- translation:
+    key: "outlook.table.oMinusOne"
+    title: "Label for O minus one row"
+    value: "O - 1"
+    variants: {}
+- translation:
+    key: "outlook.table.oMinusTwo"
+    title: "Label for o minus two row"
+    value: "O - 2"
+    variants: {}
+- translation:
+    key: "outlook.table.oMinusThree"
+    title: "Label for o minus three label"
+    value: "O - 3"
+    variants: {}
+- translation:
+    key: "outlook.pointsPerSprint"
+    title: "Label for points per sprint text field"
+    value: "Points per Sprint"
+    variants: {}
+- translation:
+    key: "outlook.pastSprints.title"
+    title: "Label for past sprints table"
+    value: "Past Sprints"
+    variants: {}
+- translation:
+    key: "outlook.pastSprints.name"
+    title: "Label for past sprints name column"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "outlook.pastSprints.points"
+    title: "Label for past sprints points column"
+    value: "Completed Points"
+    variants: {}
+- translation:
+    key: "outlook.current"
+    title: "Label for current outlook"
+    value: "Outlook"
+    variants: {}
+- translation:
+    key: "preferences.estimates.title"
+    title: "Tab title for estimates settings tab"
+    value: "Estimates"
+    variants: {}
+- translation:
+    key: "preferences.estimates.referenceSprints.title"
+    title: "Title for reference sprints preferences"
+    value: "Reference Sprints"
+    variants: {}
+- translation:
+    key: "preferences.estimates.referenceSprints.description"
+    title: "Description for reference sprints"
+    value: "Please provide sprint data for default delivery velocity estimates"
+    variants: {}
+- translation:
+    key: "preferences.estimates.referenceSprints.table.name"
+    title: "Reference sprints name column label"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "preferences.estimates.referenceSprints.table.completedPoints"
+    title: "Label for reference sprints completed points column"
+    value: "Completed Points"
+    variants: {}
+- translation:
+    key: "preferences.estimates.buffer.title"
+    title: "Estimate buffer preference title"
+    value: "Estimate Buffer"
+    variants: {}
+- translation:
+    key: "preferences.estimates.buffer.description"
+    title: "Description of estimate buffer setting"
+    value: "This is the default estimate buffer to apply to project outlook"
+    variants: {}
+- translation:
+    key: "actions.apply"
+    title: "Generic apply action"
+    value: "Apply"
+    variants: {}
+- translation:
+    key: "outlook.averageDelivery"
+    title: "Label for average delivery "
+    value: "Average Delivery"
+    variants: {}
+- translation:
+    key: "outlook.completed.title"
+    title: "Label for completed points"
+    value: "Completed"
+    variants: {}
+- translation:
+    key: "outlook.completed.points"
+    title: "label for completed points"
+    value: "points"
+    variants: {}
 sourceLanguage: "en"

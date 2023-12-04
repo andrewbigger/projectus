@@ -1172,6 +1172,52 @@ public class MainController implements Initializable {
     }
     
     /**
+     * Shows manage stories window.
+     */
+    @FXML
+    private void handleOpenOutlook() {
+        try {
+            ObservableList<Epic> items = epicsTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            FXMLLoader loader = StandardWindow.load(
+                    this,
+                    bundle,
+                    "/fxml/Outlook.fxml"
+            );
+            
+            Parent outlookPane = (Parent) loader.load();
+            
+            OutlookController controller = (OutlookController) loader
+                .getController();
+            
+            controller.setPreferences(currentDocument.getPreferences());
+            controller.setEpic(items.get(0));
+
+            Stage stage = StandardWindow.setup(
+                    outlookPane,
+                    currentEpic.getName(),
+                    "/fxml/Application.css",
+                    StageStyle.UTILITY
+            );
+            
+            openWindows.add(stage);
+            stage.showAndWait();
+        } catch (Exception e) {
+             ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.outlook.open"),
+                    e
+            );
+        }
+    }
+    
+    /**
      * Handler for epic selection.
      * 
      * When triggered, the selection is checked to see if an epic has been

@@ -138,6 +138,141 @@
                   </VBox>
                </content>
             </Tab>
+            <Tab text="%preferences.estimates.title">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="%preferences.estimates.referenceSprints.title">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" />
+                           </padding>
+                        </Label>
+                        <Label text="%preferences.estimates.referenceSprints.description">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin></Label>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="%preferences.estimates.referenceSprints.table.name" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets right="3.0" />
+                                 </GridPane.margin>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label text="%preferences.estimates.referenceSprints.table.completedPoints" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets right="3.0" />
+                                 </GridPane.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <TextField fx:id="refSprintOneNameTextField" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets right="3.0" />
+                                 </GridPane.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <TextField fx:id="refSprintOneCompletedPointsTextField" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets left="3.0" />
+                                 </GridPane.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                                 <children>
+                                    <TextField fx:id="refSprintTwoNameTextField" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets right="3.0" />
+                                 </GridPane.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <TextField fx:id="refSprintTwoCompletedPointsTextField" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets left="3.0" />
+                                 </GridPane.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                                 <children>
+                                    <TextField fx:id="refSprintThreeNameTextField" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets right="3.0" />
+                                 </GridPane.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <TextField fx:id="refSprintThreeCompletedPointsTextField" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets left="3.0" />
+                                 </GridPane.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
+                                 <children>
+                                    <TextField fx:id="refSprintFourNameTextField" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets right="3.0" />
+                                 </GridPane.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <TextField fx:id="refSprintFourCompletedPointsTextField" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets left="3.0" />
+                                 </GridPane.margin>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </GridPane>
+                        <Label text="%preferences.estimates.buffer.title">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" />
+                           </padding>
+                        </Label>
+                        <Label text="%preferences.estimates.buffer.description">
+                           <VBox.margin>
+                              <Insets bottom="3.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="estimateBufferTextField" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
    </center>

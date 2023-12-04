@@ -3,6 +3,7 @@ package com.biggerconcept.projectus;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Preferences;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
+import com.biggerconcept.projectus.domain.Sprint;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -125,6 +126,60 @@ public class PreferencesController implements Initializable {
     public Button savePreferencesButton;
     
     /**
+     * Reference sprint 1 name text field
+     */
+    @FXML
+    public TextField refSprintOneNameTextField;
+    
+    /**
+     * Reference sprint 1 points text field
+     */
+    @FXML
+    public TextField refSprintOneCompletedPointsTextField;
+    
+    /**
+     * Reference sprint 2 name text field
+     */
+    @FXML
+    public TextField refSprintTwoNameTextField;
+    
+    /**
+     * Reference sprint 2 points text field
+     */
+    @FXML
+    public TextField refSprintTwoCompletedPointsTextField;
+    
+    /**
+     * Reference sprint 3 name text field
+     */
+    @FXML
+    public TextField refSprintThreeNameTextField;
+    
+    /**
+     * Reference sprint 3 points text field
+     */
+    @FXML
+    public TextField refSprintThreeCompletedPointsTextField;
+    
+    /**
+     * Reference sprint 4 name text field
+     */
+    @FXML
+    public TextField refSprintFourNameTextField;
+    
+    /**
+     * Reference sprint 4 points text field
+     */
+    @FXML
+    public TextField refSprintFourCompletedPointsTextField;
+    
+    /**
+     * Estimate buffer setting text field
+     */
+    @FXML
+    public TextField estimateBufferTextField;
+    
+    /**
      * Returns the preference window stage.
      * 
      * The pref window stage is the window that the save button control is
@@ -164,6 +219,33 @@ public class PreferencesController implements Initializable {
         sprintSizeTextField.setText(
                 String.valueOf(prefs.getSprintLength())
         );
+        refSprintOneNameTextField.setText(
+                prefs.getRefSprintOne().getName()
+        );
+        refSprintOneCompletedPointsTextField.setText(
+                String.valueOf(prefs.getRefSprintOne().getCompletedPoints())
+        );
+        refSprintTwoNameTextField.setText(
+                prefs.getRefSprintTwo().getName()
+        );
+        refSprintTwoCompletedPointsTextField.setText(
+                String.valueOf(prefs.getRefSprintTwo().getCompletedPoints())
+        );
+        refSprintThreeNameTextField.setText(
+                prefs.getRefSprintThree().getName()
+        );
+        refSprintThreeCompletedPointsTextField.setText(
+                String.valueOf(prefs.getRefSprintThree().getCompletedPoints())
+        );
+        refSprintFourNameTextField.setText(
+                prefs.getRefSprintFour().getName()
+        );
+        refSprintFourCompletedPointsTextField.setText(
+                String.valueOf(prefs.getRefSprintFour().getCompletedPoints())
+        );
+        estimateBufferTextField.setText(
+                String.valueOf(prefs.getEstimateBuffer())
+        );
     }
     
     /**
@@ -181,6 +263,43 @@ public class PreferencesController implements Initializable {
         p.setLargeSize(largeSizeTextField.getText());
         p.setExtraLargeSize(extraLargeSizeTextField.getText());
         p.setSprintLength(sprintSizeTextField.getText());
+        p.setRefSprintOne(
+                new Sprint(
+                        refSprintOneNameTextField.getText(),
+                        Integer.valueOf(
+                                refSprintOneCompletedPointsTextField.getText()
+                        )
+                )
+        );
+        
+        p.setRefSprintTwo(
+                new Sprint(
+                        refSprintTwoNameTextField.getText(),
+                        Integer.valueOf(
+                                refSprintTwoCompletedPointsTextField.getText()
+                        )
+                )
+        );
+        
+        p.setRefSprintThree(
+                new Sprint(
+                        refSprintThreeNameTextField.getText(),
+                        Integer.valueOf(
+                                refSprintThreeCompletedPointsTextField.getText()
+                        )
+                )
+        );
+        
+        p.setRefSprintFour(
+                new Sprint(
+                        refSprintFourNameTextField.getText(),
+                        Integer.valueOf(
+                                refSprintFourCompletedPointsTextField.getText()
+                        )
+                )
+        );
+        
+        p.setEstimateBuffer(Integer.valueOf(estimateBufferTextField.getText()));
         
         return p;
     }

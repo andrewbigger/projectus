@@ -28,12 +28,28 @@
   -fx-background-image: url('../icons/EditIcon.png');
 }
 
+.outlookButton {
+  -fx-background-image: url('../icons/OutlookIcon.png');
+}
+
 .moveButton {
   -fx-background-image: url('../icons/MoveIcon.png')
 }
 
 .definedProgress > .bar {
   -fx-background-color: #FFBB10;
+}
+
+.bg-red {
+  -fx-background-color:  #f5d5d8;
+}
+
+.bg-amber {
+  -fx-background-color:  #ffeedb;
+}
+
+.bg-green {
+  -fx-background-color:  #d1e8df;
 }
 
 #openFileButton {
