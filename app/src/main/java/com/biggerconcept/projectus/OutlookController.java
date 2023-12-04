@@ -74,122 +74,247 @@ public class OutlookController implements Initializable {
         mapOutlookToWindow();
     }
 
+    /**
+     * Epic name label
+     */
     @FXML
     private Label nameLabel;
     
+    /**
+     * Buffer points text field
+     */
     @FXML
     private TextField bufferTextBox;
     
+    /**
+     * Estimate value label
+     */
     @FXML
     private Label estimateValueLabel;
     
+    /**
+     * Estimate buffer value
+     */
     @FXML
     private Label estimateBufferValueLabel;
     
+    /**
+     * O + 3 points label
+     */
     @FXML
     private Label oPlusThreePointsLabel;
-            
+         
+    /**
+     * O + 3 sprints label
+     */
     @FXML
     private Label oPlusThreeSprintsLabel;
-            
+         
+    /**
+     * O + 3 weeks label
+     */
     @FXML
     private Label oPlusThreeWeeksLabel;
-            
+    
+    /**
+     * O + 2 points label
+     */
     @FXML
     private Label oPlusTwoPointsLabel;
     
+    /**
+     * O + 2 sprints label
+     */
     @FXML
     private Label oPlusTwoSprintsLabel;
 
+    /**
+     * O + 2 weeks label
+     */
     @FXML
     private Label oPlusTwoWeeksLabel;
             
+    /**
+     * O + 1 points label
+     */
     @FXML
     private Label oPlusOnePointsLabel;
-            
+          
+    /**
+     * O + 1 sprints label
+     */
     @FXML
     private Label oPlusOneSprintsLabel;
-            
+          
+    /**
+     * O + 3 weeks label
+     */
     @FXML
     private Label oPlusOneWeeksLabel;
             
+    /**
+     * O points label
+     */
     @FXML
     private Label oPointsLabel;
-            
+    
+    /**
+     * O sprints label
+     */
     @FXML
     private Label oSprintsLabel;
-            
+          
+    /**
+     * O weeks label
+     */
     @FXML
     private Label oWeeksLabel;
-            
+           
+    /**
+     * O - 1 points label
+     */
     @FXML
     private Label oMinusOnePointsLabel;
-            
+         
+    /**
+     * O - 1 sprints label
+     */
     @FXML
     private Label oMinusOneSprintsLabel;
             
+    /**
+     * O - 1 weeks label
+     */
     @FXML
     private Label oMinusOneWeeksLabel;
             
+    /**
+     * O - 2 points label
+     */
     @FXML
     private Label oMinusTwoPointsLabel;
             
+    /**
+     * O - 2 sprints label
+     */
     @FXML
     private Label oMinusTwoSprintsLabel;
             
+    /**
+     * O - 2 weeks label
+     */
     @FXML
     private Label oMinusTwoWeeksLabel;
             
+    /**
+     * O - 3 points label
+     */
     @FXML
     private Label oMinusThreePointsLabel;
-            
+         
+    /**
+     * O - 3 sprints label
+     */
     @FXML
     private Label oMinusThreeSprintsLabel;
            
+    /**
+     * O - 3 weeks label
+     */
     @FXML
     private Label oMinusThreeWeeksLabel;
     
+    /**
+     * Points per sprint field
+     */
     @FXML
     private TextField pointsPerSprintTextField;
     
+    /**
+     * Reference sprint one name field
+     */
     @FXML
     private TextField pastSprintOneNameTextField;
     
+    /**
+     * Reference sprint one points field
+     */
     @FXML
     private TextField pastSprintOnePointsTextField;
     
+    /**
+     * Reference sprint two name field
+     */
     @FXML
     private TextField pastSprintTwoNameTextField;
     
+    /**
+     * Reference sprint two points field
+     */
     @FXML
     private TextField pastSprintTwoPointsTextField;
     
+    /**
+     * Reference sprint three name field
+     */
     @FXML
     private TextField pastSprintThreeNameTextField;
     
+    /**
+     * Reference sprint three points field
+     */
     @FXML
     private TextField pastSprintThreePointsTextField;
     
+    /**
+     * Reference sprint four name field
+     */
     @FXML
     private TextField pastSprintFourNameTextField;
     
+    /**
+     * Reference sprint four points field
+     */
     @FXML
     private TextField pastSprintFourPointsTextField;
     
+    /**
+     * Average points label
+     */
     @FXML
     private Label averagePointsLabel;
     
+    /**
+     * Completed points value label
+     */
     @FXML
     private Label completedPointsLabel;
     
+    /**
+     * Exclude completed points checkbox
+     */
     @FXML
     private CheckBox excludeCompletedPointsCheckbox;
 
+    /**
+     * Returns pointer to the outlook window.
+     * 
+     * @return window stage
+     */
     private Stage window() {
         Stage window = (Stage) nameLabel.getScene().getWindow();
         return window;
     }
     
+    /**
+     * Callback to handle change
+     * 
+     * This will trigger a mapping call to map the window
+     * to the outlook.
+     * 
+     * The outlook is then recalculated and presented back
+     * into the window.
+     */
     @FXML
     private void handleChange() {
         mapWindowToOutlook();
@@ -202,7 +327,9 @@ public class OutlookController implements Initializable {
         mapOutlookToWindow();
     }
     
-    
+    /**
+     * Maps outlook to window controls
+     */
     private void mapOutlookToWindow() {
         nameLabel.setText(currentEpic.getName());
 
@@ -238,6 +365,9 @@ public class OutlookController implements Initializable {
         );
     }
     
+    /**
+     * Maps window controls back to outlook.
+     */
     private void mapWindowToOutlook() {
         currentOutlook.setBuffer(
                 Integer.valueOf(bufferTextBox.getText())
@@ -285,6 +415,9 @@ public class OutlookController implements Initializable {
         
     }
     
+    /**
+     * Maps sprint data to the sprint panel
+     */
     private void mapSprintsToPanel() {
         Sprint sprintOne = currentOutlook.getSprintOne();
         Sprint sprintTwo = currentOutlook.getSprintTwo();
@@ -312,6 +445,9 @@ public class OutlookController implements Initializable {
         );
     }
     
+    /**
+     * Maps projection data to outlook table.
+     */
     private void mapOutlookToTable() {
         oPlusThreePointsLabel.setText(
                 String.valueOf(currentOutlook.getOPlusThree().getPointsPerSprint())
@@ -398,6 +534,11 @@ public class OutlookController implements Initializable {
         );
     }
     
+    /**
+     * Determines display class for points field.
+     * 
+     * @return css class for points field
+     */
     private String pointsClass() {
         Integer pointsPerSprint = Integer.valueOf(
                 pointsPerSprintTextField.getText()
@@ -412,10 +553,24 @@ public class OutlookController implements Initializable {
         return "bg-amber";
     }
     
+    /**
+     * Determines whether points is optimistic to the outlook.
+     * 
+     * @param pointsPerSprint entered number of points per sprint.
+     * @param outlook current epic outlook
+     * @return whether the points are optimistic
+     */
     private boolean isOptimistic(Integer pointsPerSprint, Outlook outlook) {
         return pointsPerSprint > outlook.getEstimatePoints();
     }
     
+    /**
+     * Determines whether points is pessimistic to the outlook.
+     * 
+     * @param pointsPerSprint entered number of points per sprint.
+     * @param outlook current epic outlook
+     * @return whether the points are pessimistic
+     */
     private boolean isPessimistic(Integer pointsPerSprint, Outlook outlook) {
         return pointsPerSprint < (
                 outlook.getEstimateWithBuffer() - (outlook.deviation() * 2)

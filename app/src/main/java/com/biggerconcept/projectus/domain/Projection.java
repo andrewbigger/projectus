@@ -11,6 +11,9 @@ public class Projection {
      */
     private Preferences prefs;
     
+    /**
+     * Number of deviations to adjust the estimate by
+     */
     private Integer adjustment;
     
     /**
@@ -18,8 +21,19 @@ public class Projection {
      */
     private Integer totalPoints;
     
+    /**
+     * Configured points per sprint.
+     */
     private Integer pointsPerSprint;
     
+    /**
+     * Constructor for projection
+     * 
+     * @param totalPoints total number of points in epic
+     * @param pointsPerSprint points per sprint
+     * @param adjustment number of deviations to adjust estimates
+     * @param prefs document preferences
+     */
     public Projection(
             Integer totalPoints,
             Integer pointsPerSprint,
@@ -42,23 +56,53 @@ public class Projection {
         this.prefs = null;
     }
     
+    /**
+     * Getter for total number of points.
+     * 
+     * @return total number of points.
+     */
     public Integer getTotalPoints() {
         return totalPoints;
     }
     
+    /**
+     * Getter for points per sprint.
+     * 
+     * @return points per sprint
+     */
     public Integer getPointsPerSprint() {
-        return adjust(pointsPerSprint, adjustment);
+        return adjust(pointsPerSprint);
     }
     
+    /**
+     * Getter for number of sprints to complete epic.
+     * 
+     * @return estimate of number of sprints
+     */
     public Integer getSprints() {    
         return getTotalPoints() / getPointsPerSprint();
     }
     
+    /**
+     * Getter for number of weeks.
+     * 
+     * @return estimate for number of weeks.
+     */
     public Integer getWeeks() {
         return getSprints() * prefs.getSprintLength();
     }
 
-    private Integer adjust(Integer points, Integer adjustment) {
+    /**
+     * Adjusts number of points based on projection adjustment.
+     * 
+     * For each deviation, a deviation of points is added or
+     * removed depending on whether the adjustment is positive or
+     * negative.
+     * 
+     * @param points points to adjust
+     * @return adjusted projected estimate
+     */
+    private Integer adjust(Integer points) {
         boolean positive = true;
         int rounds = adjustment;
         
@@ -67,21 +111,20 @@ public class Projection {
             rounds = -adjustment;
         }
         
-        int adj = points;
-        int deviation = points / 4;
+        int adjustedPoints = points;
+        int deviation = adjustedPoints / Outlook.DEVIATION_SLICE;
         
         for (int i = 0; i < rounds; i++) {
-
             if (positive == true) {
-                adj += deviation;
+                adjustedPoints += deviation;
             } else {
-                adj -= deviation;
+                adjustedPoints -= deviation;
             }
             
-            deviation = adj / 4;
+            deviation = adjustedPoints / Outlook.DEVIATION_SLICE;
         }
         
-        return adj;
+        return adjustedPoints;
     }
 
 }

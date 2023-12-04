@@ -1,6 +1,7 @@
 package com.biggerconcept.projectus.domain;
 
 import com.biggerconcept.projectus.domain.Size.TaskSize;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.UUID;

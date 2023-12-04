@@ -8,51 +8,142 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author Andrew Bigger
  */
 public class Outlook {
-    private Epic selectedEpic;
+    /**
+     * Projection builder function.
+     */
+    interface ProjectionBuilder {
+        Projection build(int deviation);
+    }
+        
+    /**
+     * Deviation slice.
+     */
+    public static final int DEVIATION_SLICE = 4;
+    /**
+     * Pointer to parent epic.
+     */
+    private Epic parent;
+    
+    /**
+     * Document preferences.
+     */
     private Preferences prefs;
     
+    /**
+     * Buffer points to apply to estimates.
+     */
     private Integer buffer;
+    
+    /**
+     * Estimate points
+     */
     private Integer estimatePoints;
     
+    /**
+     * Reference sprint one
+     */
     private Sprint sprintOne;
+    
+    /**
+     * Reference sprint two
+     */
     private Sprint sprintTwo;
+    
+    /**
+     * Reference sprint three
+     */
     private Sprint sprintThree;
+    
+    /**
+     * Reference sprint four
+     */
     private Sprint sprintFour;
     
+    /**
+     * Projection three deviations more optimistic
+     * than the estimate.
+     */
     @JsonIgnore
     private Projection oPlusThree;
     
+    /**
+     * Projection two deviations more optimistic
+     * than the estimate.
+     */
     @JsonIgnore
     private Projection oPlusTwo;
     
+    /**
+     * Projection one deviation more optimistic
+     * than the estimate.
+     */
     @JsonIgnore
     private Projection oPlusOne;
     
+    /**
+     * Projection based on the estimate.
+     */
     @JsonIgnore
     private Projection o;
     
+    /**
+     * Projection one deviation more pessimistic
+     * than the estimate.
+     */
     @JsonIgnore
     private Projection oMinusOne;
     
+    /**
+     * Projection two deviations more pessimistic
+     * than the estimate.
+     */
     @JsonIgnore
     private Projection oMinusTwo;
     
+    /**
+     * Projection three deviations more pessimistic
+     * than the estimate.
+     */
     @JsonIgnore
     private Projection oMinusThree;
     
+    /**
+     * Average points delivered in reference sprints.
+     */
     private Integer averagePoints;
+    
+    /**
+     * Points per sprint
+     */
     private Integer pointsPerSprint;
     
+    /**
+     * Full constructor.
+     * 
+     * @param e parent epic
+     * @param p document preferences
+     */
     public Outlook(Epic e, Preferences p) {
-        selectedEpic = e;
+        parent = e;
         prefs = p;
     }
     
+    /**
+     * Default constructor
+     */
     public Outlook() {
-        selectedEpic = null;
+        parent = null;
         prefs = null;
     }
     
+    /**
+     * Returns buffer points.
+     * 
+     * If the buffer is not set, then the default
+     * buffer is retrieved from the preferences.
+     * 
+     * @return buffer points
+     */
     public Integer getBuffer() {
         if (buffer == null) {
             return prefs.getEstimateBuffer();
@@ -61,15 +152,34 @@ public class Outlook {
         return buffer;
     }
     
+    /**
+     * Returns estimate points.
+     * 
+     * @return estimate points
+     */
     public Integer getEstimatePoints() {
         return estimatePoints;
     }
     
+    /**
+     * Returns estimate with set buffer.
+     * 
+     * @return estimate with buffer
+     */
     @JsonIgnore
     public Integer getEstimateWithBuffer() {
         return getEstimatePoints() + getBuffer();
     }
     
+    /**
+     * Returns reference sprint one.
+     * 
+     * If reference sprint one is not set then
+     * the default reference sprint is retrieved from
+     * document preferences.
+     * 
+     * @return reference sprint
+     */
     public Sprint getSprintOne() {
         if (sprintOne == null) {
             return prefs.getRefSprintOne();
@@ -78,6 +188,15 @@ public class Outlook {
         return sprintOne;
     }
     
+    /**
+     * Returns reference sprint two.
+     * 
+     * If reference sprint two is not set then
+     * the default reference sprint is retrieved from
+     * document preferences.
+     * 
+     * @return reference sprint
+     */
     public Sprint getSprintTwo() {
         if (sprintTwo == null) {
             return prefs.getRefSprintTwo();
@@ -86,6 +205,15 @@ public class Outlook {
         return sprintTwo;
     }
     
+    /**
+     * Returns reference sprint three.
+     * 
+     * If reference sprint three is not set then
+     * the default reference sprint is retrieved from
+     * document preferences.
+     * 
+     * @return reference sprint
+     */
     public Sprint getSprintThree() {
         if (sprintThree == null) {
             return prefs.getRefSprintThree();
@@ -94,6 +222,15 @@ public class Outlook {
         return sprintThree;
     }
     
+    /**
+     * Returns reference sprint four.
+     * 
+     * If reference sprint four is not set then
+     * the default reference sprint is retrieved from
+     * document preferences.
+     * 
+     * @return reference sprint
+     */
     public Sprint getSprintFour() {
         if (sprintFour == null) {
             return prefs.getRefSprintFour();
@@ -102,6 +239,14 @@ public class Outlook {
         return sprintFour;
     }
     
+    /**
+     * Returns points per sprint.
+     * 
+     * If this is not set then the average points from
+     * the reference sprints is returned by default.
+     * 
+     * @return points per sprint
+     */
     public Integer getPointsPerSprint() {
         if (pointsPerSprint == null) {
             return getAveragePoints();
@@ -110,6 +255,13 @@ public class Outlook {
         return pointsPerSprint;
     }
     
+    /**
+     * Returns the average number of points delivered.
+     * 
+     * If this is not set, then zero will be returned.
+     * 
+     * @return average points
+     */
     public Integer getAveragePoints() {
         if (averagePoints == null) {
             return 0;
@@ -118,159 +270,290 @@ public class Outlook {
         return averagePoints;
     }
     
+    /**
+     * Returns projection three deviations more
+     * optimistic than the estimate.
+     * 
+     * @return projection
+     */
     @JsonIgnore
     public Projection getOPlusThree() {
         return oPlusThree;
     }
     
+    /**
+     * Returns projection two deviations more
+     * optimistic than the estimate.
+     * 
+     * @return projection
+     */
     @JsonIgnore
     public Projection getOPlusTwo() {
         return oPlusTwo;
     }
     
+    /**
+     * Returns projection one deviations more
+     * optimistic than the estimate.
+     * 
+     * @return projection
+     */
     @JsonIgnore
     public Projection getOPlusOne() {
         return oPlusOne;
     }
     
+    /**
+     * Returns projection based on estimate.
+     * 
+     * @return projection
+     */
     @JsonIgnore
     public Projection getO() {
         return o;
     }
     
+    /**
+     * Returns projection one deviation more
+     * pessimistic than the estimate.
+     * 
+     * @return projection
+     */
     @JsonIgnore
     public Projection getOMinusOne() {
         return oMinusOne;
     }
     
+    /**
+     * Returns projection two deviations more
+     * pessimistic than the estimate.
+     * 
+     * @return projection
+     */
     @JsonIgnore
     public Projection getOMinusTwo() {
         return oMinusTwo;
     }
     
+    /**
+     * Returns projection three deviations more
+     * pessimistic than the estimate.
+     * 
+     * @return projection
+     */
     @JsonIgnore
     public Projection getOMinusThree() {
         return oMinusThree;
     }
     
-    public Integer deviation() {
-        return getEstimateWithBuffer() / 4;
+    /**
+     * Default deviation.
+     * 
+     * This is includes the buffer.
+     * 
+     * @return deviation points
+     */
+    public int deviation() {
+        return deviation(true);
     }
     
-    public boolean isOptimistic(Integer estimate) {
-        return estimate > getEstimatePoints();
+    /**
+     * Returns number of points in a deviation.
+     * 
+     * The deviation is set as a quarter of the project size.
+     * 
+     * The buffer can be optionally included in the result.
+     * 
+     * @param inclBuffer whether or not to include the buffer
+     * 
+     * @return deviation points
+     */
+    public Integer deviation(boolean inclBuffer) {
+        if (inclBuffer) {
+            return getEstimateWithBuffer() / DEVIATION_SLICE;
+        }
+        
+        return getEstimatePoints() / DEVIATION_SLICE;
     }
     
-    public boolean isPessimistic(Integer estimate) {
-        return estimate < getEstimatePoints() - deviation();
-    }
-    
+    /**
+     * Setter for epic.
+     * 
+     * @param value epic value
+     */
     public void setEpic(Epic value) {
-        selectedEpic = value;
+        parent = value;
     }
     
+    /**
+     * Setter for preferences.
+     * 
+     * Preferences are necessary for point calculations.
+     * 
+     * @param value preferences to set
+     */
     public void setPrefs(Preferences value) {
         prefs = value;
     }
     
+    /**
+     * Setter for buffer.
+     * 
+     * @param value buffer to set
+     */
     public void setBuffer(Integer value) {
         buffer = value;
     }
     
+    /**
+     * Setter for reference sprint one.
+     * 
+     * @param value reference sprint
+     */
     public void setSprintOne(Sprint value) {
         sprintOne = value;
     }
     
+    /**
+     * Setter for reference sprint two.
+     * 
+     * @param value reference sprint
+     */
     public void setSprintTwo(Sprint value) {
         sprintTwo = value;
     }
     
+    /**
+     * Setter for reference sprint three.
+     * 
+     * @param value reference sprint
+     */
     public void setSprintThree(Sprint value) {
         sprintThree = value;
     }
     
+    /**
+     * Setter for reference sprint four.
+     * 
+     * @param value reference sprint
+     */
     public void setSprintFour(Sprint value) {
         sprintFour = value;
     }
     
+    /**
+     * Setter for points per sprint.
+     * 
+     * @param value points
+     */
     public void setPointsPerSprint(Integer value) {
         pointsPerSprint = value;
     }
     
+    /**
+     * Default calculate callback.
+     * 
+     * This will calculate the outlook including the completed
+     * task points.
+     */
     public void calculate() {
         calculate(false);
     }
-    
+     
+    /**
+     * Calculate callback.
+     * 
+     * This will calculate the outlook. You can optionally include
+     * completed task points.
+     * 
+     * This will:
+     * 
+     * - Calculate the total number of points
+     * - Calculate the average number of delivered points from reference sprints
+     * - Calculate projections
+     * 
+     * @param exclCompletedPoints whether to exclude completed task points.
+     */
     public void calculate(boolean exclCompletedPoints) {
+        calculateTotalPoints(exclCompletedPoints);
+        calculateAverageDeliveredPointsFromReferenceSprints();
+        calculateProjections();
+    }
+    
+    /**
+     * Calculates total number of points in the project.
+     * 
+     * This iterates over each task in the project and
+     * adds the task points based on document preferences.
+     * 
+     * If the exclCompletedPoints is passed, any task that is
+     * completed will be skipped in the calculation of points.
+     * 
+     * @param exclCompletedPoints whether to exclude completed tasks
+     */
+     private void calculateTotalPoints(boolean exclCompletedPoints) {
         estimatePoints = 0;
         
-        for (Task t : selectedEpic.getTasks()) {
+        for (Task t : parent.getTasks()) {
             if (t.isComplete() == true && exclCompletedPoints == true) {
                 continue;
             }
             
             estimatePoints += prefs.estimateFor(t.getSize());
         }
-        
-        averagePoints = sprintCompletedPoints() / 4;
-        
-        int estimate = getEstimateWithBuffer();
-        
-//        if (exclCompletedPoints == true) {
-//            estimate = getEstimatePoints();
-//        }
-        
-        oPlusThree = new Projection(
-                getEstimateWithBuffer(),
-                getPointsPerSprint(),
-                3,
-                prefs
-        );
-        
-        oPlusTwo = new Projection(
-                estimate,
-                getPointsPerSprint(),
-                2,
-                prefs
-        );
-        
-        oPlusOne = new Projection(
-                estimate,
-                getPointsPerSprint(),
-                1,
-                prefs
-        );
-        
-        o = new Projection(
-                estimate,
-                getPointsPerSprint(),
-                0,
-                prefs
-        );
-        
-        oMinusOne = new Projection(
-                estimate,
-                getPointsPerSprint(),
-                -1,
-                prefs
-        );
-        
-        oMinusTwo = new Projection(
-                estimate,
-                getPointsPerSprint(),
-                -2,
-                prefs
-        );
-        
-        oMinusThree = new Projection(
-                estimate,
-                getPointsPerSprint(),
-                -3,
-                prefs
-        );
     }
     
-    private Integer sprintCompletedPoints() {
+     /**
+      * Determines average number of points delivered in the reference
+      * sprints.
+      * 
+      * The average is stored on the averagePoints instance variable.
+      */
+    private void calculateAverageDeliveredPointsFromReferenceSprints() {
+        averagePoints = sprintCompletedPoints() / 4;
+    }
+        
+    /**
+     * Calculates projections.
+     * 
+     * First we set up a projection builder function.
+     * 
+     * Then a projection is constructed for the estimated scenario.
+     * 
+     * Projections are constructed for three deviations in the
+     * optimistic direction, and three deviations in the pessimistic
+     * direction.
+     */
+    private void calculateProjections() {
+        int estimate = getEstimateWithBuffer();
+        
+        ProjectionBuilder builder = (deviation) -> {
+            return new Projection(
+                    estimate,
+                    getPointsPerSprint(),
+                    deviation,
+                    prefs
+            );
+        };
+        
+        o = builder.build(0);
+        
+        oPlusThree = builder.build(3);
+        oPlusTwo = builder.build(2);
+        oPlusOne = builder.build(1);
+        
+        oMinusOne = builder.build(-1);
+        oMinusTwo = builder.build(-2);
+        oMinusThree = builder.build(-3);
+    }
+    
+    /**
+     * Calculates total number of completed points for 
+     * the reference sprints.
+     * 
+     * @return total number of completed points
+     */
+    private int sprintCompletedPoints() {
         return getSprintOne().getCompletedPoints() + 
                 getSprintTwo().getCompletedPoints() + 
                 getSprintThree().getCompletedPoints() +
