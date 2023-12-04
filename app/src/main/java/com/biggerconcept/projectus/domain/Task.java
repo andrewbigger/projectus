@@ -252,4 +252,14 @@ public class Task {
     public void setStatus(TaskStatus value) {
         status = value;
     }
+    
+    /**
+     * Returns true if task is complete.
+     * 
+     * @return task complete
+     */
+    @JsonIgnore
+    public boolean isComplete() {
+        return status == TaskStatus.COMPLETE;
+    }
 }

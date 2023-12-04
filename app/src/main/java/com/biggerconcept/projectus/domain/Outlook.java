@@ -198,13 +198,27 @@ public class Outlook {
     }
     
     public void calculate() {
+        calculate(false);
+    }
+    
+    public void calculate(boolean exclCompletedPoints) {
         estimatePoints = 0;
         
         for (Task t : selectedEpic.getTasks()) {
+            if (t.isComplete() == true && exclCompletedPoints == true) {
+                continue;
+            }
+            
             estimatePoints += prefs.estimateFor(t.getSize());
         }
         
-        averagePoints = completedPoints() / 4;
+        averagePoints = sprintCompletedPoints() / 4;
+        
+        int estimate = getEstimateWithBuffer();
+        
+//        if (exclCompletedPoints == true) {
+//            estimate = getEstimatePoints();
+//        }
         
         oPlusThree = new Projection(
                 getEstimateWithBuffer(),
@@ -214,49 +228,49 @@ public class Outlook {
         );
         
         oPlusTwo = new Projection(
-                getEstimateWithBuffer(),
+                estimate,
                 getPointsPerSprint(),
                 2,
                 prefs
         );
         
         oPlusOne = new Projection(
-                getEstimateWithBuffer(),
+                estimate,
                 getPointsPerSprint(),
                 1,
                 prefs
         );
         
         o = new Projection(
-                getEstimateWithBuffer(),
+                estimate,
                 getPointsPerSprint(),
                 0,
                 prefs
         );
         
         oMinusOne = new Projection(
-                getEstimateWithBuffer(),
+                estimate,
                 getPointsPerSprint(),
                 -1,
                 prefs
         );
         
         oMinusTwo = new Projection(
-                getEstimateWithBuffer(),
+                estimate,
                 getPointsPerSprint(),
                 -2,
                 prefs
         );
         
         oMinusThree = new Projection(
-                getEstimateWithBuffer(),
+                estimate,
                 getPointsPerSprint(),
                 -3,
                 prefs
         );
     }
     
-    private Integer completedPoints() {
+    private Integer sprintCompletedPoints() {
         return getSprintOne().getCompletedPoints() + 
                 getSprintTwo().getCompletedPoints() + 
                 getSprintThree().getCompletedPoints() +

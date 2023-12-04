@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -424,6 +425,13 @@
                </children>
             </VBox>
          </left>
+         <bottom>
+            <VBox prefHeight="22.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <CheckBox fx:id="excludeCompletedPointsCheckbox" mnemonicParsing="false" onAction="#handleChange" text="Exclude Completed Points" />
+               </children>
+            </VBox>
+         </bottom>
       </BorderPane>
    </left>
    <bottom>
