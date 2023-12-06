@@ -1117,9 +1117,6 @@ parts:
     value: "of"
     variants: {}
 - translation:
-    key: "poroject.status.progress.title"
-    variants: {}
-- translation:
     key: "project.status.sprint.progress.title"
     title: "Title for status progress label"
     value: "Progress"
@@ -1394,5 +1391,121 @@ parts:
     key: "project.commitment.qualifier"
     title: "Qualifier string for commitment"
     value: "points committed of"
+    variants: {}
+- translation:
+    key: "toolbar.moveEpic.tooltip"
+    title: "Tooltip for move epic button"
+    value: "Move epic to another project file"
+    variants: {}
+- translation:
+    key: "toolbar.outlook.tooltip"
+    title: "Tooltip for outlook button"
+    value: "Show outlook report for the selected epic"
+    variants: {}
+- translation:
+    key: "epic.toolbar.moveTask.tooltip"
+    title: "Tooltip for move task button"
+    value: "Moves task into another epic"
+    variants: {}
+- translation:
+    key: "toolbar.storyManager.tooltip"
+    title: "Story manager button tooltip"
+    value: "Open user story manager"
+    variants: {}
+- translation:
+    key: "toolbar.riskManager.tooltip"
+    title: "Open risk manager button tooltip"
+    value: "Open risk manager"
+    variants: {}
+- translation:
+    key: "epic.tabs.scope.include.add.tooltip"
+    title: "Tooltip for add scope button"
+    value: "Add item to included scope"
+    variants: {}
+- translation:
+    key: "epic.tabs.scope.include.remove.tooltip"
+    title: "Tooltip for remove included scope button"
+    value: "Remove item from included scope"
+    variants: {}
+- translation:
+    key: "epic.tabs.scope.exclude.add.tooltip"
+    title: "Tooltip for add to excluded scope button"
+    value: "Add item to excluded scope"
+    variants: {}
+- translation:
+    key: "epic.tabs.scope.exclude.remove.tooltip"
+    title: "Tooltip for remove from excluded scope button"
+    value: "Remove item from excluded scope"
+    variants: {}
+- translation:
+    key: "epic.tabs.story.add.tooltip"
+    title: "Tooltip for add story button"
+    value: "Link a user story to this epic"
+    variants: {}
+- translation:
+    key: "epic.tabs.story.remove.tooltip"
+    title: "Tooltip for remove story button"
+    value: "Remove story link from this epic"
+    variants: {}
+- translation:
+    key: "epic.tabs.story.moveUp.tooltip"
+    title: "Tooltip for move story up button"
+    value: "Move selected story link up"
+    variants: {}
+- translation:
+    key: "epic.tabs.story.moveDown.tooltip"
+    title: "Move story link down button tooltip"
+    value: "Move selected story link down"
+    variants: {}
+- translation:
+    key: "epic.tabs.risks.add.tooltip"
+    title: "Tooltip for add risk button"
+    value: "Link risk to this epic"
+    variants: {}
+- translation:
+    key: "epic.tabs.risks.remove.tooltip"
+    title: "Remove risk link button tooltip"
+    value: "Remove selected risk from this epic"
+    variants: {}
+- translation:
+    key: "epic.tabs.risks.moveUp.tooltip"
+    title: "Tooltip for move risk up button"
+    value: "Moves selected risk up"
+    variants: {}
+- translation:
+    key: "epic.tabs.risks.moveDown.tooltip"
+    title: "Tooltip for move risk down button"
+    value: "Moves selected risk down"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.progress.summary.tooltip"
+    title: "Summary progress bar tooltip"
+    value: "Summaries"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.progress.scope.tooltip"
+    title: "Scope toolbar tooltip"
+    value: "Scope"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.progress.descriptions.tooltip"
+    title: "Descriptions toolbar tooltip"
+    value: "Descriptions"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.progress.sized.tooltip"
+    title: "Tooltip for sized progress"
+    value: "Number of tasks that have been given a size value"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.described.tooltip"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.progress.described.tooltip"
+    title: "Described progress bar tooltip"
+    value: "Number of tasks that have been given a description"
+    variants: {}
+- translation:
+    key: "epic.tabs.overview.progress"
     variants: {}
 sourceLanguage: "en"

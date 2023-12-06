@@ -608,7 +608,7 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                                  <children>
-                                    <Button minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleAddScope">
+                                    <Button fx:id="addInclScopeButton" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleAddScope">
                                        <HBox.margin>
                                           <Insets right="5.0" />
                                        </HBox.margin>
@@ -618,7 +618,7 @@
                                           <String fx:value="addButton" />
                                        </styleClass>
                                     </Button>
-                                    <Button minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleRemoveScope">
+                                    <Button fx:id="removeInclScopeButton" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleRemoveScope">
                                        <styleClass>
                                           <String fx:value="iconButton" />
                                           <String fx:value="smallIcon" />
@@ -638,7 +638,7 @@
                               </ListView>
                               <HBox prefHeight="28.0" prefWidth="623.0">
                                  <children>
-                                    <Button minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleAddExcludedScope">
+                                    <Button fx:id="addExclScopeButton" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleAddExcludedScope">
                                        <HBox.margin>
                                           <Insets right="5.0" />
                                        </HBox.margin>
@@ -648,7 +648,7 @@
                                           <String fx:value="addButton" />
                                        </styleClass>
                                     </Button>
-                                    <Button minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleRemoveExcludedScope">
+                                    <Button fx:id="removeExclScopeButton" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#handleRemoveExcludedScope">
                                        <styleClass>
                                           <String fx:value="iconButton" />
                                           <String fx:value="smallIcon" />

@@ -439,6 +439,108 @@ public class MainController implements Initializable {
     public VBox commitmentPanel;
     
     /**
+     * Story manager toolbar button
+     */
+    @FXML
+    public Button manageStoriesButton;
+    
+    /**
+     * Risk manager toolbar button
+     */
+    @FXML
+    public Button manageRisksButton;
+    
+    /**
+     * Move epic button
+     */
+    @FXML
+    public Button moveEpicButton;
+    
+    /**
+     * Move task button
+     */
+    @FXML
+    public Button moveTaskButton;
+    
+    /**
+     * Epic outlook button
+     */
+    @FXML
+    public Button outlookButton;
+    
+    /**
+     * Add included scope button
+     */
+    @FXML
+    public Button addInclScopeButton;
+    
+    /**
+     * Remove included scope button
+     */
+    @FXML
+    public Button removeInclScopeButton;
+    
+    /**
+     * Add excluded scope button
+     */
+    @FXML
+    public Button addExclScopeButton;
+    
+    /**
+     * Remove excluded scope button
+     */
+    @FXML
+    public Button removeExclScopeButton;
+    
+    /**
+     * Add story link button
+     */
+    @FXML
+    public Button addStoryLinkButton;
+    
+    /**
+     * Remove story link button
+     */
+    @FXML
+    public Button removeStoryLinkButton;
+    
+    /**
+     * Move story link up button
+     */
+    @FXML
+    public Button moveStoryUpButton;
+    
+    /**
+     * Move story link down button
+     */
+    @FXML
+    public Button moveStoryDownButton;
+    
+    /**
+     * Add risk link button
+     */
+    @FXML
+    public Button addRiskLinkButton;
+    
+    /**
+     * Remove risk link button
+     */
+    @FXML
+    public Button removeRiskLinkButton;
+    
+    /**
+     * Move risk link up button
+     */
+    @FXML
+    public Button moveRiskUpButton;
+    
+    /**
+     * Move risk link down button
+     */
+    @FXML
+    public Button moveRiskDownButton;
+    
+    /**
      * Initializes the main window.
      * 
      * @param url URL of main FXML
@@ -522,6 +624,18 @@ public class MainController implements Initializable {
         moveEpicDownButton.setTooltip(
                 new Tooltip(bundle.getString("toolbar.moveDown.tooltip"))
         );
+        manageStoriesButton.setTooltip(
+                new Tooltip(bundle.getString("toolbar.storyManager.tooltip"))
+        );
+        manageRisksButton.setTooltip(
+                new Tooltip(bundle.getString("toolbar.riskManager.tooltip"))
+        );
+        moveEpicButton.setTooltip(
+                new Tooltip(bundle.getString("toolbar.moveEpic.tooltip"))
+        );
+        outlookButton.setTooltip(
+                new Tooltip(bundle.getString("toolbar.outlook.tooltip"))
+        );
         addTaskButton.setTooltip(
                 new Tooltip(bundle.getString("epic.toolbar.add.tooltip"))
         );
@@ -536,6 +650,60 @@ public class MainController implements Initializable {
         );
         editTaskButton.setTooltip(
                 new Tooltip(bundle.getString("epic.toolbar.edit.tooltip"))
+        );
+        moveTaskButton.setTooltip(
+                new Tooltip(bundle.getString("epic.toolbar.moveTask.tooltip"))
+        );
+        addInclScopeButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.scope.include.add.tooltip"))
+        );
+        removeInclScopeButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.scope.include.remove.tooltip"))
+        );
+        addExclScopeButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.scope.exclude.add.tooltip"))
+        );
+        removeExclScopeButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.scope.exclude.remove.tooltip"))
+        );
+        addStoryLinkButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.story.add.tooltip"))
+        );
+        removeStoryLinkButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.story.remove.tooltip"))
+        );
+        moveStoryUpButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.story.moveUp.tooltip"))
+        );
+        moveStoryDownButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.story.moveDown.tooltip"))
+        );
+        addRiskLinkButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.risks.add.tooltip"))
+        );
+        removeRiskLinkButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.risks.remove.tooltip"))
+        );
+        moveRiskUpButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.risks.moveUp.tooltip"))
+        );
+        moveRiskDownButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.risks.moveDown.tooltip"))
+        );
+        definedSummaryProgressBar.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.overview.progress.summary.tooltip"))
+        );
+        definedScopeProgressBar.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.overview.progress.scope.tooltip"))
+        );
+        definedStatusProgressBar.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.overview.progress.descriptions.tooltip"))
+        );
+        sizedStatusProgressBar.setTooltip(
+                new Tooltip(bundle.getString("epic.tabs.overview.progress.sized.tooltip"))
+        );
+        describedStatusProgressBar.setTooltip(
+                new Tooltip("epic.tabs.overview.progress.described.tooltip")
         );
     }
     
