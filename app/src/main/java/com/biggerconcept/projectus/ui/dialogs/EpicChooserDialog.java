@@ -58,7 +58,7 @@ public class EpicChooserDialog {
      * 
      * @return chosen risk
      * 
-     * @throws NoChoiceMadeException 
+     * @throws NoChoiceMadeException when no choice is made
      */
     public Epic show(Stage stage) throws NoChoiceMadeException {
         List<Node> attributes = Arrays.asList(

@@ -14,17 +14,17 @@ public class Projection {
     /**
      * Number of deviations to adjust the estimate by
      */
-    private Integer adjustment;
+    private int adjustment;
     
     /**
      * Total number of totalPoints in projection.
      */
-    private Integer totalPoints;
+    private int totalPoints;
     
     /**
      * Configured points per sprint.
      */
-    private Integer pointsPerSprint;
+    private int pointsPerSprint;
     
     /**
      * Constructor for projection
@@ -35,9 +35,9 @@ public class Projection {
      * @param prefs document preferences
      */
     public Projection(
-            Integer totalPoints,
-            Integer pointsPerSprint,
-            Integer adjustment, 
+            int totalPoints,
+            int pointsPerSprint,
+            int adjustment, 
             Preferences prefs
     ) {
         this.totalPoints = totalPoints;
@@ -70,7 +70,7 @@ public class Projection {
      * 
      * @return total number of points.
      */
-    public Integer getTotalPoints() {
+    public int getTotalPoints() {
         return totalPoints;
     }
     
@@ -79,7 +79,7 @@ public class Projection {
      * 
      * @return points per sprint
      */
-    public Integer getPointsPerSprint() {
+    public int getPointsPerSprint() {
         return adjust(pointsPerSprint);
     }
     
@@ -88,7 +88,7 @@ public class Projection {
      * 
      * @return estimate of number of sprints
      */
-    public Integer getSprints() {    
+    public int getSprints() {    
         return getTotalPoints() / getPointsPerSprint();
     }
     
@@ -97,7 +97,7 @@ public class Projection {
      * 
      * @return estimate for number of weeks.
      */
-    public Integer getWeeks() {
+    public int getWeeks() {
         return getSprints() * prefs.getSprintLength();
     }
 
@@ -111,7 +111,7 @@ public class Projection {
      * @param points points to adjust
      * @return adjusted projected estimate
      */
-    private Integer adjust(Integer points) {
+    private int adjust(int points) {
         boolean positive = true;
         int rounds = adjustment;
         

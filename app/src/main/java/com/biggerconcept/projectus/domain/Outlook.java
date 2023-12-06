@@ -32,12 +32,12 @@ public class Outlook {
     /**
      * Buffer points to apply to estimates.
      */
-    private Integer buffer;
+    private int buffer;
     
     /**
      * Estimate points
      */
-    private Integer estimatePoints;
+    private int estimatePoints;
     
     /**
      * Reference sprint one
@@ -110,12 +110,12 @@ public class Outlook {
     /**
      * Average points delivered in reference sprints.
      */
-    private Integer averagePoints;
+    private int averagePoints;
     
     /**
      * Points per sprint
      */
-    private Integer pointsPerSprint;
+    private int pointsPerSprint;
     
     /**
      * Full constructor.
@@ -144,7 +144,7 @@ public class Outlook {
      * 
      * @return buffer points
      */
-    public Integer getBuffer() {
+    public int getBuffer() {
         if (buffer == null) {
             return prefs.getEstimateBuffer();
         }
@@ -157,7 +157,7 @@ public class Outlook {
      * 
      * @return estimate points
      */
-    public Integer getEstimatePoints() {
+    public int getEstimatePoints() {
         return estimatePoints;
     }
     
@@ -167,7 +167,7 @@ public class Outlook {
      * @return estimate with buffer
      */
     @JsonIgnore
-    public Integer getEstimateWithBuffer() {
+    public int getEstimateWithBuffer() {
         return getEstimatePoints() + getBuffer();
     }
     
@@ -247,7 +247,7 @@ public class Outlook {
      * 
      * @return points per sprint
      */
-    public Integer getPointsPerSprint() {
+    public int getPointsPerSprint() {
         if (pointsPerSprint == null || pointsPerSprint == 0) {
             return getAveragePoints();
         }
@@ -262,7 +262,7 @@ public class Outlook {
      * 
      * @return average points
      */
-    public Integer getAveragePoints() {
+    public int getAveragePoints() {
         if (averagePoints == null) {
             return 0;
         }
@@ -368,7 +368,7 @@ public class Outlook {
      * 
      * @return deviation points
      */
-    public Integer deviation(boolean inclBuffer) {
+    public int deviation(boolean inclBuffer) {
         if (inclBuffer) {
             return getEstimateWithBuffer() / DEVIATION_SLICE;
         }
@@ -401,7 +401,7 @@ public class Outlook {
      * 
      * @param value buffer to set
      */
-    public void setBuffer(Integer value) {
+    public void setBuffer(int value) {
         buffer = value;
     }
     
@@ -446,7 +446,7 @@ public class Outlook {
      * 
      * @param value points
      */
-    public void setPointsPerSprint(Integer value) {
+    public void setPointsPerSprint(int value) {
         pointsPerSprint = value;
     }
     

@@ -61,7 +61,7 @@ public class RiskChooserDialog {
      * 
      * @return chosen risk
      * 
-     * @throws NoChoiceMadeException 
+     * @throws NoChoiceMadeException when no choice is made
      */
     public Risk show(Stage stage) throws NoChoiceMadeException {
         List<Node> attributes = Arrays.asList(

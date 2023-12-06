@@ -13,7 +13,7 @@ public class Sprint {
    private String name;
     
    @JsonInclude(Include.NON_NULL)
-   private Integer completedPoints;
+   private int completedPoints;
    
    /**
     * Constructor for sprint.
@@ -21,7 +21,7 @@ public class Sprint {
     * @param name of sprint
     * @param completedPoints completed number of points
     */
-   public Sprint(String name, Integer completedPoints) {
+   public Sprint(String name, int completedPoints) {
        this.name = name;
        this.completedPoints = completedPoints;
    }
@@ -48,7 +48,7 @@ public class Sprint {
     * 
     * @return completed points
     */
-   public Integer getCompletedPoints() {
+   public int getCompletedPoints() {
        return completedPoints;
    }
    
@@ -66,7 +66,7 @@ public class Sprint {
     * 
     * @param value new completed points value
     */
-   public void setCompletedPoints(Integer value) {
+   public void setCompletedPoints(int value) {
        completedPoints = value;
    }
 }

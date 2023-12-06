@@ -119,7 +119,7 @@ public class Preferences {
     /**
      * Default estimate buffer
      */
-    private static final Integer DEFAULT_ESTIMATE_BUFFER = 10;
+    private static final int DEFAULT_ESTIMATE_BUFFER = 10;
     
     /**
      * Reference sprint one
@@ -149,7 +149,7 @@ public class Preferences {
      * Estimate buffer
      */
     @JsonInclude(Include.NON_NULL)
-    private Integer estimateBuffer;
+    private int estimateBuffer;
     
     /**
      * Builds a set of default preferences.
@@ -296,7 +296,7 @@ public class Preferences {
      * 
      * @return estimate buffer
      */
-    public Integer getEstimateBuffer() {
+    public int getEstimateBuffer() {
         if (estimateBuffer == null) {
             return DEFAULT_ESTIMATE_BUFFER;
         }
@@ -520,7 +520,7 @@ public class Preferences {
      * 
      * @param value new estimate buffer
      */
-    public void setEstimateBuffer(Integer value) {
+    public void setEstimateBuffer(int value) {
         estimateBuffer = value;
     }
 }
