@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -106,6 +107,7 @@ public class TasksTable {
     * @param view currentTasks table view
     */
    public void bind(TableView view) {
+       view.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
        StandardTable.bind(
                view,
                bundle.getString("epic.tasks.table.empty"),

@@ -5,6 +5,7 @@ import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Size.TaskSize;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.domain.Task.TaskStatus;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -38,9 +39,14 @@ public class TaskDialog {
     private final Epic parentEpic;
     
     /**
-     * Task currently being managed by the dialog.
+     * Tasks currently being managed by the dialog.
      */
-    private Task currentTask;
+    private List<Task> currentTasks;
+    
+    /**
+     * Visible task (when not in bulk)
+     */
+    private Task visibleTask;
     
     /**
      * Task name text field.
@@ -68,16 +74,31 @@ public class TaskDialog {
     private final TextArea acceptanceCriteriaField;
     
     /**
+     * Whether the edit is bulk.
+     */
+    private final boolean bulk;
+    
+    /**
      * Constructor for task dialog
      * 
      * @param rb application resource bundle
      * @param epic parent parentEpic of chosen task
      * @param task chosen task
      */
-    public TaskDialog(ResourceBundle rb, Epic epic, Task task) {
+    public TaskDialog(
+            ResourceBundle rb, 
+            Epic epic, 
+            List<Task> tasks, 
+            boolean bulk
+    ) {
         bundle = rb;
         parentEpic = epic;
-        currentTask = task;
+        currentTasks = tasks;
+        this.bulk = bulk;
+        
+        if (bulk == false) {
+            visibleTask = currentTasks.get(0);
+        }
         
         nameField = new TextField();
  
@@ -142,7 +163,7 @@ public class TaskDialog {
         
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == apply) {
-                applyToTask();
+                applyToTasks();
                 return null;
             } 
             
@@ -160,12 +181,14 @@ public class TaskDialog {
      * However, if the task does not exist, then the current task will be
      * added to that epic.
      */
-    private void addTaskToEpic() {
-        if (parentEpic.hasTask(currentTask)) {
-            return;
+    private void addTasksToEpic() {
+        for (Task currentTask : currentTasks) {
+            if (parentEpic.hasTask(currentTask)) {
+                return;
+            }
+
+            parentEpic.addTask(currentTask);
         }
-        
-        parentEpic.addTask(currentTask);
     }
     
     /**
@@ -176,20 +199,55 @@ public class TaskDialog {
      * Then the contents of the fields are retrieved from the dialog and applied
      * to the current task object.
      */
-    private void applyToTask() {
-        addTaskToEpic();
-
-        currentTask.setName(nameField.getText());
-        currentTask.setSize(
-                (TaskSize) sizeField.getSelectionModel().getSelectedItem()
-        );
+    private void applyToTasks() {
+        addTasksToEpic();
         
-        currentTask.setStatus(
-                (TaskStatus) statusField.getSelectionModel().getSelectedItem()
-        );
-
-        currentTask.setDescription(descriptionField.getText());
-        currentTask.setAcceptanceCriteria(acceptanceCriteriaField.getText());
+        for (Task currentTask : currentTasks) {
+            applyToTask(currentTask);
+        }   
+    }
+    
+    /**
+     * Applies form to given task.
+     * 
+     * This will retrieve values from the form and set them on
+     * the task.
+     * 
+     * The value will not be applied if it is empty.
+     * 
+     * @param currentTask task to apply changes to
+     */
+    private void applyToTask(Task currentTask) {
+        String name = nameField.getText();
+        TaskSize size = (TaskSize) sizeField
+                .getSelectionModel().getSelectedItem();
+        
+        TaskStatus status = (TaskStatus) statusField
+                .getSelectionModel().getSelectedItem();
+        
+        String description = descriptionField.getText();
+        String acceptanceCriteria = acceptanceCriteriaField.getText();
+        
+        
+        if (name.trim().isEmpty() == false) {
+            currentTask.setName(name);
+        }
+        
+        if (size != null) {
+            currentTask.setSize(size);
+        }
+        
+        if (status != null) {
+            currentTask.setStatus(status);
+        }
+        
+        if (description.trim().isEmpty() == false) {
+            currentTask.setDescription(description);
+        }
+        
+        if (acceptanceCriteria.trim().isEmpty() == false) {
+            currentTask.setAcceptanceCriteria(acceptanceCriteria);
+        }
     }
     
     /**
@@ -201,10 +259,16 @@ public class TaskDialog {
      * @return name attribute
      */
     private VBox nameAttribute() {        
-        return StandardDialog.attribute(
+        VBox name = StandardDialog.attribute(
                 new Label(bundle.getString("epic.tasks.dialogs.manage.name")),
                 nameField
         );
+        
+        if (bulk == true) {
+            name.setDisable(true);
+        }
+        
+        return name;
     }
     
     /**
@@ -291,7 +355,7 @@ public class TaskDialog {
      * dialog.
      * 
      * Button will be disabled if the parent epic does not include the
-     * task.
+     * task or if in bulk mode.
      * 
      * @return 
      */
@@ -299,13 +363,18 @@ public class TaskDialog {
         Button prevTaskBtn = new Button();
         
         prevTaskBtn.setText(bundle.getString("dialogs.nav.previous"));
-        prevTaskBtn.setOnAction((ActionEvent event) -> {
-            applyToTask();
-            currentTask = parentEpic.getPrevTask(currentTask);
-            mapTaskToDialog();
-        });
         
-        if (parentEpic.hasTask(currentTask) == false) {
+        if (bulk == false) {
+            prevTaskBtn.setOnAction((ActionEvent event) -> {
+                applyToTask(visibleTask);
+                visibleTask = parentEpic.getPrevTask(visibleTask);
+                mapTaskToDialog();
+            });
+
+            if (parentEpic.hasTask(visibleTask) == false) {
+                prevTaskBtn.setDisable(true);
+            }
+        } else {
             prevTaskBtn.setDisable(true);
         }
         
@@ -318,7 +387,7 @@ public class TaskDialog {
      * The next action will change the task to the next task in the dialog.
      * 
      * Button will be disabled if the parent epic does not include the
-     * task.
+     * task or if in bulk mode.
      * 
      * @return 
      */
@@ -326,28 +395,38 @@ public class TaskDialog {
         Button nextTaskBtn = new Button();
         
         nextTaskBtn.setText(bundle.getString("dialogs.nav.next"));
-        nextTaskBtn.setOnAction((ActionEvent event) -> {
-            applyToTask();
-            currentTask = parentEpic.getNextTask(currentTask);
-            mapTaskToDialog();
-        });
         
-        if (parentEpic.hasTask(currentTask) == false) {
+        if (bulk == false) {
+            Task currentTask = currentTasks.get(0);
+            nextTaskBtn.setOnAction((ActionEvent event) -> {
+                applyToTask(currentTask);
+                visibleTask = parentEpic.getNextTask(currentTask);
+                mapTaskToDialog();
+            });
+            
+            if (parentEpic.hasTask(visibleTask) == false) {
+                nextTaskBtn.setDisable(true);
+            } 
+        } else {
             nextTaskBtn.setDisable(true);
-        } 
-        
+        }
+     
         return nextTaskBtn;
     }
         
     /**
      * Sets the value of controls to the value set in currentTask.
      */
-    private void mapTaskToDialog() {        
-        nameField.setText(currentTask.getName());
-        sizeField.getSelectionModel().select(currentTask.getSize());
-        statusField.getSelectionModel().select(currentTask.getStatus());
-        descriptionField.setText(currentTask.getDescription());
-        acceptanceCriteriaField.setText(currentTask.getAcceptanceCriteria());
+    private void mapTaskToDialog() {
+        if (bulk == false) {
+            Task currentTask = currentTasks.get(0);
+            
+            nameField.setText(currentTask.getName());
+            sizeField.getSelectionModel().select(currentTask.getSize());
+            statusField.getSelectionModel().select(currentTask.getStatus());
+            descriptionField.setText(currentTask.getDescription());
+            acceptanceCriteriaField.setText(currentTask.getAcceptanceCriteria());
+        }
     }
     
 }

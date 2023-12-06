@@ -1305,10 +1305,14 @@ public class MainController implements Initializable {
     @FXML
     private void handleAddTask() {
         try {
+            ArrayList<Task> empty = new ArrayList<>();
+            empty.add(new Task());
+            
             TaskDialog addTask = new TaskDialog(
                     bundle,
                     currentEpic,
-                    new Task()
+                    empty,
+                    false
             );
             
             addTask.show(window());
@@ -1464,7 +1468,8 @@ public class MainController implements Initializable {
             TaskDialog manageTask = new TaskDialog(
                     bundle,
                     currentEpic,
-                    items.get(0)
+                    items,
+                    items.size() > 1
             );
             
             manageTask.show(window());
