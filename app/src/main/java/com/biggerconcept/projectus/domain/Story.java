@@ -89,7 +89,7 @@ public class Story {
     /**
      * Getter for ID.
      * 
-     * @return 
+     * @return ID UUID
      */
     public UUID getId() {
         return id;
@@ -98,7 +98,7 @@ public class Story {
     /**
      * Getter for identifier.
      * 
-     * @return 
+     * @return identifier
      */
     public int getIdentifier() {
         return identifier;
@@ -134,7 +134,7 @@ public class Story {
     /**
      * Setter for parent document pointer.
      * 
-     * @param value 
+     * @param value parent document
      */
     public void setParent(Document value) {
         parent = value;
@@ -143,7 +143,7 @@ public class Story {
     /**
      * Setter for ID.
      * 
-     * @param value 
+     * @param value UUID to set as ID
      */
     public void setId(UUID value) {
         id = value;
@@ -152,7 +152,7 @@ public class Story {
     /**
      * String based setter for ID.
      * 
-     * @param value 
+     * @param value String to set as ID
      */
     public void setId(String value) {
         id = UUID.fromString(value);
@@ -161,7 +161,7 @@ public class Story {
     /**
      * Setter for identifier.
      * 
-     * @param value 
+     * @param value identifier
      */
     public void setIdentifier(int value) {
         identifier = value;

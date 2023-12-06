@@ -127,7 +127,7 @@ public class Epic {
      * 
      * @param story to add
      * 
-     * @throws com.biggerconcept.projectus.exceptions.DuplicateItemException
+     * @throws com.biggerconcept.projectus.exceptions.DuplicateItemException when item is duplicated
      */
     public void addStory(Story story) throws DuplicateItemException {
         if (hasStory(story) == true) {
@@ -167,7 +167,7 @@ public class Epic {
      * Adds risk to epic.
      * 
      * @param risk to add
-     * @throws com.biggerconcept.projectus.exceptions.DuplicateItemException
+     * @throws com.biggerconcept.projectus.exceptions.DuplicateItemException when item is duplicated
      */
     public void addRisk(Risk risk) throws DuplicateItemException {
         if (hasRisk(risk) == true) {
@@ -191,8 +191,8 @@ public class Epic {
      * 
      * If not found, null will be returned.
      * 
-     * @param id
-     * @return 
+     * @param id task UUID
+     * @return found task
      */
     public Task findTask(UUID id) {
         for (Task t : tasks) {
@@ -207,7 +207,7 @@ public class Epic {
     /**
      * Getter for ID.
      * 
-     * @return 
+     * @return epic UUID
      */
     public UUID getId() {
         return id;
@@ -216,7 +216,7 @@ public class Epic {
     /**
      * Getter for identifier.
      * 
-     * @return 
+     * @return epic identifier
      */
     public int getIdentifier() {
         return identifier;
@@ -271,8 +271,8 @@ public class Epic {
      * 
      * When at the start of the epic, the last task will be returned.
      * 
-     * @param t
-     * @return 
+     * @param t task in list
+     * @return task previous to given task
      */
     public Task getPrevTask(Task t) {
         ArrayList<Task> tasks = getTasks();
@@ -291,8 +291,8 @@ public class Epic {
      * 
      * When at end of the epic, the first task will be returned.
      * 
-     * @param t
-     * @return 
+     * @param t task in list
+     * @return next task in list
      */
     public Task getNextTask(Task t) {
         ArrayList<Task> tasks = getTasks();
@@ -327,7 +327,7 @@ public class Epic {
     /**
      * Returns document story models.
      * 
-     * @return 
+     * @return list of stories
      */
     @JsonIgnore
     public ArrayList<Story> getDocumentStories() {
@@ -359,7 +359,7 @@ public class Epic {
     /**
      * Return document risk models.
      * 
-     * @return 
+     * @return list of risks
      */
     @JsonIgnore
     public ArrayList<Risk> getDocumentRisks() {
@@ -369,7 +369,7 @@ public class Epic {
     /**
      * Setter for ID.
      * 
-     * @param value 
+     * @param value UUID to set as ID
      */
     public void setId(UUID value) {
         id = value;
@@ -378,7 +378,7 @@ public class Epic {
     /**
      * String based setter for ID.
      * 
-     * @param value 
+     * @param value epic id
      */
     public void setId(String value) {
         id = UUID.fromString(value);
@@ -387,7 +387,7 @@ public class Epic {
     /**
      * Setter for parent.
      * 
-     * @param value
+     * @param value document to set as parent
      */
     public void setParent(Document value) {
         parent = value;
@@ -396,7 +396,7 @@ public class Epic {
     /**
      * Setter for identifier.
      * 
-     * @param value
+     * @param value new identifier
      */
     public void setIdentifier(int value) {
         identifier = value;
@@ -656,7 +656,7 @@ public class Epic {
      * 
      * @param preferences document preferences
      * 
-     * @return 
+     * @return calculated complete point total
      */
     @JsonIgnore
     public int calculateCompletePointCount(Preferences preferences) {

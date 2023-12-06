@@ -122,7 +122,7 @@ public class Task {
     /**
      * Getter for ID.
      * 
-     * @return 
+     * @return ID as UUID
      */
     public UUID getId() {
         return id;
@@ -131,7 +131,7 @@ public class Task {
     /**
      * Getter for identifier.
      * 
-     * @return
+     * @return identifier
      */
     public int getIdentifier() {
         return identifier;
@@ -185,7 +185,7 @@ public class Task {
     /**
      * Setter for ID.
      * 
-     * @param value 
+     * @param value ID as UUID
      */
     public void setId(UUID value) {
         id = value;
@@ -194,7 +194,7 @@ public class Task {
     /**
      * String based setter for ID.
      * 
-     * @param value 
+     * @param value ID as String
      */
     public void setId(String value) {
         id = UUID.fromString(value);
@@ -203,7 +203,7 @@ public class Task {
     /**
      * Setter for identifier.
      * 
-     * @param value 
+     * @param value identifier to set
      */
     public void setIdentifier(int value) {
         identifier = value;

@@ -51,8 +51,8 @@ public class Date {
      * 
      * @param start date to start from
      * @param end date to end at
-     * @return
-     * @throws DateChronologyException 
+     * @return number of weeks between two dates
+     * @throws DateChronologyException when date is not in chronological order
      */
     public static long weeksBetween(LocalDate start, LocalDate end) 
             throws DateChronologyException {
@@ -72,8 +72,8 @@ public class Date {
      * 
      * @param startEpoch start timestamp
      * @param endEpoch end timestamp
-     * @return
-     * @throws DateChronologyException 
+     * @return number of weeks between timestamps
+     * @throws DateChronologyException when date is not in chronological order
      */
     public static long weeksBetween(long startEpoch, long endEpoch) 
             throws DateChronologyException {
@@ -83,7 +83,7 @@ public class Date {
     /**
      * Returns today as epoch day.
      * 
-     * @return 
+     * @return now timestamp
      */
     public static long nowEpochDay() {
         return java.time.LocalDate.now().toEpochDay();

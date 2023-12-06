@@ -50,7 +50,7 @@ public class Actor {
     /**
      * Getter for ID.
      * 
-     * @return 
+     * @return id
      */
     public UUID getId() {
         return id;
@@ -59,7 +59,7 @@ public class Actor {
     /**
      * Setter for document parent pointer.
      * 
-     * @param value 
+     * @param value parent document
      */
     public void setParent(Document value) {
         parent = value;
@@ -77,7 +77,7 @@ public class Actor {
     /**
      * Setter for id.
      * 
-     * @param value 
+     * @param value UUID to set as id
      */
     public void setId(UUID value) {
         id = value;
@@ -86,7 +86,7 @@ public class Actor {
     /**
      * String based setter for ID.
      * 
-     * @param value 
+     * @param value string to set as id
      */
     public void setId(String value) {
         id = UUID.fromString(value);

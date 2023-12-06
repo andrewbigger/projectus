@@ -37,7 +37,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
     /**
      * Saves epic as DOCX.
      * 
-     * @throws IOException
+     * @throws IOException when unable to save document to disk
      */
     @Override
     public void save() throws IOException {      

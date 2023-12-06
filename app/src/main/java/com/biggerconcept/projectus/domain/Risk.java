@@ -151,7 +151,7 @@ public class Risk {
   /**
    * Getter for ID.
    * 
-   * @return 
+   * @return ID as UUID
    */
   public UUID getId() {
       return id;
@@ -223,7 +223,7 @@ public class Risk {
   /**
    * Setter for parent document pointer.
    * 
-   * @param value 
+   * @param value parent document
    */
   public void setParent(Document value) {
       parent = value;
@@ -232,7 +232,7 @@ public class Risk {
   /**
    * Setter for ID.
    * 
-   * @param value 
+   * @param value UUID to set as ID
    */
   public void setId(UUID value) {
       id = value;
@@ -241,7 +241,7 @@ public class Risk {
   /**
    * String based setter for ID.
    * 
-   * @param value 
+   * @param value String to set as ID
    */
    public void setId(String value) {
       id = UUID.fromString(value);
@@ -313,8 +313,8 @@ public class Risk {
   /**
      * Returns true if given risk matches.
      * 
-     * @param r
-     * @return 
+     * @param r risk to match
+     * @return whether risk matches
      */
     public boolean match(Risk r) {
         if (r.getIdentifier() == identifier) {

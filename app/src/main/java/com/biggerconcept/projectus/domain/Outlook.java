@@ -32,7 +32,7 @@ public class Outlook {
     /**
      * Buffer points to apply to estimates.
      */
-    private int buffer;
+    private Integer buffer;
     
     /**
      * Estimate points
@@ -110,12 +110,12 @@ public class Outlook {
     /**
      * Average points delivered in reference sprints.
      */
-    private int averagePoints;
+    private Integer averagePoints;
     
     /**
      * Points per sprint
      */
-    private int pointsPerSprint;
+    private Integer pointsPerSprint;
     
     /**
      * Full constructor.

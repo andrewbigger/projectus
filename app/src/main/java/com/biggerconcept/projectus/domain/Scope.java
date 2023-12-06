@@ -41,7 +41,7 @@ public class Scope {
     /**
      * Returns ID.
      * 
-     * @return 
+     * @return ID as UUID
      */
     public UUID getId() {
         return id;
@@ -68,7 +68,7 @@ public class Scope {
     /**
      * Setter for ID.
      * 
-     * @param value 
+     * @param value UUID to set as ID
      */
     public void setId(UUID value) {
         id = value;
@@ -77,7 +77,7 @@ public class Scope {
     /**
      * String based setter for ID.
      * 
-     * @param value 
+     * @param value String to set as ID
      */
     public void setId(String value) {
         id = UUID.fromString(value);

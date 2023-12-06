@@ -5,7 +5,6 @@ import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Size.TaskSize;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.domain.Task.TaskStatus;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -83,7 +82,8 @@ public class TaskDialog {
      * 
      * @param rb application resource bundle
      * @param epic parent parentEpic of chosen task
-     * @param task chosen task
+     * @param tasks chosen tasks
+     * @param bulk whether dialog is editing in bulk
      */
     public TaskDialog(
             ResourceBundle rb, 

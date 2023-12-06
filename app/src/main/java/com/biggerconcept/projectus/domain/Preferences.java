@@ -149,7 +149,7 @@ public class Preferences {
      * Estimate buffer
      */
     @JsonInclude(Include.NON_NULL)
-    private int estimateBuffer;
+    private Integer estimateBuffer;
     
     /**
      * Builds a set of default preferences.
@@ -471,7 +471,7 @@ public class Preferences {
     /**
      * String based setter for sprint length.
      * 
-     * @param value 
+     * @param value sprint length value
      */
     public void setSprintLength(String value) {
         setSprintLength(

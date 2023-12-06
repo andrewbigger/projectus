@@ -293,8 +293,8 @@ public class Document {
      * 
      * If not found, null will be returned.
      * 
-     * @param id
-     * @return 
+     * @param id UUID of actor
+     * @return found actor
      */
     public Actor findActor(UUID id) {
         for (Actor a : actors) {
@@ -309,8 +309,8 @@ public class Document {
     /**
      * Find actors by ids.
      * 
-     * @param ids
-     * @return 
+     * @param ids list of UUIDs to find
+     * @return found actors
      */
     public ArrayList<Actor> findActors(ArrayList<UUID> ids) {
         ArrayList<Actor> found = new ArrayList<>();
@@ -329,8 +329,8 @@ public class Document {
      * 
      * If not found, null will be returned.
      * 
-     * @param id
-     * @return 
+     * @param id UUID of epic
+     * @return found epic
      */
     public Epic findEpic(UUID id) {
         for (Epic e : epics) {
@@ -345,8 +345,8 @@ public class Document {
     /**
      * Find epics by ids.
      * 
-     * @param ids
-     * @return 
+     * @param ids list of epic UUID
+     * @return found epics
      */
     public ArrayList<Epic> findEpics(ArrayList<UUID> ids) {
         ArrayList<Epic> found = new ArrayList<>();
@@ -365,8 +365,8 @@ public class Document {
      * 
      * If not found, null will be returned.
      * 
-     * @param id
-     * @return 
+     * @param id UUID of risk
+     * @return found risks
      */
     public Risk findRisk(UUID id) {
         for (Risk r : risks) {
@@ -381,8 +381,8 @@ public class Document {
     /**
      * Find risks by ids.
      * 
-     * @param ids
-     * @return 
+     * @param ids list of risk UUIDs
+     * @return found risks
      */
     public ArrayList<Risk> findRisks(ArrayList<UUID> ids) {
         ArrayList<Risk> found = new ArrayList<>();
@@ -401,8 +401,8 @@ public class Document {
      * 
      * If not found, null will be returned.
      * 
-     * @param id
-     * @return 
+     * @param id UUID of story
+     * @return found story
      */
     public Story findStory(UUID id) {
         for (Story s : stories) {
@@ -417,8 +417,8 @@ public class Document {
     /**
      * Find stories by ids.
      * 
-     * @param ids
-     * @return 
+     * @param ids list of story UUIDs
+     * @return found stories
      */
     public ArrayList<Story> findStories(ArrayList<UUID> ids) {
         ArrayList<Story> found = new ArrayList<>();
@@ -449,7 +449,7 @@ public class Document {
     /**
      * Getter for document ID.
      * 
-     * @return 
+     * @return document UUID
      */
     public UUID getId() {
         return id;
@@ -563,7 +563,7 @@ public class Document {
     /**
      * Setter for ID.
      * 
-     * @param value 
+     * @param value UUID to set as ID
      */
     public void setId(UUID value) {
         id = value;
@@ -572,7 +572,7 @@ public class Document {
     /**
      * String based setter for ID.
      * 
-     * @param value 
+     * @param value String to set as ID
      */
     public void setId(String value) {
         id = UUID.fromString(value);
@@ -612,7 +612,7 @@ public class Document {
     /**
      * Setter for risks.
      * 
-     * @param value 
+     * @param value list of risks to set
      */
     public void setRisks(ArrayList<Risk> value) {
         risks = value;
@@ -687,7 +687,7 @@ public class Document {
     /**
      * Returns overall status.
      * 
-     * @return 
+     * @return overall status
      */
     public Status status() {
         return new Status(this);

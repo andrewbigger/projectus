@@ -61,7 +61,7 @@ public class StoryChooserDialog {
      * 
      * @return chosen story
      * 
-     * @throws NoChoiceMadeException 
+     * @throws NoChoiceMadeException when no choice is made
      */
     public Story show(Stage stage) throws NoChoiceMadeException {
         List<Node> attributes = Arrays.asList(
