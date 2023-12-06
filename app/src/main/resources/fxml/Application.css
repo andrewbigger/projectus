@@ -99,6 +99,18 @@
   -fx-background-color: #3A70B2;
 }
 
+#sprintProgress > .bar {
+  -fx-background-color: #3A70B2;
+}
+
 #totalPointsCompleteProgress > .bar {
+  -fx-background-color: #3A70B2;
+}
+
+#commitmentProgress.overcommitment > .bar {
+  -fx-background-color: #C72A1C;
+}
+
+#commitmentProgress > .bar {
   -fx-background-color: #43b324;
 }

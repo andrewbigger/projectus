@@ -27,7 +27,7 @@ public class Status {
     /**
      * Constructor for status.
      * 
-     * @param doc 
+     * @param doc document
      */
     public Status(Document doc) {
         this.doc = doc;
@@ -51,7 +51,7 @@ public class Status {
      * Returns true when the current time is greater than the project start
      * time.
      * 
-     * @return 
+     * @return whether the project has started
      */
     public boolean hasStarted() {
         if (doc.getStart() < Date.nowEpochDay()) {
@@ -69,7 +69,7 @@ public class Status {
      * Similarly if the end date is before the start date, then zero will be
      * returned.
      * 
-     * @return 
+     * @return total number of weeks
      */
     public long totalWeeks() {
         if (hasDates() == false) {
@@ -93,7 +93,7 @@ public class Status {
      * 
      * If the project hasn't started, 0 will be returned.
      * 
-     * @return 
+     * @return weeks elapsed
      */
     public long weeksElapsed() {
         if (hasStarted() == false) {
@@ -120,7 +120,7 @@ public class Status {
      * If the total number of weeks between the start and end date is zero, then
      * zero will be returned.
      * 
-     * @return 
+     * @return total sprints
      */
     public long totalSprints() {
         if (hasDates() == false || sprintLength() == 0) {
@@ -142,7 +142,7 @@ public class Status {
      * if the dates or sprint length have not been set in the document then
      * zero will be returned.
      * 
-     * @return 
+     * @return sprints elapsed
      */
     public long sprintsElapsed() {
         if (hasDates() == false || sprintLength() == 0) {
@@ -161,7 +161,7 @@ public class Status {
     /**
      * Returns total number of points in the project.
      * 
-     * @return 
+     * @return total points
      */
     public int totalPoints() {
         int total = 0;
@@ -175,7 +175,7 @@ public class Status {
     /**
      * Returns number of completed points.
      * 
-     * @return 
+     * @return completed point total
      */
     public int completedPoints() {
         int completed = 0;
@@ -189,6 +189,8 @@ public class Status {
     
     /**
      * Returns number of points completed per sprint.
+     * 
+     * @return points per sprint
      */
     public int pointsPerSprint() {
         int completed = completedPoints();
@@ -202,9 +204,39 @@ public class Status {
     }
     
     /**
+     * Returns number of available points based on
+     * average number of delivered points in reference
+     * sprints.
+     * 
+     * @return available points
+     */
+    public int availablePoints() {       
+        return (int) totalSprints() * 
+                doc.getPreferences().averageDeliveredPoints();
+    }
+    
+    /**
+     * Returns total points as a proportion of available points.
+     * 
+     * @return available points progress
+     */
+    public double availablePointsProgress() {
+        return (double) totalPoints() / availablePoints();
+    }
+    
+    /**
+     * Returns true if project is over committed.
+     * 
+     * @return over committed
+     */
+    public boolean isOverCommitted() {
+        return totalPoints() > availablePoints();
+    }
+    
+    /**
      * Returns elapsed sprints as a proportion of total sprints.
      * 
-     * @return 
+     * @return elapsed sprints progress
      */
     public double sprintProgress() {
         return (double) sprintsElapsed() / totalSprints();
@@ -213,7 +245,7 @@ public class Status {
     /**
      * Returns completed points as a proportion of total points.
      * 
-     * @return 
+     * @return point progress
      */
     public double pointProgress() {
         return (double) completedPoints() / totalPoints();
@@ -223,7 +255,7 @@ public class Status {
      * Returns ideal number of points per sprint required to 
      * complete the project by the due date.
      * 
-     * @return 
+     * @return ideal points per sprint
      */
     public int idealPointsPerSprint() {
         int total = totalPoints();
@@ -249,7 +281,7 @@ public class Status {
      * 
      * When the actual is behind the ideal, then AT_RISK is returned.
      * 
-     * @return 
+     * @return summary
      */
     public Tracking summary() {
         if (completedPoints() == totalPoints()) {
@@ -273,7 +305,7 @@ public class Status {
     /**
      * Retrieves sprint length from preferences.
      * 
-     * @return 
+     * @return sprint length
      */
     private int sprintLength() {
         return doc.getPreferences().getSprintLength();

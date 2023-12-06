@@ -1385,4 +1385,14 @@ parts:
     title: "Error when unable to apply reference sprints"
     value: "Unable to apply reference sprints to all epic outlooks"
     variants: {}
+- translation:
+    key: "project.commitment.title"
+    title: "Title for commitment status"
+    value: "Commitment"
+    variants: {}
+- translation:
+    key: "project.commitment.qualifier"
+    title: "Qualifier string for commitment"
+    value: "points committed of"
+    variants: {}
 sourceLanguage: "en"

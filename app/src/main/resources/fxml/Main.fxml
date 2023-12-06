@@ -158,7 +158,7 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </Label>
-                        <DatePicker fx:id="projectStartDatePicker">
+                        <DatePicker fx:id="projectStartDatePicker" prefWidth="250.0">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
@@ -168,7 +168,7 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </Label>
-                        <DatePicker fx:id="projectEndDatePicker">
+                        <DatePicker fx:id="projectEndDatePicker" prefWidth="250.0">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
@@ -200,99 +200,133 @@
                   </VBox>
                </top>
                <bottom>
-                  <VBox fx:id="statusPanel" prefHeight="232.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <HBox prefHeight="11.0" prefWidth="180.0">
+                  <BorderPane prefHeight="278.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <top>
+                        <VBox fx:id="commitmentPanel" prefHeight="62.0" prefWidth="180.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Label text="%project.status.sprint.title">
-                                 <HBox.margin>
-                                    <Insets right="5.0" />
-                                 </HBox.margin>
+                              <Label text="%project.commitment.title">
+                                 <VBox.margin>
+                                    <Insets bottom="3.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <ProgressBar id="commitmentProgress" fx:id="commitmentProgress" prefWidth="250.0" progress="0.0" />
+                              <HBox prefHeight="12.0" prefWidth="180.0">
+                                 <children>
+                                    <Label fx:id="commitmentPointsLabel" text="0">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label text="%project.commitment.qualifier">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="availableCommitmentLabel" text="0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </BorderPane.margin>
+                        </VBox>
+                     </top>
+                     <bottom>
+                        <VBox fx:id="statusPanel" prefHeight="224.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox prefHeight="11.0" prefWidth="180.0">
+                                 <children>
+                                    <Label text="%project.status.sprint.title">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <ProgressBar fx:id="sprintProgress" prefWidth="250.0" progress="0.0">
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" />
+                                 </VBox.margin>
+                              </ProgressBar>
+                              <HBox prefHeight="12.0" prefWidth="180.0">
+                                 <children>
+                                    <Label fx:id="sprintsElapsed" text="0">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label text="%project.status.sprint.qualifier">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="totalSprints" text="0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <Label text="%project.status.sprint.progress.title">
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <ProgressBar id="totalPointsCompleteProgress" fx:id="pointProgress" prefWidth="250.0" progress="0.0">
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" />
+                                 </VBox.margin>
+                              </ProgressBar>
+                              <HBox prefHeight="6.0" prefWidth="180.0">
+                                 <children>
+                                    <Label fx:id="completedPoints" text="0">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label text="%project.status.sprint.progress.qualifier">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="totalPoints" text="0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <Label text="%project.status.velocity.title">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox prefHeight="15.0" prefWidth="180.0">
+                                 <children>
+                                    <Label fx:id="velocity" text="0">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label text="%project.status.velocity.qualifier" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <Label fx:id="tracking" text="{{Status}}">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
                               </Label>
                            </children>
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <ProgressBar fx:id="sprintProgress" prefWidth="200.0" progress="0.0">
-                           <VBox.margin>
-                              <Insets bottom="2.0" />
-                           </VBox.margin>
-                        </ProgressBar>
-                        <HBox prefHeight="12.0" prefWidth="180.0">
-                           <children>
-                              <Label fx:id="sprintsElapsed" text="0">
-                                 <HBox.margin>
-                                    <Insets right="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <Label text="%project.status.sprint.qualifier">
-                                 <HBox.margin>
-                                    <Insets right="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <Label fx:id="totalSprints" text="0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <Label text="%project.status.sprint.progress.title">
-                           <VBox.margin>
-                              <Insets bottom="2.0" />
-                           </VBox.margin>
-                        </Label>
-                        <ProgressBar id="totalPointsCompleteProgress" fx:id="pointProgress" prefWidth="200.0" progress="0.0">
-                           <VBox.margin>
-                              <Insets bottom="2.0" />
-                           </VBox.margin>
-                        </ProgressBar>
-                        <HBox prefHeight="6.0" prefWidth="180.0">
-                           <children>
-                              <Label fx:id="completedPoints" text="0">
-                                 <HBox.margin>
-                                    <Insets right="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <Label text="%project.status.sprint.progress.qualifier">
-                                 <HBox.margin>
-                                    <Insets right="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <Label fx:id="totalPoints" text="0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <Label text="%project.status.velocity.title">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <HBox prefHeight="15.0" prefWidth="180.0">
-                           <children>
-                              <Label fx:id="velocity" text="0">
-                                 <HBox.margin>
-                                    <Insets right="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <Label text="%project.status.velocity.qualifier" />
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <Label fx:id="tracking" text="ON_TRACK">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </bottom>
+                  </BorderPane>
                </bottom>
             </BorderPane>
             <BorderPane minWidth="300.0" snapToPixel="false">

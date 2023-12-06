@@ -415,6 +415,30 @@ public class MainController implements Initializable {
     public ProgressBar pointProgress;
     
     /**
+     * Progress bar for overall commitment.
+     */
+    @FXML
+    public ProgressBar commitmentProgress;
+    
+    /**
+     * Label for commitment points
+     */
+    @FXML
+    public Label commitmentPointsLabel;
+    
+    /**
+     * Label for available commitment.
+     */
+    @FXML
+    public Label availableCommitmentLabel;
+    
+    /**
+     * Panel for commitment status.
+     */
+    @FXML
+    public VBox commitmentPanel;
+    
+    /**
      * Initializes the main window.
      * 
      * @param url URL of main FXML
@@ -439,6 +463,7 @@ public class MainController implements Initializable {
         selectedEpicPanel.setVisible(false);
         statusPanel.setVisible(false);
         weekSummary.setVisible(false);
+        commitmentPanel.setVisible(false);
         
         if (OperatingSystem.isMac()) {
             mainMenu.useSystemMenuBarProperty().set(true);
@@ -580,6 +605,28 @@ public class MainController implements Initializable {
         } else {
             statusPanel.setVisible(false);
             weekSummary.setVisible(false);
+        }
+        
+        if (status.totalPoints() > 0) {
+            commitmentPanel.setVisible(true);
+            
+            commitmentProgress.setProgress(status.availablePointsProgress());
+
+            if (status.isOverCommitted()) {
+                commitmentProgress.getStyleClass().add("overcommitment");
+            } else {
+                commitmentProgress.getStyleClass().remove("overcommitment");
+            }
+
+            commitmentPointsLabel.setText(
+                    String.valueOf(status.totalPoints())
+            );
+
+            availableCommitmentLabel.setText(
+                    String.valueOf(status.availablePoints())
+            );
+        } else {
+            commitmentPanel.setVisible(false);
         }
     }
     

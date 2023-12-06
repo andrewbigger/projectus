@@ -305,6 +305,29 @@ public class Preferences {
     }
     
     /**
+     * Returns total number of completed points in reference
+     * sprints.
+     * 
+     * @return points
+     */
+    public int countDeliveredPoints() {
+        return refSprintOne.getCompletedPoints() +
+                refSprintTwo.getCompletedPoints() +
+                refSprintThree.getCompletedPoints() +
+                refSprintFour.getCompletedPoints();
+    }
+    
+    /**
+     * Returns average number of completed points in reference
+     * sprints.
+     * 
+     * @return average points
+     */
+    public int averageDeliveredPoints() {
+        return countDeliveredPoints() / 4;
+    }
+    
+    /**
      * String setter for epic start number.
      * 
      * @param value string representation of start number.
