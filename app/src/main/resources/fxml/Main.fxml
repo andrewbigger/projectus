@@ -200,7 +200,7 @@
                   </VBox>
                </top>
                <bottom>
-                  <BorderPane prefHeight="278.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <BorderPane prefHeight="297.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <bottom>
                         <VBox fx:id="commitmentPanel" prefHeight="62.0" prefWidth="180.0" BorderPane.alignment="CENTER">
                            <children>
@@ -232,7 +232,7 @@
                         </VBox>
                      </bottom>
                      <center>
-                        <VBox fx:id="statusPanel" prefHeight="224.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <VBox fx:id="statusPanel" prefHeight="230.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
                               <HBox prefHeight="11.0" prefWidth="180.0">
                                  <children>
@@ -384,7 +384,7 @@
                         </ToolBar>
                      </center>
                      <right>
-                        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="37.0" prefWidth="41.0" BorderPane.alignment="CENTER">
                            <items>
                               <Button id="openOutlookButton" fx:id="outlookButton" mnemonicParsing="false" onMouseClicked="#handleOpenOutlook" prefWidth="25.0">
                                  <styleClass>
