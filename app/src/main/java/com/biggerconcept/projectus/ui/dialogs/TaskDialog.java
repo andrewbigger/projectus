@@ -361,7 +361,6 @@ public class TaskDialog {
      */
     private Button prevTaskButton() {
         Button prevTaskBtn = new Button();
-        
         prevTaskBtn.setText(bundle.getString("dialogs.nav.previous"));
         
         if (bulk == false) {
@@ -393,14 +392,12 @@ public class TaskDialog {
      */
     private Button nextTaskButton() {
         Button nextTaskBtn = new Button();
-        
         nextTaskBtn.setText(bundle.getString("dialogs.nav.next"));
         
         if (bulk == false) {
-            Task currentTask = currentTasks.get(0);
             nextTaskBtn.setOnAction((ActionEvent event) -> {
-                applyToTask(currentTask);
-                visibleTask = parentEpic.getNextTask(currentTask);
+                applyToTask(visibleTask);
+                visibleTask = parentEpic.getNextTask(visibleTask);
                 mapTaskToDialog();
             });
             
@@ -419,7 +416,7 @@ public class TaskDialog {
      */
     private void mapTaskToDialog() {
         if (bulk == false) {
-            Task currentTask = currentTasks.get(0);
+            Task currentTask = visibleTask;
             
             nameField.setText(currentTask.getName());
             sizeField.getSelectionModel().select(currentTask.getSize());
@@ -428,5 +425,4 @@ public class TaskDialog {
             acceptanceCriteriaField.setText(currentTask.getAcceptanceCriteria());
         }
     }
-    
 }
