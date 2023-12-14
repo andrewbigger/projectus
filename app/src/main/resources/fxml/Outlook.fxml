@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="600.0" maxWidth="-Infinity" minHeight="400.0" minWidth="-Infinity" prefHeight="500.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.OutlookController">
+<BorderPane maxHeight="550.0" maxWidth="850.0" minHeight="550.0" minWidth="850.0" prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.OutlookController">
    <right>
       <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -436,7 +436,7 @@
    <bottom>
       <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="28.0" prefWidth="832.0" BorderPane.alignment="CENTER">
          <children>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#handleChange" text="%actions.apply" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#handleChange" prefWidth="100.0" text="%actions.apply" />
          </children>
       </HBox>
    </bottom>

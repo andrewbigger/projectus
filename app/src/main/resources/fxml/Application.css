@@ -24,6 +24,22 @@
   -fx-background-image: url('../icons/MoveDownIcon.png');
 }
 
+.moveLeftButton {
+  -fx-background-image: url('../icons/MoveLeftIcon.png');
+}
+
+.moveRightButton {
+  -fx-background-image: url('../icons/MoveRightIcon.png');
+}
+
+.moveLeftDoubleButton {
+  -fx-background-image: url('../icons/MoveLeftDoubleIcon.png');
+}
+
+.moveRightDoubleButton {
+  -fx-background-image: url('../icons/MoveRightDoubleIcon.png');
+}
+
 .editButton {
   -fx-background-image: url('../icons/EditIcon.png');
 }

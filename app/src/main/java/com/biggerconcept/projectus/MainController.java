@@ -26,6 +26,7 @@ import com.biggerconcept.projectus.ui.tables.StoryTable;
 import com.biggerconcept.projectus.ui.tables.TasksTable;
 import com.biggerconcept.appengine.ui.window.StandardWindow;
 import com.biggerconcept.projectus.domain.Status;
+import com.biggerconcept.projectus.helpers.Compare;
 import com.biggerconcept.projectus.ui.dialogs.EpicChooserDialog;
 import com.biggerconcept.projectus.ui.dialogs.EpicDialog;
 import com.biggerconcept.projectus.ui.dialogs.ScopeDialog;
@@ -703,7 +704,7 @@ public class MainController implements Initializable {
                 new Tooltip(bundle.getString("epic.tabs.overview.progress.sized.tooltip"))
         );
         describedStatusProgressBar.setTooltip(
-                new Tooltip("epic.tabs.overview.progress.described.tooltip")
+                new Tooltip(bundle.getString("epic.tabs.overview.progress.described.tooltip"))
         );
     }
     
@@ -799,12 +800,31 @@ public class MainController implements Initializable {
     }
     
     private void mapProjectDetailsToWindow() {
-        projectNameTextField.setText(currentDocument.getTitle());
-        projectStartDatePicker.setValue(
-                Date.fromEpoch(currentDocument.getStart())
-        );
+        String title = currentDocument.getTitle();
+        String enteredTitle = projectNameTextField.getText();
         
-        projectEndDatePicker.setValue(Date.fromEpoch(currentDocument.getEnd()));
+        if (Compare.notEmptyIsDifferent(title, enteredTitle)) {
+            projectNameTextField.setText(title);
+        }
+        
+        long start = currentDocument.getStart();
+        long selectedStart = Date.toEpoch(projectStartDatePicker.getValue());
+        
+        if (Compare.notEmptyIsDifferent(start, selectedStart)) {
+            projectStartDatePicker.setValue(
+                    Date.fromEpoch(selectedStart)
+            );
+        }
+        
+        
+        long end = currentDocument.getEnd();
+        long selectedEnd = Date.toEpoch(projectEndDatePicker.getValue());
+        
+        if (Compare.notEmptyIsDifferent(end, selectedEnd)) {
+            projectEndDatePicker.setValue(
+                    Date.fromEpoch(selectedEnd)
+            );
+        }
     }
     
     private void mapEpicsToWindow() {
@@ -1420,6 +1440,8 @@ public class MainController implements Initializable {
                     "/fxml/Application.css",
                     StageStyle.UTILITY
             );
+            
+            stage.setResizable(false);
             
             openWindows.add(stage);
             stage.showAndWait();

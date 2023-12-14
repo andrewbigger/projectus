@@ -311,10 +311,10 @@ public class Preferences {
      * @return points
      */
     public int countDeliveredPoints() {
-        return refSprintOne.getCompletedPoints() +
-                refSprintTwo.getCompletedPoints() +
-                refSprintThree.getCompletedPoints() +
-                refSprintFour.getCompletedPoints();
+        return getRefSprintOne().getCompletedPoints() +
+                getRefSprintTwo().getCompletedPoints() +
+                getRefSprintThree().getCompletedPoints() +
+                getRefSprintFour().getCompletedPoints();
     }
     
     /**
