@@ -28,7 +28,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="901.0" prefHeight="800.0" prefWidth="1500.0" stylesheets="Application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.MainController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="700.0" minWidth="901.0" prefHeight="900.0" prefWidth="1500.0" stylesheets="Application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.MainController">
    <top>
       <BorderPane prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <center>
