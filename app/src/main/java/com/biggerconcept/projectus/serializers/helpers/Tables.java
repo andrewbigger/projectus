@@ -2,7 +2,11 @@ package com.biggerconcept.projectus.serializers.helpers;
 
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.projectus.domain.Outlook;
+import com.biggerconcept.projectus.domain.Preferences;
+import com.biggerconcept.projectus.domain.Projection;
 import com.biggerconcept.projectus.domain.Risk;
+import com.biggerconcept.projectus.domain.Sprint;
 import com.biggerconcept.projectus.domain.Story;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -201,5 +205,161 @@ public class Tables {
         rows.add(row);
         
         return rows;
+    }
+    
+    /**
+     * Constructs reference sprint table header.
+     * 
+     * @param bundle application resource bundle
+     * @return reference sprint table headers
+     */
+    public static ArrayList<String> referenceSprintHeaders(
+            ResourceBundle bundle
+    ) {
+        ArrayList<String> headers = new ArrayList();
+        
+        headers.add(bundle.getString("outlook.pastSprints.name"));
+        headers.add(bundle.getString("outlook.pastSprints.points"));
+        
+        return headers;
+    }
+    
+    /**
+     * Constructs reference sprint table body.
+     * 
+     * @param outlook outlook with reference sprints.
+     * @return reference sprint table body
+     */
+    public static ArrayList<ArrayList<String>> referenceSprintTableBody(Outlook outlook) {
+        ArrayList<ArrayList<String>> rows = new ArrayList();
+        
+        rows.add(referenceSprintRow(outlook.getSprintOne()));
+        rows.add(referenceSprintRow(outlook.getSprintTwo()));
+        rows.add(referenceSprintRow(outlook.getSprintThree()));
+        rows.add(referenceSprintRow(outlook.getSprintFour()));
+        
+        return rows;
+    }
+    
+    /**
+     * Constructs a reference sprint row for given sprint.
+     * 
+     * @param sprint sprint to convert to row
+     * @return reference sprint row
+     */
+    private static ArrayList<String> referenceSprintRow(Sprint sprint) {
+        ArrayList<String> row = new ArrayList();
+        
+        row.add(sprint.getName());
+        row.add(String.valueOf(sprint.getCompletedPoints()));
+        
+        return row;
+    }
+    
+    /**
+     * Constructs outlook table header.
+     * 
+     * @param bundle application resource bundle
+     * 
+     * @return outlook table header
+     */
+    public static ArrayList<String> outlookTableHeaders(ResourceBundle bundle) {
+        ArrayList<String> headers = new ArrayList<>();
+        
+        headers.add(bundle.getString("outlook.table.outlook"));
+        headers.add(bundle.getString("outlook.table.points"));
+        headers.add(bundle.getString("outlook.table.sprints"));
+        headers.add(bundle.getString("outlook.table.weeks"));
+        
+        return headers;
+    }
+    
+    /**
+     * Constructs outlook table body.
+     * 
+     * @param bundle application resource bundle
+     * @param outlook project outlook model
+     * 
+     * @return outlook table body
+     */
+    public static ArrayList<ArrayList<String>> outlookTableBody(
+            ResourceBundle bundle,
+            Preferences prefs,
+            Epic epic,
+            Outlook outlook
+    ) {
+        ArrayList<ArrayList<String>> rows = new ArrayList();
+
+        outlook.calculate(prefs, epic, false);
+        
+        rows.add(
+                outlookRow(
+                        bundle.getString("outlook.table.oPlusThree"),
+                        outlook.getOPlusThree()
+                )
+        );
+        
+        rows.add(
+                outlookRow(
+                        bundle.getString("outlook.table.oPlusTwo"),
+                        outlook.getOPlusTwo()
+                )
+        );
+        
+        rows.add(
+                outlookRow(
+                        bundle.getString("outlook.table.oPlusOne"),
+                        outlook.getOPlusOne()
+                )
+        );
+        
+        rows.add(
+                outlookRow(
+                        bundle.getString("outlook.table.o"),
+                        outlook.getO()
+                )
+        );
+        
+        rows.add(
+                outlookRow(
+                        bundle.getString("outlook.table.oMinusOne"),
+                        outlook.getOMinusOne()
+                )
+        );
+        
+        rows.add(
+                outlookRow(
+                        bundle.getString("outlook.table.oMinusTwo"),
+                        outlook.getOMinusTwo()
+                )
+        );
+        
+        rows.add(
+                outlookRow(
+                        bundle.getString("outlook.table.oMinusThree"),
+                        outlook.getOMinusThree()
+                )
+        );
+        
+        return rows;
+    }
+    
+    /**
+     * Constructs an outlook deviant row
+     * 
+     * @param label label for row
+     * @param deviant deviant data
+     * 
+     * @return outlook row
+     */
+    private static ArrayList<String> outlookRow(String label, Projection deviant) {
+        ArrayList<String> row = new ArrayList();
+        
+        row.add(label);
+        row.add(String.valueOf(deviant.getPointsPerSprint()));
+        row.add(String.valueOf(deviant.getSprints()));
+        row.add(String.valueOf(deviant.getWeeks()));
+        
+        return row;
     }
 }

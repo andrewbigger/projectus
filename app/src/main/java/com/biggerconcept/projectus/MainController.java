@@ -25,6 +25,7 @@ import com.biggerconcept.projectus.ui.tables.RiskTable;
 import com.biggerconcept.projectus.ui.tables.StoryTable;
 import com.biggerconcept.projectus.ui.tables.TasksTable;
 import com.biggerconcept.appengine.ui.window.StandardWindow;
+import com.biggerconcept.projectus.domain.Preferences;
 import com.biggerconcept.projectus.domain.Status;
 import com.biggerconcept.projectus.helpers.Compare;
 import com.biggerconcept.projectus.ui.dialogs.EpicChooserDialog;
@@ -63,6 +64,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 /**
  * Controller for the main view.
@@ -2198,10 +2200,21 @@ public class MainController implements Initializable {
                 throw new NoChoiceMadeException();
             }
             
-            Docx docx = new Docx(f);
+            Preferences prefs = currentDocument.getPreferences();
+            
+            XWPFDocument template;
+            
+            if (currentDocument.getPreferences().hasTemplate()) {
+                template = prefs.userDefinedTemplate();
+            } else {
+                template = prefs.defaultTemplate();
+            }
+            
+            Docx docx = new Docx(f, template);
            
             DiscoveryDocumentSerializer dds = new DiscoveryDocumentSerializer(
                     bundle,
+                    currentDocument.getPreferences(),
                     currentEpic,
                     f,
                     docx
@@ -2234,6 +2247,7 @@ public class MainController implements Initializable {
            
             DiscoveryDocumentSerializer dds = new DiscoveryDocumentSerializer(
                     bundle,
+                    currentDocument.getPreferences(),
                     currentEpic,
                     f,
                     md

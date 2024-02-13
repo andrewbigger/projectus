@@ -3,15 +3,19 @@ package com.biggerconcept.projectus;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Preferences;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
+import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Sprint;
+import java.io.File;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -187,6 +191,12 @@ public class PreferencesController implements Initializable {
     public TextField estimateBufferTextField;
     
     /**
+     * Document template path text field
+     */
+    @FXML
+    public TextField documentTemplatePathTextField;
+    
+    /**
      * Returns the preference window stage.
      * 
      * The pref window stage is the window that the save button control is
@@ -194,7 +204,7 @@ public class PreferencesController implements Initializable {
      * 
      * @return controller window
      */
-    private Stage preferenceStage() {
+    private Stage window() {
         Stage stage = (Stage) savePreferencesButton.getScene().getWindow();
         return stage;
     }
@@ -208,6 +218,7 @@ public class PreferencesController implements Initializable {
         mapEpicPreferencesToWindow();
         mapSprintPreferencesToWindow();
         mapEstimatePreferencesToWindow();
+        mapReportsPreferencesToWindow();
     }
     
     /**
@@ -301,6 +312,19 @@ public class PreferencesController implements Initializable {
     }
     
     /**
+     * Maps report settings to report tab.
+     */
+    private void mapReportsPreferencesToWindow() {
+        if (currentPreferences.hasTemplate()) {
+            documentTemplatePathTextField.setText(
+                    currentPreferences.getDocumentTemplate().getAbsolutePath()
+            );
+        } else {
+            documentTemplatePathTextField.setText((""));
+        }
+    }
+    
+    /**
      * Maps window content to new document object for serialization.
      * 
      * @return built preference object
@@ -309,6 +333,7 @@ public class PreferencesController implements Initializable {
         mapWindowToEpicPreferences();
         mapWindowToSprintPreferences();
         mapWindowToEstimatePreferences();
+        mapWindowToReportPreferences();
     }
     
     /**
@@ -384,7 +409,21 @@ public class PreferencesController implements Initializable {
         );
     }
     
+    /**
+     * Maps report settings to preferences
+     */
+    private void mapWindowToReportPreferences() {
+        String documentTemplatePath = documentTemplatePathTextField
+                .getText()
+                .trim();
         
+        if (documentTemplatePath != "") {
+            currentPreferences.setDocumentTemplate(
+                    new File(documentTemplatePath)
+            );
+        }
+    }
+    
     /**
      * Applies default reference sprint to all epic outlooks.
      */
@@ -409,12 +448,59 @@ public class PreferencesController implements Initializable {
     }
     
     /**
+     * Handles the choice of a document template file
+     */
+    @FXML
+    private void handleChooseDocumentTemplate() {
+        try {
+            FileChooser.ExtensionFilter fileExtFilter = 
+                    new FileChooser.ExtensionFilter(
+                            "DOTX File",
+                            Arrays.asList("dotx")
+                    );
+            
+            File templateFile = OpenFileDialog.show(
+                    bundle.getString("dialogs.reportTemplate.open.title"),
+                    window(),
+                    fileExtFilter
+            );
+            
+            currentPreferences.setDocumentTemplate(templateFile);
+            
+            mapPreferencesToWindow();
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.preferences.chooseDocumentTemplate"),
+                    e
+            );
+        } 
+    }
+    
+    /**
+     * Handles a reset of document template file
+     */
+    @FXML
+    private void handleResetDocumentTemplate() {
+        try {
+            currentPreferences.setDocumentTemplate(null);
+            mapPreferencesToWindow();
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.preferences.resetDocumentTemplate"),
+                    e
+            );
+        } 
+    }
+    
+    /**
      * Cancels the modification of preferences.
      */
     @FXML
     private void handleCancelPreferences() {
         try {
-            preferenceStage().close();
+            window().close();
         } catch (Exception e) {
             ErrorAlert.show(
                     bundle,
@@ -431,7 +517,7 @@ public class PreferencesController implements Initializable {
     private void handleSavePreferences() {
         try {
             mapWindowToPreferences();
-            preferenceStage().close();
+            window().close();
         } catch (Exception e) {
             ErrorAlert.show(
                     bundle,

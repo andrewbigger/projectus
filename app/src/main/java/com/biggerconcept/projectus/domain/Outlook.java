@@ -459,7 +459,20 @@ public class Outlook {
     public void calculate() {
         calculate(false);
     }
-     
+    
+    /**
+     * Setup and calculate callback.
+     * 
+     * @param prefs document preferences
+     * @param epic parent epic
+     * @param exclCompletedPoints whether to exclude completed points
+     */
+    public void calculate(Preferences prefs, Epic epic, boolean exclCompletedPoints) {
+        setPrefs(prefs);
+        setEpic(epic);
+        calculate(exclCompletedPoints);
+    }
+
     /**
      * Calculate callback.
      * 

@@ -4,6 +4,8 @@ import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Risk;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.projectus.domain.Outlook;
+import com.biggerconcept.projectus.domain.Preferences;
 import com.biggerconcept.projectus.serializers.helpers.Paragraphs;
 import com.biggerconcept.projectus.serializers.helpers.Tables;
 import java.io.File;
@@ -20,16 +22,19 @@ import org.apache.xmlbeans.XmlException;
  */
 public class DiscoveryDocumentSerializer implements ISerializer {
     private final ResourceBundle bundle;
+    private final Preferences prefs;
     private final Epic epic;
     private final Doc doc;
     
     public DiscoveryDocumentSerializer(
             ResourceBundle rb,
+            Preferences prefs,
             Epic epic, 
             File outputFile,
             Doc document
     ) throws IOException, XmlException {
         this.bundle = rb;
+        this.prefs = prefs;
         this.epic = epic;
         this.doc = document;
     }
@@ -49,6 +54,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
         tasksPages();
         riskSummaryPage();
         riskPages();
+        outlookPage();
 
         doc.save();
     }
@@ -222,5 +228,42 @@ public class DiscoveryDocumentSerializer implements ISerializer {
         doc.br();
     }
     
+    private void outlookPage() {
+        doc.h1(bundle.getString("documents.discovery.headings.outlook"));
+        doc.p(bundle.getString("documents.discovery.outlook.description"));
+        doc.nl();
+        doc.p(bundle.getString("documents.discovery.outlook.expectation"));
+        doc.nl();
+        
+        doc.table(
+                Tables.outlookTableHeaders(bundle),
+                Tables.outlookTableBody(bundle, prefs, epic, epic.getOutlook())
+        );
+        
+        doc.nl();
+        doc.p(Paragraphs.outlookDescriptionText(bundle, prefs, epic));
+        doc.br();
+        doc.h2(bundle.getString("documents.discovery.headings.assumptions"));
+        doc.p(bundle.getString(
+                "documents.discovery.outlook.assumptions.description"
+        ));
+        doc.nl();
+        
+        doc.table(
+                Tables.referenceSprintHeaders(bundle),
+                Tables.referenceSprintTableBody(epic.getOutlook())
+        );
+        
+        doc.nl();
+        doc.p(Paragraphs.assumptionSummaryText(bundle, prefs, epic));
+        doc.nl();
+        doc.p(Paragraphs.bufferSummaryText(bundle, prefs, epic));
+        doc.nl();
+        doc.p(
+                bundle.getString(
+                        "documents.discovery.outlook.assumptions.completed"
+                )
+        );
+    }
     
 }

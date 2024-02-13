@@ -350,7 +350,7 @@ public class Epic {
      */
     public Outlook getOutlook() {
         if (outlook == null) {
-            return new Outlook(this, parent.getPreferences());
+            outlook = new Outlook(this, parent.getPreferences());
         }
         
         return outlook;

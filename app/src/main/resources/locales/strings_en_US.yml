@@ -1508,4 +1508,156 @@ parts:
 - translation:
     key: "epic.tabs.overview.progress"
     variants: {}
+- translation:
+    key: "preferences.reports.title"
+    title: "Title for reports tab"
+    value: "Reports"
+    variants: {}
+- translation:
+    key: "preferences.reports.documentTemplate.title"
+    title: "Document template preferences title"
+    value: "Document Template"
+    variants: {}
+- translation:
+    key: "preferences.reports.documentTemplate.description"
+    title: "Description for document template"
+    value: "This is a Microsoft Word dotx document template that will be used to style\
+      \ document reports"
+    variants: {}
+- translation:
+    key: "actions.browse"
+    title: "Generic browse action"
+    value: "Browse"
+    variants: {}
+- translation:
+    key: "actions.reset"
+    title: "Label for reset action"
+    value: "Reset"
+    variants: {}
+- translation:
+    key: "errors.preferences.chooseDocumentTemplate"
+    title: "Error message for when unable to choose document template"
+    value: "Unable to choose document template"
+    variants: {}
+- translation:
+    key: "errors.preferences.resetDocumentTemplate"
+    variants: {}
+- translation:
+    key: "dialogs.reportTemplate.open.title"
+    title: "Title for report template open dialog"
+    value: "Choose report template"
+    variants: {}
+- translation:
+    key: "documents.discovery.headings.assumptions"
+    title: "Discovery document assumptions heading"
+    value: "Assumptions"
+    variants: {}
+- translation:
+    key: "documents.discovery.headings.outlook"
+    title: "Outlook section heading"
+    value: "Outlook"
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.description"
+    title: "Description paragraph for outlook"
+    value: "For the purposes of delivery estimates, below is a calculated range of\
+      \ delivery possibilities between: O+3 (a highly optimistic timeline, where delivery\
+      \ proceeds much faster than expected) and O-3 (a highly pessimistic timeline\
+      \ where delivery proceeds much slower than expected).\n"
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.summary.totalPoints"
+    title: "Leading text for total points"
+    value: "The estimated total number of points is "
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.summary.bufferPoints"
+    title: "Following text for buffer"
+    value: "points have been included as a buffer. "
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.summary.deliveryAssumption"
+    title: "Leading text for delivery assumption"
+    value: "Assuming a consistent delivery of"
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.summary.points"
+    title: "Points label"
+    value: "points"
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.summary.likelySprints"
+    title: "Leading text for likely sprints"
+    value: "all things going to plan we can expect a likely delivery in "
+    variants: {}
+- translation:
+    key: "likelySprintsQualifier"
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.summary.likelySprintsQualifier"
+    title: "Likely sprints following text"
+    value: "sprints over"
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.summary.weeksQualifier"
+    title: "following text for weeks"
+    value: "weeks."
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.assumptions.description"
+    title: "Assumptions description"
+    value: "The following past reference sprints were used as an indicator of team\
+      \ velocity:"
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.assumptions.calcAssumption"
+    title: "Calculation assumption leading text"
+    value: "Calculations assume that"
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.assumptions.dedication"
+    title: "Dedlication leading text"
+    value: "points are dedicated per sprint which is"
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.assumptions.lessThan"
+    title: "Less than qualifier"
+    value: "less than"
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.assumptions.equalTo"
+    title: "Equal to qualifier"
+    value: "equal to"
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.assumptions.greaterThan"
+    title: "Greater than qualifier"
+    value: "greater than"
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.assumptions.averageDelivery"
+    title: "Label for average delivery in assumptions"
+    value: "the average delivery of"
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.assumptions.deliveredReferenceSprints"
+    title: "Label for points delivered in reference sprints"
+    value: "points delivered in the reference sprints."
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.assumptions.buffer"
+    title: "label for buffer"
+    value: "additional points have been included as buffer."
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.assumptions.completed"
+    title: "Warning about completed points"
+    value: "Any points for tasks that have been completed are included in these calculations."
+    variants: {}
+- translation:
+    key: "documents.discovery.outlook.expectation"
+    title: "Expectation paragraph"
+    value: "O is the most likely estimate that assumes that delivery continues at\
+      \ the same pace as past delivery, and that the plan is accurate."
+    variants: {}
 sourceLanguage: "en"
