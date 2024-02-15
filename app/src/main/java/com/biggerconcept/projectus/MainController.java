@@ -41,7 +41,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.ResourceBundle;
-import java.util.UUID;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -810,23 +809,10 @@ public class MainController implements Initializable {
         }
         
         long start = currentDocument.getStart();
-        long selectedStart = Date.toEpoch(projectStartDatePicker.getValue());
-        
-        if (Compare.notEmptyIsDifferent(start, selectedStart)) {
-            projectStartDatePicker.setValue(
-                    Date.fromEpoch(selectedStart)
-            );
-        }
-        
+        projectStartDatePicker.setValue(Date.fromEpoch(start));
         
         long end = currentDocument.getEnd();
-        long selectedEnd = Date.toEpoch(projectEndDatePicker.getValue());
-        
-        if (Compare.notEmptyIsDifferent(end, selectedEnd)) {
-            projectEndDatePicker.setValue(
-                    Date.fromEpoch(selectedEnd)
-            );
-        }
+        projectEndDatePicker.setValue(Date.fromEpoch(end));
     }
     
     private void mapEpicsToWindow() {
