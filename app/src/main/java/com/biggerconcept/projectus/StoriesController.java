@@ -4,6 +4,7 @@ import com.biggerconcept.projectus.domain.Actor;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Story;
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
+import com.biggerconcept.appengine.platform.OperatingSystem;
 import com.biggerconcept.projectus.ui.dialogs.ActorDialog;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.projectus.ui.dialogs.StoryDialog;
@@ -19,6 +20,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
@@ -46,6 +49,18 @@ public class StoriesController implements Initializable {
     private Story currentStory;
     
     /**
+     * Application menu.
+     */
+    @FXML
+    public MenuBar mainMenu;
+    
+    /**
+     * Application exit menu item.
+     */
+    @FXML
+    public MenuItem quitMenuItem;
+    
+    /**
      * Initialize-er for the stories window.
      * 
      * @param url URL for stories FXML
@@ -56,6 +71,11 @@ public class StoriesController implements Initializable {
         bundle = rb;
         
         storyPanel.setVisible(false);
+        
+        if (OperatingSystem.isMac()) {
+            mainMenu.useSystemMenuBarProperty().set(true);
+            quitMenuItem.visibleProperty().set(false);
+        }
         
         applyTooltips();
     }
@@ -162,7 +182,7 @@ public class StoriesController implements Initializable {
      * 
      * @return controller window
      */
-    private Stage storiesStage() {
+    private Stage window() {
         Stage stage = (Stage) addActorButton.getScene().getWindow();
         return stage;
     }
@@ -247,7 +267,7 @@ public class StoriesController implements Initializable {
                     new Actor()
             );
             
-            newActor.show(storiesStage());
+            newActor.show(window());
             mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(bundle, bundle.getString("errors.addActor"), e);
@@ -311,7 +331,7 @@ public class StoriesController implements Initializable {
                     item
             );
             
-            newActor.show(storiesStage());
+            newActor.show(window());
             mapDocumentToWindow();
             
         } catch (NoChoiceMadeException ncm) {
@@ -333,7 +353,7 @@ public class StoriesController implements Initializable {
                     new Story()
             );
             
-            newStory.show(storiesStage());
+            newStory.show(window());
             mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(bundle, bundle.getString("errors.addStory"), e);
@@ -395,7 +415,7 @@ public class StoriesController implements Initializable {
                     items.get(0)
             );
             
-            manageStory.show(storiesStage());
+            manageStory.show(window());
             
             mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
@@ -438,4 +458,30 @@ public class StoriesController implements Initializable {
             ErrorAlert.show(bundle, bundle.getString("errors.editStory"), e);
         }
     }
+    
+    /**
+     * Opens help website in default browser.
+     */
+    @FXML
+    private void handleViewHelp() {
+        try {
+            OperatingSystem.goToUrl(App.HELP_URL);
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.help.open"), e);
+        }
+    }
+    
+    /**
+     * Exits application.
+     */
+    @FXML
+    private void handleApplicationExit() {
+        System.exit(0);
+    }
+    
+    @FXML
+    private void handleWindowClose() {
+        window().close();
+    }
+
 }

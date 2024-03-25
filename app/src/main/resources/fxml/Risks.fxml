@@ -5,12 +5,16 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -128,6 +132,102 @@
                </items>
             </ToolBar>
          </center>
+         <top>
+            <MenuBar fx:id="mainMenu" BorderPane.alignment="CENTER">
+              <menus>
+                  <Menu mnemonicParsing="false" text="%menu.file.label">
+                     <items>
+                        <MenuItem disable="true" mnemonicParsing="false" text="%menu.file.new">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="N" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem disable="true" mnemonicParsing="false" text="%menu.file.open">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="O" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem disable="true" mnemonicParsing="false" text="%menu.file.save">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem disable="true" mnemonicParsing="false" text="%menu.file.preferences">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="COMMA" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" onAction="#handleApplicationExit" text="%menu.file.quit">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="F4" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="%menu.edit.title">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="%menu.edit.undo">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="Z" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" text="%menu.edit.cut">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="X" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" text="%menu.edit.copy">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="C" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" text="%menu.edit.paste">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="V" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="%menu.risks.title">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#handleAddRisk" text="%menu.risks.add">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="A" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#handleRemoveRisk" text="%menu.risks.remove">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="R" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" onAction="#handleWindowClose" text="%menu.window.title">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="%menu.window.close">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="W" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="%menu.help.title">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="%menu.help.about">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="SLASH" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem disable="true" mnemonicParsing="false" onAction="#handleViewHelp" text="%menu.help.view">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="H" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                     </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+         </top>
       </BorderPane>
    </top>
 </BorderPane>

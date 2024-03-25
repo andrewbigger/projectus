@@ -1660,4 +1660,59 @@ parts:
     value: "O is the most likely estimate that assumes that delivery continues at\
       \ the same pace as past delivery, and that the plan is accurate."
     variants: {}
+- translation:
+    key: "menu.actors.title"
+    title: "Actors menu title"
+    value: "Actors"
+    variants: {}
+- translation:
+    key: "menu.actors.add"
+    title: "Label for add actor menu item"
+    value: "Add Actor"
+    variants: {}
+- translation:
+    key: "menu.actors.remove"
+    title: "Menu for remove actor"
+    value: "Remove Actor"
+    variants: {}
+- translation:
+    key: "menu.actors.edit"
+    title: "Label for edit actors menu item"
+    value: "Edit Actor"
+    variants: {}
+- translation:
+    key: "menu.stories.title"
+    title: "Label for stories menu"
+    value: "Stories"
+    variants: {}
+- translation:
+    key: "menu.stories.add"
+    title: "Label for add story menu item"
+    value: "Add Story"
+    variants: {}
+- translation:
+    key: "menu.stories.remove"
+    title: "Label for remove story"
+    value: "Remove Story"
+    variants: {}
+- translation:
+    key: "menu.risks.title"
+    title: "Title for risks menu"
+    value: "Risks"
+    variants: {}
+- translation:
+    key: "menu.risks.add"
+    title: "Label for add risk menu item"
+    value: "Add Risk"
+    variants: {}
+- translation:
+    key: "menu.risks.remove"
+    title: "Label for remove risk menu item"
+    value: "Remove Risk"
+    variants: {}
+- translation:
+    key: "menu.window.close"
+    title: "Label for close window menu item"
+    value: "Close Window"
+    variants: {}
 sourceLanguage: "en"

@@ -3,6 +3,7 @@ package com.biggerconcept.projectus;
 import com.biggerconcept.projectus.domain.Risk;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
+import com.biggerconcept.appengine.platform.OperatingSystem;
 import com.biggerconcept.projectus.ui.dialogs.RiskDialog;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.dialogs.YesNoPrompt;
@@ -19,6 +20,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -47,6 +50,18 @@ public class RisksController implements Initializable {
     private Risk currentRisk;
     
     /**
+     * Application menu.
+     */
+    @FXML
+    public MenuBar mainMenu;
+    
+    /**
+     * Application exit menu item.
+     */
+    @FXML
+    public MenuItem quitMenuItem;
+    
+    /**
      * Initialize-er for the stories window.
      * 
      * @param url URL for stories FXML
@@ -62,7 +77,22 @@ public class RisksController implements Initializable {
         riskImpactComboBox.getItems().addAll(RiskImpact.values());
         riskStatusComboBox.getItems().addAll(RiskStatus.values());
         
+        if (OperatingSystem.isMac()) {
+            mainMenu.useSystemMenuBarProperty().set(true);
+            quitMenuItem.visibleProperty().set(false);
+        }
+        
+        
         applyTooltips();
+    }
+    
+    /**
+     * Returns the window.
+     * 
+     * @return window
+     */
+    private Stage window() {
+        return (Stage) mainMenu.getScene().getWindow();
     }
     
     /**
@@ -153,19 +183,7 @@ public class RisksController implements Initializable {
      */
     @FXML
     private Button applyRiskButton;
-    
-    /**
-     * Returns the risk window stage.
-     * 
-     * The risk window stage is the window with the add risk button.
-     * 
-     * @return controller window
-     */
-    private Stage storiesStage() {
-        Stage stage = (Stage) addRiskButton.getScene().getWindow();
-        return stage;
-    }
-    
+
     /**
      * Maps document to window.
      */
@@ -249,7 +267,7 @@ public class RisksController implements Initializable {
                     new Risk()
             );
             
-            newRisk.show(storiesStage());
+            newRisk.show(window());
             mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(bundle, bundle.getString("errors.addRisk"), e);
@@ -311,7 +329,7 @@ public class RisksController implements Initializable {
                     items.get(0)
             );
             
-            manageRisk.show(storiesStage());
+            manageRisk.show(window());
             
             mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
@@ -354,4 +372,30 @@ public class RisksController implements Initializable {
             ErrorAlert.show(bundle, bundle.getString("errors.editRisk"), e);
         }
     }
+    
+    /**
+     * Opens help website in default browser.
+     */
+    @FXML
+    private void handleViewHelp() {
+        try {
+            OperatingSystem.goToUrl(App.HELP_URL);
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.help.open"), e);
+        }
+}
+    
+     /**
+     * Exits application.
+     */
+    @FXML
+    private void handleApplicationExit() {
+        System.exit(0);
+    }
+    
+    @FXML
+    private void handleWindowClose() {
+        window().close();
+    }
+
 }

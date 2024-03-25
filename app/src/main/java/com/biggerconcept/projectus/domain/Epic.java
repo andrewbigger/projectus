@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.UUID;
 
 /**
@@ -98,6 +99,22 @@ public class Epic {
         this.id = UUID.randomUUID();
         this.identifier = -1;
         this.name = name;
+        this.summary = "";
+        this.tasks = new ArrayList<>();
+        this.scope = new Scope();
+        this.stories = new ArrayList<>();
+        this.risks = new ArrayList<>();
+    }
+    
+    /**
+     * Constructor for epic with identifier 
+     * 
+     * @param identifier identifier
+     */
+    public Epic(int identifier) {
+        this.id = UUID.randomUUID();
+        this.identifier = identifier;
+        this.name = "";
         this.summary = "";
         this.tasks = new ArrayList<>();
         this.scope = new Scope();
@@ -249,6 +266,21 @@ public class Epic {
     }
     
     /**
+     * Getter for name with default.
+     * 
+     * @param bundle application resource bundle
+     * @return epic name
+     */
+    @JsonIgnore
+    public String getName(ResourceBundle bundle) {
+        if (getName() == "") {
+            return bundle.getString("dialogs.epic.new");
+        }
+        
+        return getName();
+    }
+    
+    /**
      * Getter for summary.
      * 
      * @return epic summary
@@ -349,6 +381,10 @@ public class Epic {
      * @return epic outlook
      */
     public Outlook getOutlook() {
+        if (parent == null) {
+            return null;
+        }
+        
         if (outlook == null) {
             outlook = new Outlook(this, parent.getPreferences());
         }
@@ -635,6 +671,23 @@ public class Epic {
             if (t.getStatus() == TaskStatus.COMPLETE) {
                 count += 1;
             }
+        }
+        
+        return count;
+    }
+    
+    /**
+     * Returns the total number of points for epic.
+     * 
+     * @param preferences document preferences
+     * 
+     * @return number of points
+     */
+    public int calculateTotalPoints(Preferences preferences) {
+        int count = 0;
+        
+        for (Task t : getTasks()) {
+            count += preferences.estimateFor(t.getSize());
         }
         
         return count;

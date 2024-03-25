@@ -334,6 +334,8 @@ public class PreferencesController implements Initializable {
         mapWindowToSprintPreferences();
         mapWindowToEstimatePreferences();
         mapWindowToReportPreferences();
+        
+        currentDocument.setPreferences(currentPreferences);
     }
     
     /**
