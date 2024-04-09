@@ -2196,7 +2196,8 @@ public class MainController implements Initializable {
                 template = prefs.defaultTemplate();
             }
             
-            Docx docx = new Docx(f, template);
+            com.biggerconcept.appengine.serializers.documents.Docx docx = 
+                    new Docx(f, template);
            
             DiscoveryDocumentSerializer dds = new DiscoveryDocumentSerializer(
                     bundle,
