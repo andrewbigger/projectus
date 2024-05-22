@@ -694,6 +694,20 @@ public class Epic {
     }
     
     /**
+     * Returns the number of sprints required to complete the epic
+     * 
+     * @param preferences document preferences
+     * @return number of sprints
+     */
+    public int calculateTotalSprints(Preferences preferences) {
+        int total = calculateTotalPoints(preferences);
+        int availablePointsPerSprint = preferences.calculateAvailablePointsPerSprint();
+        
+        
+        return (int) total / availablePointsPerSprint;
+    }
+    
+    /**
      * Returns the number of completed tasks in proportion to the total
      * number of tasks.
      * 
@@ -776,6 +790,16 @@ public class Epic {
      */
     public void removeTask(Task task) {
         tasks.remove(task);
+    }
+    
+    /**
+     * To String override for UI components
+     * 
+     * @return name of epic
+     */
+    @Override
+    public String toString() {
+      return getName();  
     }
     
 }

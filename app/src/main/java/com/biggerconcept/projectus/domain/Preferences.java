@@ -349,6 +349,26 @@ public class Preferences {
     }
     
     /**
+     * Returns number of available points in specified number
+     * of sprints
+     * 
+     * @param sprints sprints to count for
+     * @return number of available points.
+     */
+    public int calculateAvailablePointsInSprints(int sprints) {
+        return averageDeliveredPoints() * sprints;
+    }
+    
+    /**
+     * Returns number of available points in a sprint.
+     * 
+     * @return points per sprint
+     */
+    public int calculateAvailablePointsPerSprint() {
+        return calculateAvailablePointsInSprints(1);
+    }
+    
+    /**
      * String setter for epic start number.
      * 
      * @param value string representation of start number.

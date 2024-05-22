@@ -4,7 +4,6 @@ import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Risk;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.projectus.domain.Outlook;
 import com.biggerconcept.projectus.domain.Preferences;
 import com.biggerconcept.projectus.serializers.helpers.Paragraphs;
 import com.biggerconcept.projectus.serializers.helpers.Tables;
