@@ -158,12 +158,6 @@ public class Preferences {
     private Integer estimateBuffer;
     
     /**
-     * Document template file
-     */
-    @JsonInclude(Include.NON_NULL)
-    private File documentTemplate;
-    
-    /**
      * Builds a set of default preferences.
      * 
      * @return default preferences
@@ -314,15 +308,6 @@ public class Preferences {
         }
         
         return estimateBuffer;
-    }
-    
-    /**
-     * Getter for document template
-     * 
-     * @return document template file
-     */
-    public File getDocumentTemplate() {
-        return documentTemplate;
     }
     
     /**
@@ -564,41 +549,7 @@ public class Preferences {
     public void setEstimateBuffer(int value) {
         estimateBuffer = value;
     }
-    
-    /**
-     * Setter for document template.
-     * 
-     * @param value new document template value
-     */
-    public void setDocumentTemplate(File value) {
-        documentTemplate = value;
-    }
-    
-    /**
-     * Returns true if user defined template is defined.
-     * 
-     * @return whether template has been defined
-     */
-    public boolean hasTemplate() {
-        return documentTemplate != null;
-    }
-    
-    /**
-     * Returns user defined template as XWPFDocument
-     * 
-     * @return user defined template
-     * 
-     * @throws FileNotFoundException when file not found
-     * @throws IOException when file cannot be read
-     */
-    public XWPFDocument userDefinedTemplate() throws FileNotFoundException, IOException {
-        InputStream template = new FileInputStream(documentTemplate);
-        
-        return new XWPFDocument(
-            template
-        );
-    }
-    
+
     /**
      * Returns default template
      * 

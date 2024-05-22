@@ -2189,12 +2189,7 @@ public class MainController implements Initializable {
             Preferences prefs = currentDocument.getPreferences();
             
             XWPFDocument template;
-            
-            if (currentDocument.getPreferences().hasTemplate()) {
-                template = prefs.userDefinedTemplate();
-            } else {
-                template = prefs.defaultTemplate();
-            }
+            template = prefs.defaultTemplate();
             
             com.biggerconcept.appengine.serializers.documents.Docx docx = 
                     new Docx(f, template);

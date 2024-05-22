@@ -218,7 +218,6 @@ public class PreferencesController implements Initializable {
         mapEpicPreferencesToWindow();
         mapSprintPreferencesToWindow();
         mapEstimatePreferencesToWindow();
-        mapReportsPreferencesToWindow();
     }
     
     /**
@@ -312,19 +311,6 @@ public class PreferencesController implements Initializable {
     }
     
     /**
-     * Maps report settings to report tab.
-     */
-    private void mapReportsPreferencesToWindow() {
-        if (currentPreferences.hasTemplate()) {
-            documentTemplatePathTextField.setText(
-                    currentPreferences.getDocumentTemplate().getAbsolutePath()
-            );
-        } else {
-            documentTemplatePathTextField.setText((""));
-        }
-    }
-    
-    /**
      * Maps window content to new document object for serialization.
      * 
      * @return built preference object
@@ -333,7 +319,6 @@ public class PreferencesController implements Initializable {
         mapWindowToEpicPreferences();
         mapWindowToSprintPreferences();
         mapWindowToEstimatePreferences();
-        mapWindowToReportPreferences();
         
         currentDocument.setPreferences(currentPreferences);
     }
@@ -412,21 +397,6 @@ public class PreferencesController implements Initializable {
     }
     
     /**
-     * Maps report settings to preferences
-     */
-    private void mapWindowToReportPreferences() {
-        String documentTemplatePath = documentTemplatePathTextField
-                .getText()
-                .trim();
-        
-        if (documentTemplatePath != "") {
-            currentPreferences.setDocumentTemplate(
-                    new File(documentTemplatePath)
-            );
-        }
-    }
-    
-    /**
      * Applies default reference sprint to all epic outlooks.
      */
     @FXML
@@ -447,53 +417,6 @@ public class PreferencesController implements Initializable {
                     e
             );
         }
-    }
-    
-    /**
-     * Handles the choice of a document template file
-     */
-    @FXML
-    private void handleChooseDocumentTemplate() {
-        try {
-            FileChooser.ExtensionFilter fileExtFilter = 
-                    new FileChooser.ExtensionFilter(
-                            "DOTX File",
-                            Arrays.asList("dotx")
-                    );
-            
-            File templateFile = OpenFileDialog.show(
-                    bundle.getString("dialogs.reportTemplate.open.title"),
-                    window(),
-                    fileExtFilter
-            );
-            
-            currentPreferences.setDocumentTemplate(templateFile);
-            
-            mapPreferencesToWindow();
-        } catch (Exception e) {
-            ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.preferences.chooseDocumentTemplate"),
-                    e
-            );
-        } 
-    }
-    
-    /**
-     * Handles a reset of document template file
-     */
-    @FXML
-    private void handleResetDocumentTemplate() {
-        try {
-            currentPreferences.setDocumentTemplate(null);
-            mapPreferencesToWindow();
-        } catch (Exception e) {
-            ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.preferences.resetDocumentTemplate"),
-                    e
-            );
-        } 
     }
     
     /**
