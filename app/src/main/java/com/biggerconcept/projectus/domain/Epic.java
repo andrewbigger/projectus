@@ -71,6 +71,18 @@ public class Epic {
     private Outlook outlook;
     
     /**
+     * Start sprint number
+     */
+    @JsonInclude(Include.NON_NULL)
+    private int startSprint;
+    
+    /**
+     * End sprint number
+     */
+    @JsonInclude(Include.NON_NULL)
+    private int endSprint;
+    
+    /**
      * Parent document.
      */
     @JsonIgnore
@@ -403,6 +415,47 @@ public class Epic {
     }
     
     /**
+     * Returns start sprint number
+     * 
+     * @return sprint number
+     */
+    public int getStartSprint() {
+        return startSprint;
+    }
+    
+    /**
+     * Returns end sprint number
+     * 
+     * @return sprint number
+     */
+    public int getEndSprint() {
+        return endSprint;
+    }
+    
+    /**
+     * Returns array of assigned sprints
+     * 
+     * @return 
+     */
+    @JsonIgnore
+    public ArrayList<Integer> getAssignedSprints() {
+        ArrayList<Integer> assignedSprints = new ArrayList<Integer>();
+        
+        if (hasAssignedSprints() == false) {
+            return assignedSprints;
+        }
+        
+        int start = getStartSprint();
+        int end = getEndSprint();
+
+        for (int i = start; i < end + 1; i++) {
+            assignedSprints.add(i);
+        }
+        
+        return assignedSprints;
+    }
+    
+    /**
      * Setter for ID.
      * 
      * @param value UUID to set as ID
@@ -499,6 +552,40 @@ public class Epic {
      */
     public void setOutlook(Outlook value) {
         outlook = value;
+    }
+    
+    /**
+     * Setter for start sprint
+     * 
+     * @param value start sprint number
+     */
+    public void setStartSprint(int value) {
+        startSprint = value;
+    }
+    
+    /**
+     * Setter for end sprint
+     * 
+     * @param value end sprint number
+     */
+    public void setEndSprint(int value) {
+        endSprint = value;
+    }
+    
+    /**
+     * Assigned sprint check
+     * 
+     * If the start and end sprints are defined this will return
+     * true. Otherwise we will return false.
+     * 
+     * @return has assigned sprints
+     */
+    public boolean hasAssignedSprints() {
+        if (startSprint > 0 && endSprint > 0) {
+            return true;
+        }
+        
+        return false;
     }
  
      /**
@@ -702,8 +789,7 @@ public class Epic {
     public int calculateTotalSprints(Preferences preferences) {
         int total = calculateTotalPoints(preferences);
         int availablePointsPerSprint = preferences.calculateAvailablePointsPerSprint();
-        
-        
+
         return (int) total / availablePointsPerSprint;
     }
     
