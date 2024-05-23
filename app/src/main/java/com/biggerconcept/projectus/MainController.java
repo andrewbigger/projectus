@@ -22,7 +22,6 @@ import com.biggerconcept.projectus.ui.tables.RiskTable;
 import com.biggerconcept.projectus.ui.tables.StoryTable;
 import com.biggerconcept.projectus.ui.tables.TasksTable;
 import com.biggerconcept.appengine.ui.window.StandardWindow;
-import com.biggerconcept.projectus.domain.Preferences;
 import com.biggerconcept.projectus.domain.Status;
 import com.biggerconcept.projectus.helpers.Compare;
 import com.biggerconcept.projectus.ui.dialogs.EpicChooserDialog;
@@ -539,6 +538,12 @@ public class MainController implements Initializable {
     public Button moveRiskDownButton;
     
     /**
+     * Discovery report generator button.
+     */
+    @FXML
+    public Button discoveryReportButton;
+    
+    /**
      * Initializes the main window.
      * 
      * @param url URL of main FXML
@@ -633,6 +638,9 @@ public class MainController implements Initializable {
         );
         outlookButton.setTooltip(
                 new Tooltip(bundle.getString("toolbar.outlook.tooltip"))
+        );
+        discoveryReportButton.setTooltip(
+                new Tooltip(bundle.getString("toolbar.discovery.tooltip"))
         );
         addTaskButton.setTooltip(
                 new Tooltip(bundle.getString("epic.toolbar.add.tooltip"))
@@ -1395,7 +1403,7 @@ public class MainController implements Initializable {
      */
     @FXML
     private void handleOpenOutlook() {
-        try {
+        try {            
             ObservableList<Epic> items = epicsTableView
                     .getSelectionModel()
                     .getSelectedItems();
@@ -1429,6 +1437,8 @@ public class MainController implements Initializable {
             
             openWindows.add(stage);
             stage.showAndWait();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
         } catch (Exception e) {
              ErrorAlert.show(
                     bundle,
@@ -2170,13 +2180,17 @@ public class MainController implements Initializable {
     @FXML
     private void handleOpenDiscoveryReportDialog() {
         try {
+            if (currentEpic == null) {
+                throw new NoChoiceMadeException();
+            }
+            
             FXMLLoader loader = StandardWindow.load(
                     this,
                     bundle,
                     "/fxml/DiscoveryReport.fxml"
             );
             
-            Parent preferencePane = (Parent) loader.load();
+            Parent reportPane = (Parent) loader.load();
         
             DiscoveryReportController controller = 
                     (DiscoveryReportController) loader.getController();
@@ -2184,9 +2198,14 @@ public class MainController implements Initializable {
             controller.setDocument(currentDocument);
             controller.setEpic(currentEpic);
             
+            String title = bundle.getString("reports.discovery.title")
+                    + " ["
+                    + currentEpic.getName()
+                    + "]";
+            
             Stage stage = StandardWindow.setup(
-                    preferencePane,
-                    bundle.getString("reports.discovery.title"),
+                    reportPane,
+                    title,
                     null,
                     false,
                     StageStyle.DECORATED,
@@ -2195,6 +2214,8 @@ public class MainController implements Initializable {
             );
             
             stage.showAndWait();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
         } catch (Exception e) {
             ErrorAlert.show(
                     bundle,

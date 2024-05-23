@@ -1770,4 +1770,9 @@ parts:
     title: "Message when save location is missing"
     value: "Please specify a save location"
     variants: {}
+- translation:
+    key: "toolbar.discovery.tooltip"
+    title: "Discovery report button tooltip"
+    value: "Generates a discovery document report for the selected epic."
+    variants: {}
 sourceLanguage: "en"

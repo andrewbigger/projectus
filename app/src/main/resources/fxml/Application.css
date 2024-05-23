@@ -48,6 +48,10 @@
   -fx-background-image: url('../icons/OutlookIcon.png');
 }
 
+.reportsButton {
+  -fx-background-image: url('../icons/ReportsIcon.png');
+}
+
 .moveButton {
   -fx-background-image: url('../icons/MoveIcon.png')
 }
