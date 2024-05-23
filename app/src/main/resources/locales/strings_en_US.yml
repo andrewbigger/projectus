@@ -1715,4 +1715,59 @@ parts:
     title: "Label for close window menu item"
     value: "Close Window"
     variants: {}
+- translation:
+    key: "reports.discovery.title"
+    title: "Title for discovery report form"
+    value: "Discovery Report"
+    variants: {}
+- translation:
+    key: "reports.discovery.format"
+    title: "Label for discovery report format dropdown"
+    value: "Format"
+    variants: {}
+- translation:
+    key: "reports.discovery.saveLocation"
+    title: "Label for save location"
+    value: "Save location"
+    variants: {}
+- translation:
+    key: "reports.discovery.customTemplate"
+    title: "Label for use custom template checkbox"
+    value: "Use custom template"
+    variants: {}
+- translation:
+    key: "reports.discovery.name"
+    title: "Label for name attribute"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "reports.discovery.templateFile"
+    title: "Label for template file"
+    value: "Template file"
+    variants: {}
+- translation:
+    key: "actions.save"
+    title: "Generic save action"
+    value: "Save"
+    variants: {}
+- translation:
+    key: "actions.cancel"
+    title: "Generic cancel action"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "reports.discovery.errors.noGen.title"
+    title: "Title when unable to generate report"
+    value: "Unable to generate discovery report"
+    variants: {}
+- translation:
+    key: "reports.discovery.errors.noGen.missingName"
+    title: "Message when report name is missing"
+    value: "Please provide a report name"
+    variants: {}
+- translation:
+    key: "reports.discovery.errors.noGen.missingLocation"
+    title: "Message when save location is missing"
+    value: "Please specify a save location"
+    variants: {}
 sourceLanguage: "en"

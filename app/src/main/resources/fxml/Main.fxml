@@ -569,16 +569,11 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox prefHeight="29.0" prefWidth="622.0">
-                                 <children>
-                                    <Button mnemonicParsing="false" onMouseClicked="#handleGenerateDiscoveryDocument" text="Generate Discovery Document">
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                    <Button mnemonicParsing="false" onMouseClicked="#handleGenerateDiscoveryMarkdown" text="Generate Discovery Markdown" />
-                                 </children>
-                              </HBox>
+                              <Button fx:id="discoveryReportButton" mnemonicParsing="false" onAction="#handleOpenDiscoveryReportDialog" text="%reports.discovery.title">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Button>
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -9,9 +9,6 @@ import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.exceptions.DuplicateItemException;
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import com.biggerconcept.appengine.platform.OperatingSystem;
-import com.biggerconcept.appengine.serializers.documents.Docx;
-import com.biggerconcept.appengine.serializers.documents.Markdown;
-import com.biggerconcept.projectus.serializers.DiscoveryDocumentSerializer;
 import com.biggerconcept.projectus.helpers.Date;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
@@ -63,7 +60,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 /**
  * Controller for the main view.
@@ -2171,78 +2167,43 @@ public class MainController implements Initializable {
         }
     }
     
-    /**
-     * Generates epic discovery document.
-     */
     @FXML
-    private void handleGenerateDiscoveryDocument() {
+    private void handleOpenDiscoveryReportDialog() {
         try {
-            File f = SaveFileDialog.show(bundle.getString("dialogs.save.title"),
-                    window(),
-                    fileExtFilter
-            );
-
-            if (f == null) {
-                throw new NoChoiceMadeException();
-            }
-            
-            Preferences prefs = currentDocument.getPreferences();
-            
-            XWPFDocument template;
-            template = prefs.defaultTemplate();
-            
-            com.biggerconcept.appengine.serializers.documents.Docx docx = 
-                    new Docx(f, template);
-           
-            DiscoveryDocumentSerializer dds = new DiscoveryDocumentSerializer(
+            FXMLLoader loader = StandardWindow.load(
+                    this,
                     bundle,
-                    currentDocument.getPreferences(),
-                    currentEpic,
-                    f,
-                    docx
+                    "/fxml/DiscoveryReport.fxml"
             );
             
-            dds.save();
-        } catch (NoChoiceMadeException ncm) {
-            // do nothing
+            Parent preferencePane = (Parent) loader.load();
+        
+            DiscoveryReportController controller = 
+                    (DiscoveryReportController) loader.getController();
+        
+            controller.setDocument(currentDocument);
+            controller.setEpic(currentEpic);
+            
+            Stage stage = StandardWindow.setup(
+                    preferencePane,
+                    bundle.getString("reports.discovery.title"),
+                    null,
+                    false,
+                    StageStyle.DECORATED,
+                    false
+                    
+            );
+            
+            stage.showAndWait();
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.saveFile"), e);
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.generic"),
+                    e
+            );
         }
     }
     
-    /**
-     * Generates epic discovery document.
-     */
-    @FXML
-    private void handleGenerateDiscoveryMarkdown() {
-        try {
-            File f = SaveFileDialog.show(bundle.getString("dialogs.save.title"),
-                    window(),
-                    fileExtFilter
-            );
-
-            if (f == null) {
-                throw new NoChoiceMadeException();
-            }
-            
-            Markdown md = new Markdown(f);
-           
-            DiscoveryDocumentSerializer dds = new DiscoveryDocumentSerializer(
-                    bundle,
-                    currentDocument.getPreferences(),
-                    currentEpic,
-                    f,
-                    md
-            );
-            
-            dds.save();
-        } catch (NoChoiceMadeException ncm) {
-            // do nothing
-        } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.saveFile"), e);
-        }
-    }
-        
     /**
      * Opens about application dialog box.
      */
