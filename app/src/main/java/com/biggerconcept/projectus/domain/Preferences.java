@@ -1,5 +1,6 @@
 package com.biggerconcept.projectus.domain;
 
+import com.biggerconcept.appengine.reports.IReport;
 import static com.biggerconcept.projectus.domain.Size.DEFAULT_L_TASK_SIZE;
 import static com.biggerconcept.projectus.domain.Size.DEFAULT_M_TASK_SIZE;
 import static com.biggerconcept.projectus.domain.Size.DEFAULT_S_TASK_SIZE;
@@ -10,13 +11,16 @@ import static com.biggerconcept.projectus.domain.Size.TaskSize.M;
 import static com.biggerconcept.projectus.domain.Size.TaskSize.S;
 import static com.biggerconcept.projectus.domain.Size.TaskSize.XL;
 import static com.biggerconcept.projectus.domain.Size.TaskSize.XS;
+import com.biggerconcept.projectus.reports.Report;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 /**
@@ -91,6 +95,10 @@ public class Preferences {
      */
     @JsonInclude(Include.NON_NULL)
     private int sprintLength;
+    
+    @JsonInclude(Include.NON_NULL)
+    @JsonDeserialize(contentAs=Report.class)
+    private ArrayList<IReport> reports;
     
     /**
      * Default epic start number.
@@ -308,6 +316,19 @@ public class Preferences {
         }
         
         return estimateBuffer;
+    }
+    
+    /**
+     * Getter for reports
+     * 
+     * @return reports
+     */
+    public ArrayList<IReport> getReports() {
+        if (reports == null) {
+            reports = new ArrayList<>();
+        }
+        
+        return reports;
     }
     
     /**
@@ -548,6 +569,15 @@ public class Preferences {
      */
     public void setEstimateBuffer(int value) {
         estimateBuffer = value;
+    }
+    
+    /**
+     * Setter for reports
+     * 
+     * @param value new reports array
+     */
+    public void setReports(ArrayList<IReport> value) {
+        reports = value;
     }
 
     /**

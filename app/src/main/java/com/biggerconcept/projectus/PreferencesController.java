@@ -1,21 +1,24 @@
 package com.biggerconcept.projectus;
 
+import com.biggerconcept.appengine.IPreferencesController;
+import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
+import com.biggerconcept.appengine.reports.IReport;
+import com.biggerconcept.appengine.reports.ui.dialogs.ReportBuilderDialog;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Preferences;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
-import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Sprint;
-import java.io.File;
+import com.biggerconcept.projectus.reports.Element;
+import com.biggerconcept.projectus.reports.Report;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -23,7 +26,14 @@ import javafx.stage.Stage;
  * 
  * @author Andrew Bigger
  */
-public class PreferencesController implements Initializable {
+public class PreferencesController 
+        implements Initializable, IPreferencesController {
+    
+    /**
+     * Application state
+     */
+    private State state;
+    
     /**
      * Resource bundle for preferences window.
      */
@@ -38,51 +48,8 @@ public class PreferencesController implements Initializable {
      * Document preferences
      */
     private Preferences currentPreferences;
-
-    /**
-     * Initialize-er for the preference window
-     * 
-     * @param url URL for preferences FXML
-     * @param rb application resource bundle
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        bundle = rb;
-
-        applyTooltips();
-        
-    }
     
-    /**
-     * Applies tool tips to the controls of the preferences window.
-     */
-    private void applyTooltips() {
-        cancelPreferencesButton.setTooltip(
-            new Tooltip(bundle.getString(
-                    "dialogs.preferences.actions.cancel.tooltip"
-                )
-            )
-        );
-        savePreferencesButton.setTooltip(
-            new Tooltip(bundle.getString(
-                    "dialogs.preferences.actions.save.tooltip"
-                )
-            )
-        );
-    }
-    
-    /**
-     * Sets document pointer for the preference window.
-     * 
-     * @param doc open document
-     */
-    public void setDocument(Document doc) {
-        this.currentDocument = doc;
-        this.currentPreferences = currentDocument.getPreferences();
-        mapPreferencesToWindow();
-    }
-    
-    /**
+        /**
      * Epic start number text field.
      */
     @FXML
@@ -197,6 +164,56 @@ public class PreferencesController implements Initializable {
     public TextField documentTemplatePathTextField;
     
     /**
+     * Reports list view
+     */
+    @FXML
+    public ListView reportsListView;
+
+    /**
+     * Initialize-er for the preference window
+     * 
+     * @param url URL for preferences FXML
+     * @param rb application resource bundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        bundle = rb;
+
+        applyTooltips();
+        
+    }
+    
+    /**
+     * Applies tool tips to the controls of the preferences window.
+     */
+    private void applyTooltips() {
+        cancelPreferencesButton.setTooltip(
+            new Tooltip(bundle.getString(
+                    "dialogs.preferences.actions.cancel.tooltip"
+                )
+            )
+        );
+        savePreferencesButton.setTooltip(
+            new Tooltip(bundle.getString(
+                    "dialogs.preferences.actions.save.tooltip"
+                )
+            )
+        );
+    }
+    
+    /**
+     * Sets document pointer for the preference window.
+     * 
+     * @param state application state
+     */
+    public void setState(State state) {
+        this.state = state;
+        this.currentDocument = state.getOpenDocument();
+        this.currentPreferences = currentDocument.getPreferences();
+        mapPreferencesToWindow();
+    }
+    
+    /**
      * Returns the preference window stage.
      * 
      * The pref window stage is the window that the save button control is
@@ -211,13 +228,20 @@ public class PreferencesController implements Initializable {
     
     /**
      * Maps given document to window.
-     * 
-     * @param doc open document
      */
-    private void mapPreferencesToWindow() {
+    public void mapPreferencesToWindow() {
         mapEpicPreferencesToWindow();
         mapSprintPreferencesToWindow();
         mapEstimatePreferencesToWindow();
+        mapReportsToWindow();
+    }
+    
+    /**
+     * Returns application resources
+     * @return application resources
+     */
+    public ResourceBundle bundle() {
+        return bundle;
     }
     
     /**
@@ -311,11 +335,20 @@ public class PreferencesController implements Initializable {
     }
     
     /**
-     * Maps window content to new document object for serialization.
-     * 
-     * @return built preference object
+     * Maps reports to reports tab
      */
-    private void mapWindowToPreferences() {
+    private void mapReportsToWindow() {
+        reportsListView.getItems().clear();
+        
+        for (IReport r : currentPreferences.getReports()) {
+            reportsListView.getItems().add(r);
+        }
+    }
+    
+    /**
+     * Maps window content to new document object for serialization.
+     */
+    public void mapWindowToPreferences() {
         mapWindowToEpicPreferences();
         mapWindowToSprintPreferences();
         mapWindowToEstimatePreferences();
@@ -394,6 +427,96 @@ public class PreferencesController implements Initializable {
                         )
                 )
         );
+    }
+    
+    /**
+     * Opens report builder dialog to add a new report
+     */
+    @FXML
+    private void handleAddReport() {
+        try {
+            ReportBuilderDialog.open(
+                    this,
+                    Element.availableContent(state),
+                    new Report("New Report"), 
+                    currentPreferences.getReports(),
+                    true,
+                    com.biggerconcept.appengine.Engine.class.getResource("/fxml/ReportBuilder.fxml")
+            );
+            
+            mapPreferencesToWindow();
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Opens report builder dialog to add a new report
+     */
+    @FXML
+    private void handleRemoveReport() {
+        try {
+            Report selected = (Report) reportsListView
+                    .getSelectionModel()
+                    .getSelectedItem();
+            
+            if (selected == null) {
+                throw new NoChoiceMadeException();
+            }
+            
+            // TODO confirm
+            
+            currentPreferences.getReports().remove(selected);
+            
+            mapPreferencesToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Opens report builder dialog to edit an existing report
+     */
+    @FXML
+    private void handleEditReport() {
+        try {
+             Report selected = (Report) reportsListView
+                    .getSelectionModel()
+                    .getSelectedItem();
+            
+            if (selected == null) {
+                throw new NoChoiceMadeException();
+            }
+            
+            ReportBuilderDialog.open(
+                    this,
+                    Element.availableContent(state),
+                    selected, 
+                    currentPreferences.getReports(),
+                    false,
+                    this.getClass().getResource("/fxml/ReportBuilder.fxml")
+            );
+            
+            mapPreferencesToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.generic"),
+                    e
+            );
+        }
     }
     
     /**

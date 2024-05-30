@@ -9,6 +9,8 @@ import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.exceptions.DuplicateItemException;
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import com.biggerconcept.appengine.platform.OperatingSystem;
+import com.biggerconcept.appengine.reports.IReport;
+import com.biggerconcept.appengine.reports.ui.menus.ReportMenuBuilder;
 import com.biggerconcept.projectus.helpers.Date;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
@@ -21,7 +23,7 @@ import com.biggerconcept.projectus.ui.tables.EpicsTable;
 import com.biggerconcept.projectus.ui.tables.RiskTable;
 import com.biggerconcept.projectus.ui.tables.StoryTable;
 import com.biggerconcept.projectus.ui.tables.TasksTable;
-import com.biggerconcept.appengine.ui.window.StandardWindow;
+import com.biggerconcept.appengine.ui.windows.StandardWindow;
 import com.biggerconcept.projectus.domain.Status;
 import com.biggerconcept.projectus.helpers.Compare;
 import com.biggerconcept.projectus.ui.dialogs.EpicChooserDialog;
@@ -48,6 +50,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
@@ -65,26 +68,16 @@ import javafx.stage.StageStyle;
  * 
  * @author Andrew Bigger
  */
-public class MainController implements Initializable {  
+public class MainController implements Initializable {
     /**
-     * The document being edited in the main window.
+     * Application State
      */
-    private Document currentDocument;
-    
-    /**
-     * The currently selected epic.
-     */
-    private Epic currentEpic;
-    
+    private State state;
+
     /**
      * Extension filter for files.
      */
     private ExtensionFilter fileExtFilter;
-    
-    /**
-     * Resource bundle for application.
-     */
-    private ResourceBundle bundle;
     
     /**
      * List of open windows.
@@ -544,6 +537,12 @@ public class MainController implements Initializable {
     public Button discoveryReportButton;
     
     /**
+     * Reports menu button
+     */
+    @FXML
+    public MenuButton reportsMenuButton;
+    
+    /**
      * Initializes the main window.
      * 
      * @param url URL of main FXML
@@ -551,9 +550,8 @@ public class MainController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        bundle = rb;
-
-        currentDocument = new Document();
+        state = new State(this, rb);
+        
         fileExtFilter = new ExtensionFilter(
                 "JSON File",
                 Arrays.asList("json")
@@ -561,7 +559,7 @@ public class MainController implements Initializable {
         
         epicsTableView.setPlaceholder(
                new Label(
-                       bundle.getString("project.table.empty")
+                       state.bundle().getString("project.table.empty")
                )
        );
 
@@ -586,13 +584,13 @@ public class MainController implements Initializable {
      * @return 
      */
     private String buildWindowTitle() {
-        String title = currentDocument.getTitle();
+        String title = state.getOpenDocument().getTitle();
         
         if (title == null || title.trim() == "") {
-            title = bundle.getString("document.defaultTitle");
+            title = state.bundle().getString("document.defaultTitle");
         }
         
-        return title + " - " + bundle.getString("application.name");
+        return title + " - " + state.bundle().getString("application.name");
     }
     
     /**
@@ -607,109 +605,109 @@ public class MainController implements Initializable {
      */
     private void applyTooltips() {
         openFileButton.setTooltip(
-                new Tooltip(bundle.getString("toolbar.open.tooltip"))
+                new Tooltip(state.bundle().getString("toolbar.open.tooltip"))
         );
         saveFileButton.setTooltip(
-                new Tooltip(bundle.getString("toolbar.save.tooltip"))
+                new Tooltip(state.bundle().getString("toolbar.save.tooltip"))
         );
         newFileButton.setTooltip(
-                new Tooltip(bundle.getString("toolbar.new.tooltip"))
+                new Tooltip(state.bundle().getString("toolbar.new.tooltip"))
         );
         addEpicButton.setTooltip(
-                new Tooltip(bundle.getString("toolbar.add.tooltip"))
+                new Tooltip(state.bundle().getString("toolbar.add.tooltip"))
         );
         removeEpicButton.setTooltip(
-                new Tooltip(bundle.getString("toolbar.remove.tooltip"))
+                new Tooltip(state.bundle().getString("toolbar.remove.tooltip"))
         );
         moveEpicUpButton.setTooltip(
-                new Tooltip(bundle.getString("toolbar.moveUp.tooltip"))
+                new Tooltip(state.bundle().getString("toolbar.moveUp.tooltip"))
         );
         moveEpicDownButton.setTooltip(
-                new Tooltip(bundle.getString("toolbar.moveDown.tooltip"))
+                new Tooltip(state.bundle().getString("toolbar.moveDown.tooltip"))
         );
         manageStoriesButton.setTooltip(
-                new Tooltip(bundle.getString("toolbar.storyManager.tooltip"))
+                new Tooltip(state.bundle().getString("toolbar.storyManager.tooltip"))
         );
         manageRisksButton.setTooltip(
-                new Tooltip(bundle.getString("toolbar.riskManager.tooltip"))
+                new Tooltip(state.bundle().getString("toolbar.riskManager.tooltip"))
         );
         moveEpicButton.setTooltip(
-                new Tooltip(bundle.getString("toolbar.moveEpic.tooltip"))
+                new Tooltip(state.bundle().getString("toolbar.moveEpic.tooltip"))
         );
         outlookButton.setTooltip(
-                new Tooltip(bundle.getString("toolbar.outlook.tooltip"))
+                new Tooltip(state.bundle().getString("toolbar.outlook.tooltip"))
         );
         discoveryReportButton.setTooltip(
-                new Tooltip(bundle.getString("toolbar.discovery.tooltip"))
+                new Tooltip(state.bundle().getString("toolbar.discovery.tooltip"))
         );
         addTaskButton.setTooltip(
-                new Tooltip(bundle.getString("epic.toolbar.add.tooltip"))
+                new Tooltip(state.bundle().getString("epic.toolbar.add.tooltip"))
         );
         removeTaskButton.setTooltip(
-                new Tooltip(bundle.getString("epic.toolbar.remove.tooltip"))
+                new Tooltip(state.bundle().getString("epic.toolbar.remove.tooltip"))
         );
         moveTaskUpButton.setTooltip(
-                new Tooltip(bundle.getString("epic.toolbar.moveUp.tooltip"))
+                new Tooltip(state.bundle().getString("epic.toolbar.moveUp.tooltip"))
         );
         moveTaskDownButton.setTooltip(
-                new Tooltip(bundle.getString("epic.toolbar.moveDown.tooltip"))
+                new Tooltip(state.bundle().getString("epic.toolbar.moveDown.tooltip"))
         );
         editTaskButton.setTooltip(
-                new Tooltip(bundle.getString("epic.toolbar.edit.tooltip"))
+                new Tooltip(state.bundle().getString("epic.toolbar.edit.tooltip"))
         );
         moveTaskButton.setTooltip(
-                new Tooltip(bundle.getString("epic.toolbar.moveTask.tooltip"))
+                new Tooltip(state.bundle().getString("epic.toolbar.moveTask.tooltip"))
         );
         addInclScopeButton.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.scope.include.add.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.scope.include.add.tooltip"))
         );
         removeInclScopeButton.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.scope.include.remove.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.scope.include.remove.tooltip"))
         );
         addExclScopeButton.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.scope.exclude.add.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.scope.exclude.add.tooltip"))
         );
         removeExclScopeButton.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.scope.exclude.remove.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.scope.exclude.remove.tooltip"))
         );
         addStoryLinkButton.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.story.add.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.story.add.tooltip"))
         );
         removeStoryLinkButton.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.story.remove.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.story.remove.tooltip"))
         );
         moveStoryUpButton.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.story.moveUp.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.story.moveUp.tooltip"))
         );
         moveStoryDownButton.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.story.moveDown.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.story.moveDown.tooltip"))
         );
         addRiskLinkButton.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.risks.add.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.risks.add.tooltip"))
         );
         removeRiskLinkButton.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.risks.remove.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.risks.remove.tooltip"))
         );
         moveRiskUpButton.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.risks.moveUp.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.risks.moveUp.tooltip"))
         );
         moveRiskDownButton.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.risks.moveDown.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.risks.moveDown.tooltip"))
         );
         definedSummaryProgressBar.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.overview.progress.summary.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.overview.progress.summary.tooltip"))
         );
         definedScopeProgressBar.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.overview.progress.scope.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.overview.progress.scope.tooltip"))
         );
         definedStatusProgressBar.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.overview.progress.descriptions.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.overview.progress.descriptions.tooltip"))
         );
         sizedStatusProgressBar.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.overview.progress.sized.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.overview.progress.sized.tooltip"))
         );
         describedStatusProgressBar.setTooltip(
-                new Tooltip(bundle.getString("epic.tabs.overview.progress.described.tooltip"))
+                new Tooltip(state.bundle().getString("epic.tabs.overview.progress.described.tooltip"))
         );
     }
     
@@ -728,18 +726,19 @@ public class MainController implements Initializable {
     /**
      * Maps given document to window.
      */
-    private void mapDocumentToWindow() {
-        currentDocument.rebuildIdentifiers();
+    public void mapDocumentToWindow() {
+        state.getOpenDocument().rebuildIdentifiers();
         
         setWindowTitle();
         mapProjectDetailsToWindow();
         mapEpicsToWindow();
         mapSelectedEpicToWindow();
         mapStatusToWindow();
+        mapReportsToWindow();
     }
     
     private void mapStatusToWindow() {
-        Status status = currentDocument.status();
+        Status status = state.getOpenDocument().status();
         
         if (status.hasDates() && status.hasStarted() == true) {
             statusPanel.setVisible(true);
@@ -805,30 +804,30 @@ public class MainController implements Initializable {
     }
     
     private void mapProjectDetailsToWindow() {
-        String title = currentDocument.getTitle();
+        String title = state.getOpenDocument().getTitle();
         String enteredTitle = projectNameTextField.getText();
         
         if (Compare.notEmptyIsDifferent(title, enteredTitle)) {
             projectNameTextField.setText(title);
         }
         
-        long start = currentDocument.getStart();
+        long start = state.getOpenDocument().getStart();
         projectStartDatePicker.setValue(Date.fromEpoch(start));
         
-        long end = currentDocument.getEnd();
+        long end = state.getOpenDocument().getEnd();
         projectEndDatePicker.setValue(Date.fromEpoch(end));
     }
     
     private void mapEpicsToWindow() {
-        if (currentDocument.getEpics() == null) {
+        if (state.getOpenDocument().getEpics() == null) {
             epicsTableView.getItems().clear();
             
             return;
         }
         EpicsTable epicsTable = new EpicsTable(
-                bundle,
-                currentDocument.getPreferences(),
-                currentDocument.getEpics()
+                state.bundle(),
+                state.getOpenDocument().getPreferences(),
+                state.getOpenDocument().getEpics()
         );
         
         epicsTable.bind(epicsTableView);
@@ -841,7 +840,7 @@ public class MainController implements Initializable {
         mapEpicTasksToWindow();
         mapEpicRisksToWindow();
 
-        if (currentEpic != null) {
+        if (state.getOpenEpic() != null) {
             selectedEpicPanel.setVisible(true);
         } else {
             selectedEpicPanel.setVisible(false);
@@ -849,7 +848,7 @@ public class MainController implements Initializable {
     }
     
     private void mapEpicOverviewToWindow() {
-        if (currentEpic == null) {
+        if (state.getOpenEpic() == null) {
             epicNameTextField.setText("");
             epicSummaryTextArea.setText("");
             
@@ -858,17 +857,17 @@ public class MainController implements Initializable {
         
         // overview tab
         // epic name text field
-        epicNameTextField.setText(currentEpic.getName());
+        epicNameTextField.setText(state.getOpenEpic().getName());
 
         // epic summary text field
         epicSummaryTextArea.setWrapText(true);
-        epicSummaryTextArea.setText(currentEpic.getSummary());
+        epicSummaryTextArea.setText(state.getOpenEpic().getSummary());
 
         mapEpicOverviewStatusToWindow();
     }
     
     private void mapEpicOverviewStatusToWindow() {
-        if (currentEpic == null) {
+        if (state.getOpenEpic() == null) {
             definedSummaryProgressBar.setProgress(0);
             definedScopeProgressBar.setProgress(0);
             definedStatusProgressBar.setProgress(0);
@@ -889,84 +888,84 @@ public class MainController implements Initializable {
         // status section
         // defined task status
         definedSummaryProgressBar.setProgress(
-                currentEpic.calculateSummaryProgress()
+                state.getOpenEpic().calculateSummaryProgress()
         );
 
         definedScopeProgressBar.setProgress(
-                currentEpic.calculateScopeProgress()
+                state.getOpenEpic().calculateScopeProgress()
         );
 
         definedStatusProgressBar.setProgress(
-                currentEpic.calculateDefinitionProgress()
+                state.getOpenEpic().calculateDefinitionProgress()
         );
 
         // sized task status
         sizedCountLabel.setText(
                 String.valueOf(
-                        currentEpic.calculateSizedCount()
+                        state.getOpenEpic().calculateSizedCount()
                 )
         );
 
         sizedStatusProgressBar.setProgress(
-                currentEpic.calculateSizedProgress()
+                state.getOpenEpic().calculateSizedProgress()
         );
 
         // described task status
         describedCountLabel.setText(
                 String.valueOf(
-                        currentEpic.calculateDescribedCount()
+                        state.getOpenEpic().calculateDescribedCount()
                 )
         );
 
         describedStatusProgressBar.setProgress(
-                currentEpic.calculateDescribedProgress()
+                state.getOpenEpic().calculateDescribedProgress()
         );
 
         // progress section
         // task progress
 
         epicTaskProgressBar.setProgress(
-                currentEpic.calculateCompleteProgress()
+                state.getOpenEpic().calculateCompleteProgress()
         );
 
         completeTaskCountLabel.setText(
                 String.valueOf(
-                        currentEpic.calculateCompleteCount()
+                        state.getOpenEpic().calculateCompleteCount()
                 )
         );
 
         totalTaskCountLabel.setText(
                 String.valueOf(
-                        currentEpic.calculateTaskCount()
+                        state.getOpenEpic().calculateTaskCount()
                 )
         );
 
         // point progress
         epicPointsProgressBar.setProgress(
-                currentEpic.calculateCompletePointProgress(
-                        currentDocument.getPreferences()
+                state.getOpenEpic().calculateCompletePointProgress(
+                        state.getOpenDocument().getPreferences()
                 )
         );
 
         epicCompletedPointsLabel.setText(
                 String.valueOf(
-                        currentEpic.calculateCompletePointCount(
-                                currentDocument.getPreferences()
+                        state.getOpenEpic().calculateCompletePointCount(
+                                state.getOpenDocument().getPreferences()
                         )
                 )
         );
 
         epicTotalPointsLabel.setText(
                 String.valueOf(
-                        currentEpic.getSize(
-                                currentDocument.getPreferences()
+                        state.getOpenEpic().getSize(
+                                state.getOpenDocument().getPreferences()
                         )
                 )
         );
     }
     
     private void mapEpicScopeToWindow() {
-        if (currentEpic == null) {
+        if (state.getOpenEpic() == null) {
             includeScopeListView.getItems().clear();
             excludeScopeListView.getItems().clear();
             
@@ -976,80 +975,94 @@ public class MainController implements Initializable {
         // scope tab
         includeScopeListView.getItems().clear();
 
-        for (String in : currentEpic.getScope().getIncluded()) {
+        for (String in : state.getOpenEpic().getScope().getIncluded()) {
             includeScopeListView.getItems().add(in);
         }
 
         excludeScopeListView.getItems().clear();
         
-        for (String out : currentEpic.getScope().getExcluded()) {
+        for (String out : state.getOpenEpic().getScope().getExcluded()) {
             excludeScopeListView.getItems().add(out);
         }
 
     }
     
     private void mapEpicStoriesToWindow() {
-        if (currentEpic == null) {
+        if (state.getOpenEpic() == null) {
             return;
         }
 
         // stories tab
         // stories table
         StoryTable storiesTable = new StoryTable(
-                bundle,
-                currentEpic.getDocumentStories()
+                state.bundle(),
+                state.getOpenEpic().getDocumentStories()
         );
 
         storiesTable.bind(storiesTableView);
     }
     
     private void mapEpicTasksToWindow() {
-        if (currentEpic == null) {
+        if (state.getOpenEpic() == null) {
             return;
         }
 
         // tasks tab
         // tasks table
         TasksTable tasksTable = new TasksTable(
-                bundle,
-                currentEpic.getTasks(),
-                currentDocument.getPreferences(),
-                currentEpic.getIdentifier()
+                state.bundle(),
+                state.getOpenEpic().getTasks(),
+                state.getOpenDocument().getPreferences(),
+                state.getOpenEpic().getIdentifier()
         );
 
         tasksTable.bind(tasksTableView);
     }
     
     private void mapEpicRisksToWindow() {
-        if (currentEpic == null) {
+        if (state.getOpenEpic() == null) {
             return;
         }
         
         // risks tab
         // risks table
         RiskTable risksTable = new RiskTable(
-                bundle,
-                currentEpic.getDocumentRisks()
+                state.bundle(),
+                state.getOpenEpic().getDocumentRisks()
         );
 
         risksTable.bind(risksTableView);
+    }
+    
+    private void mapReportsToWindow() {
+        ArrayList<IReport> reports = state
+                .getOpenDocument()
+                .getPreferences()
+                .getReports();
+        
+        ReportMenuBuilder.build(
+                state.bundle(),
+                reportsMenuButton, 
+                reports,
+                state.getReportContent()
+        );
     }
     
     /**
      * Maps window content to current document object for serialization.
      */
     private void mapWindowToDocument() {  
-        currentDocument.setTitle(projectNameTextField.getText());
+        state.getOpenDocument().setTitle(projectNameTextField.getText());
         
-        currentDocument.setStart(
+        state.getOpenDocument().setStart(
                 Date.toEpoch(projectStartDatePicker.getValue())
         );
         
-        currentDocument.setEnd(Date.toEpoch(projectEndDatePicker.getValue()));
+        state.getOpenDocument().setEnd(Date.toEpoch(projectEndDatePicker.getValue()));
         
-        if (currentEpic != null) {
-            currentEpic.setName(epicNameTextField.getText());
-            currentEpic.setSummary(epicSummaryTextArea.getText());
+        if (state.getOpenEpic() != null) {
+            state.getOpenEpic().setName(epicNameTextField.getText());
+            state.getOpenEpic().setSummary(epicSummaryTextArea.getText());
             
             Scope s = new Scope();
             
@@ -1061,7 +1074,7 @@ public class MainController implements Initializable {
                 s.getExcluded().add(out.toString());
             }
 
-            currentEpic.setScope(s);
+            state.getOpenEpic().setScope(s);
         }
     }
     
@@ -1090,7 +1103,7 @@ public class MainController implements Initializable {
         try {
              FXMLLoader loader = StandardWindow.load(
                     this,
-                    bundle,
+                    state.bundle(),
                     "/fxml/Main.fxml"
             );
             
@@ -1098,7 +1111,7 @@ public class MainController implements Initializable {
             
             Stage stage = StandardWindow.setup(
                     window,
-                    bundle.getString("application.name"),
+                    state.bundle().getString("application.name"),
                     "/fxml/Application.css",
                     false,
                     StageStyle.DECORATED,
@@ -1107,14 +1120,14 @@ public class MainController implements Initializable {
             
             stage.show();
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.generic"), e);
         }
     }
     
     /**
      * Creates a new document.
      * 
-     * This will replace the currentDocument with a new one, having the effect
+     * This will replace the state.getOpenDocument() with a new one, having the effect
      * of creating a new locale file.
      */
     @FXML
@@ -1122,11 +1135,10 @@ public class MainController implements Initializable {
         try {
             closeAllDependentWindows();
             
-            currentDocument = new Document();
-            currentEpic = null;
+            state.reset();
             mapDocumentToWindow();
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.new"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.new"), e);
         }
     }
     
@@ -1146,21 +1158,21 @@ public class MainController implements Initializable {
     @FXML
     private void handleOpenDocument() {
         try {
-            File documentFile = OpenFileDialog.show(bundle.getString("dialogs.open.title"),
+            File documentFile = OpenFileDialog.show(state.bundle().getString("dialogs.open.title"),
                     window(),
                     fileExtFilter
             );
             
             closeAllDependentWindows();
 
-            currentDocument = Document.load(documentFile);
-            currentEpic = null;
+            state.setOpenDocument(Document.load(documentFile));
+            state.setOpenEpic(null);
             
             mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (IOException e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.open"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.open"), e);
         }
     }
     
@@ -1177,8 +1189,8 @@ public class MainController implements Initializable {
         try {
             mapWindowToDocument();
 
-            if (currentDocument.getFile() == null) {
-                File f = SaveFileDialog.show(bundle.getString("dialogs.save.title"),
+            if (state.getOpenDocument().getFile() == null) {
+                File f = SaveFileDialog.show(state.bundle().getString("dialogs.save.title"),
                         window(),
                         fileExtFilter
                 );
@@ -1187,18 +1199,18 @@ public class MainController implements Initializable {
                     return;
                 }
 
-                currentDocument.setFile(f);
+                state.getOpenDocument().setFile(f);
             }
             
-            currentDocument.rebuildIdentifiers();
-            currentDocument.save();
+            state.getOpenDocument().rebuildIdentifiers();
+            state.getOpenDocument().save();
             
             mapDocumentToWindow();
 
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (IOException e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.saveFile"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.saveFile"), e);
         }
     }
     
@@ -1209,15 +1221,15 @@ public class MainController implements Initializable {
     private void handleAddEpic() {
         try {
              EpicDialog addEpic = new EpicDialog(
-                    bundle,
-                    currentDocument,
+                    state.bundle(),
+                    state.getOpenDocument(),
                     new Epic()
             );
             
             addEpic.show(window());
             mapDocumentToWindow();
         } catch(Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.addEpic"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.addEpic"), e);
         }
     }
     
@@ -1237,23 +1249,23 @@ public class MainController implements Initializable {
             
             ButtonType answer = YesNoPrompt.show(
                     AlertType.CONFIRMATION,
-                    bundle.getString("epic.dialogs.remove.title"),
-                    bundle.getString("epic.dialogs.remove.description")
+                    state.bundle().getString("epic.dialogs.remove.title"),
+                    state.bundle().getString("epic.dialogs.remove.description")
             );
             
             if (answer == ButtonType.YES) {
                 for (Epic e: items) {
-                    currentDocument.removeEpic(e);
+                    state.getOpenDocument().removeEpic(e);
                 }
             }
 
-            currentEpic = null;
+            state.setOpenEpic(null);
             
             mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.removeEpic"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.removeEpic"), e);
         }
         
     }
@@ -1283,7 +1295,7 @@ public class MainController implements Initializable {
             }
             
             Collections.swap(
-                    currentDocument.getEpics(),
+                    state.getOpenDocument().getEpics(),
                     selectedIndex,
                     targetIndex
             );
@@ -1292,7 +1304,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.moveEpic"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.moveEpic"), e);
         }
     }
     
@@ -1321,7 +1333,7 @@ public class MainController implements Initializable {
             }
             
             Collections.swap(
-                    currentDocument.getEpics(),
+                    state.getOpenDocument().getEpics(),
                     selectedIndex,
                     targetIndex
             );
@@ -1330,7 +1342,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.moveEpic"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.moveEpic"), e);
         }
     }
     
@@ -1349,15 +1361,15 @@ public class MainController implements Initializable {
             }
             
             File documentFile = OpenFileDialog.show(
-                    bundle.getString("dialogs.moveEpic.chooseProject"),
+                    state.bundle().getString("dialogs.moveEpic.chooseProject"),
                     window(),
                     fileExtFilter
             );
             
             ButtonType answer = YesNoPrompt.show(
                     AlertType.CONFIRMATION,
-                    bundle.getString("dialogs.moveEpic.title"),
-                    bundle.getString("dialogs.moveEpic.description")
+                    state.bundle().getString("dialogs.moveEpic.title"),
+                    state.bundle().getString("dialogs.moveEpic.description")
             );
             
             if (answer == ButtonType.NO) {
@@ -1383,18 +1395,18 @@ public class MainController implements Initializable {
                     }
                 }
                 
-                currentDocument.removeEpic(e);
+                state.getOpenDocument().removeEpic(e);
                 chosenDocument.addEpic(e);
             }
             
-            currentDocument.save();
+            state.getOpenDocument().save();
             chosenDocument.save();
             
             mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.moveEpic"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.moveEpic"), e);
         }
     }
     
@@ -1414,7 +1426,7 @@ public class MainController implements Initializable {
             
             FXMLLoader loader = StandardWindow.load(
                     this,
-                    bundle,
+                    state.bundle(),
                     "/fxml/Outlook.fxml"
             );
             
@@ -1423,12 +1435,12 @@ public class MainController implements Initializable {
             OutlookController controller = (OutlookController) loader
                 .getController();
             
-            controller.setPreferences(currentDocument.getPreferences());
+            controller.setPreferences(state.getOpenDocument().getPreferences());
             controller.setEpic(items.get(0));
 
             Stage stage = StandardWindow.setup(
                     outlookPane,
-                    currentEpic.getName(),
+                    state.getOpenEpic().getName(),
                     "/fxml/Application.css",
                     StageStyle.UTILITY
             );
@@ -1441,8 +1453,8 @@ public class MainController implements Initializable {
             // do nothing
         } catch (Exception e) {
              ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.outlook.open"),
+                    state.bundle(),
+                    state.bundle().getString("errors.outlook.open"),
                     e
             );
         }
@@ -1466,15 +1478,15 @@ public class MainController implements Initializable {
                     .getSelectedItems();
             
             if (items.isEmpty()) {
-                currentEpic = null;
+                state.setOpenEpic(null);
             } else {
                 mapWindowToDocument();
-                currentEpic = items.get(0);
+                state.setOpenEpic(items.get(0));
             }
             
             mapDocumentToWindow();
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.selectEpic"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.selectEpic"), e);
         }
     }
 
@@ -1493,8 +1505,8 @@ public class MainController implements Initializable {
             empty.add(new Task());
             
             TaskDialog addTask = new TaskDialog(
-                    bundle,
-                    currentEpic,
+                    state.bundle(),
+                    state.getOpenEpic(),
                     empty,
                     false
             );
@@ -1502,7 +1514,7 @@ public class MainController implements Initializable {
             addTask.show(window());
             mapDocumentToWindow();
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.addTask"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.addTask"), e);
         }
     }
     
@@ -1531,13 +1543,13 @@ public class MainController implements Initializable {
             
             ButtonType answer = YesNoPrompt.show(
                     AlertType.CONFIRMATION,
-                    bundle.getString("epic.tasks.dialogs.remove.title"),
-                    bundle.getString("epic.tasks.dialogs.remove.description")
+                    state.bundle().getString("epic.tasks.dialogs.remove.title"),
+                    state.bundle().getString("epic.tasks.dialogs.remove.description")
             );
             
             if (answer == ButtonType.YES) {
                 for (Task t: items) {
-                    currentEpic.removeTask(t);
+                    state.getOpenEpic().removeTask(t);
                 }
             }
             
@@ -1545,7 +1557,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.removeTask"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.removeTask"), e);
         }
     }
     
@@ -1580,7 +1592,7 @@ public class MainController implements Initializable {
             }
             
             Collections.swap(
-                    currentEpic.getTasks(),
+                    state.getOpenEpic().getTasks(),
                     selectedIndex,
                     targetIndex
             );
@@ -1589,7 +1601,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.moveTask"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.moveTask"), e);
         }
     }
     
@@ -1622,7 +1634,7 @@ public class MainController implements Initializable {
             }
             
             Collections.swap(
-                    currentEpic.getTasks(),
+                    state.getOpenEpic().getTasks(),
                     selectedIndex,
                     targetIndex
             );
@@ -1631,7 +1643,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.moveTask"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.moveTask"), e);
         }
     }
     
@@ -1650,8 +1662,8 @@ public class MainController implements Initializable {
             }
             
             TaskDialog manageTask = new TaskDialog(
-                    bundle,
-                    currentEpic,
+                    state.bundle(),
+                    state.getOpenEpic(),
                     items,
                     items.size() > 1
             );
@@ -1662,7 +1674,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.editTask"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.editTask"), e);
         }
     }
     
@@ -1681,14 +1693,14 @@ public class MainController implements Initializable {
             }
             
             EpicChooserDialog pickEpic = new EpicChooserDialog(
-                    bundle,
-                    currentDocument.getEpics()
+                    state.bundle(),
+                    state.getOpenDocument().getEpics()
             );
             
             Epic chosenEpic = pickEpic.show(window());
             
             for (Task t : items) {
-                currentEpic.removeTask(t);
+                state.getOpenEpic().removeTask(t);
                 chosenEpic.addTask(t);
             }
             
@@ -1696,7 +1708,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.moveTask"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.moveTask"), e);
         }
     }
     
@@ -1704,19 +1716,19 @@ public class MainController implements Initializable {
     private void handleAddStoryLink() {
         try {
             StoryChooserDialog pickStory = new StoryChooserDialog(
-                    bundle,
-                    currentDocument.getStories()
+                    state.bundle(),
+                    state.getOpenDocument().getStories()
             );
             
             Story chosenStory = pickStory.show(window());
             
-            currentEpic.addStory(chosenStory);
+            state.getOpenEpic().addStory(chosenStory);
             
             mapDocumentToWindow();
         } catch (DuplicateItemException | NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.addStory"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.addStory"), e);
         }
     }
     
@@ -1733,13 +1745,13 @@ public class MainController implements Initializable {
             
             ButtonType answer = YesNoPrompt.show(
                     AlertType.CONFIRMATION,
-                    bundle.getString("epic.stories.dialogs.remove.title"),
-                    bundle.getString("epic.stories.dialogs.remove.description")
+                    state.bundle().getString("epic.stories.dialogs.remove.title"),
+                    state.bundle().getString("epic.stories.dialogs.remove.description")
             );
             
             if (answer == ButtonType.YES) {
                 for (Story s: items) {
-                    currentEpic.removeStory(s);
+                    state.getOpenEpic().removeStory(s);
                 }
             }
             
@@ -1747,7 +1759,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.removeStory"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.removeStory"), e);
         }
     }
     
@@ -1773,7 +1785,7 @@ public class MainController implements Initializable {
             }
             
             Collections.swap(
-                    currentEpic.getStories(),
+                    state.getOpenEpic().getStories(),
                     selectedIndex,
                     targetIndex
             );
@@ -1782,7 +1794,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.moveStory"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.moveStory"), e);
         }
     }
     
@@ -1808,7 +1820,7 @@ public class MainController implements Initializable {
             }
             
             Collections.swap(
-                    currentEpic.getStories(),
+                    state.getOpenEpic().getStories(),
                     selectedIndex,
                     targetIndex
             );
@@ -1817,7 +1829,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.moveStory"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.moveStory"), e);
         }
     }
     
@@ -1825,13 +1837,13 @@ public class MainController implements Initializable {
     private void handleAddRiskLink() {
         try {
             RiskChooserDialog pickRisk = new RiskChooserDialog(
-                    bundle,
-                    currentDocument.getRisks()
+                    state.bundle(),
+                    state.getOpenDocument().getRisks()
             );
             
             Risk chosenRisk = pickRisk.show(window());
             
-            currentEpic.addRisk(chosenRisk);
+            state.getOpenEpic().addRisk(chosenRisk);
             
             mapDocumentToWindow();
         } catch (DuplicateItemException | NoChoiceMadeException ncm) {
@@ -1851,13 +1863,13 @@ public class MainController implements Initializable {
             
             ButtonType answer = YesNoPrompt.show(
                     AlertType.CONFIRMATION,
-                    bundle.getString("epic.risks.dialogs.remove.title"),
-                    bundle.getString("epic.risks.dialogs.remove.description")
+                    state.bundle().getString("epic.risks.dialogs.remove.title"),
+                    state.bundle().getString("epic.risks.dialogs.remove.description")
             );
             
             if (answer == ButtonType.YES) {
                 for (Risk r: items) {
-                    currentEpic.removeRisk(r);
+                    state.getOpenEpic().removeRisk(r);
                 }
             }
             
@@ -1865,7 +1877,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.remoeRisk"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.remoeRisk"), e);
         }
     }
     
@@ -1891,7 +1903,7 @@ public class MainController implements Initializable {
             }
             
             Collections.swap(
-                    currentEpic.getRisks(),
+                    state.getOpenEpic().getRisks(),
                     selectedIndex,
                     targetIndex
             );
@@ -1900,7 +1912,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.moveRisk"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.moveRisk"), e);
         }
     }
     
@@ -1926,7 +1938,7 @@ public class MainController implements Initializable {
             }
             
             Collections.swap(
-                    currentEpic.getRisks(),
+                    state.getOpenEpic().getRisks(),
                     selectedIndex,
                     targetIndex
             );
@@ -1935,7 +1947,7 @@ public class MainController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.moveRisk"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.moveRisk"), e);
         }
     }
     
@@ -1952,7 +1964,7 @@ public class MainController implements Initializable {
         try {
             FXMLLoader loader = StandardWindow.load(
                     this,
-                    bundle,
+                    state.bundle(),
                     "/fxml/Preferences.fxml"
             );
             
@@ -1961,27 +1973,26 @@ public class MainController implements Initializable {
             PreferencesController controller = (PreferencesController) loader
                 .getController();
         
-            controller.setDocument(currentDocument);
+            controller.setState(state);
             
             Stage stage = StandardWindow.setup(
                     preferencePane,
-                    bundle.getString("dialogs.preferences.title"),
+                    state.bundle().getString("dialogs.preferences.title"),
                     null,
                     false,
                     StageStyle.DECORATED,
                     false
-                    
             );
             
             openWindows.add(stage);
             stage.showAndWait();
             
-            currentDocument.rebuildIdentifiers();
+            state.getOpenDocument().rebuildIdentifiers();
             mapDocumentToWindow();
         } catch (IOException e) {
             ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.preferences.open"),
+                    state.bundle(),
+                    state.bundle().getString("errors.preferences.open"),
                     e
             );
         }
@@ -1995,7 +2006,7 @@ public class MainController implements Initializable {
         try {
             FXMLLoader loader = StandardWindow.load(
                     this,
-                    bundle,
+                    state.bundle(),
                     "/fxml/Stories.fxml"
             );
             
@@ -2004,11 +2015,11 @@ public class MainController implements Initializable {
             StoriesController controller = (StoriesController) loader
                     .getController();
             
-            controller.setDocument(currentDocument);
+            controller.setDocument(state.getOpenDocument());
             
             Stage stage = StandardWindow.setup(
                     storiesPane,
-                    bundle.getString("dialogs.stories.title"),
+                    state.bundle().getString("dialogs.stories.title"),
                     "/fxml/Application.css",
                     StageStyle.DECORATED
             );
@@ -2017,8 +2028,8 @@ public class MainController implements Initializable {
             stage.showAndWait();
         } catch (Exception e) {
              ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.stories.open"),
+                    state.bundle(),
+                    state.bundle().getString("errors.stories.open"),
                     e
             );
         }
@@ -2032,7 +2043,7 @@ public class MainController implements Initializable {
         try {
             FXMLLoader loader = StandardWindow.load(
                     this,
-                    bundle,
+                    state.bundle(),
                     "/fxml/Risks.fxml"
             );
             
@@ -2041,11 +2052,11 @@ public class MainController implements Initializable {
             RisksController controller = (RisksController) loader
                     .getController();
             
-            controller.setDocument(currentDocument);
+            controller.setDocument(state.getOpenDocument());
             
             Stage stage = StandardWindow.setup(
                     risksPane,
-                    bundle.getString("risks.dialogs.risk.title"),
+                    state.bundle().getString("risks.dialogs.risk.title"),
                     "/fxml/Application.css",
                     StageStyle.DECORATED
             );
@@ -2054,8 +2065,8 @@ public class MainController implements Initializable {
             stage.showAndWait();
         } catch (Exception e) {
              ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.risks.open"),
+                    state.bundle(),
+                    state.bundle().getString("errors.risks.open"),
                     e
             );
         }
@@ -2065,8 +2076,8 @@ public class MainController implements Initializable {
     private void handleAddScope() {
         try {
             ScopeDialog addScope = new ScopeDialog(
-                    bundle,
-                    currentEpic.getScope().getIncluded(),
+                    state.bundle(),
+                    state.getOpenEpic().getScope().getIncluded(),
                     ""
             );
             
@@ -2074,8 +2085,8 @@ public class MainController implements Initializable {
             mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.scope.add"),
+                    state.bundle(),
+                    state.bundle().getString("errors.scope.add"),
                     e
             );
         }
@@ -2094,16 +2105,16 @@ public class MainController implements Initializable {
             
             ButtonType answer = YesNoPrompt.show(
                     AlertType.CONFIRMATION,
-                    bundle.getString(
+                    state.bundle().getString(
                             "epic.dialogs.scope.included.remove.title"
                     ),
-                    bundle.getString(
+                    state.bundle().getString(
                             "epic.dialogs.scope.included.remove.description"
                     )
             );
             
             if (answer == ButtonType.YES) {
-                currentEpic.getScope().getIncluded().remove(item);
+                state.getOpenEpic().getScope().getIncluded().remove(item);
             }
             
             mapDocumentToWindow();
@@ -2112,8 +2123,8 @@ public class MainController implements Initializable {
             // do nothing
         } catch (Exception e) {
             ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.scope.remove"),
+                    state.bundle(),
+                    state.bundle().getString("errors.scope.remove"),
                     e
             );
         }
@@ -2123,8 +2134,8 @@ public class MainController implements Initializable {
     private void handleAddExcludedScope() {
         try {
             ScopeDialog addExcludedScope = new ScopeDialog(
-                    bundle,
-                    currentEpic.getScope().getExcluded(),
+                    state.bundle(),
+                    state.getOpenEpic().getScope().getExcluded(),
                     ""
             );
             
@@ -2132,8 +2143,8 @@ public class MainController implements Initializable {
             mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.scope.add"),
+                    state.bundle(),
+                    state.bundle().getString("errors.scope.add"),
                     e
             );
         }
@@ -2152,16 +2163,16 @@ public class MainController implements Initializable {
             
             ButtonType answer = YesNoPrompt.show(
                     AlertType.CONFIRMATION,
-                    bundle.getString(
+                    state.bundle().getString(
                             "epic.dialogs.scope.excluded.remove.title"
                     ),
-                    bundle.getString(
+                    state.bundle().getString(
                             "epic.dialogs.scope.excluded.remove.description"
                     )
             );
             
             if (answer == ButtonType.YES) {
-                currentEpic.getScope().getExcluded().remove(item);
+                state.getOpenEpic().getScope().getExcluded().remove(item);
             }
             
             mapDocumentToWindow();
@@ -2170,8 +2181,8 @@ public class MainController implements Initializable {
             // do nothing
         } catch (Exception e) {
             ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.scope.remove"),
+                    state.bundle(),
+                    state.bundle().getString("errors.scope.remove"),
                     e
             );
         }
@@ -2180,13 +2191,13 @@ public class MainController implements Initializable {
     @FXML
     private void handleOpenDiscoveryReportDialog() {
         try {
-            if (currentEpic == null) {
+            if (state.getOpenEpic() == null) {
                 throw new NoChoiceMadeException();
             }
             
             FXMLLoader loader = StandardWindow.load(
                     this,
-                    bundle,
+                    state.bundle(),
                     "/fxml/DiscoveryReport.fxml"
             );
             
@@ -2195,12 +2206,12 @@ public class MainController implements Initializable {
             DiscoveryReportController controller = 
                     (DiscoveryReportController) loader.getController();
         
-            controller.setDocument(currentDocument);
-            controller.setEpic(currentEpic);
+            controller.setDocument(state.getOpenDocument());
+            controller.setEpic(state.getOpenEpic());
             
-            String title = bundle.getString("reports.discovery.title")
+            String title = state.bundle().getString("reports.discovery.title")
                     + " ["
-                    + currentEpic.getName()
+                    + state.getOpenEpic().getName()
                     + "]";
             
             Stage stage = StandardWindow.setup(
@@ -2218,8 +2229,8 @@ public class MainController implements Initializable {
             // do nothing
         } catch (Exception e) {
             ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.generic"),
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
                     e
             );
         }
@@ -2234,7 +2245,7 @@ public class MainController implements Initializable {
             Stage aboutStage = new Stage();
         
             Parent aboutPane = FXMLLoader.load(
-                getClass().getResource("/fxml/About.fxml"), bundle
+                getClass().getResource("/fxml/About.fxml"), state.bundle()
             );
 
             aboutStage.setAlwaysOnTop(true);
@@ -2243,13 +2254,13 @@ public class MainController implements Initializable {
             aboutStage.resizableProperty().setValue(false);
 
             aboutStage.setTitle(
-                    bundle.getString("application.about.windowTitle")
+                    state.bundle().getString("application.about.windowTitle")
             );
             
             openWindows.add(aboutStage);
             aboutStage.showAndWait();
         } catch (IOException e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.about.open"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.about.open"), e);
         }
     }
     
@@ -2261,7 +2272,7 @@ public class MainController implements Initializable {
         try {
             OperatingSystem.goToUrl(App.HELP_URL);
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.help.open"), e);
+            ErrorAlert.show(state.bundle(), state.bundle().getString("errors.help.open"), e);
         }
     }
     

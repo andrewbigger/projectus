@@ -107,6 +107,12 @@
   -fx-background-position: center center;
 }
 
+#reportsMenuButton {
+  -fx-background-image: url('../icons/ReportsIcon.png');
+  -fx-background-position: left center;
+  -fx-background-repeat: no-repeat;
+}
+
 #sizedProgress > .bar {
   -fx-background-color: #C72A1C;
 }

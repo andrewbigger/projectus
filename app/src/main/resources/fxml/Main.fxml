@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Separator?>
@@ -37,6 +38,12 @@
                   <Button id="newFileButton" fx:id="newFileButton" mnemonicParsing="false" onMouseClicked="#handleCreateNewDocument" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
                   <Button id="openFileButton" fx:id="openFileButton" mnemonicParsing="false" onMouseClicked="#handleOpenDocument" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
                   <Button id="saveFileButton" fx:id="saveFileButton" mnemonicParsing="false" onMouseClicked="#handleSaveDocument" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="9.0" />
+                  <MenuButton id="reportsMenuButton" fx:id="reportsMenuButton" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="55.0" text="%toolbar.reports.title">
+                     <padding>
+                        <Insets left="35.0" />
+                     </padding>
+                  </MenuButton>
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="9.0" />
                   <Button id="manageStoriesButton" fx:id="manageStoriesButton" mnemonicParsing="false" onMouseClicked="#handleManageStories" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
                   <Button id="manageRisksButton" fx:id="manageRisksButton" mnemonicParsing="false" onMouseClicked="#handleManageRisks" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
