@@ -44,6 +44,86 @@ public class Element extends com.biggerconcept.appengine.reports.elements.Elemen
         
         content.addSection(new TableOfContentsElement(state));
         
+        content.addVariable(
+                "project_name", 
+                Variables.projectName(state)
+        );
+        
+        content.addVariable(
+                "project_start_date", 
+                Variables.projectStartDate(state)
+        );
+        
+        content.addVariable(
+                "project_end_date", 
+                Variables.projectEndDate(state)
+        );
+        
+        content.addVariable(
+                "weeks_elapsed", 
+                Variables.weeksElapsed(state)
+        );
+        
+        content.addVariable(
+                "weeks_total", 
+                Variables.weeksTotal(state)
+        );
+        
+        content.addVariable(
+                "weeks_remaining", 
+                Variables.weeksRemaining(state)
+        );
+        
+        content.addVariable(
+                "sprints_elapsed", 
+                Variables.sprintsElapsed(state)
+        );
+        
+        content.addVariable(
+                "sprints_total", 
+                Variables.sprintsTotal(state)
+        );
+        
+        content.addVariable(
+                "sprints_remaining", 
+                Variables.sprintsRemaining(state)
+        );
+        
+        content.addVariable(
+                "points_completed", 
+                Variables.pointsCompleted(state)
+        );
+        
+        content.addVariable(
+                "points_total", 
+                Variables.pointsTotal(state)
+        );
+        
+        content.addVariable(
+                "points_remaining", 
+                Variables.pointsRemaining(state)
+        );
+        
+        content.addVariable(
+                "velocity", 
+                Variables.velocity(state)
+        );
+        
+        content.addVariable(
+                "tracking_status", 
+                Variables.trackingStatus(state)
+        );
+        
+        content.addVariable(
+                "committed_points", 
+                Variables.committedPoints(state)
+        );
+        
+        content.addVariable(
+                "available_points", 
+                Variables.availablePoints(state)
+        );
+        
         return content;
     }
     
