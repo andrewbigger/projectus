@@ -31,6 +31,19 @@ public class Element extends com.biggerconcept.appengine.reports.elements.Elemen
     public static Content availableContent(State state) {
         Content content = new Content();
         
+        content.addParagraph(new TitleElement(state));
+        content.addParagraph(new Heading1Element(state));
+        content.addParagraph(new Heading2Element(state));
+        content.addParagraph(new Heading3Element(state));
+        content.addParagraph(new Heading4Element(state));
+        content.addParagraph(new SubtitleParagraphElement(state));
+        content.addParagraph(new ParagraphElement(state));
+        content.addParagraph(new StrongParagraphElement(state));
+        content.addParagraph(new NewLineElement(state));
+        content.addParagraph(new PageBreakElement(state));
+        
+        content.addSection(new TableOfContentsElement(state));
+        
         return content;
     }
     
