@@ -319,4 +319,164 @@ public class Variables {
         }
     }
     
+    /**
+     * Returns start epic number as a variable
+     * 
+     * @param state application state
+     * 
+     * @return start epic number
+     */
+    public static String startEpicNumber(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getEpicStartNumber()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns extra small task size number as a variable
+     * 
+     * @param state application state
+     * 
+     * @return extra small task size
+     */
+    public static String xsTaskSize(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getExtraSmallTaskSize()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns small task size number as a variable
+     * 
+     * @param state application state
+     * 
+     * @return small task size
+     */
+    public static String sTaskSize(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getSmallTaskSize()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns medium task size number as a variable
+     * 
+     * @param state application state
+     * 
+     * @return medium task size
+     */
+    public static String mTaskSize(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getMediumTaskSize()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns large task size number as a variable
+     * 
+     * @param state application state
+     * 
+     * @return large task size
+     */
+    public static String lTaskSize(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getLargeTaskSize()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns extra large task size number as a variable
+     * 
+     * @param state application state
+     * 
+     * @return extra large task size
+     */
+    public static String xlTaskSize(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getExtraLargeTaskSize()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns sprint length number as a variable
+     * 
+     * @param state application state
+     * 
+     * @return sprint length
+     */
+    public static String sprintLength(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getSprintLength()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns estimate buffer as a variable
+     * 
+     * @param state application state
+     * 
+     * @return estimate buffer
+     */
+    public static String estimateBuffer(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getSprintLength()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
 }
