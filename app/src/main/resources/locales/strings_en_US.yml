@@ -1905,4 +1905,14 @@ parts:
     title: "Label for syntax column"
     value: "Syntax"
     variants: {}
+- translation:
+    key: "reports.elements.referenceSprintTable.name"
+    title: "Name column header for the reference sprint table"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "reports.elements.referenceSprintTable.points"
+    title: "Points column header"
+    value: "Points"
+    variants: {}
 sourceLanguage: "en"
