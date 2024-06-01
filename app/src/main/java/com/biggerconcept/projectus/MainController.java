@@ -1051,7 +1051,7 @@ public class MainController implements Initializable {
     /**
      * Maps window content to current document object for serialization.
      */
-    private void mapWindowToDocument() {  
+    public void mapWindowToDocument() {  
         state.getOpenDocument().setTitle(projectNameTextField.getText());
         
         state.getOpenDocument().setStart(
@@ -1136,7 +1136,7 @@ public class MainController implements Initializable {
             closeAllDependentWindows();
             
             state.reset();
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(state.bundle(), state.bundle().getString("errors.new"), e);
         }
@@ -1167,8 +1167,7 @@ public class MainController implements Initializable {
 
             state.setOpenDocument(Document.load(documentFile));
             state.setOpenEpic(null);
-            
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (IOException e) {
@@ -1187,7 +1186,7 @@ public class MainController implements Initializable {
     @FXML
     private void handleSaveDocument() {
         try {
-            mapWindowToDocument();
+            state.mapWindowToDocument();
 
             if (state.getOpenDocument().getFile() == null) {
                 File f = SaveFileDialog.show(state.bundle().getString("dialogs.save.title"),
@@ -1204,9 +1203,7 @@ public class MainController implements Initializable {
             
             state.getOpenDocument().rebuildIdentifiers();
             state.getOpenDocument().save();
-            
-            mapDocumentToWindow();
-
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (IOException e) {
@@ -1227,7 +1224,7 @@ public class MainController implements Initializable {
             );
             
             addEpic.show(window());
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch(Exception e) {
             ErrorAlert.show(state.bundle(), state.bundle().getString("errors.addEpic"), e);
         }
@@ -1260,8 +1257,7 @@ public class MainController implements Initializable {
             }
 
             state.setOpenEpic(null);
-            
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1300,7 +1296,7 @@ public class MainController implements Initializable {
                     targetIndex
             );
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1338,7 +1334,7 @@ public class MainController implements Initializable {
                     targetIndex
             );
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1402,7 +1398,7 @@ public class MainController implements Initializable {
             state.getOpenDocument().save();
             chosenDocument.save();
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1480,11 +1476,11 @@ public class MainController implements Initializable {
             if (items.isEmpty()) {
                 state.setOpenEpic(null);
             } else {
-                mapWindowToDocument();
+                state.mapWindowToDocument();
                 state.setOpenEpic(items.get(0));
             }
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(state.bundle(), state.bundle().getString("errors.selectEpic"), e);
         }
@@ -1512,7 +1508,7 @@ public class MainController implements Initializable {
             );
             
             addTask.show(window());
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(state.bundle(), state.bundle().getString("errors.addTask"), e);
         }
@@ -1553,7 +1549,7 @@ public class MainController implements Initializable {
                 }
             }
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1597,7 +1593,7 @@ public class MainController implements Initializable {
                     targetIndex
             );
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1639,7 +1635,7 @@ public class MainController implements Initializable {
                     targetIndex
             );
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1670,7 +1666,7 @@ public class MainController implements Initializable {
             
             manageTask.show(window());
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1704,7 +1700,7 @@ public class MainController implements Initializable {
                 chosenEpic.addTask(t);
             }
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1724,7 +1720,7 @@ public class MainController implements Initializable {
             
             state.getOpenEpic().addStory(chosenStory);
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (DuplicateItemException | NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1755,7 +1751,7 @@ public class MainController implements Initializable {
                 }
             }
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1790,7 +1786,7 @@ public class MainController implements Initializable {
                     targetIndex
             );
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1825,7 +1821,7 @@ public class MainController implements Initializable {
                     targetIndex
             );
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1845,8 +1841,9 @@ public class MainController implements Initializable {
             
             state.getOpenEpic().addRisk(chosenRisk);
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (DuplicateItemException | NoChoiceMadeException ncm) {
+            // do nothing
         }
     }
     
@@ -1873,7 +1870,7 @@ public class MainController implements Initializable {
                 }
             }
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1908,7 +1905,7 @@ public class MainController implements Initializable {
                     targetIndex
             );
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1943,7 +1940,7 @@ public class MainController implements Initializable {
                     targetIndex
             );
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -1988,7 +1985,7 @@ public class MainController implements Initializable {
             stage.showAndWait();
             
             state.getOpenDocument().rebuildIdentifiers();
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (IOException e) {
             ErrorAlert.show(
                     state.bundle(),
@@ -2082,7 +2079,7 @@ public class MainController implements Initializable {
             );
             
             addScope.show(window());
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(
                     state.bundle(),
@@ -2117,7 +2114,7 @@ public class MainController implements Initializable {
                 state.getOpenEpic().getScope().getIncluded().remove(item);
             }
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
             
         } catch(NoChoiceMadeException ncm) {
             // do nothing
@@ -2140,7 +2137,7 @@ public class MainController implements Initializable {
             );
             
             addExcludedScope.show(window());
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(
                     state.bundle(),
@@ -2175,7 +2172,7 @@ public class MainController implements Initializable {
                 state.getOpenEpic().getScope().getExcluded().remove(item);
             }
             
-            mapDocumentToWindow();
+            state.mapDocumentToWindow();
             
         } catch(NoChoiceMadeException ncm) {
             // do nothing

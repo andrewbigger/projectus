@@ -1,9 +1,11 @@
 package com.biggerconcept.projectus;
 
+import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.reports.Element;
+import com.biggerconcept.projectus.reports.Report;
 import java.util.ResourceBundle;
 
 /**
@@ -58,6 +60,19 @@ public class State {
    
    public void mapDocumentToWindow() {
        mainController().mapDocumentToWindow();
+       setReportDocument();
+   }
+   
+   public void mapWindowToDocument() {
+       mainController().mapWindowToDocument();
+       setReportDocument();
+   }
+   
+   public void setReportDocument() {
+       for (IReport r : openDocument.getPreferences().getReports()) {
+            Report rpt = (Report) r;
+            rpt.setState(this);
+        }
    }
 
 }

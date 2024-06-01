@@ -7,6 +7,7 @@ import com.biggerconcept.projectus.domain.Sprint;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 /**
  * Inserts a reference sprint table into a report
@@ -40,7 +41,7 @@ public class ReferenceSprintTableElement extends Element {
      */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {        
-        document.table(headers(), body());
+         document.table(headers(getState().bundle()), body());
     }
     
     /**
@@ -62,21 +63,19 @@ public class ReferenceSprintTableElement extends Element {
      * 
      * @return headers as an array list
      */
-    private ArrayList<String> headers() {
+    private ArrayList<String> headers(ResourceBundle bundle) {
         ArrayList<String> headers = new ArrayList<>();
         
         headers.add(
-                getState()
-                        .bundle()
-                        .getString("reports.elements.referenceSprintTable.name")
+                bundle
+                    .getString("reports.elements.referenceSprintTable.name")
         );
         
         headers.add(
-                getState()
-                        .bundle()
-                        .getString(
-                                "reports.elements.referenceSprintTable.points"
-                        )
+                bundle
+                    .getString(
+                            "reports.elements.referenceSprintTable.points"
+                    )
         );
         
         return headers;

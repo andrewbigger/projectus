@@ -1915,4 +1915,24 @@ parts:
     title: "Points column header"
     value: "Points"
     variants: {}
+- translation:
+    key: "reports.elements.epicsTable.number"
+    title: "Epic number oclumn header"
+    value: "#"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTable.name"
+    title: "Name column header"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTable.estimate"
+    title: "Estimiate column header"
+    value: "Estimate"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTable.status"
+    title: "Status column header"
+    value: "Status"
+    variants: {}
 sourceLanguage: "en"
