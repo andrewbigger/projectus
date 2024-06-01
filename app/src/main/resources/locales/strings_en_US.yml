@@ -1935,4 +1935,19 @@ parts:
     title: "Status column header"
     value: "Status"
     variants: {}
+- translation:
+    key: "reports.elements.storiesTable.actor"
+    title: "Label for actor stories table"
+    value: "As a(n)..."
+    variants: {}
+- translation:
+    key: "reports.elements.storiesTable.intent"
+    title: "Label for intention column"
+    value: "I want to..."
+    variants: {}
+- translation:
+    key: "reports.elements.storiesTable.expectation"
+    title: "Label for story expectation column"
+    value: "And I expect..."
+    variants: {}
 sourceLanguage: "en"

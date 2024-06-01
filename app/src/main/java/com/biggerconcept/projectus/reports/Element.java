@@ -45,6 +45,7 @@ public class Element extends com.biggerconcept.appengine.reports.elements.Elemen
         content.addSection(new TableOfContentsElement(state));
         content.addSection(new ReferenceSprintTableElement(state));
         content.addSection(new EpicsTableElement(state));
+        content.addSection(new StoriesTableElement(state));
         
         content.addVariable(
                 "project_name", 
