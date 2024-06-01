@@ -1950,4 +1950,29 @@ parts:
     title: "Label for story expectation column"
     value: "And I expect..."
     variants: {}
+- translation:
+    key: "reports.elements.risksTable.number"
+    title: "Risk identifier table column header"
+    value: "#"
+    variants: {}
+- translation:
+    key: "reports.elements.risksTable.name"
+    title: "Risk name column header"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "reports.elements.risksTable.likelihood"
+    title: "Risk likelihood column header"
+    value: "Likelihood"
+    variants: {}
+- translation:
+    key: "reports.elements.risksTable.impact"
+    title: "Risk impact column header"
+    value: "Impact"
+    variants: {}
+- translation:
+    key: "reports.elements.risksTable.status"
+    title: "Risk status column header"
+    value: "Status"
+    variants: {}
 sourceLanguage: "en"
