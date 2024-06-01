@@ -1975,4 +1975,19 @@ parts:
     title: "Risk status column header"
     value: "Status"
     variants: {}
+- translation:
+    key: "reports.elements.storiesOutline.actor"
+    title: "Label for story actor heading"
+    value: "As a..."
+    variants: {}
+- translation:
+    key: "reports.elements.storiesOutline.intent"
+    title: "Label for story intention heading"
+    value: "I want to..."
+    variants: {}
+- translation:
+    key: "reports.elements.storiesOutline.expectation"
+    title: "Story expectation heading content"
+    value: "And I expect..."
+    variants: {}
 sourceLanguage: "en"
