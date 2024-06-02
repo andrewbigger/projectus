@@ -479,4 +479,169 @@ public class Variables {
         }
     }
     
+    /**
+     * Returns selected epic name as string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic name
+     */
+    public static String selectedEpicName(State state) {
+        try {
+            return state.getOpenEpic().getName();
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns selected epic identifier as string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic identifier
+     */
+    public static String selectedEpicIdentifier(State state) {
+        try {
+            return String.valueOf(state.getOpenEpic().getIdentifier());
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns selected epic sized card count as string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic sized card count
+     */
+    public static String selectedEpicSizedTaskCount(State state) {
+        try {
+            return String.valueOf(
+                    state
+                        .getOpenEpic()
+                        .calculateSizedCount()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns selected epic task count as string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic task count
+     */
+    public static String selectedEpicTaskCount(State state) {
+        try {
+            return String.valueOf(
+                    state
+                        .getOpenEpic()
+                        .getTasks()
+                        .size()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns selected epic complete task count as string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic complete task count
+     */
+    public static String selectedEpicCompleteTaskCount(State state) {
+        try {
+            return String.valueOf(
+                    state
+                        .getOpenEpic()
+                        .calculateCompleteCount()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns selected epic total points as string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic total points count
+     */
+    public static String selectedEpicTotalPoints(State state) {
+        try {
+            return String.valueOf(
+                    state
+                        .getOpenEpic()
+                        .getSize(state.getOpenDocument().getPreferences())
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns selected epic total points as string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic total points count
+     */
+    public static String selectedEpicCompletePoints(State state) {
+        try {
+            return String.valueOf(
+                    state
+                        .getOpenEpic()
+                        .calculateCompletePointCount(
+                                state.getOpenDocument().getPreferences()
+                        )
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns selected epic estimate points as string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic estimate points count
+     */
+    public static String selectedEpicEstimatePoints(State state) {
+        try {
+            return String.valueOf(
+                    state
+                        .getOpenEpic()
+                        .getSize(state.getOpenDocument().getPreferences())
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns selected epic status as string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic status
+     */
+    public static String selectedEpicStatus(State state) {
+        try {
+            return String.valueOf(
+                    state
+                        .getOpenEpic()
+                        .calculateStatus()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
 }

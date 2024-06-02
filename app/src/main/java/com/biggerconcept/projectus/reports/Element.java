@@ -165,6 +165,51 @@ public class Element extends com.biggerconcept.appengine.reports.elements.Elemen
                 Variables.estimateBuffer(state)
         );
         
+        content.addVariable(
+                "selected_epic_name", 
+                Variables.selectedEpicName(state)
+        );
+        
+        content.addVariable(
+                "selected_epic_identifier", 
+                Variables.selectedEpicIdentifier(state)
+        );
+        
+        content.addVariable(
+                "selected_epic_sized_task_count", 
+                Variables.selectedEpicSizedTaskCount(state)
+        );
+        
+        content.addVariable(
+                "selected_epic_completed_task_count", 
+                Variables.selectedEpicCompleteTaskCount(state)
+        );
+        
+        content.addVariable(
+                "selected_epic_task_count", 
+                Variables.selectedEpicTaskCount(state)
+        );
+        
+        content.addVariable(
+                "selected_epic_total_points", 
+                Variables.selectedEpicTotalPoints(state)
+        );
+        
+        content.addVariable(
+                "selected_epic_complete_points", 
+                Variables.selectedEpicCompletePoints(state)
+        );
+        
+        content.addVariable(
+                "selected_epic_estimate_points", 
+                Variables.selectedEpicEstimatePoints(state)
+        );
+        
+        content.addVariable(
+                "selected_epic_status", 
+                Variables.selectedEpicStatus(state)
+        );
+        
         return content;
     }
     
