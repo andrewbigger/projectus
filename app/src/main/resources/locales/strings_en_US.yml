@@ -2025,4 +2025,59 @@ parts:
     title: "Excluded scope heading"
     value: "Excluded"
     variants: {}
+- translation:
+    key: "reports.elements.tasksTable.number"
+    title: "Column header for task number"
+    value: "#"
+    variants: {}
+- translation:
+    key: "reports.elements.tasksTable.name"
+    title: "Column header for task name"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "reports.elements.tasksTable.size"
+    title: "Column header for task size"
+    value: "Size"
+    variants: {}
+- translation:
+    key: "reports.elements.tasksTable.estimate"
+    title: "Column header for task estimate"
+    value: "Estimate"
+    variants: {}
+- translation:
+    key: "reports.elements.tasksTable.status"
+    title: "Column header for task status"
+    value: "Status"
+    variants: {}
+- translation:
+    key: "reports.elements.tasksOutline.name"
+    title: "Label for task name"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "reports.elements.tasksOutline.size"
+    title: "Label for task size heading"
+    value: "Size"
+    variants: {}
+- translation:
+    key: "reports.elements.tasksOutline.estimate"
+    title: "Label for task estimate heading"
+    value: "Estimate"
+    variants: {}
+- translation:
+    key: "reports.elements.tasksOutline.status"
+    title: "Label for task status heading"
+    value: "Status"
+    variants: {}
+- translation:
+    key: "reports.elements.tasksOutline.description"
+    title: "Label for task description heading"
+    value: "Description"
+    variants: {}
+- translation:
+    key: "reports.elements.tasksOutline.acceptanceCriteria"
+    title: "Label for acceptance criteria heading"
+    value: "Acceptance Criteria"
+    variants: {}
 sourceLanguage: "en"
