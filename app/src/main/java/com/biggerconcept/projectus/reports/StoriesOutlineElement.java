@@ -1,13 +1,13 @@
 package com.biggerconcept.projectus.reports;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.appengine.serializers.helpers.Paragraphs;
 import com.biggerconcept.projectus.State;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Story;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 /**
  * Inserts a stories outline into a report
@@ -47,49 +47,38 @@ public class StoriesOutlineElement extends Element {
             ArrayList<Story> stories = 
                     openDocument.getStories();
             
-            for (Story s : stories) {
-                document.h3(
-                        String.valueOf(s.getIdentifier())
-                );
-                
-                document.strong(
-                        getState()
-                                .bundle()
-                                .getString(
-                                        "reports.elements.storiesOutline.actor"
-                                )
-                );
-
-                document.p(s.getActor().getName());
-                document.nl();
-                
-                document.strong(
-                        getState()
-                                .bundle()
-                                .getString(
-                                        "reports.elements.storiesOutline.intent"
-                                )
-                );
-                Paragraphs.insert(document, s.getIntention());
-                document.nl();
-                
-                document.strong(
-                        getState()
-                                .bundle()
-                                .getString(
-                                        "reports.elements.storiesOutline.expectation"
-                                )
-                );
-                Paragraphs.insert(document, s.getExpectation());
-                document.br();
-            }
-
+            insertOutline(document, getState().bundle(), stories);
         } catch (Exception ex) {
             // skip story documentation when unable to construct timeline
         }
         
     }
     
+    /**
+     * Inserts outline into given document
+     * 
+     * @param doc report document
+     * @param bundle application resource bundle
+     * @param stories stories to insert
+     */
+    public static void insertOutline(
+            Doc doc,
+            ResourceBundle bundle,
+            ArrayList<Story> stories
+    ) {
+        for (Story s : stories) {
+            doc.h3(
+                String.valueOf(s.getIdentifier())
+            );
+
+            insertActor(doc, bundle, s);
+            insertIntent(doc, bundle, s);
+            insertExpectation(doc, bundle, s);
+
+            doc.br();
+        }
+    }
+        
     /**
      * Element modifiable. Indicates whether to allow the presentation of a
      * editor dialog in the report builder.
@@ -100,6 +89,75 @@ public class StoriesOutlineElement extends Element {
      */
     public boolean modifiable() {
         return false;
+    }
+    
+        /**
+     * Inserts story actor outline into document.
+     * 
+     * @param document report document
+     * @param bundle application bundle
+     * @param story story
+     */
+    private static void insertActor(
+            Doc document, 
+            ResourceBundle bundle, 
+            Story story
+    ) {
+        document.strong(
+               bundle
+                    .getString(
+                            "reports.elements.storiesOutline.actor"
+                    )
+        );
+
+        document.p(story.getActor().getName());
+        document.nl();
+    }
+    
+    /**
+     * Inserts story intent outline into document.
+     * 
+     * @param document report document
+     * @param bundle application bundle
+     * @param story story
+     */
+    private static void insertIntent(
+            Doc document, 
+            ResourceBundle bundle, 
+            Story story
+    ) {
+        document.strong(
+               bundle
+                    .getString(
+                            "reports.elements.storiesOutline.intent"
+                    )
+        );
+
+        document.p(story.getIntention());
+        document.nl();
+    }
+    
+    /**
+     * Inserts story expectation outline into document.
+     * 
+     * @param document report document
+     * @param bundle application bundle
+     * @param story story
+     */
+    private static void insertExpectation(
+            Doc document, 
+            ResourceBundle bundle, 
+            Story story
+    ) {
+        document.strong(
+               bundle
+                    .getString(
+                            "reports.elements.storiesOutline.expectation"
+                    )
+        );
+
+        document.p(story.getExpectation());
+        document.nl();
     }
 
 }
