@@ -1990,4 +1990,29 @@ parts:
     title: "Story expectation heading content"
     value: "And I expect..."
     variants: {}
+- translation:
+    key: "reports.elements.risksOutline.likelihood"
+    title: "Risk likelihood section heading"
+    value: "Likelihood"
+    variants: {}
+- translation:
+    key: "reports.elements.risksOutline.impact"
+    title: "Risk impact section heading"
+    value: "Impact"
+    variants: {}
+- translation:
+    key: "reports.elements.risksOutline.status"
+    title: "Risk status section heading"
+    value: "Status"
+    variants: {}
+- translation:
+    key: "reports.elements.risksOutline.details"
+    title: "Risk details section heading"
+    value: "Details"
+    variants: {}
+- translation:
+    key: "reports.elements.risksOutline.mitigation"
+    title: "Risk mitigation section heading"
+    value: "Mitigation Strategy"
+    variants: {}
 sourceLanguage: "en"
