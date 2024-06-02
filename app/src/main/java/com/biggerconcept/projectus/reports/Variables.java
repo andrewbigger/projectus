@@ -644,4 +644,44 @@ public class Variables {
             return "";
         }
     }
+    
+    /**
+     * Returns selected epic risk count as string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic risk count
+     */
+    public static String selectedEpicRiskCount(State state) {
+        try {
+            return String.valueOf(
+                    state
+                        .getOpenEpic()
+                        .getRisks()
+                        .size()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns selected epic risk count as string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic story count
+     */
+    public static String selectedEpicStoryCount(State state) {
+        try {
+            return String.valueOf(
+                    state
+                        .getOpenEpic()
+                        .getStories()
+                        .size()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
 }

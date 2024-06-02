@@ -210,6 +210,16 @@ public class Element extends com.biggerconcept.appengine.reports.elements.Elemen
                 Variables.selectedEpicStatus(state)
         );
         
+        content.addVariable(
+                "selected_epic_risk_count", 
+                Variables.selectedEpicRiskCount(state)
+        );
+        
+        content.addVariable(
+                "selected_epic_story_count", 
+                Variables.selectedEpicStoryCount(state)
+        );
+        
         return content;
     }
     
