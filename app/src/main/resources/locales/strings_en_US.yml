@@ -2015,4 +2015,14 @@ parts:
     title: "Risk mitigation section heading"
     value: "Mitigation Strategy"
     variants: {}
+- translation:
+    key: "reports.elements.scopeOutline.included"
+    title: "Included scope heading"
+    value: "Included"
+    variants: {}
+- translation:
+    key: "reports.elements.scopeOutline.excluded"
+    title: "Excluded scope heading"
+    value: "Excluded"
+    variants: {}
 sourceLanguage: "en"
