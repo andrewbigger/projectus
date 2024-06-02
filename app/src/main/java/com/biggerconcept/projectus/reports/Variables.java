@@ -480,6 +480,26 @@ public class Variables {
     }
     
     /**
+     * Returns epic count as a variable
+     * 
+     * @param state application state
+     * 
+     * @return epic count
+     */
+    public static String epicCount(State state) {
+        try {
+            return String.valueOf(
+                    state
+                        .getOpenDocument()
+                        .getEpics()
+                        .size()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
      * Returns selected epic name as string for use as a variable
      * 
      * @param state application statue
