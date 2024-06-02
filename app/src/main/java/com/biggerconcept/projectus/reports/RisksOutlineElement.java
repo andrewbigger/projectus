@@ -48,38 +48,7 @@ public class RisksOutlineElement extends Element {
             ArrayList<Risk> risks = 
                     openDocument.getRisks();
             
-            for (Risk r : risks) {
-                document.h3(r.getName());
-                
-                document.table(detailTableHeader(
-                        getState().bundle()), 
-                        detailTableBody(r)
-                );
-                
-                document.nl();
-                
-                document.strong(
-                        getState()
-                            .bundle()
-                            .getString(
-                                    "reports.elements.risksOutline.details"
-                            )
-                );
-                Paragraphs.insert(document, r.getDetail());
-                document.nl();
-                
-                document.strong(
-                        getState()
-                            .bundle()
-                            .getString(
-                                    "reports.elements.risksOutline.mitigation"
-                            )
-                );
-                Paragraphs.insert(document, r.getMitigationStrategy());
-                
-                document.br();
-            }
-
+            insertOutline(document, getState().bundle(), risks);
         } catch (Exception ex) {
             // skip story documentation when unable to construct timeline
         }
@@ -96,6 +65,49 @@ public class RisksOutlineElement extends Element {
      */
     public boolean modifiable() {
         return false;
+    }
+    
+    /**
+     * Inserts risk outline into document
+     * 
+     * @param doc report document
+     * @param bundle application resource bundle
+     * @param risks risks to outline
+     */
+    public static void insertOutline(
+            Doc doc,
+            ResourceBundle bundle,
+            ArrayList<Risk> risks
+    ) {
+        for (Risk r : risks) {
+            doc.h3(r.getName());
+            
+            doc.table(detailTableHeader(
+                    bundle), 
+                    detailTableBody(r)
+            );
+            
+            doc.nl();
+                
+            doc.strong(
+                    bundle
+                        .getString(
+                                "reports.elements.risksOutline.details"
+                        )
+            );
+            Paragraphs.insert(doc, r.getDetail());
+            doc.nl();
+
+            doc.strong(
+                    bundle
+                        .getString(
+                                "reports.elements.risksOutline.mitigation"
+                        )
+            );
+            Paragraphs.insert(doc, r.getMitigationStrategy());
+
+            doc.br();
+        }
     }
     
     /**

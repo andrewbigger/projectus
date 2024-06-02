@@ -3,21 +3,21 @@ package com.biggerconcept.projectus.reports;
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.projectus.State;
 import com.biggerconcept.projectus.domain.Epic;
-import com.biggerconcept.projectus.domain.Story;
+import com.biggerconcept.projectus.domain.Risk;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Inserts a selected epic stories outline into a report
+ * Inserts a selected epic risks outline into a report
  * 
  * @author Andrew Bigger
  */
-public class SelectedEpicStoriesOutlineElement extends Element {
+public class SelectedEpicRisksOutlineElement extends Element {
     /**
      * Default constructor
      */
-    public SelectedEpicStoriesOutlineElement() {
+    public SelectedEpicRisksOutlineElement() {
         super();
     }
     
@@ -26,7 +26,7 @@ public class SelectedEpicStoriesOutlineElement extends Element {
      * 
      * @param state application state
      */
-    public SelectedEpicStoriesOutlineElement(State state) {
+    public SelectedEpicRisksOutlineElement(State state) {
         super(state);
     }
     
@@ -40,7 +40,7 @@ public class SelectedEpicStoriesOutlineElement extends Element {
     }
     
     /**
-     * Inserts selected epic stories outline into a report document.
+     * Inserts selected epic risks outline into a report document.
      * 
      * @param document report document
      * @param vars content variables
@@ -52,13 +52,13 @@ public class SelectedEpicStoriesOutlineElement extends Element {
         try {
             Epic openEpic = getState().getOpenEpic();
 
-            ArrayList<Story> stories = 
-                    openEpic.getDocumentStories();
+            ArrayList<Risk> risks = 
+                    openEpic.getDocumentRisks();
             
-            StoriesOutlineElement.insertOutline(
+            RisksOutlineElement.insertOutline(
                     document, 
                     getState().bundle(), 
-                    stories
+                    risks
             );
         } catch (Exception ex) {
             // skip story documentation when unable to access selected epic

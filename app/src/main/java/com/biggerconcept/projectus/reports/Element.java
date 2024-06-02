@@ -54,6 +54,8 @@ public class Element extends com.biggerconcept.appengine.reports.elements.Elemen
         content.addSection(new SelectedEpicScopeOutlineElement(state));
         content.addSection(new SelectedEpicStoriesTableElement(state));
         content.addSection(new SelectedEpicStoriesOutlineElement(state));
+        content.addSection(new SelectedEpicRisksTableElement(state));
+        content.addSection(new SelectedEpicRisksOutlineElement(state));
         
         content.addVariable(
                 "project_name", 

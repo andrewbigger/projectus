@@ -2,21 +2,21 @@ package com.biggerconcept.projectus.reports;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.projectus.State;
-import com.biggerconcept.projectus.domain.Story;
+import com.biggerconcept.projectus.domain.Risk;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Inserts a selected epic stories table into a report
+ * Inserts a selected epic risks table into a report
  * 
  * @author Andrew Bigger
  */
-public class SelectedEpicStoriesTableElement extends Element {
+public class SelectedEpicRisksTableElement extends Element {
     /**
      * Default constructor
      */
-    public SelectedEpicStoriesTableElement() {
+    public SelectedEpicRisksTableElement() {
         super();
     }
     
@@ -25,12 +25,12 @@ public class SelectedEpicStoriesTableElement extends Element {
      * 
      * @param state application state.
      */
-    public SelectedEpicStoriesTableElement(State state) {
+    public SelectedEpicRisksTableElement(State state) {
         super(state);
     }
     
     /**
-     * Inserts selected epic stories table into report document.
+     * Inserts selected epic risks table into report document.
      * 
      * @param document report document
      * @param vars content variables
@@ -39,19 +39,18 @@ public class SelectedEpicStoriesTableElement extends Element {
      */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
-        try {
-            ArrayList<Story> stories = getState()
-                .getOpenEpic()
-                .getDocumentStories();
-        
+         try {
+            ArrayList<Risk> risks = getState()
+                    .getOpenEpic()
+                    .getDocumentRisks();
+
             document.table(
-                    StoriesTableElement.headers(getState().bundle()), 
-                    StoriesTableElement.body(stories)
+                    RisksTableElement.headers(getState().bundle()), 
+                    RisksTableElement.body(risks)
             );
-        } catch (Exception ex) {
-            // ignore table when unable to access stories
-        }
-        
+         } catch (Exception ex) {
+             // ignore risks when epic is not selected
+         }
     }
     
     public boolean modifiable() {
