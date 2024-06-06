@@ -235,6 +235,21 @@ public class Element extends com.biggerconcept.appengine.reports.elements.Elemen
                 Variables.selectedEpicStoryCount(state)
         );
         
+        content.addVariable(
+                "selected_epic_outlook_buffer", 
+                Variables.selectedEpicOutlookBuffer(state)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_buffer_excl_completed_points", 
+                Variables.selectedEpicOutlookBufferExclCompletedPoints(state)
+        );
+        
+        content.addVariable(
+                "selected_epic_estimate_points_with_buffer", 
+                Variables.selectedEpicOutlookEstimatePointsWithBuffer(state)
+        );
+        
         return content;
     }
     

@@ -1,6 +1,9 @@
 package com.biggerconcept.projectus.reports;
 
 import com.biggerconcept.projectus.State;
+import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.projectus.domain.Outlook;
+import com.biggerconcept.projectus.domain.Preferences;
 import com.biggerconcept.projectus.domain.Status;
 import com.biggerconcept.projectus.domain.Status.Tracking;
 import com.biggerconcept.projectus.helpers.Date;
@@ -704,4 +707,83 @@ public class Variables {
             return "";
         }
     }
+    
+    /**
+     * Returns selected epic outlook buffer as string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic outlook buffer points
+     */
+    public static String selectedEpicOutlookBuffer(State state) {
+        try {
+            Preferences prefs = state.getOpenDocument().getPreferences();
+            Epic openEpic = state.getOpenEpic();
+            
+            Outlook outlook = state
+                        .getOpenEpic()
+                        .getOutlook();
+            
+            outlook.calculate(prefs, openEpic, false);
+            
+            return String.valueOf(outlook.getBuffer());
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns selected epic outlook buffer excluding completed points as 
+     * string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic outlook buffer points
+     */
+    public static String selectedEpicOutlookBufferExclCompletedPoints(
+            State state
+    ) {
+        try {
+            Preferences prefs = state.getOpenDocument().getPreferences();
+            Epic openEpic = state.getOpenEpic();
+            
+            Outlook outlook = state
+                        .getOpenEpic()
+                        .getOutlook();
+            
+            outlook.calculate(prefs, openEpic, true);
+            
+            return String.valueOf(outlook.getBuffer());
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns selected epic outlook estimated points including buffer points as 
+     * string for use as a variable
+     * 
+     * @param state application statue
+     * 
+     * @return selected epic outlook buffer points
+     */
+    public static String selectedEpicOutlookEstimatePointsWithBuffer(
+            State state
+    ) {
+        try {
+            Preferences prefs = state.getOpenDocument().getPreferences();
+            Epic openEpic = state.getOpenEpic();
+            
+            Outlook outlook = state
+                        .getOpenEpic()
+                        .getOutlook();
+            
+            outlook.calculate(prefs, openEpic, true);
+            
+            return String.valueOf(outlook.getEstimateWithBuffer());
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
 }

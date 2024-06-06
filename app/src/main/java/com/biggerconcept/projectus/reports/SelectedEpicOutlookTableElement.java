@@ -58,7 +58,9 @@ public class SelectedEpicOutlookTableElement extends Element {
             ResourceBundle bundle = getState().bundle();
             Preferences prefs = getState().getOpenDocument().getPreferences();
             Epic openEpic = getState().getOpenEpic();
+            
             Outlook outlook = openEpic.getOutlook();
+            outlook.calculate(prefs, openEpic, false);
             
             insertOutlookTable(document, bundle, prefs, outlook);
         } catch (Exception ex) {
