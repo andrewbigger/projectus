@@ -250,6 +250,216 @@ public class Element extends com.biggerconcept.appengine.reports.elements.Elemen
                 Variables.selectedEpicOutlookEstimatePointsWithBuffer(state)
         );
         
+        content.addVariable(
+                "selected_epic_outlook_plus_three_points_per_sprint", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, 3, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_three_sprints", 
+                Variables.selectedEpicOutlookSprints(state, 3, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_three_weeks", 
+                Variables.selectedEpicOutlookWeeks(state, 3, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_two_points_per_sprint", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, 2, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_two_sprints", 
+                Variables.selectedEpicOutlookSprints(state, 2, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_two_weeks", 
+                Variables.selectedEpicOutlookWeeks(state, 2, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_one_points_per_sprint", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, 1, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_one_sprints", 
+                Variables.selectedEpicOutlookSprints(state, 1, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_one_weeks", 
+                Variables.selectedEpicOutlookWeeks(state, 1, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_points_per_sprint", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, 0, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_sprints", 
+                Variables.selectedEpicOutlookSprints(state, 0, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_weeks", 
+                Variables.selectedEpicOutlookWeeks(state, 0, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_one_points_per_sprint", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, -1, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_one_sprints", 
+                Variables.selectedEpicOutlookSprints(state, -1, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_one_weeks", 
+                Variables.selectedEpicOutlookWeeks(state, -1, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_two_points_per_sprint", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, -2, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_two_sprints", 
+                Variables.selectedEpicOutlookSprints(state, -2, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_two_weeks", 
+                Variables.selectedEpicOutlookWeeks(state, -2, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_three_points_per_sprint", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, -3, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_three_sprints", 
+                Variables.selectedEpicOutlookSprints(state, -3, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_three_weeks", 
+                Variables.selectedEpicOutlookWeeks(state, -3, false)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_three_points_per_sprint_excl_completed_points", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, 3, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_three_sprints_excl_completed_points", 
+                Variables.selectedEpicOutlookSprints(state, 3, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_three_weeks_excl_completed_points", 
+                Variables.selectedEpicOutlookWeeks(state, 3, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_two_points_per_sprint_excl_completed_points", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, 2, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_two_sprints_excl_completed_points", 
+                Variables.selectedEpicOutlookSprints(state, 2, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_two_weeks_excl_completed_points", 
+                Variables.selectedEpicOutlookWeeks(state, 2, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_one_points_per_sprint_excl_completed_points", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, 1, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_one_sprints_excl_completed_points", 
+                Variables.selectedEpicOutlookSprints(state, 1, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_plus_one_weeks_excl_completed_points", 
+                Variables.selectedEpicOutlookWeeks(state, 1, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_points_per_sprint_excl_completed_points", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, 0, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_sprints_excl_completed_points", 
+                Variables.selectedEpicOutlookSprints(state, 0, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_weeks_excl_completed_points", 
+                Variables.selectedEpicOutlookWeeks(state, 0, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_one_points_per_sprint_excl_completed_points", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, -1, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_one_sprints_excl_completed_points", 
+                Variables.selectedEpicOutlookSprints(state, -1, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_one_weeks_excl_completed_points", 
+                Variables.selectedEpicOutlookWeeks(state, -1, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_two_points_per_sprint_excl_completed_points", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, -2, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_two_sprints_excl_completed_points", 
+                Variables.selectedEpicOutlookSprints(state, -2, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_two_weeks_excl_completed_points", 
+                Variables.selectedEpicOutlookWeeks(state, -2, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_three_points_per_sprint_excl_completed_points", 
+                Variables.selectedEpicOutlookPointsPerSprint(state, -3, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_three_sprints_excl_completed_points", 
+                Variables.selectedEpicOutlookSprints(state, -3, true)
+        );
+        
+        content.addVariable(
+                "selected_epic_outlook_minus_three_weeks_excl_completed_points", 
+                Variables.selectedEpicOutlookWeeks(state, -3, true)
+        );
+        
         return content;
     }
     

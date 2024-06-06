@@ -397,6 +397,38 @@ public class Outlook {
     }
     
     /**
+     * Finds projection with given adjustment.
+     * 
+     * If the projection is not found then null will be 
+     * returned.
+     * 
+     * @param deviation deviation to match to projection
+     * 
+     * @return found projection
+     */
+    public Projection findProjection(int deviation) {
+        for (Projection p : projections()) {
+            if (p.getAdjustment() == deviation) {
+                return p;
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Returns true if outlook contains projection with given 
+     * deviation.
+     * 
+     * @param deviation deviation to match projection
+     * 
+     * @return whether outlook contains projection
+     */
+    public boolean hasProjection(int deviation) {
+        return findProjection(deviation) != null;
+    }
+    
+    /**
      * Setter for epic.
      * 
      * @param value epic value

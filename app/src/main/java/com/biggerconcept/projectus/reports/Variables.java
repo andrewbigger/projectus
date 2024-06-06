@@ -786,4 +786,100 @@ public class Variables {
         }
     }
     
+    /**
+     * Returns points per sprint for outlook projection.
+     * 
+     * @param state application statue
+     * @param deviation projection deviation
+     * @param exclCompletedPoints exclude completed points
+     * 
+     * @return points per sprint for given deviation
+     */
+    public static String selectedEpicOutlookPointsPerSprint(
+            State state,
+            int deviation,
+            boolean exclCompletedPoints
+    ) {
+        try {
+            Preferences prefs = state.getOpenDocument().getPreferences();
+            Epic openEpic = state.getOpenEpic();
+            
+            Outlook outlook = state
+                        .getOpenEpic()
+                        .getOutlook();
+            
+            outlook.calculate(prefs, openEpic, false);
+            
+            return String.valueOf(
+                    outlook.findProjection(deviation).getPointsPerSprint()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns sprints for outlook projection.
+     * 
+     * @param state application statue
+     * @param deviation projection deviation
+     * @param exclCompletedPoints exclude completed points
+     * 
+     * @return sprints for given deviation
+     */
+    public static String selectedEpicOutlookSprints(
+            State state,
+            int deviation,
+            boolean exclCompletedPoints
+    ) {
+        try {
+            Preferences prefs = state.getOpenDocument().getPreferences();
+            Epic openEpic = state.getOpenEpic();
+            
+            Outlook outlook = state
+                        .getOpenEpic()
+                        .getOutlook();
+            
+            outlook.calculate(prefs, openEpic, false);
+            
+            return String.valueOf(
+                    outlook.findProjection(deviation).getSprints()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns weeks for outlook projection.
+     * 
+     * @param state application statue
+     * @param deviation projection deviation
+     * @param exclCompletedPoints exclude completed points
+     * 
+     * @return sprints for given deviation
+     */
+    public static String selectedEpicOutlookWeeks(
+            State state,
+            int deviation,
+            boolean exclCompletedPoints
+    ) {
+        try {
+            Preferences prefs = state.getOpenDocument().getPreferences();
+            Epic openEpic = state.getOpenEpic();
+            
+            Outlook outlook = state
+                        .getOpenEpic()
+                        .getOutlook();
+            
+            outlook.calculate(prefs, openEpic, false);
+            
+            return String.valueOf(
+                    outlook.findProjection(deviation).getWeeks()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
 }

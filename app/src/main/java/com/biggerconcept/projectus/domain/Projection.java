@@ -107,6 +107,16 @@ public class Projection {
     public int getWeeks() {
         return getSprints() * prefs.getSprintLength();
     }
+    
+    /**
+     * Getter for adjustment.
+     * 
+     * @return adjustment
+     */
+    @JsonIgnore
+    public int getAdjustment() {
+        return adjustment;
+    }
 
     /**
      * Adjusts number of points based on projection adjustment.
