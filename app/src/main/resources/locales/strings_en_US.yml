@@ -2080,4 +2080,24 @@ parts:
     title: "Label for acceptance criteria heading"
     value: "Acceptance Criteria"
     variants: {}
+- translation:
+    key: "reports.elements.outlookTable.outlook"
+    title: "Column header for outlook name"
+    value: "Outlook"
+    variants: {}
+- translation:
+    key: "reports.elements.outlookTable.pointsPerSprint"
+    title: "Column header for points per sprint column"
+    value: "Points per Sprint"
+    variants: {}
+- translation:
+    key: "reports.elements.outlookTable.sprints"
+    title: "Column header for sprints column"
+    value: "Sprints"
+    variants: {}
+- translation:
+    key: "reports.elements.outlookTable.weeks"
+    title: "Column header for weeks column"
+    value: "Weeks"
+    variants: {}
 sourceLanguage: "en"

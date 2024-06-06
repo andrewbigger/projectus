@@ -1,5 +1,7 @@
 package com.biggerconcept.projectus.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * In memory representation of a projection.
  * 
@@ -63,6 +65,11 @@ public class Projection {
         this.pointsPerSprint = 0;
         this.adjustment = 0;
         this.prefs = null;
+    }
+    
+    @JsonIgnore
+    public String getName() {
+        return "O" + String.valueOf(adjustment);
     }
     
     /**

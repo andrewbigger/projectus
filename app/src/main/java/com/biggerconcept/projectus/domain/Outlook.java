@@ -1,6 +1,7 @@
 package com.biggerconcept.projectus.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
 
 /**
  * In memory representation of an epic outlook.
@@ -374,6 +375,25 @@ public class Outlook {
         }
         
         return getEstimatePoints() / DEVIATION_SLICE;
+    }
+    
+    /**
+     * Returns all projections
+     * 
+     * @return projections
+     */
+    public ArrayList<Projection> projections() {
+        ArrayList<Projection> projections = new ArrayList<>();
+        
+        projections.add(getOPlusThree());
+        projections.add(getOPlusTwo());
+        projections.add(getOPlusOne());
+        projections.add(getO());
+        projections.add(getOMinusOne());
+        projections.add(getOMinusTwo());
+        projections.add(getOMinusThree());
+        
+        return projections;
     }
     
     /**
