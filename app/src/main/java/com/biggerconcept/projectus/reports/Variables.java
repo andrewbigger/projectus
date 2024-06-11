@@ -808,7 +808,7 @@ public class Variables {
                         .getOpenEpic()
                         .getOutlook();
             
-            outlook.calculate(prefs, openEpic, false);
+            outlook.calculate(prefs, openEpic, exclCompletedPoints);
             
             return String.valueOf(
                     outlook.findProjection(deviation).getPointsPerSprint()
@@ -840,7 +840,7 @@ public class Variables {
                         .getOpenEpic()
                         .getOutlook();
             
-            outlook.calculate(prefs, openEpic, false);
+            outlook.calculate(prefs, openEpic, exclCompletedPoints);
             
             return String.valueOf(
                     outlook.findProjection(deviation).getSprints()
@@ -872,7 +872,7 @@ public class Variables {
                         .getOpenEpic()
                         .getOutlook();
             
-            outlook.calculate(prefs, openEpic, false);
+            outlook.calculate(prefs, openEpic, exclCompletedPoints);
             
             return String.valueOf(
                     outlook.findProjection(deviation).getWeeks()

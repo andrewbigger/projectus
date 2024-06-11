@@ -37,7 +37,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
         this.epic = epic;
         this.doc = document;
     }
-
+    
     /**
      * Saves epic as DOCX.
      * 
