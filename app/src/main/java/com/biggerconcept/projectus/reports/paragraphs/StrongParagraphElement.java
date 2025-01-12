@@ -1,4 +1,4 @@
-package com.biggerconcept.projectus.reports;
+package com.biggerconcept.projectus.reports.paragraphs;
 
 import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
@@ -6,20 +6,21 @@ import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.projectus.State;
+import com.biggerconcept.projectus.reports.Element;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
- * Inserts a heading into a report
+ * Inserts a strong paragraph into a report
  * 
  * @author Andrew Bigger
  */
-public class TitleElement extends Element {
+public class StrongParagraphElement extends Element {
     /**
      * Default constructor
      */
-    public TitleElement() {
+    public StrongParagraphElement() {
         super();
     }
     
@@ -28,13 +29,13 @@ public class TitleElement extends Element {
      * 
      * @param state application state
      */
-    public TitleElement(State state) {
+    public StrongParagraphElement(State state) {
         super(state);
-        this.type = Doc.ParagraphType.title;
+        this.type = Doc.ParagraphType.strong;
     }
     
     /**
-     * Inserts a title into a report document.
+     * Inserts a strong paragraph into a report document.
      * 
      * @param document report document
      * @param vars content variables
@@ -43,11 +44,11 @@ public class TitleElement extends Element {
      */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
-        document.title(compile(getArgs(), vars));
+        document.strong(compile(getArgs(), vars));
     }
     
     /**
-     * Constructs and instantiates an editor dialog for a title paragraph.
+     * Constructs and instantiates an editor dialog for strong paragraph.
      * 
      * @param rb application resource bundle
      * @param report current report

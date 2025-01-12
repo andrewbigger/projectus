@@ -1,7 +1,8 @@
-package com.biggerconcept.projectus.reports;
+package com.biggerconcept.projectus.reports.paragraphs;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.projectus.State;
+import com.biggerconcept.projectus.reports.Element;
 import java.util.HashMap;
 
 /**

@@ -1,26 +1,26 @@
-package com.biggerconcept.projectus.reports;
+package com.biggerconcept.projectus.reports.paragraphs;
 
 import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.appengine.serializers.documents.Doc.ParagraphType;
 import com.biggerconcept.projectus.State;
+import com.biggerconcept.projectus.reports.Element;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
- * Inserts a paragraph into a report
+ * Inserts a heading 1 into a report
  * 
  * @author Andrew Bigger
  */
-public class ParagraphElement extends Element {
+public class Heading1Element extends Element {
     /**
      * Default constructor
      */
-    public ParagraphElement() {
+    public Heading1Element() {
         super();
     }
     
@@ -29,13 +29,13 @@ public class ParagraphElement extends Element {
      * 
      * @param state application state
      */
-    public ParagraphElement(State state) {
+    public Heading1Element(State state) {
         super(state);
-        this.type = ParagraphType.p;
+        this.type = Doc.ParagraphType.h1;
     }
     
     /**
-     * Inserts a paragraph into a report document.
+     * Inserts a h1 into a report document.
      * 
      * @param document report document
      * @param vars content variables
@@ -44,11 +44,11 @@ public class ParagraphElement extends Element {
      */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
-        document.p(compile(getArgs(), vars));
+        document.h1(compile(getArgs(), vars));
     }
     
     /**
-     * Constructs and instantiates an editor dialog for a paragraph.
+     * Constructs and instantiates an editor dialog for h1 paragraph.
      * 
      * @param rb application resource bundle
      * @param report current report
@@ -59,7 +59,7 @@ public class ParagraphElement extends Element {
      * @throws IOException when unable to read file from disk
      */
     public IElementEditorDialog editorDialog(
-            ResourceBundle rb, 
+            ResourceBundle rb,
             IReport report,
             Content content
     ) throws IOException {

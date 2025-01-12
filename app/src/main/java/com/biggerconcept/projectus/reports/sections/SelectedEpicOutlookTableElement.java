@@ -1,4 +1,4 @@
-package com.biggerconcept.projectus.reports;
+package com.biggerconcept.projectus.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.appengine.serializers.helpers.Paragraphs;
@@ -8,6 +8,7 @@ import com.biggerconcept.projectus.domain.Outlook;
 import com.biggerconcept.projectus.domain.Preferences;
 import com.biggerconcept.projectus.domain.Projection;
 import com.biggerconcept.projectus.domain.Task;
+import com.biggerconcept.projectus.reports.Element;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;

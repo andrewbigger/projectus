@@ -1,25 +1,29 @@
-package com.biggerconcept.projectus.reports;
+package com.biggerconcept.projectus.reports.paragraphs;
 
 import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.appengine.serializers.documents.Doc.ParagraphType;
 import com.biggerconcept.projectus.State;
+import com.biggerconcept.projectus.reports.Element;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
- * Inserts a heading 2 into a report
+ * Inserts a code block into a report
  * 
  * @author Andrew Bigger
  */
-public class Heading2Element extends Element {
+public class CodeElement extends Element {
     /**
      * Default constructor
      */
-    public Heading2Element() {
+    public CodeElement() {
         super();
     }
     
@@ -28,13 +32,13 @@ public class Heading2Element extends Element {
      * 
      * @param state application state
      */
-    public Heading2Element(State state) {
+    public CodeElement(State state) {
         super(state);
-        this.type = Doc.ParagraphType.h2;
+        this.type = ParagraphType.code;
     }
     
     /**
-     * Inserts a h2 into a report document.
+     * Inserts a code block into a report document.
      * 
      * @param document report document
      * @param vars content variables
@@ -43,11 +47,14 @@ public class Heading2Element extends Element {
      */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
-        document.h2(compile(getArgs(), vars));
+        ArrayList<String> lines = new ArrayList();
+        lines.addAll(Arrays.asList(compile(getArgs(), vars).split("\n")));
+        
+        document.code(lines);
     }
     
     /**
-     * Constructs and instantiates an editor dialog for h2 paragraph.
+     * Constructs and instantiates an editor dialog for a code block.
      * 
      * @param rb application resource bundle
      * @param report current report

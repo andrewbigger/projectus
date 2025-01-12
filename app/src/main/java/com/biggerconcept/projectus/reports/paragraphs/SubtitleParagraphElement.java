@@ -1,4 +1,4 @@
-package com.biggerconcept.projectus.reports;
+package com.biggerconcept.projectus.reports.paragraphs;
 
 import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
@@ -6,6 +6,7 @@ import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.projectus.State;
+import com.biggerconcept.projectus.reports.Element;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;

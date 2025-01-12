@@ -1,19 +1,20 @@
-package com.biggerconcept.projectus.reports;
+package com.biggerconcept.projectus.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.projectus.State;
+import com.biggerconcept.projectus.reports.Element;
 import java.util.HashMap;
 
 /**
- * Inserts a new line into a report
+ * Inserts a table of contents into a report
  * 
  * @author Andrew Bigger
  */
-public class PageBreakElement extends Element {
+public class TableOfContentsElement extends Element {
     /**
      * Default constructor
      */
-    public PageBreakElement() {
+    public TableOfContentsElement() {
         super();
     }
     
@@ -22,19 +23,19 @@ public class PageBreakElement extends Element {
      * 
      * @param state application state
      */
-    public PageBreakElement(State state) {
+    public TableOfContentsElement(State state) {
         super(state);
-        this.type = Doc.ParagraphType.br;
+        this.type = Doc.ParagraphType.toc;
     }
     
     /**
-     * Inserts a new line into a report document.
+     * Inserts a table of contents into a report document.
      * 
      * @param document report document
      * @param vars content variables
      */
     public void insertInto(Doc document, HashMap<String, String> vars) {
-        document.br();
+        document.toc();
     }
     
     /**

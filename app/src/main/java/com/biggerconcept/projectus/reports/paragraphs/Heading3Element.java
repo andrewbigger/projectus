@@ -1,4 +1,4 @@
-package com.biggerconcept.projectus.reports;
+package com.biggerconcept.projectus.reports.paragraphs;
 
 import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
@@ -6,20 +6,21 @@ import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.projectus.State;
+import com.biggerconcept.projectus.reports.Element;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
- * Inserts a strong paragraph into a report
+ * Inserts a heading 3 into a report
  * 
  * @author Andrew Bigger
  */
-public class StrongParagraphElement extends Element {
+public class Heading3Element extends Element {
     /**
      * Default constructor
      */
-    public StrongParagraphElement() {
+    public Heading3Element() {
         super();
     }
     
@@ -28,13 +29,13 @@ public class StrongParagraphElement extends Element {
      * 
      * @param state application state
      */
-    public StrongParagraphElement(State state) {
+    public Heading3Element(State state) {
         super(state);
-        this.type = Doc.ParagraphType.strong;
+        this.type = Doc.ParagraphType.h3;
     }
     
     /**
-     * Inserts a strong paragraph into a report document.
+     * Inserts a h3 into a report document.
      * 
      * @param document report document
      * @param vars content variables
@@ -43,11 +44,11 @@ public class StrongParagraphElement extends Element {
      */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
-        document.strong(compile(getArgs(), vars));
+        document.h3(compile(getArgs(), vars));
     }
     
     /**
-     * Constructs and instantiates an editor dialog for strong paragraph.
+     * Constructs and instantiates an editor dialog for h3 paragraph.
      * 
      * @param rb application resource bundle
      * @param report current report
