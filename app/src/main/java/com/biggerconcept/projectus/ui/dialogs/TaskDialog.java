@@ -5,6 +5,7 @@ import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Size.TaskSize;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.domain.Task.TaskStatus;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -92,7 +93,7 @@ public class TaskDialog {
             Epic epic, 
             List<Task> tasks, 
             boolean bulk
-    ) {
+    ) { 
         bundle = rb;
         parentEpic = epic;
         currentTasks = tasks;
@@ -353,6 +354,20 @@ public class TaskDialog {
     }
     
     /**
+     * Replaces visible tasks with given task.
+     * 
+     * This is necessary in navigation mode to avoid apply targeting the 
+     * first selected task.
+     * 
+     * @param t task to set
+     */
+    private void setVisibleTask(Task t) {
+        visibleTask = t;
+        currentTasks = new ArrayList();
+        currentTasks.add(t);
+    }
+    
+    /**
      * Builds previous action button.
      * 
      * The previous action will change the task to the previous task in the
@@ -370,7 +385,7 @@ public class TaskDialog {
         if (bulk == false) {
             prevTaskBtn.setOnAction((ActionEvent event) -> {
                 applyToTask(visibleTask);
-                visibleTask = parentEpic.getPrevTask(visibleTask);
+                setVisibleTask(parentEpic.getPrevTask(visibleTask));
                 mapTaskToDialog();
             });
 
@@ -401,7 +416,7 @@ public class TaskDialog {
         if (bulk == false) {
             nextTaskBtn.setOnAction((ActionEvent event) -> {
                 applyToTask(visibleTask);
-                visibleTask = parentEpic.getNextTask(visibleTask);
+                setVisibleTask(parentEpic.getNextTask(visibleTask));
                 mapTaskToDialog();
             });
             
@@ -414,19 +429,17 @@ public class TaskDialog {
      
         return nextTaskBtn;
     }
-        
+
     /**
      * Sets the value of controls to the value set in currentTask.
      */
     private void mapTaskToDialog() {
         if (bulk == false) {
-            Task currentTask = visibleTask;
-            
-            nameField.setText(currentTask.getName());
-            sizeField.getSelectionModel().select(currentTask.getSize());
-            statusField.getSelectionModel().select(currentTask.getStatus());
-            descriptionField.setText(currentTask.getDescription());
-            acceptanceCriteriaField.setText(currentTask.getAcceptanceCriteria());
+            nameField.setText(visibleTask.getName());
+            sizeField.getSelectionModel().select(visibleTask.getSize());
+            statusField.getSelectionModel().select(visibleTask.getStatus());
+            descriptionField.setText(visibleTask.getDescription());
+            acceptanceCriteriaField.setText(visibleTask.getAcceptanceCriteria());
         }
     }
 }
