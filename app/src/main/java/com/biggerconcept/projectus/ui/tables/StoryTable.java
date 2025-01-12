@@ -87,7 +87,8 @@ public class StoryTable {
                     actorCol(),
                     intentionCol(),
                     expectationCol()
-                )
+                ),
+                false
         );
     }
     

@@ -101,7 +101,8 @@ public class EpicsTable {
                         nameCol(), 
                         estimateCol(), 
                         statusCol()
-                )
+                ),
+                false
         );
     }
     

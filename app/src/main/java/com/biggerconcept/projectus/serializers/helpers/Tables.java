@@ -278,6 +278,8 @@ public class Tables {
      * Constructs outlook table body.
      * 
      * @param bundle application resource bundle
+     * @param prefs document preferences
+     * @param epic selected epic
      * @param outlook project outlook model
      * 
      * @return outlook table body

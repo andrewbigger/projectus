@@ -118,7 +118,8 @@ public class TasksTable {
                     sizeCol(), 
                     estimateCol(),
                     statusCol()
-               )
+               ),
+               false
        );
    }
    

@@ -435,11 +435,11 @@ public class Epic {
     /**
      * Returns array of assigned sprints
      * 
-     * @return 
+     * @return assigned sprints
      */
     @JsonIgnore
     public ArrayList<Integer> getAssignedSprints() {
-        ArrayList<Integer> assignedSprints = new ArrayList<Integer>();
+        ArrayList<Integer> assignedSprints = new ArrayList<>();
         
         if (hasAssignedSprints() == false) {
             return assignedSprints;

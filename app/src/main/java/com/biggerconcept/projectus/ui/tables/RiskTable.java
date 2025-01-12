@@ -90,7 +90,8 @@ public class RiskTable {
                     likelihoodCol(),
                     impactCol(),
                     statusCol()
-                )
+                ),
+                false
         );
 
     }
