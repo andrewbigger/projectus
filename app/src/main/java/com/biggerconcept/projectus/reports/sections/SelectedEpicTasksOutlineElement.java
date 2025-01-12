@@ -134,8 +134,7 @@ public class SelectedEpicTasksOutlineElement extends Element {
                 bundle.getString("reports.elements.tasksOutline.description")
         );
 
-        Paragraphs.insert(document, task.getDescription());
-        
+        document.md(task.getDescription());
         document.nl();
     }
     
@@ -155,8 +154,7 @@ public class SelectedEpicTasksOutlineElement extends Element {
                 bundle.getString("reports.elements.tasksOutline.acceptanceCriteria")
         );
 
-        Paragraphs.insert(document, task.getAcceptanceCriteria());
-        
+        document.md(task.getAcceptanceCriteria());
         document.nl();
     }
     

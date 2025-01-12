@@ -1,7 +1,6 @@
 package com.biggerconcept.projectus.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.appengine.serializers.helpers.Paragraphs;
 import com.biggerconcept.projectus.State;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Risk;
@@ -96,7 +95,8 @@ public class RisksOutlineElement extends Element {
                                 "reports.elements.risksOutline.details"
                         )
             );
-            Paragraphs.insert(doc, r.getDetail());
+            
+            doc.md(r.getDetail());
             doc.nl();
 
             doc.strong(
@@ -105,7 +105,8 @@ public class RisksOutlineElement extends Element {
                                 "reports.elements.risksOutline.mitigation"
                         )
             );
-            Paragraphs.insert(doc, r.getMitigationStrategy());
+            
+            doc.md(r.getMitigationStrategy());
 
             doc.br();
         }

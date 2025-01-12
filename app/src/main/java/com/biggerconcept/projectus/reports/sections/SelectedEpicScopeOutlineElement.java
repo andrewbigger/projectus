@@ -1,7 +1,6 @@
 package com.biggerconcept.projectus.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.appengine.serializers.helpers.Paragraphs;
 import com.biggerconcept.projectus.State;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.reports.Element;

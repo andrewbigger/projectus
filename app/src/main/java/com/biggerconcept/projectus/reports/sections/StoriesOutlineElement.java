@@ -134,7 +134,7 @@ public class StoriesOutlineElement extends Element {
                     )
         );
 
-        document.p(story.getIntention());
+        document.md(story.getIntention());
         document.nl();
     }
     
@@ -157,7 +157,7 @@ public class StoriesOutlineElement extends Element {
                     )
         );
 
-        document.p(story.getExpectation());
+        document.md(story.getExpectation());
         document.nl();
     }
 

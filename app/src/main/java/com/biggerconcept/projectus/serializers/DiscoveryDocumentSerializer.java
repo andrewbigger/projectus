@@ -90,10 +90,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
     private void overviewPage() {
         doc.h1(bundle.getString("documents.discovery.headings.overview"));
         
-        Paragraphs.format(epic.getSummary(),
-            doc
-        );
-        
+        doc.md(epic.getSummary());
         doc.h2(bundle.getString("documents.discovery.headings.scope"));
         doc.ol(epic.getScope().getIncluded());
         doc.h2(bundle.getString("documents.discovery.headings.outOfScope"));
@@ -152,9 +149,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
                 )
         );
         
-        Paragraphs.format(t.getDescription(),
-            doc
-        );
+        doc.md(t.getDescription());
         
         doc.nl();
         doc.strong(
@@ -163,9 +158,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
                 )
         );
         
-        Paragraphs.format(t.getAcceptanceCriteria(),
-            doc
-        );
+        doc.md(t.getAcceptanceCriteria());
         
         doc.br();
     }
@@ -213,7 +206,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
                 )
         );
         
-        Paragraphs.format(r.getDetail(), doc);
+        doc.md(r.getDetail());
         
         doc.nl();
         doc.strong(
@@ -222,8 +215,7 @@ public class DiscoveryDocumentSerializer implements ISerializer {
                 )
         );
         
-        Paragraphs.format(r.getMitigationStrategy(), doc);
-        
+        doc.md(r.getMitigationStrategy());
         doc.br();
     }
     

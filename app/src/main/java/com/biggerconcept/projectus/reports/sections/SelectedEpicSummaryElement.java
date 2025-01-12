@@ -1,7 +1,6 @@
 package com.biggerconcept.projectus.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.appengine.serializers.helpers.Paragraphs;
 import com.biggerconcept.projectus.State;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.reports.Element;
@@ -42,7 +41,7 @@ public class SelectedEpicSummaryElement extends Element {
             throws IOException {
         try {
             Epic selectedEpic = getState().getOpenEpic();
-            Paragraphs.insert(document, selectedEpic.getSummary());
+            document.md(selectedEpic.getSummary());
         } catch (Exception ex) {
             // skip when unable to retrieve selected epic
         }

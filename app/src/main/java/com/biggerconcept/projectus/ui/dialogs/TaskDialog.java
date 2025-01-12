@@ -19,6 +19,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 /**
@@ -109,9 +111,11 @@ public class TaskDialog {
         statusField.getItems().addAll(TaskStatus.values());
         
         descriptionField = new TextArea();
+        descriptionField.setFont(Font.font("Menlo", FontWeight.NORMAL, 13));
         descriptionField.setWrapText(true);
 
         acceptanceCriteriaField = new TextArea();
+        acceptanceCriteriaField.setFont(Font.font("Menlo", FontWeight.NORMAL, 13));
         acceptanceCriteriaField.setWrapText(true);
         
         mapTaskToDialog();

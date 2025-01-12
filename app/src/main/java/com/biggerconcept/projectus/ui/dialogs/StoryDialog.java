@@ -15,6 +15,8 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -71,9 +73,11 @@ public class StoryDialog {
         actorField.getSelectionModel().select(currentStory.getActor());
         
         intentionField = new TextArea(currentStory.getIntention());
+        intentionField.setFont(Font.font("Menlo", FontWeight.NORMAL, 13));
         intentionField.setWrapText(true);
 
         expectationField = new TextArea(currentStory.getExpectation());
+        expectationField.setFont(Font.font("Menlo", FontWeight.NORMAL, 13));
         expectationField.setWrapText(true);
     }
     
