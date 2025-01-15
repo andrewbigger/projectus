@@ -1,6 +1,7 @@
 package com.biggerconcept.projectus.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.projectus.State;
 import com.biggerconcept.projectus.domain.Risk;
 import com.biggerconcept.projectus.reports.Element;
@@ -36,10 +37,11 @@ public class RisksTableElement extends Element {
      * 
      * @param document report document
      * @param vars content variables
+     * @param root resources root
      * 
      * @throws IOException when unable to read file
      */
-    public void insertInto(Doc document, HashMap<String, String> vars) 
+    public void insertInto(Doc document, HashMap<String, String> vars, Node root) 
             throws IOException {
          ArrayList<Risk> risks = getDocument().getRisks();
         

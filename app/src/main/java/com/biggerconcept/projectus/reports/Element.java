@@ -31,6 +31,7 @@ import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.reports.elements.IElement;
 import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.projectus.State;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.reports.paragraphs.CodeElement;
@@ -588,7 +589,7 @@ public class Element extends com.biggerconcept.appengine.reports.elements.Elemen
      * @throws IOException if unable to read file
      */
     @Override
-    public void insertInto(Doc document, HashMap<String, String> vars) 
+    public void insertInto(Doc document, HashMap<String, String> vars, Node root) 
             throws IOException {
         throw new UnsupportedOperationException("Not supported.");
     }
