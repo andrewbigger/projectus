@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="300.0" maxWidth="600.0" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.DiscoveryReportController">
+<BorderPane maxHeight="387.0" maxWidth="600.0" minHeight="387.0" minWidth="600.0" prefHeight="387.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.DiscoveryReportController">
    <bottom>
       <BorderPane prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <right>
@@ -33,32 +33,41 @@
          <children>
             <Label text="%reports.discovery.name">
                <VBox.margin>
-                  <Insets bottom="3.0" />
+                  <Insets bottom="5.0" />
                </VBox.margin>
+               <font>
+                  <Font name="SansSerif" size="13.0" style="bold"/>
+               </font>
             </Label>
             <TextField fx:id="reportNameTextField" prefHeight="25.0" prefWidth="516.0">
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
             <Label text="%reports.discovery.format">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
+               <font>
+                  <Font name="SansSerif" size="13.0" style="bold"/>
+               </font>
             </Label>
             <ComboBox fx:id="reportFormatComboBox" onAction="#handleToggleCustomTemplateControl" prefWidth="150.0">
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </ComboBox>
             <Label text="%reports.discovery.saveLocation">
                <VBox.margin>
-                  <Insets bottom="3.0" />
+                  <Insets bottom="5.0" />
                </VBox.margin>
+               <font>
+                  <Font name="SansSerif" size="13.0" style="bold"/>
+               </font>
             </Label>
             <HBox prefHeight="30.0" prefWidth="580.0">
                <children>
-                  <TextField fx:id="reportSaveLocationTextField" editable="false" prefHeight="25.0" prefWidth="516.0">
+                  <TextField fx:id="reportSaveLocationTextField" editable="false" prefHeight="34.0" prefWidth="507.0">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
@@ -66,24 +75,27 @@
                   <Button fx:id="browseSaveLocationButton" mnemonicParsing="false" onAction="#handleSaveLocationBrowse" text="%actions.browse" />
                </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </HBox>
             <CheckBox fx:id="customTemplateCheckBox" mnemonicParsing="false" onAction="#handleToggleCustomTemplate" text="%reports.discovery.customTemplate">
                <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </CheckBox>
             <VBox fx:id="templateFileVBox" prefHeight="52.0" prefWidth="580.0">
                <children>
                   <Label text="%reports.discovery.templateFile">
                      <VBox.margin>
-                        <Insets bottom="3.0" />
+                        <Insets bottom="5.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font>
                   </Label>
                   <HBox prefHeight="29.0" prefWidth="580.0">
                      <children>
-                        <TextField fx:id="templateFileTextField" editable="false" prefHeight="25.0" prefWidth="517.0">
+                        <TextField fx:id="templateFileTextField" editable="false" prefHeight="34.0" prefWidth="507.0">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>

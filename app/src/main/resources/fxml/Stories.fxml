@@ -27,21 +27,21 @@
                <top>
                   <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <items>
-                      <Button id="addActorButton" fx:id="addActorButton" mnemonicParsing="false" onMouseClicked="#handleAddActor" prefWidth="26.0">
+                      <Button id="addActorButton" fx:id="addActorButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onMouseClicked="#handleAddActor" prefWidth="34.0">
                            <styleClass>
                               <String fx:value="iconButton" />
                               <String fx:value="smallIcon" />
                               <String fx:value="addButton" />
                            </styleClass>
                         </Button>
-                        <Button id="removeActorButton" fx:id="removeActorButton" mnemonicParsing="false" onMouseClicked="#handleRemoveActor" prefWidth="26.0">
+                        <Button id="removeActorButton" fx:id="removeActorButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onMouseClicked="#handleRemoveActor" prefWidth="34.0">
                            <styleClass>
                               <String fx:value="iconButton" />
                               <String fx:value="smallIcon" />
                               <String fx:value="removeButton" />
                            </styleClass>
                         </Button>
-                        <Button id="editActorButton" fx:id="editActorButton" mnemonicParsing="false" onMouseClicked="#handleEditActor" prefWidth="26.0">
+                        <Button id="editActorButton" fx:id="editActorButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onMouseClicked="#handleEditActor" prefWidth="34.0">
                            <styleClass>
                               <String fx:value="iconButton" />
                               <String fx:value="smallIcon" />
@@ -59,14 +59,14 @@
                <top>
                   <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <items>
-                        <Button id="addStoryButton" fx:id="addStoryButton" mnemonicParsing="false" onMouseClicked="#handleAddStory" prefWidth="26.0">
+                        <Button id="addStoryButton" fx:id="addStoryButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onMouseClicked="#handleAddStory" prefWidth="34.0">
                            <styleClass>
                               <String fx:value="iconButton" />
                               <String fx:value="smallIcon" />
                               <String fx:value="addButton" />
                            </styleClass>
                         </Button>
-                        <Button id="removeStoryButton" fx:id="removeStoryButton" mnemonicParsing="false" onMouseClicked="#handleRemoveStory" prefWidth="26.0">
+                        <Button id="removeStoryButton" fx:id="removeStoryButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onMouseClicked="#handleRemoveStory" prefWidth="34.0">
                            <styleClass>
                               <String fx:value="iconButton" />
                               <String fx:value="smallIcon" />
@@ -93,6 +93,9 @@
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
+                                 <font>
+                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                 </font>
                               </Label>
                               <ComboBox fx:id="storyActorDropdown" prefHeight="25.0" prefWidth="190.0">
                                  <VBox.margin>
@@ -103,6 +106,9 @@
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
+                                 <font>
+                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                 </font>
                               </Label>
                               <TextArea fx:id="storyIntentionTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                  <VBox.margin>
@@ -116,6 +122,9 @@
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
+                                 <font>
+                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                 </font>
                               </Label>
                               <TextArea fx:id="storyExpectationTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                  <VBox.margin>

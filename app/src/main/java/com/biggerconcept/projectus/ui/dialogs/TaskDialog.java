@@ -146,7 +146,7 @@ public class TaskDialog {
         
         ButtonType apply = StandardDialog.applyAction(
                 bundle.getString(
-                       "epic.tasks.dialogs.manage.actions.save" 
+                       "actions.apply" 
                 )
         );
         

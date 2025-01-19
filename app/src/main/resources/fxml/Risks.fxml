@@ -45,6 +45,9 @@
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font>
                   </Label>
                   <TextField fx:id="riskNameTextField">
                      <VBox.margin>
@@ -55,6 +58,9 @@
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font>
                   </Label>
                   <ComboBox fx:id="riskLikelihoodComboBox" prefWidth="150.0">
                      <VBox.margin>
@@ -65,6 +71,9 @@
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font>
                   </Label>
                   <ComboBox fx:id="riskImpactComboBox" prefWidth="150.0">
                      <VBox.margin>
@@ -75,6 +84,9 @@
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font>
                   </Label>
                   <ComboBox fx:id="riskStatusComboBox" prefWidth="150.0">
                      <VBox.margin>
@@ -85,6 +97,9 @@
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font>
                   </Label>
                   <TextArea fx:id="riskDetailTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                      <VBox.margin>
@@ -98,6 +113,9 @@
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font>
                   </Label>
                   <TextArea fx:id="riskMitigationTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                      <VBox.margin>
@@ -122,14 +140,14 @@
          <center>
             <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <items>
-                  <Button id="addRiskButton" fx:id="addRiskButton" mnemonicParsing="false" onMouseClicked="#handleAddRisk" prefWidth="26.0">
+                  <Button id="addRiskButton" fx:id="addRiskButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onMouseClicked="#handleAddRisk" prefWidth="34.0">
                      <styleClass>
                         <String fx:value="iconButton" />
                         <String fx:value="smallIcon" />
                         <String fx:value="addButton" />
                      </styleClass>
                   </Button>
-                  <Button id="removeRiskButton" fx:id="removeRiskButton" mnemonicParsing="false" onMouseClicked="#handleRemoveRisk" prefWidth="26.0">
+                  <Button id="removeRiskButton" fx:id="removeRiskButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onMouseClicked="#handleRemoveRisk" prefWidth="34.0">
                      <styleClass>
                         <String fx:value="iconButton" />
                         <String fx:value="smallIcon" />

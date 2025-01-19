@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="550.0" maxWidth="850.0" minHeight="550.0" minWidth="850.0" prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.OutlookController">
+<BorderPane maxHeight="550.0" maxWidth="850.0" minHeight="550.0" minWidth="850.0" prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.OutlookController">
    <right>
       <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -21,18 +21,24 @@
                <VBox.margin>
                   <Insets bottom="3.0" />
                </VBox.margin>
+               <font>
+                  <Font name="SansSerif" size="13.0" style="bold"/>
+               </font>
             </Label>
             <TextField fx:id="pointsPerSprintTextField">
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
             <Label text="%outlook.pastSprints.title">
                <VBox.margin>
                   <Insets bottom="3.0" />
                </VBox.margin>
+               <font>
+                  <Font name="SansSerif" size="13.0" style="bold"/>
+               </font>
             </Label>
-            <GridPane>
+            <GridPane prefHeight="219.0" prefWidth="200.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -129,13 +135,16 @@
                   </VBox>
                </children>
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </GridPane>
             <Label text="%outlook.averageDelivery">
                <VBox.margin>
                   <Insets bottom="3.0" />
                </VBox.margin>
+               <font>
+                  <Font name="SansSerif" size="13.0" style="bold"/>
+               </font>
             </Label>
             <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="200.0">
                <children>
@@ -211,22 +220,34 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #498283;" GridPane.columnIndex="1">
                <children>
-                  <Label text="%outlook.table.points" textFill="WHITE" />
+                  <Label text="%outlook.table.points" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font></Label>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #498283;" GridPane.columnIndex="2">
                <children>
-                  <Label text="%outlook.table.sprints" textFill="WHITE" />
+                  <Label text="%outlook.table.sprints" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font></Label>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #498283;" GridPane.columnIndex="3">
                <children>
-                  <Label text="%outlook.table.weeks" textFill="WHITE" />
+                  <Label text="%outlook.table.weeks" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font></Label>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #498283;">
                <children>
-                  <Label text="%outlook.table.outlook" textFill="WHITE" />
+                  <Label text="%outlook.table.outlook" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font></Label>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -345,10 +366,10 @@
          <children>
             <Label fx:id="nameLabel" text="{{Project Name}}">
                <font>
-                  <Font size="18.0" />
+                  <Font name="SansSerif" size="18.0" style="bold"/>
                </font>
                <VBox.margin>
-                  <Insets bottom="3.0" />
+                  <Insets bottom="5.0" />
                </VBox.margin>
             </Label>
             <Label text="%outlook.description" />
@@ -364,16 +385,22 @@
                      <VBox.margin>
                         <Insets bottom="3.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font>
                   </Label>
                   <TextField fx:id="bufferTextBox">
                      <VBox.margin>
-                        <Insets bottom="5.0" />
+                        <Insets bottom="15.0" />
                      </VBox.margin>
                   </TextField>
                   <Label text="%outlook.estimate.title">
                      <VBox.margin>
                         <Insets bottom="3.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font>
                   </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="200.0">
                      <children>
@@ -385,13 +412,16 @@
                         <Label text="%outlook.estimate.points" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="5.0" />
+                        <Insets bottom="15.0" />
                      </VBox.margin>
                   </HBox>
                   <Label text="%outlook.buffer.title">
                      <VBox.margin>
                         <Insets bottom="3.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font>
                   </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="200.0">
                      <children>
@@ -403,13 +433,16 @@
                         <Label text="%outlook.estimate.points" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="5.0" />
+                        <Insets bottom="15.0" />
                      </VBox.margin>
                   </HBox>
                   <Label text="%outlook.completed.title">
                      <VBox.margin>
                         <Insets bottom="3.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="SansSerif" size="13.0" style="bold"/>
+                     </font>
                   </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="200.0">
                      <children>
