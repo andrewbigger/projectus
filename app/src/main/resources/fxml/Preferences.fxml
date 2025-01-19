@@ -45,7 +45,7 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="SansSerif" size="14.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold"/>
                            </font>
                         </Label>
                         <Label text="%preferences.epics.numbering.description">
@@ -123,7 +123,7 @@
                      <children>
                         <Label text="%preferences.sprint.size.title">
                            <font>
-                              <Font name="SansSerif" size="14.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold"/>
                            </font>
                            <VBox.margin>
                               <Insets bottom="5.0" />
@@ -150,7 +150,7 @@
                      <children>
                         <Label text="%preferences.estimates.referenceSprints.title">
                            <font>
-                              <Font name="SansSerif" size="14.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold"/>
                            </font>
                            <padding>
                               <Insets bottom="5.0" />
@@ -263,7 +263,7 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="SansSerif" size="14.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold"/>
                            </font>
                         </Label>
                         <Button mnemonicParsing="false" onAction="#handleApplyAllReferenceSprints" text="%preferences.estimates.referenceSprints.applyAll.button">
@@ -273,7 +273,7 @@
                         </Button>
                         <Label text="%preferences.estimates.buffer.title">
                            <font>
-                              <Font name="SansSerif" size="14.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold"/>
                            </font>
                            <padding>
                               <Insets bottom="5.0" />
@@ -301,7 +301,7 @@
                      <children>
                         <Label text="%preferences.reports.title">
                            <font>
-                              <Font name="SansSerif" size="14.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold"/>
                            </font>
                            <VBox.margin>
                               <Insets bottom="5.0" />
