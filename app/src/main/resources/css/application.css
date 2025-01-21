@@ -1,0 +1,142 @@
+.iconButton {
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+.smallIcon {
+  -fx-background-size: 25px 25px;
+}
+
+.addButton {
+  -fx-background-image: url('../icons/AddIcon.png');
+}
+
+.removeButton {
+  -fx-background-image: url('../icons/RemoveIcon.png');
+}
+
+.moveUpButton {
+  -fx-background-image: url('../icons/MoveUpIcon.png');
+}
+
+.moveDownButton {
+  -fx-background-image: url('../icons/MoveDownIcon.png');
+}
+
+.moveLeftButton {
+  -fx-background-image: url('../icons/MoveLeftIcon.png');
+}
+
+.moveRightButton {
+  -fx-background-image: url('../icons/MoveRightIcon.png');
+}
+
+.moveLeftDoubleButton {
+  -fx-background-image: url('../icons/MoveLeftDoubleIcon.png');
+}
+
+.moveRightDoubleButton {
+  -fx-background-image: url('../icons/MoveRightDoubleIcon.png');
+}
+
+.editButton {
+  -fx-background-image: url('../icons/EditIcon.png');
+}
+
+.outlookButton {
+  -fx-background-image: url('../icons/OutlookIcon.png');
+}
+
+.reportsButton {
+  -fx-background-image: url('../icons/ReportsIcon.png');
+}
+
+.moveButton {
+  -fx-background-image: url('../icons/MoveIcon.png')
+}
+
+.definedProgress > .bar {
+  -fx-background-color: #FFBB10 !important;
+}
+
+.bg-red {
+  -fx-background-color:  #f5d5d8;
+}
+
+.bg-amber {
+  -fx-background-color:  #ffeedb;
+}
+
+.bg-green {
+  -fx-background-color:  #d1e8df;
+}
+
+#openFileButton {
+  -fx-background-image:url('../icons/OpenFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#saveFileButton {
+  -fx-background-image: url('../icons/SaveFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#newFileButton {
+  -fx-background-image: url('../icons/NewFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#manageStoriesButton {
+  -fx-background-image: url('../icons/StoryIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#manageRisksButton {
+  -fx-background-image: url('../icons/RisksIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#reportsMenuButton {
+  -fx-background-image: url('../icons/ReportsIcon.png');
+  -fx-background-position: left center;
+  -fx-background-repeat: no-repeat;
+}
+
+#sizedProgress > .bar {
+  -fx-background-color: #C72A1C;
+}
+
+#describedProgress > .bar {
+  -fx-background-color: #A81897;
+}
+
+#totalTasksCompleteProgress > .bar {
+  -fx-background-color: #3A70B2;
+}
+
+#sprintProgress > .bar {
+  -fx-background-color: #3A70B2;
+}
+
+#totalPointsCompleteProgress > .bar {
+  -fx-background-color: #3A70B2;
+}
+
+#commitmentProgress.overcommitment > .bar {
+  -fx-background-color: #C72A1C;
+}
+
+#commitmentProgress > .bar {
+  -fx-background-color: #43b324;
+}

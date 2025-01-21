@@ -1,5 +1,6 @@
 package com.biggerconcept.projectus;
 
+import com.biggerconcept.doctree.ui.Theme;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -48,10 +49,7 @@ public class App extends Application {
         );
         
         Scene scene = new Scene(root);
-        
-        Application.setUserAgentStylesheet(
-                    getClass().getResource("/fxml/Application.css").toString()
-            );
+        Theme.apply(getClass(), scene);
         
         stage.setTitle(bundle.getString("application.name"));
         stage.setScene(scene);
