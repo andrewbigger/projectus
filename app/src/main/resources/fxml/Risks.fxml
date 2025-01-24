@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="1116.0" stylesheets="Application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.RisksController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="1116.0" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.RisksController">
    <center>
       <SplitPane dividerPositions="0.7244165170556554" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <items>
@@ -46,7 +46,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="SansSerif" size="13.0" style="bold"/>
+                        <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
                   <TextField fx:id="riskNameTextField">
@@ -59,7 +59,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="SansSerif" size="13.0" style="bold"/>
+                        <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
                   <ComboBox fx:id="riskLikelihoodComboBox" prefWidth="150.0">
@@ -72,7 +72,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="SansSerif" size="13.0" style="bold"/>
+                        <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
                   <ComboBox fx:id="riskImpactComboBox" prefWidth="150.0">
@@ -85,7 +85,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="SansSerif" size="13.0" style="bold"/>
+                        <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
                   <ComboBox fx:id="riskStatusComboBox" prefWidth="150.0">
@@ -98,7 +98,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="SansSerif" size="13.0" style="bold"/>
+                        <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
                   <TextArea fx:id="riskDetailTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
@@ -114,7 +114,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="SansSerif" size="13.0" style="bold"/>
+                        <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
                   <TextArea fx:id="riskMitigationTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">

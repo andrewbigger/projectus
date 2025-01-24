@@ -29,7 +29,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="700.0" minWidth="901.0" prefHeight="900.0" prefWidth="1500.0" stylesheets="Application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.MainController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="700.0" minWidth="901.0" prefHeight="900.0" prefWidth="1500.0" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.MainController">
    <top>
       <BorderPane prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <center>
@@ -152,7 +152,7 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="SansSerif" size="13.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                         </Label>
                         <TextField fx:id="projectNameTextField">
@@ -168,7 +168,7 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="SansSerif" size="13.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                         </Label>
                         <DatePicker fx:id="projectStartDatePicker" prefWidth="250.0">
@@ -181,7 +181,7 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="SansSerif" size="13.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                         </Label>
                         <DatePicker fx:id="projectEndDatePicker" prefWidth="250.0">
@@ -237,7 +237,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
                               <ProgressBar id="commitmentProgress" fx:id="commitmentProgress" prefWidth="250.0" progress="0.0">
@@ -284,7 +284,7 @@
                                           <Insets right="5.0" />
                                        </HBox.margin>
                                        <font>
-                                          <Font name="SansSerif" size="13.0" style="bold"/>
+                                          <Font name="SansSerif" size="13.0" style="bold" />
                                        </font>
                                     </Label>
                                  </children>
@@ -329,7 +329,7 @@
                                     <Insets bottom="2.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
                               <ProgressBar id="totalPointsCompleteProgress" fx:id="pointProgress" prefWidth="250.0" progress="0.0">
@@ -369,7 +369,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
                               <HBox prefHeight="15.0" prefWidth="180.0">
@@ -493,7 +493,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
                               <TextField fx:id="epicNameTextField">
@@ -506,7 +506,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
                               <TextArea fx:id="epicSummaryTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
@@ -522,7 +522,7 @@
                                     <Insets bottom="10.0" />
                                  </padding>
                                  <font>
-                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
                               <GridPane>
@@ -602,7 +602,7 @@
                               </GridPane>
                               <Label text="%epic.tabs.overview.progress.label">
                                  <font>
-                                    <Font name="SansSerif" size="14.0" style="bold"/>
+                                    <Font name="SansSerif" size="14.0" style="bold" />
                                  </font>
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="10.0" />
@@ -650,7 +650,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
                               <ProgressBar id="totalPointsCompleteProgress" fx:id="epicPointsProgressBar" prefWidth="20000.0" progress="0.0">
@@ -704,7 +704,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
                               <ListView fx:id="includeScopeListView" prefHeight="200.0" prefWidth="200.0">
@@ -740,7 +740,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
                               <ListView fx:id="excludeScopeListView" prefHeight="200.0" prefWidth="200.0">

@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="1116.0" stylesheets="Application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.StoriesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="1116.0" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.StoriesController">
    <center>
       <SplitPane dividerPositions="0.2975778546712803" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <items>
@@ -94,7 +94,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
                               <ComboBox fx:id="storyActorDropdown" prefHeight="25.0" prefWidth="190.0">
@@ -107,7 +107,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
                               <TextArea fx:id="storyIntentionTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
@@ -123,7 +123,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
                               <TextArea fx:id="storyExpectationTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">

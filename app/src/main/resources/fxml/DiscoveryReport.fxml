@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="387.0" maxWidth="600.0" minHeight="387.0" minWidth="600.0" prefHeight="387.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.DiscoveryReportController">
+<BorderPane maxHeight="387.0" maxWidth="600.0" minHeight="387.0" minWidth="600.0" prefHeight="387.0" prefWidth="600.0" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.DiscoveryReportController">
    <bottom>
       <BorderPane prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <right>
@@ -36,7 +36,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
                <font>
-                  <Font name="SansSerif" size="13.0" style="bold"/>
+                  <Font name="SansSerif" size="13.0" style="bold" />
                </font>
             </Label>
             <TextField fx:id="reportNameTextField" prefHeight="25.0" prefWidth="516.0">
@@ -49,7 +49,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
                <font>
-                  <Font name="SansSerif" size="13.0" style="bold"/>
+                  <Font name="SansSerif" size="13.0" style="bold" />
                </font>
             </Label>
             <ComboBox fx:id="reportFormatComboBox" onAction="#handleToggleCustomTemplateControl" prefWidth="150.0">
@@ -62,7 +62,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
                <font>
-                  <Font name="SansSerif" size="13.0" style="bold"/>
+                  <Font name="SansSerif" size="13.0" style="bold" />
                </font>
             </Label>
             <HBox prefHeight="30.0" prefWidth="580.0">
@@ -90,7 +90,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="SansSerif" size="13.0" style="bold"/>
+                        <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
                   <HBox prefHeight="29.0" prefWidth="580.0">
