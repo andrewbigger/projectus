@@ -25,7 +25,7 @@
          <items>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <TableView fx:id="riskTableView" onMouseClicked="#handleChooseRisk" prefHeight="621.0" prefWidth="449.0" BorderPane.alignment="CENTER">
+                  <TableView id="risksTable" fx:id="riskTableView" onMouseClicked="#handleChooseRisk" prefHeight="621.0" prefWidth="449.0" BorderPane.alignment="CENTER">
                     <columns>
                         <TableColumn minWidth="100.0" prefWidth="100.0" text="%risks.table.id" />
                         <TableColumn minWidth="200.0" prefWidth="200.0" text="%risks.table.name" />
@@ -49,7 +49,7 @@
                         <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
-                  <TextField fx:id="riskNameTextField">
+                  <TextField id="riskNameTextField" fx:id="riskNameTextField">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -62,7 +62,7 @@
                         <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="riskLikelihoodComboBox" prefWidth="150.0">
+                  <ComboBox id="riskLikelihoodDropdown" fx:id="riskLikelihoodComboBox" prefWidth="150.0">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -75,7 +75,7 @@
                         <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="riskImpactComboBox" prefWidth="150.0">
+                  <ComboBox id="riskImpactDropdown" fx:id="riskImpactComboBox" prefWidth="150.0">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -88,7 +88,7 @@
                         <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="riskStatusComboBox" prefWidth="150.0">
+                  <ComboBox id="riskStatusDropdown" fx:id="riskStatusComboBox" prefWidth="150.0">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -101,7 +101,7 @@
                         <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
-                  <TextArea fx:id="riskDetailTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                  <TextArea id="riskDetailTextField" fx:id="riskDetailTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -117,7 +117,7 @@
                         <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
-                  <TextArea fx:id="riskMitigationTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                  <TextArea id="riskMitigationTextField" fx:id="riskMitigationTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -127,7 +127,7 @@
                   </TextArea>
                   <BorderPane prefHeight="8.0" prefWidth="239.0">
                      <right>
-                        <Button fx:id="applyRiskButton" defaultButton="true" mnemonicParsing="false" onMouseClicked="#handleChangeRisk" text="%risks.panel.actions.apply" BorderPane.alignment="CENTER" />
+                        <Button id="applyRisksButton" fx:id="applyRiskButton" defaultButton="true" mnemonicParsing="false" onMouseClicked="#handleChangeRisk" text="%risks.panel.actions.apply" BorderPane.alignment="CENTER" />
                      </right>
                   </BorderPane>
                </children>

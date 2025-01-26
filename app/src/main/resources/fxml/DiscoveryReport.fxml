@@ -15,10 +15,10 @@
    <bottom>
       <BorderPane prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <right>
-            <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#handleSave" prefWidth="100.0" text="%actions.save" BorderPane.alignment="CENTER" />
+            <Button id="rpotsDiscoveryApplyButton" fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#handleSave" prefWidth="100.0" text="%actions.apply" BorderPane.alignment="CENTER" />
          </right>
          <left>
-            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" prefWidth="100.0" text="%actions.cancel" BorderPane.alignment="CENTER" />
+            <Button id="reportsDiscoveryCancelButton" fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" prefWidth="100.0" text="%actions.cancel" BorderPane.alignment="CENTER" />
          </left>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -39,7 +39,7 @@
                   <Font name="SansSerif" size="13.0" style="bold" />
                </font>
             </Label>
-            <TextField fx:id="reportNameTextField" prefHeight="25.0" prefWidth="516.0">
+            <TextField id="discoveryReportNameTextField" fx:id="reportNameTextField" prefHeight="25.0" prefWidth="516.0">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
@@ -52,7 +52,7 @@
                   <Font name="SansSerif" size="13.0" style="bold" />
                </font>
             </Label>
-            <ComboBox fx:id="reportFormatComboBox" onAction="#handleToggleCustomTemplateControl" prefWidth="150.0">
+            <ComboBox id="discoveryReportFormatDropdown" fx:id="reportFormatComboBox" onAction="#handleToggleCustomTemplateControl" prefWidth="150.0">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
@@ -67,18 +67,18 @@
             </Label>
             <HBox prefHeight="30.0" prefWidth="580.0">
                <children>
-                  <TextField fx:id="reportSaveLocationTextField" editable="false" prefHeight="34.0" prefWidth="507.0">
+                  <TextField id="repotsDiscoverySaveLocationTextField" fx:id="reportSaveLocationTextField" editable="false" prefHeight="34.0" prefWidth="507.0">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="browseSaveLocationButton" mnemonicParsing="false" onAction="#handleSaveLocationBrowse" text="%actions.browse" />
+                  <Button id="reportsDiscoverySaveLocationBrowseButton" fx:id="browseSaveLocationButton" mnemonicParsing="false" onAction="#handleSaveLocationBrowse" text="%actions.browse" />
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </HBox>
-            <CheckBox fx:id="customTemplateCheckBox" mnemonicParsing="false" onAction="#handleToggleCustomTemplate" text="%reports.discovery.customTemplate">
+            <CheckBox id="reportsDiscoveryCustomTemplateCheckbox" fx:id="customTemplateCheckBox" mnemonicParsing="false" onAction="#handleToggleCustomTemplate" text="%reports.discovery.customTemplate">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
@@ -95,12 +95,12 @@
                   </Label>
                   <HBox prefHeight="29.0" prefWidth="580.0">
                      <children>
-                        <TextField fx:id="templateFileTextField" editable="false" prefHeight="34.0" prefWidth="507.0">
+                        <TextField id="reportsDiscoveryTemplateFileTextField" fx:id="templateFileTextField" editable="false" prefHeight="34.0" prefWidth="507.0">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button fx:id="browseTemplateButton" mnemonicParsing="false" onAction="#handleTemplateFileBrowse" text="%actions.browse" />
+                        <Button id="reportsDiscoveryTemplateBrowseButton" fx:id="browseTemplateButton" mnemonicParsing="false" onAction="#handleTemplateFileBrowse" text="%actions.browse" />
                      </children>
                   </HBox>
                </children>

@@ -579,6 +579,15 @@ public class MainController implements Initializable {
     }
     
     /**
+     * Returns state.
+     * 
+     * @return application state
+     */
+    public State getState() {
+        return state;
+    }
+    
+    /**
      * Assembles window title.
      * 
      * @return 
@@ -1163,16 +1172,26 @@ public class MainController implements Initializable {
                     fileExtFilter
             );
             
-            closeAllDependentWindows();
-
-            state.setOpenDocument(Document.load(documentFile));
-            state.setOpenEpic(null);
-            state.mapDocumentToWindow();
+            openDocument(documentFile);
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (IOException e) {
             ErrorAlert.show(state.bundle(), state.bundle().getString("errors.open"), e);
         }
+    }
+    
+    /**
+     * Opens document
+     * 
+     * @param documentFile file to open
+     * @throws IOException when unable to open document
+     */
+    public void openDocument(File documentFile) throws IOException {
+        closeAllDependentWindows();
+
+        state.setOpenDocument(Document.load(documentFile));
+        state.setOpenEpic(null);
+        state.mapDocumentToWindow();
     }
     
     /**

@@ -52,7 +52,7 @@
                   </ToolBar>
                </top>
                <center>
-                  <ListView fx:id="actorListView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                  <ListView id="actorListView" fx:id="actorListView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
             <BorderPane minWidth="300.0" prefHeight="200.0" prefWidth="200.0">
@@ -79,7 +79,7 @@
                <center>
                   <SplitPane dividerPositions="0.7086092715231788" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <items>
-                        <TableView fx:id="storyTableView" onMouseClicked="#handleChooseStory" prefHeight="200.0" prefWidth="200.0">
+                        <TableView id="storiesListView" fx:id="storyTableView" onMouseClicked="#handleChooseStory" prefHeight="200.0" prefWidth="200.0">
                           <columns>
                               <TableColumn prefWidth="100.0" text="%stories.table.id" />
                               <TableColumn prefWidth="150.0" text="%stories.table.actor" />
@@ -97,7 +97,7 @@
                                     <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="storyActorDropdown" prefHeight="25.0" prefWidth="190.0">
+                              <ComboBox id="storyActorDropdown" fx:id="storyActorDropdown" prefHeight="25.0" prefWidth="190.0">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -110,7 +110,7 @@
                                     <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="storyIntentionTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                              <TextArea id="storyIntentTextField" fx:id="storyIntentionTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -126,7 +126,7 @@
                                     <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="storyExpectationTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                              <TextArea id="storyExpectationTextField" fx:id="storyExpectationTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -136,7 +136,7 @@
                               </TextArea>
                               <BorderPane prefHeight="41.0" prefWidth="203.0">
                                  <right>
-                                    <Button fx:id="applyStoryButton" defaultButton="true" mnemonicParsing="false" onMouseClicked="#handleChangeStory" text="%stories.panel.actions.apply" BorderPane.alignment="CENTER" />
+                                    <Button id="applyStoryButton" fx:id="applyStoryButton" defaultButton="true" mnemonicParsing="false" onMouseClicked="#handleChangeStory" text="%stories.panel.actions.apply" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </children>

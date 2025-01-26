@@ -155,7 +155,7 @@
                               <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                         </Label>
-                        <TextField fx:id="projectNameTextField">
+                        <TextField id="projectLabelTextField" fx:id="projectNameTextField">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -171,7 +171,7 @@
                               <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="projectStartDatePicker" prefWidth="250.0">
+                        <DatePicker id="projectStartDatePicker" fx:id="projectStartDatePicker" prefWidth="250.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin>
@@ -184,7 +184,7 @@
                               <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="projectEndDatePicker" prefWidth="250.0">
+                        <DatePicker id="projectEndDatePicker" fx:id="projectEndDatePicker" prefWidth="250.0">
                            <VBox.margin>
                               <Insets bottom="15.0" />
                            </VBox.margin>
@@ -407,7 +407,7 @@
             </BorderPane>
             <BorderPane minWidth="300.0" snapToPixel="false">
                <center>
-                  <TableView fx:id="epicsTableView" onMouseClicked="#handleEpicSelect" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0;" BorderPane.alignment="CENTER">
+                  <TableView id="projectsTableView" fx:id="epicsTableView" onMouseClicked="#handleEpicSelect" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0;" BorderPane.alignment="CENTER">
                      <columns>
                         <TableColumn minWidth="100.0" prefWidth="75.0" text="%project.table.id" />
                         <TableColumn minWidth="350.0" prefWidth="350.0" text="%project.table.name" />
@@ -484,7 +484,7 @@
             </BorderPane>
             <TabPane fx:id="selectedEpicPanel" minWidth="300.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="%epic.tabs.overview">
+                <Tab id="epicOverviewTab" text="%epic.tabs.overview">
                      <content>
                         <VBox fx:id="epicPanel" prefHeight="102.0" prefWidth="644.0">
                            <children>
@@ -496,7 +496,7 @@
                                     <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
-                              <TextField fx:id="epicNameTextField">
+                              <TextField id="epicNameTextField" fx:id="epicNameTextField">
                                  <VBox.margin>
                                     <Insets bottom="15.0" />
                                  </VBox.margin>
@@ -509,7 +509,7 @@
                                     <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="epicSummaryTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                              <TextArea id="epicSummaryTextField" fx:id="epicSummaryTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                  <VBox.margin>
                                     <Insets bottom="15.0" />
                                  </VBox.margin>
@@ -692,7 +692,7 @@
                         </VBox>
                      </content>
                 </Tab>
-                  <Tab text="%epic.tabs.scope.label">
+                  <Tab id="epicScopeTab" text="%epic.tabs.scope.label">
                      <content>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <padding>
@@ -707,7 +707,7 @@
                                     <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
-                              <ListView fx:id="includeScopeListView" prefHeight="200.0" prefWidth="200.0">
+                              <ListView id="epicScopeIncludeListView" fx:id="includeScopeListView" prefHeight="200.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -743,7 +743,7 @@
                                     <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
-                              <ListView fx:id="excludeScopeListView" prefHeight="200.0" prefWidth="200.0">
+                              <ListView id="epicScopeExcludeListView" fx:id="excludeScopeListView" prefHeight="200.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -775,7 +775,7 @@
                         </VBox>
                      </content>
                   </Tab>
-                  <Tab text="%epic.tabs.story.label">
+                  <Tab id="epicStoriesTab" text="%epic.tabs.story.label">
                      <content>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <top>
@@ -809,7 +809,7 @@
                               </ToolBar>
                            </top>
                            <center>
-                              <TableView fx:id="storiesTableView" prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0;" BorderPane.alignment="CENTER">
+                              <TableView id="epicStoriesTableView" fx:id="storiesTableView" prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0;" BorderPane.alignment="CENTER">
                                 <columns>
                                   <TableColumn prefWidth="100.0" text="%stories.table.id" />
                                   <TableColumn prefWidth="150.0" text="%stories.table.actor" />
@@ -821,11 +821,11 @@
                         </BorderPane>
                      </content>
                   </Tab>
-                <Tab text="%epic.tabs.tasks">
+                <Tab id="epicTasksTab" text="%epic.tabs.tasks">
                      <content>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <center>
-                              <TableView fx:id="tasksTableView" prefHeight="539.0" prefWidth="644.0" style="-fx-border-width: 0;" BorderPane.alignment="CENTER">
+                              <TableView id="epicTasksTableView" fx:id="tasksTableView" prefHeight="539.0" prefWidth="644.0" style="-fx-border-width: 0;" BorderPane.alignment="CENTER">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="%epic.tasks.table.id" />
                                   <TableColumn minWidth="350.0" prefWidth="276.0" text="%epic.tasks.table.name" />

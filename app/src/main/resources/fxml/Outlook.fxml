@@ -25,7 +25,7 @@
                   <Font name="SansSerif" size="13.0" style="bold" />
                </font>
             </Label>
-            <TextField fx:id="pointsPerSprintTextField">
+            <TextField id="outlookPointsPerSprintTextField" fx:id="pointsPerSprintTextField">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
@@ -63,7 +63,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                      <children>
-                        <TextField fx:id="pastSprintOneNameTextField">
+                        <TextField id="outloookPastSprint1NameTextField" fx:id="pastSprintOneNameTextField">
                            <VBox.margin>
                               <Insets right="3.0" />
                            </VBox.margin>
@@ -72,7 +72,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <TextField fx:id="pastSprintOnePointsTextField">
+                        <TextField id="outloookPastSprint1PointsTextField" fx:id="pastSprintOnePointsTextField">
                            <VBox.margin>
                               <Insets left="3.0" />
                            </VBox.margin>
@@ -81,7 +81,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                      <children>
-                        <TextField fx:id="pastSprintTwoNameTextField">
+                        <TextField id="outloookPastSprint2NameTextField" fx:id="pastSprintTwoNameTextField">
                            <VBox.margin>
                               <Insets right="3.0" />
                            </VBox.margin>
@@ -90,7 +90,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <TextField fx:id="pastSprintTwoPointsTextField">
+                        <TextField id="outloookPastSprint2PointsTextField" fx:id="pastSprintTwoPointsTextField">
                            <VBox.margin>
                               <Insets left="3.0" />
                            </VBox.margin>
@@ -99,7 +99,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
                      <children>
-                        <TextField fx:id="pastSprintThreeNameTextField">
+                        <TextField id="outloookPastSprint3NameTextField" fx:id="pastSprintThreeNameTextField">
                            <VBox.margin>
                               <Insets right="3.0" />
                            </VBox.margin>
@@ -108,7 +108,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <TextField fx:id="pastSprintThreePointsTextField">
+                        <TextField id="outloookPastSprint3PointsTextField" fx:id="pastSprintThreePointsTextField">
                            <VBox.margin>
                               <Insets left="3.0" />
                            </VBox.margin>
@@ -117,7 +117,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
                      <children>
-                        <TextField fx:id="pastSprintFourNameTextField">
+                        <TextField id="outloookPastSprint4NameTextField" fx:id="pastSprintFourNameTextField">
                            <VBox.margin>
                               <Insets right="3.0" />
                            </VBox.margin>
@@ -126,7 +126,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <TextField fx:id="pastSprintFourPointsTextField">
+                        <TextField id="outloookPastSprint4PointsTextField" fx:id="pastSprintFourPointsTextField">
                            <VBox.margin>
                               <Insets left="3.0" />
                            </VBox.margin>
@@ -389,7 +389,7 @@
                         <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
-                  <TextField fx:id="bufferTextBox">
+                  <TextField id="outlookBufferTextField" fx:id="bufferTextBox">
                      <VBox.margin>
                         <Insets bottom="15.0" />
                      </VBox.margin>
@@ -460,7 +460,7 @@
          <bottom>
             <VBox prefHeight="22.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <CheckBox fx:id="excludeCompletedPointsCheckbox" mnemonicParsing="false" onAction="#handleChange" text="Exclude Completed Points" />
+                  <CheckBox id="outlookExcludeCompletedPointsCheckBox" fx:id="excludeCompletedPointsCheckbox" mnemonicParsing="false" onAction="#handleChange" text="Exclude Completed Points" />
                </children>
             </VBox>
          </bottom>
@@ -469,7 +469,7 @@
    <bottom>
       <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="28.0" prefWidth="832.0" BorderPane.alignment="CENTER">
          <children>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#handleChange" prefWidth="100.0" text="%actions.apply" />
+            <Button id="outlookApplyButton" defaultButton="true" mnemonicParsing="false" onAction="#handleChange" prefWidth="100.0" text="%actions.apply" />
          </children>
       </HBox>
    </bottom>
