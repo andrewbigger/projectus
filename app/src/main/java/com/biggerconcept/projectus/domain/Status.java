@@ -62,6 +62,19 @@ public class Status {
     }
     
     /**
+     * Returns true if the project has concluded
+     * 
+     * @return whether the project has concluded
+     */
+    public boolean hasConcluded() {
+        if (doc.getEnd() < Date.nowEpochDay()) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    /**
      * Returns total number of weeks between the start and end date.
      * 
      * If the dates have not been set then zero will be returned.

@@ -760,14 +760,24 @@ public class MainController implements Initializable {
             totalSprints.setText(
                     String.valueOf(status.totalSprints())
             );
-
-            weeksElapsed.setText(
+            
+            if (status.hasConcluded()) {
+                weeksElapsed.setText(
+                        String.valueOf(status.totalWeeks())
+                );
+                
+                sprintsElapsed.setText(
+                        String.valueOf(status.totalSprints())
+                );
+            } else {
+                weeksElapsed.setText(
                     String.valueOf(status.weeksElapsed())
-            );
-
-            sprintsElapsed.setText(
+                );
+                
+                sprintsElapsed.setText(
                     String.valueOf(status.sprintsElapsed())
-            );
+                );
+            }
 
             totalPoints.setText(
                     String.valueOf(status.totalPoints())
@@ -833,6 +843,7 @@ public class MainController implements Initializable {
             
             return;
         }
+        
         EpicsTable epicsTable = new EpicsTable(
                 state.bundle(),
                 state.getOpenDocument().getPreferences(),

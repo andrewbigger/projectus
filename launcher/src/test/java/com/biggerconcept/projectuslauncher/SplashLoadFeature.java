@@ -1,6 +1,5 @@
 package com.biggerconcept.projectuslauncher;
 
-import com.biggerconcept.projectuslauncher.Splash;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,7 +7,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
-import org.testfx.matcher.base.NodeMatchers;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.isVisible;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;

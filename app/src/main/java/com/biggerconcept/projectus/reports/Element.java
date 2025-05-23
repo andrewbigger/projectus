@@ -590,7 +590,5 @@ public class Element extends com.biggerconcept.appengine.reports.elements.Elemen
      */
     @Override
     public void insertInto(Doc document, HashMap<String, String> vars, Node root) 
-            throws IOException {
-        throw new UnsupportedOperationException("Not supported.");
-    }
+            throws IOException {}
 }
