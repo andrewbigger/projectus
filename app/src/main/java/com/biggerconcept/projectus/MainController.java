@@ -542,6 +542,44 @@ public class MainController implements Initializable {
     @FXML
     public MenuButton reportsMenuButton;
     
+    private Parent risksWindow;
+    
+    private Parent storiesWindow;
+    
+    private void loadRisksModule(State state) throws IOException {
+        FXMLLoader loader = StandardWindow.load(
+                this,
+                state.bundle(),
+                "/fxml/Risks.fxml"
+        );
+
+        risksWindow = (Parent) loader.load();
+
+        RisksController controller = (RisksController) loader
+                .getController();
+
+        controller.setState(state);
+        
+        state.setRisksController(controller);
+    }
+    
+    private void loadStoriesModule(State state) throws IOException {
+        FXMLLoader loader = StandardWindow.load(
+                this,
+                state.bundle(),
+                "/fxml/Stories.fxml"
+        );
+
+        storiesWindow = (Parent) loader.load();
+
+        StoriesController controller = (StoriesController) loader
+                .getController();
+
+        controller.setState(state);
+        
+        state.setStoriesController(controller);
+    }
+    
     /**
      * Initializes the main window.
      * 
@@ -551,6 +589,13 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         state = new State(this, rb);
+        
+        try {
+            loadRisksModule(state);
+            loadStoriesModule(state);
+        } catch (Exception ex) {
+            System.out.println("Unable to configure risks and story windows");
+        }
         
         fileExtFilter = new ExtensionFilter(
                 "JSON File",
@@ -728,7 +773,7 @@ public class MainController implements Initializable {
      * 
      * @return controller window
      */
-    private Stage window() {
+    public Stage window() {
         return (Stage) newFileButton.getScene().getWindow();
     }
     
@@ -845,6 +890,7 @@ public class MainController implements Initializable {
         }
         
         EpicsTable epicsTable = new EpicsTable(
+                state,
                 state.bundle(),
                 state.getOpenDocument().getPreferences(),
                 state.getOpenDocument().getEpics()
@@ -853,7 +899,7 @@ public class MainController implements Initializable {
         epicsTable.bind(epicsTableView);
     }
     
-    private void mapSelectedEpicToWindow() {
+    public void mapSelectedEpicToWindow() {
         mapEpicOverviewToWindow();
         mapEpicScopeToWindow();
         mapEpicStoriesToWindow();
@@ -1015,11 +1061,12 @@ public class MainController implements Initializable {
         // stories tab
         // stories table
         StoryTable storiesTable = new StoryTable(
+                state,
                 state.bundle(),
                 state.getOpenEpic().getDocumentStories()
         );
 
-        storiesTable.bind(storiesTableView);
+        storiesTable.bind(storiesTableView, true);
     }
     
     private void mapEpicTasksToWindow() {
@@ -1030,6 +1077,7 @@ public class MainController implements Initializable {
         // tasks tab
         // tasks table
         TasksTable tasksTable = new TasksTable(
+                state,
                 state.bundle(),
                 state.getOpenEpic().getTasks(),
                 state.getOpenDocument().getPreferences(),
@@ -1047,11 +1095,12 @@ public class MainController implements Initializable {
         // risks tab
         // risks table
         RiskTable risksTable = new RiskTable(
+                state,
                 state.bundle(),
                 state.getOpenEpic().getDocumentRisks()
         );
 
-        risksTable.bind(risksTableView);
+        risksTable.bind(risksTableView, true);
     }
     
     private void mapReportsToWindow() {
@@ -2030,22 +2079,11 @@ public class MainController implements Initializable {
      */
     @FXML
     private void handleManageStories() {
-        try {
-            FXMLLoader loader = StandardWindow.load(
-                    this,
-                    state.bundle(),
-                    "/fxml/Stories.fxml"
-            );
-            
-            Parent storiesPane = (Parent) loader.load();
-            
-            StoriesController controller = (StoriesController) loader
-                    .getController();
-            
-            controller.setDocument(state.getOpenDocument());
+        try {         
+            loadStoriesModule(state);
             
             Stage stage = StandardWindow.setup(
-                    storiesPane,
+                    storiesWindow,
                     state.bundle().getString("dialogs.stories.title"),
                     "/fxml/Application.css",
                     StageStyle.DECORATED
@@ -2068,21 +2106,10 @@ public class MainController implements Initializable {
     @FXML
     private void handleManageRisks() {
         try {
-            FXMLLoader loader = StandardWindow.load(
-                    this,
-                    state.bundle(),
-                    "/fxml/Risks.fxml"
-            );
-            
-            Parent risksPane = (Parent) loader.load();
-            
-            RisksController controller = (RisksController) loader
-                    .getController();
-            
-            controller.setDocument(state.getOpenDocument());
-            
+            loadRisksModule(state);
+
             Stage stage = StandardWindow.setup(
-                    risksPane,
+                    risksWindow,
                     state.bundle().getString("risks.dialogs.risk.title"),
                     "/fxml/Application.css",
                     StageStyle.DECORATED

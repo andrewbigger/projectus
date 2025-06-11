@@ -1,5 +1,6 @@
 package com.biggerconcept.projectus.ui.tables;
 
+import com.biggerconcept.projectus.State;
 import com.biggerconcept.sdk.ui.tables.StandardTable;
 import com.biggerconcept.sdk.ui.tables.StandardTableColumn;
 import com.biggerconcept.projectus.domain.Epic;
@@ -48,6 +49,11 @@ public class EpicsTable {
     public static final int STATUS_COL_MIN_WIDTH = 110;
     
     /**
+     * Application state
+     */
+    private final State state;
+    
+    /**
      * Application resource bundle.
      */
     private final ResourceBundle bundle;
@@ -65,15 +71,18 @@ public class EpicsTable {
     /**
      * Constructor for currentEpics table view model.
      * 
+     * @param state application state
      * @param rb application resource bundle
      * @param preferences document documentPreferences
      * @param epics epic list
      */
     public EpicsTable(
+            State state,
             ResourceBundle rb, 
             Preferences preferences, 
             ArrayList<Epic> epics
      ) {
+        this.state = state;
         bundle = rb;
         documentPreferences = preferences;
         currentEpics = epics;

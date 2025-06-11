@@ -1,15 +1,18 @@
 package com.biggerconcept.projectus.ui.tables;
 
+import com.biggerconcept.projectus.State;
 import com.biggerconcept.sdk.ui.tables.StandardTable;
 import com.biggerconcept.sdk.ui.tables.StandardTableColumn;
 import com.biggerconcept.projectus.domain.Story;
 import com.biggerconcept.projectus.domain.Task;
+import com.biggerconcept.projectus.ui.dialogs.StoryDialog;
+import com.biggerconcept.projectus.ui.dialogs.TaskDialog;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -49,6 +52,11 @@ public class StoryTable {
     public static final int EXPECTATION_COL_MIN_WIDTH = 200;
     
     /**
+     * Application state
+     */
+    private final State state;
+    
+    /**
      * Application resource bundle.
      */
     private final ResourceBundle bundle;
@@ -61,13 +69,16 @@ public class StoryTable {
     /**
      * Constructor for the currentStories table view model.
      * 
+     * @param state application state
      * @param rb application resource bundle
      * @param stories list of currentStories
      */
     public StoryTable(
+            State state,
             ResourceBundle rb,
             ArrayList<Story> stories
     ) {
+        this.state = state;
         bundle = rb;
         currentStories = stories;
     }
@@ -76,8 +87,9 @@ public class StoryTable {
      * Binds data to story table view.
      * 
      * @param view story table view
+     * @param allowDialog allow dialog to open
      */
-    public void bind(TableView view) {
+    public void bind(TableView view, boolean allowDialog) {
         StandardTable.bind(
                 view,
                 bundle.getString("stories.table.empty"),
@@ -90,6 +102,31 @@ public class StoryTable {
                 ),
                 false
         );
+        
+        view.setOnMousePressed(event -> {
+            if (
+                    allowDialog == true && 
+                    event.isPrimaryButtonDown() && 
+                    event.getClickCount() == 2
+            ) {
+                try {
+                    Story selected = (Story) view
+                            .getSelectionModel()
+                            .getSelectedItem();
+
+                    StoryDialog manageStory = new StoryDialog(
+                        state.bundle(),
+                        state.getOpenDocument(),
+                        selected
+                    );
+
+                    manageStory.show(state.mainController().window());
+                } catch (Exception ex) {
+                    // ignore
+                    System.out.println(ex.getStackTrace());
+                }
+            }
+        });
     }
     
     /**

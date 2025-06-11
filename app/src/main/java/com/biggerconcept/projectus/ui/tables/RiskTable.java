@@ -1,8 +1,12 @@
 package com.biggerconcept.projectus.ui.tables;
 
+import com.biggerconcept.projectus.State;
 import com.biggerconcept.sdk.ui.tables.StandardTable;
 import com.biggerconcept.sdk.ui.tables.StandardTableColumn;
 import com.biggerconcept.projectus.domain.Risk;
+import com.biggerconcept.projectus.domain.Story;
+import com.biggerconcept.projectus.ui.dialogs.RiskDialog;
+import com.biggerconcept.projectus.ui.dialogs.StoryDialog;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
@@ -51,6 +55,11 @@ public class RiskTable {
     public static final int STATUS_COL_MIN_WIDTH = 150;
     
     /**
+     * Application state
+     */
+    private final State state;
+    
+    /**
      * Application resource bundle.
      */
     private final ResourceBundle bundle;
@@ -63,13 +72,16 @@ public class RiskTable {
     /**
      * Constructor for the currentRisks table view model.
      * 
+     * @param state application state
      * @param rb application resource bundle
      * @param risks list of currentRisks
      */
     public RiskTable(
+            State state,
             ResourceBundle rb,
             ArrayList<Risk> risks
     ) {
+        this.state = state;
         bundle = rb;
         currentRisks = risks;
     }
@@ -78,8 +90,9 @@ public class RiskTable {
      * Binds data to story table view.
      * 
      * @param view story table view
+     * @param allowDialog whether or not to allow dialog to open
      */
-    public void bind(TableView view) {
+    public void bind(TableView view, boolean allowDialog) {
         StandardTable.bind(
                 view,
                 bundle.getString("risks.table.empty"),
@@ -93,6 +106,31 @@ public class RiskTable {
                 ),
                 false
         );
+        
+        view.setOnMousePressed(event -> {
+            if (
+                    allowDialog == true && 
+                    event.isPrimaryButtonDown() && 
+                    event.getClickCount() == 2
+            ) {
+                try {
+                    Risk selected = (Risk) view
+                            .getSelectionModel()
+                            .getSelectedItem();
+
+                    RiskDialog manageRisk = new RiskDialog(
+                        state.bundle(),
+                        state.getOpenDocument(),
+                        selected
+                    );
+
+                    manageRisk.show(state.mainController().window());
+                } catch (Exception ex) {
+                    // ignore
+                    System.out.println(ex.getStackTrace());
+                }
+            }
+        });
 
     }
     

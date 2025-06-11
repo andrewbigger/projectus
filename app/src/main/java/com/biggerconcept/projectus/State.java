@@ -15,6 +15,8 @@ import java.util.ResourceBundle;
  */
 public class State {
    private MainController mainController;
+   private RisksController risksController;
+   private StoriesController storiesController;
    private Epic openEpic;
    private Document openDocument;
    private ResourceBundle bundle;
@@ -47,6 +49,22 @@ public class State {
    
    public MainController mainController() {
        return mainController;
+   }
+   
+   public RisksController getRisksController() {
+       return risksController;
+   }
+   
+   public StoriesController getStoriesController() {
+       return storiesController;
+   }
+   
+   public void setRisksController(RisksController value) {
+       risksController = value;
+   }
+   
+   public void setStoriesController(StoriesController value) {
+       storiesController = value;
    }
    
    public ResourceBundle bundle() {

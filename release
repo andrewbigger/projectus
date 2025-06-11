@@ -7,7 +7,7 @@ app_name="Projectus"
 installer_name="Projectus"
 installer_version="1.0.0"
 
-min=("fxlauncher.jar" "projectus-1.0.0.jar" "appengine.jar" "app.xml")
+min=("fxlauncher.jar" "projectus-1.0.0.jar" "sdk.jar" "app.xml")
 
 source "$PWD/.env"
 

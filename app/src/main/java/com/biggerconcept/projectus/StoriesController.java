@@ -34,6 +34,11 @@ import javafx.stage.Stage;
  */
 public class StoriesController implements Initializable {
     /**
+     * Application state
+     */
+    private State state;
+    
+    /**
      * Resource bundle for stories window.
      */
     private ResourceBundle bundle;
@@ -90,10 +95,11 @@ public class StoriesController implements Initializable {
     /**
      * Sets controller current document.
      * 
-     * @param doc open document 
+     * @param state application state
      */
-    public void setDocument(Document doc) {
-        currentDocument = doc;
+    public void setState(State state) {
+        this.state = state;
+        currentDocument = state.getOpenDocument();
         mapDocumentToWindow();
     }
     
@@ -191,20 +197,49 @@ public class StoriesController implements Initializable {
      * Maps document to window.
      */
     private void mapDocumentToWindow() {
+        mapActorsToWindow();
+        
+        StoryTable storiesTable = new StoryTable(
+                state,
+                bundle,
+                currentDocument.getStories()
+        );
+        
+        storiesTable.bind(storyTableView, false);
+        
+        mapStoryToWindow();
+    }
+    
+    /**
+     * Maps actors to window
+     */
+    private void mapActorsToWindow() {
         actorListView.getItems().clear();
         
         for (Actor a : currentDocument.getActors()) {
             actorListView.getItems().add(a);
         }
         
-        StoryTable storiesTable = new StoryTable(
-                bundle,
-                currentDocument.getStories()
-        );
-        
-        storiesTable.bind(storyTableView);
-        
-        mapStoryToWindow();
+        actorListView.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                try {
+                    Actor selected = (Actor) actorListView
+                            .getSelectionModel()
+                            .getSelectedItem();
+
+                    ActorDialog manageActor = new ActorDialog(
+                        state.bundle(),
+                        state.getOpenDocument(),
+                        selected
+                    );
+
+                    manageActor.show(state.mainController().window());
+                } catch (Exception ex) {
+                    // ignore
+                    System.out.println(ex.getStackTrace());
+                }
+            }
+        });
     }
     
     /**

@@ -35,6 +35,11 @@ import javafx.stage.Stage;
  */
 public class RisksController implements Initializable {
     /**
+     * Application State
+     */
+    private State state;
+    
+    /**
      * Resource bundle for stories window.
      */
     private ResourceBundle bundle;
@@ -105,10 +110,11 @@ public class RisksController implements Initializable {
     /**
      * Sets controller current document.
      * 
-     * @param doc open document 
+     * @param state application state
      */
-    public void setDocument(Document doc) {
-        currentDocument = doc;
+    public void setState(State state) {
+        this.state = state;
+        currentDocument = state.getOpenDocument();
         mapDocumentToWindow();
     }
     
@@ -189,11 +195,12 @@ public class RisksController implements Initializable {
      */
     private void mapDocumentToWindow() {
         RiskTable riskTable = new RiskTable(
+                state,
                 bundle,
                 currentDocument.getRisks()
         );
         
-        riskTable.bind(riskTableView);
+        riskTable.bind(riskTableView, false);
         
         if (currentRisk != null) {
             risksPanel.setVisible(true);

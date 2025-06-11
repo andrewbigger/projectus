@@ -1,11 +1,15 @@
 package com.biggerconcept.projectus.ui.tables;
 
+import com.biggerconcept.projectus.State;
+import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.sdk.ui.tables.StandardTable;
 import com.biggerconcept.sdk.ui.tables.StandardTableColumn;
 import com.biggerconcept.projectus.domain.Preferences;
 import com.biggerconcept.projectus.domain.Task;
+import com.biggerconcept.projectus.ui.dialogs.TaskDialog;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -51,8 +55,13 @@ public class TasksTable {
    /**
      * Width of status column.
      */
-    public static final int STATUS_COL_MIN_WIDTH = 110;
+   public static final int STATUS_COL_MIN_WIDTH = 110;
     
+   
+   /**
+    * Application state
+    */
+   private final State state;
    
    /**
     * Application resource bundle.
@@ -77,17 +86,20 @@ public class TasksTable {
    /**
     * Constructor for currentTasks table view model.
     * 
+    * @param state application state
     * @param rb application resource bundle
     * @param tasks list of currentTasks
     * @param preferences document documentPreferences
     * @param epicNumber epic number
     */
    public TasksTable(
+           State state,
            ResourceBundle rb,
            ArrayList<Task> tasks,
            Preferences preferences,
            int epicNumber
    ) {
+       this.state = state;
        bundle = rb;
        currentTasks = tasks;
        documentPreferences = preferences;
@@ -121,6 +133,28 @@ public class TasksTable {
                ),
                false
        );
+       
+        view.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                try {
+                    List<Task> items = (List<Task>) view
+                            .getSelectionModel()
+                            .getSelectedItems();
+
+                    TaskDialog manageTask = new TaskDialog(
+                        state.bundle(),
+                        state.getOpenEpic(),
+                        items,
+                        items.size() > 1
+                    );
+
+                    manageTask.show(state.mainController().window());
+                } catch (Exception ex) {
+                    // ignore
+                    System.out.println(ex.getStackTrace());
+                }
+            }
+        });
    }
    
    /**
