@@ -1,6 +1,6 @@
 package com.biggerconcept.projectus.ui.dialogs;
 
-import com.biggerconcept.appengine.ui.dialogs.StandardDialog;
+import com.biggerconcept.sdk.ui.dialogs.StandardDialog;
 import com.biggerconcept.projectus.domain.Risk;
 import com.biggerconcept.projectus.domain.Risk.RiskImpact;
 import com.biggerconcept.projectus.domain.Risk.RiskLikelihood;

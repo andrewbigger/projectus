@@ -1,8 +1,8 @@
 package com.biggerconcept.docs;
 
-import com.biggerconcept.appengine.ui.Theme;
-import com.biggerconcept.appengine.ui.helpers.Date;
-import com.biggerconcept.snapporazi.DocImg;
+import com.biggerconcept.sdk.ui.Theme;
+import com.biggerconcept.sdk.ui.helpers.Date;
+import com.biggerconcept.sdk.snapporazi.DocImg;
 import com.biggerconcept.projectus.App;
 import com.biggerconcept.projectus.MainController;
 import com.biggerconcept.projectus.domain.Document;

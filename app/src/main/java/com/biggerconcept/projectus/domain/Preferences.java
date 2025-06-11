@@ -1,6 +1,6 @@
 package com.biggerconcept.projectus.domain;
 
-import com.biggerconcept.appengine.reports.IReport;
+import com.biggerconcept.sdk.reports.IReport;
 import static com.biggerconcept.projectus.domain.Size.DEFAULT_L_TASK_SIZE;
 import static com.biggerconcept.projectus.domain.Size.DEFAULT_M_TASK_SIZE;
 import static com.biggerconcept.projectus.domain.Size.DEFAULT_S_TASK_SIZE;

@@ -1,8 +1,8 @@
 package com.biggerconcept.projectus.ui.dialogs;
 
-import com.biggerconcept.appengine.ui.dialogs.StandardDialog;
+import com.biggerconcept.sdk.ui.dialogs.StandardDialog;
 import com.biggerconcept.projectus.domain.Epic;
-import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
+import com.biggerconcept.sdk.exceptions.NoChoiceMadeException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

@@ -26,12 +26,12 @@ import com.biggerconcept.projectus.reports.paragraphs.TitleElement;
 import com.biggerconcept.projectus.reports.paragraphs.NewLineElement;
 import com.biggerconcept.projectus.reports.paragraphs.SubtitleParagraphElement;
 import com.biggerconcept.projectus.reports.paragraphs.PageBreakElement;
-import com.biggerconcept.appengine.reports.IReport;
-import com.biggerconcept.appengine.reports.elements.Content;
-import com.biggerconcept.appengine.reports.elements.IElement;
-import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
-import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.doctree.domain.Node;
+import com.biggerconcept.sdk.reports.IReport;
+import com.biggerconcept.sdk.reports.elements.Content;
+import com.biggerconcept.sdk.reports.elements.IElement;
+import com.biggerconcept.sdk.reports.ui.dialogs.IElementEditorDialog;
+import com.biggerconcept.sdk.serializers.documents.Doc;
+import com.biggerconcept.sdk.doctree.domain.Node;
 import com.biggerconcept.projectus.State;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.reports.paragraphs.CodeElement;
@@ -46,7 +46,7 @@ import java.util.ResourceBundle;
  * 
  * @author Andrew Bigger
  */
-public class Element extends com.biggerconcept.appengine.reports.elements.Element 
+public class Element extends com.biggerconcept.sdk.reports.elements.Element 
         implements Cloneable, IElement {
     
     /**

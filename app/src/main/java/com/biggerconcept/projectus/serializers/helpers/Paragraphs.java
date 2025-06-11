@@ -1,6 +1,6 @@
 package com.biggerconcept.projectus.serializers.helpers;
 
-import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.sdk.serializers.documents.Doc;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Outlook;
 import com.biggerconcept.projectus.domain.Preferences;

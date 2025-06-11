@@ -1,7 +1,7 @@
 package com.biggerconcept.projectus.ui.tables;
 
-import com.biggerconcept.appengine.ui.tables.StandardTable;
-import com.biggerconcept.appengine.ui.tables.StandardTableColumn;
+import com.biggerconcept.sdk.ui.tables.StandardTable;
+import com.biggerconcept.sdk.ui.tables.StandardTableColumn;
 import com.biggerconcept.projectus.domain.Risk;
 import java.util.ArrayList;
 import java.util.Arrays;

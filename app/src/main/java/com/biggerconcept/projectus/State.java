@@ -1,7 +1,7 @@
 package com.biggerconcept.projectus;
 
-import com.biggerconcept.appengine.reports.IReport;
-import com.biggerconcept.appengine.reports.elements.Content;
+import com.biggerconcept.sdk.reports.IReport;
+import com.biggerconcept.sdk.reports.elements.Content;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.reports.Element;

@@ -1,6 +1,6 @@
 package com.biggerconcept.projectus.ui.dialogs;
 
-import com.biggerconcept.appengine.ui.dialogs.StandardDialog;
+import com.biggerconcept.sdk.ui.dialogs.StandardDialog;
 import com.biggerconcept.projectus.domain.Document;
 import com.biggerconcept.projectus.domain.Epic;
 import java.util.Arrays;
