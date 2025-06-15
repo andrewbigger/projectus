@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -114,10 +115,12 @@ public class TaskDialog {
         descriptionField = new TextArea();
         descriptionField.setFont(Font.font("Menlo", FontWeight.NORMAL, 13));
         descriptionField.setWrapText(true);
+        descriptionField.setMaxHeight(150);
 
         acceptanceCriteriaField = new TextArea();
         acceptanceCriteriaField.setFont(Font.font("Menlo", FontWeight.NORMAL, 13));
         acceptanceCriteriaField.setWrapText(true);
+        acceptanceCriteriaField.setMaxHeight(150);
         
         mapTaskToDialog();
     }
@@ -138,8 +141,7 @@ public class TaskDialog {
         List<Node> attributes = Arrays.asList(
                 taskNav(),
                 nameAttribute(),
-                sizeAttribute(),
-                statusAttribute(),
+                sizeAndStatusAttribute(),
                 descriptionAttribute(),
                 acceptanceCriteriaAttribute()
         );
@@ -277,33 +279,32 @@ public class TaskDialog {
     }
     
     /**
-     * Size attribute builder.
-     * 
-     * Builds a VBox with the size label and a combo box for selecting task
-     * size.
-     * 
-     * @return size attribute
-     */
-    private VBox sizeAttribute() {
-        return StandardDialog.attribute(
-                new Label(bundle.getString("epic.tasks.dialogs.manage.size")),
-                sizeField
-        );
-    }
-    
-    /**
-     * Status attribute builder.
+     * Size and Status attribute builder.
      * 
      * Builds a VBox with the size label and a combo box for selecting task
      * status.
      * 
      * @return size attribute
      */
-    private VBox statusAttribute() {
-        return StandardDialog.attribute(
+    private HBox sizeAndStatusAttribute() {
+        HBox wrapper = new HBox();
+        wrapper.setSpacing(10);
+        
+        wrapper.getChildren().add(
+            StandardDialog.attribute(
                 new Label(bundle.getString("epic.tasks.dialogs.manage.status")),
                 statusField
+            )
         );
+        
+        wrapper.getChildren().add(
+            StandardDialog.attribute(
+                new Label(bundle.getString("epic.tasks.dialogs.manage.size")),
+                sizeField
+            )
+        );
+        
+        return wrapper;
     }
     
     /**
