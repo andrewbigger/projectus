@@ -149,6 +149,21 @@
                            <children>
                               <VBox fx:id="statusPanel" prefHeight="172.0" prefWidth="200.0">
                                  <children>
+                                    <HBox prefHeight="11.0" prefWidth="180.0">
+                                       <children>
+                                          <Label text="%project.status.sprint.title">
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="SansSerif" size="13.0" style="bold" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                     <ProgressBar fx:id="sprintProgress" prefWidth="400.0" progress="0.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" />
@@ -256,21 +271,6 @@
                                           <Insets bottom="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <HBox prefHeight="11.0" prefWidth="180.0">
-                                       <children>
-                                          <Label text="%project.status.sprint.title">
-                                             <HBox.margin>
-                                                <Insets right="5.0" />
-                                             </HBox.margin>
-                                             <font>
-                                                <Font name="SansSerif" size="13.0" style="bold" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" />
-                                       </VBox.margin>
-                                    </HBox>
                                  </children>
                               </VBox>
                               <VBox fx:id="commitmentPanel" prefHeight="62.0" prefWidth="180.0">
