@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="128px"
+   height="128px"
+   viewBox="0 0 128 128"
+   version="1.1"
+   id="SVGRoot"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   sodipodi:docname="RisksIcon.svg"
+   inkscape:export-filename="../../icons/dark/RisksIcon.png"
+   inkscape:export-xdpi="33.75"
+   inkscape:export-ydpi="33.75"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#0e0e0e"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.8258551"
+     inkscape:cx="-125.69453"
+     inkscape:cy="69.282606"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1952"
+     inkscape:window-height="1202"
+     inkscape:window-x="53"
+     inkscape:window-y="39"
+     inkscape:window-maximized="0"
+     inkscape:grid-bbox="true"
+     inkscape:document-rotation="0"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <defs
+     id="defs4485" />
+  <metadata
+     id="metadata4488">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <g
+       transform="matrix(-1.8142588,0,0,-1.8142588,79.398832,77.928573)"
+       id="g886"
+       style="stroke:#a36600;stroke-opacity:1" />
+    <circle
+       style="fill:#e34f32;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       id="path2195"
+       sodipodi:type="arc"
+       sodipodi:cx="63.999985"
+       sodipodi:cy="63.999985"
+       sodipodi:rx="38.809345"
+       sodipodi:ry="38.809345"
+       sodipodi:start="2.303695"
+       sodipodi:end="2.3002904"
+       sodipodi:arc-type="arc"
+       d="m 38.035491,92.844574 a 38.809345,38.809345 0 0 1 -2.902185,-54.784523 38.809345,38.809345 0 0 1 54.782033,-2.948813 38.809345,38.809345 0 0 1 2.99544,54.779503 38.809345,38.809345 0 0 1 -54.776934,3.042064"
+       sodipodi:open="true" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:53.3333px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;fill:#03363d;fill-opacity:1;stroke:#03363d;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="54.065109"
+       y="83.127594"
+       id="text2199"><tspan
+         sodipodi:role="line"
+         id="tspan2197"
+         x="54.065109"
+         y="83.127594"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:53.3333px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">!</tspan></text>
+  </g>
+</svg>

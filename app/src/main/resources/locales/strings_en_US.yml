@@ -2175,4 +2175,25 @@ parts:
     title: "Documents section title"
     value: "Resources"
     variants: {}
+- translation:
+    key: "dialogs.preferences.tabs.theme"
+    title: "Theme tab label"
+    value: "Theme"
+    variants: {}
+- translation:
+    key: "dialogs.preferences.theme.darkMode.title"
+    title: "Dark mode setting title"
+    value: "Dark mode"
+    variants: {}
+- translation:
+    key: "dialogs.preferences.theme.darkMode.description"
+    title: "Description of dark mode option"
+    value: "When enabled, this will apply the dark theme to the application. (Change\
+      \ requires app restart)."
+    variants: {}
+- translation:
+    key: "status.enabled"
+    title: "Enabled status"
+    value: "Enabled"
+    variants: {}
 sourceLanguage: "en"

@@ -17,27 +17,27 @@
 }
 
 .moveUpButton {
-  -fx-background-image: url('../icons/MoveUpIcon.png');
+  -fx-background-image: url('../icons/dark/MoveUpIcon.png');
 }
 
 .moveDownButton {
-  -fx-background-image: url('../icons/MoveDownIcon.png');
+  -fx-background-image: url('../icons/dark/MoveDownIcon.png');
 }
 
 .moveLeftButton {
-  -fx-background-image: url('../icons/MoveLeftIcon.png');
+  -fx-background-image: url('../icons/dark/MoveLeftIcon.png');
 }
 
 .moveRightButton {
-  -fx-background-image: url('../icons/MoveRightIcon.png');
+  -fx-background-image: url('../icons/dark/MoveRightIcon.png');
 }
 
 .moveLeftDoubleButton {
-  -fx-background-image: url('../icons/MoveLeftDoubleIcon.png');
+  -fx-background-image: url('../icons/dark/MoveLeftDoubleIcon.png');
 }
 
 .moveRightDoubleButton {
-  -fx-background-image: url('../icons/MoveRightDoubleIcon.png');
+  -fx-background-image: url('../icons/dark/MoveRightDoubleIcon.png');
 }
 
 .editButton {
@@ -49,11 +49,11 @@
 }
 
 .reportsButton {
-  -fx-background-image: url('../icons/ReportsIcon.png');
+  -fx-background-image: url('../icons/dark/ReportsIcon.png');
 }
 
 .moveButton {
-  -fx-background-image: url('../icons/MoveIcon.png')
+  -fx-background-image: url('../icons/dark/MoveIcon.png')
 }
 
 .definedProgress > .bar {
@@ -73,42 +73,42 @@
 }
 
 #openFileButton {
-  -fx-background-image:url('../icons/OpenFileIcon.png');
+  -fx-background-image:url('../icons/dark/OpenIcon.png');
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
 }
 
 #saveFileButton {
-  -fx-background-image: url('../icons/SaveFileIcon.png');
+  -fx-background-image: url('../icons/dark/SaveIcon.png');
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
 }
 
 #newFileButton {
-  -fx-background-image: url('../icons/NewFileIcon.png');
+  -fx-background-image: url('../icons/dark/NewIcon.png');
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
 }
 
 #manageStoriesButton {
-  -fx-background-image: url('../icons/StoryIcon.png');
+  -fx-background-image: url('../icons/dark/StoryIcon.png');
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
 }
 
 #manageRisksButton {
-  -fx-background-image: url('../icons/RisksIcon.png');
+  -fx-background-image: url('../icons/dark/RisksIcon.png');
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
 }
 
 #reportsMenuButton {
-  -fx-background-image: url('../icons/ReportsIcon.png');
+  -fx-background-image: url('../icons/dark/ReportsIcon.png');
   -fx-background-position: left center;
   -fx-background-repeat: no-repeat;
 }

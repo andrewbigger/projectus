@@ -1512,14 +1512,27 @@ public class MainController implements Initializable {
             
             controller.setPreferences(state.getOpenDocument().getPreferences());
             controller.setEpic(items.get(0));
+            
+            Stage stage;
 
-            Stage stage = StandardWindow.setup(
+            if (App.config().isTrue("darkMode")) {
+                stage = StandardWindow.setup(
                     outlookPane,
                     state.getOpenEpic().getName(),
-                    "/fxml/Application.css",
+                    "/css/application.dark.css",
                     StageStyle.UTILITY
-            );
+                );
+            } else {
+                stage = StandardWindow.setup(
+                    outlookPane,
+                    state.getOpenEpic().getName(),
+                    "/css/application.css",
+                    StageStyle.UTILITY
+                );
+            }
             
+            stage.setMinWidth(800);
+            stage.setMinHeight(600);
             stage.setResizable(false);
             
             openWindows.add(stage);
@@ -2082,12 +2095,26 @@ public class MainController implements Initializable {
         try {         
             loadStoriesModule(state);
             
-            Stage stage = StandardWindow.setup(
+            Stage stage;
+            
+            if (App.config().isTrue("darkMode")) {
+                stage = StandardWindow.setup(
                     storiesWindow,
                     state.bundle().getString("dialogs.stories.title"),
-                    "/fxml/Application.css",
+                    "/css/application.dark.css",
                     StageStyle.DECORATED
-            );
+                );
+            } else {
+                stage = StandardWindow.setup(
+                    storiesWindow,
+                    state.bundle().getString("dialogs.stories.title"),
+                    "/css/application.css",
+                    StageStyle.DECORATED
+                );
+            }
+            
+            stage.setMinWidth(800);
+            stage.setMinHeight(650);
             
             openWindows.add(stage);
             stage.showAndWait();
@@ -2107,13 +2134,27 @@ public class MainController implements Initializable {
     private void handleManageRisks() {
         try {
             loadRisksModule(state);
-
-            Stage stage = StandardWindow.setup(
+            
+            Stage stage;
+            
+            if (App.config().isTrue("darkMode")) {
+                stage = StandardWindow.setup(
                     risksWindow,
                     state.bundle().getString("risks.dialogs.risk.title"),
-                    "/fxml/Application.css",
+                    "/css/application.dark.css",
                     StageStyle.DECORATED
-            );
+                );
+            } else {
+                stage = StandardWindow.setup(
+                    risksWindow,
+                    state.bundle().getString("risks.dialogs.risk.title"),
+                    "/css/application.css",
+                    StageStyle.DECORATED
+                );
+            }
+            
+            stage.setMinWidth(800);
+            stage.setMinHeight(650);
             
             openWindows.add(stage);
             stage.showAndWait();

@@ -1,5 +1,6 @@
 package com.biggerconcept.projectus.domain;
 
+import com.biggerconcept.projectus.App;
 import com.biggerconcept.sdk.reports.IReport;
 import static com.biggerconcept.projectus.domain.Size.DEFAULT_L_TASK_SIZE;
 import static com.biggerconcept.projectus.domain.Size.DEFAULT_M_TASK_SIZE;
@@ -12,12 +13,11 @@ import static com.biggerconcept.projectus.domain.Size.TaskSize.S;
 import static com.biggerconcept.projectus.domain.Size.TaskSize.XL;
 import static com.biggerconcept.projectus.domain.Size.TaskSize.XS;
 import com.biggerconcept.projectus.reports.Report;
+import com.biggerconcept.sdk.preferences.Config;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -99,6 +99,12 @@ public class Preferences {
     @JsonInclude(Include.NON_NULL)
     @JsonDeserialize(contentAs=Report.class)
     private ArrayList<IReport> reports;
+    
+    /**
+     * Application settings
+     */
+    @JsonIgnore
+    private Config applicationSettings;
     
     /**
      * Default epic start number.
@@ -188,6 +194,26 @@ public class Preferences {
         p.estimateBuffer = DEFAULT_ESTIMATE_BUFFER;
         
         return p;
+    }
+    
+    /**
+     * Default constructor.
+     */
+    public Preferences() {
+        this.applicationSettings = App.config();
+    }
+    
+    /**
+     * Getter for application settings
+     * 
+     * @return application settings
+     */
+    public Config getApplicationSettings() {
+        if (applicationSettings == null) {
+            applicationSettings = App.config();
+        }
+        
+        return applicationSettings;
     }
     
     /**
@@ -372,6 +398,15 @@ public class Preferences {
      */
     public int calculateAvailablePointsPerSprint() {
         return calculateAvailablePointsInSprints(1);
+    }
+    
+    /**
+     * Setter for application settings
+     * 
+     * @return application settings
+     */
+    public Config setApplicationSettings() {
+        return applicationSettings;
     }
     
     /**

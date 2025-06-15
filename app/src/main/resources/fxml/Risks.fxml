@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="1116.0" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.RisksController">
+<BorderPane maxHeight="600.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.RisksController">
    <center>
       <SplitPane dividerPositions="0.7244165170556554" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <items>
@@ -62,7 +62,7 @@
                         <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
-                  <ComboBox id="riskLikelihoodDropdown" fx:id="riskLikelihoodComboBox" prefWidth="150.0">
+                  <ComboBox id="riskLikelihoodDropdown" fx:id="riskLikelihoodComboBox" prefHeight="34.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -75,7 +75,7 @@
                         <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
-                  <ComboBox id="riskImpactDropdown" fx:id="riskImpactComboBox" prefWidth="150.0">
+                  <ComboBox id="riskImpactDropdown" fx:id="riskImpactComboBox" prefHeight="34.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -88,7 +88,7 @@
                         <Font name="SansSerif" size="13.0" style="bold" />
                      </font>
                   </Label>
-                  <ComboBox id="riskStatusDropdown" fx:id="riskStatusComboBox" prefWidth="150.0">
+                  <ComboBox id="riskStatusDropdown" fx:id="riskStatusComboBox" prefHeight="34.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

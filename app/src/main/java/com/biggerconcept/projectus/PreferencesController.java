@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -168,6 +169,12 @@ public class PreferencesController
      */
     @FXML
     public ListView reportsListView;
+    
+    /**
+     * Dark mode enabled checkbox
+     */
+    @FXML
+    private CheckBox darkModeCheckBox;
 
     /**
      * Initialize-er for the preference window
@@ -234,6 +241,7 @@ public class PreferencesController
         mapSprintPreferencesToWindow();
         mapEstimatePreferencesToWindow();
         mapReportsToWindow();
+        mapThemeToWindow();
     }
     
     /**
@@ -353,6 +361,18 @@ public class PreferencesController
     }
     
     /**
+     * Maps theme settings to preference window
+     */
+    private void mapThemeToWindow() {
+        boolean darkModeEnabled = state.getOpenDocument()
+                .getPreferences()
+                .getApplicationSettings()
+                .isTrue("darkMode");
+        
+        darkModeCheckBox.setSelected(darkModeEnabled);
+    }
+    
+    /**
      * Maps window content to new document object for serialization.
      */
     public void mapWindowToPreferences() {
@@ -361,6 +381,10 @@ public class PreferencesController
         mapWindowToEstimatePreferences();
         
         currentDocument.setPreferences(currentPreferences);
+        
+        state.getOpenDocument().getPreferences().getApplicationSettings().set("darkMode", 
+                darkModeCheckBox.isSelected()
+        );
     }
     
     /**

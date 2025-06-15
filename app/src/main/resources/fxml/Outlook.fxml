@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="550.0" maxWidth="850.0" minHeight="550.0" minWidth="850.0" prefHeight="550.0" prefWidth="850.0" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.OutlookController">
+<BorderPane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.projectus.OutlookController">
    <right>
       <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -183,42 +183,42 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ffeedb;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookNeutral" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <Label fx:id="oPointsLabel" text="0" />
+                  <Label fx:id="oPointsLabel" text="0" textFill="#fffefe" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ffeedb;" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookNeutral" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <children>
-                  <Label fx:id="oSprintsLabel" text="0" />
+                  <Label fx:id="oSprintsLabel" text="0" textFill="#fffefe" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ffeedb;" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookNeutral" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <children>
-                  <Label fx:id="oWeeksLabel" text="0" />
+                  <Label fx:id="oWeeksLabel" text="0" textFill="#fffefe" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ffeedb;" GridPane.rowIndex="4">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookNeutral" GridPane.rowIndex="4">
                <children>
-                  <Label text="%outlook.table.o" />
+                  <Label text="%outlook.table.o" textFill="#fffefe" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #d1e8df;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookOptimistic" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="oPlusThreePointsLabel" text="0" />
+                  <Label fx:id="oPlusThreePointsLabel" text="0" textFill="#fffefe" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #d1e8df;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookOptimistic" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="oPlusThreeSprintsLabel" text="0" />
+                  <Label fx:id="oPlusThreeSprintsLabel" text="0" textFill="#fffefe" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #d1e8df;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookOptimistic" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="oPlusThreeWeeksLabel" text="0" />
+                  <Label fx:id="oPlusThreeWeeksLabel" text="0" textFill="#fffefe" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #498283;" GridPane.columnIndex="1">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookHeader" GridPane.columnIndex="1">
                <children>
                   <Label text="%outlook.table.points" textFill="WHITE">
                      <font>
@@ -226,7 +226,7 @@
                      </font></Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #498283;" GridPane.columnIndex="2">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookHeader" GridPane.columnIndex="2">
                <children>
                   <Label text="%outlook.table.sprints" textFill="WHITE">
                      <font>
@@ -234,7 +234,7 @@
                      </font></Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #498283;" GridPane.columnIndex="3">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookHeader" GridPane.columnIndex="3">
                <children>
                   <Label text="%outlook.table.weeks" textFill="WHITE">
                      <font>
@@ -242,7 +242,7 @@
                      </font></Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #498283;">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookHeader">
                <children>
                   <Label text="%outlook.table.outlook" textFill="WHITE">
                      <font>
@@ -310,24 +310,24 @@
                   <Label fx:id="oMinusTwoWeeksLabel" text="0" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5d5d8;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookPesimistic" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <children>
-                  <Label fx:id="oMinusThreePointsLabel" text="0" />
+                  <Label fx:id="oMinusThreePointsLabel" text="0" textFill="#fffefe" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5d5d8;" GridPane.columnIndex="2" GridPane.rowIndex="7">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookPesimistic" GridPane.columnIndex="2" GridPane.rowIndex="7">
                <children>
-                  <Label fx:id="oMinusThreeSprintsLabel" text="0" />
+                  <Label fx:id="oMinusThreeSprintsLabel" text="0" textFill="#fffefe" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5d5d8;" GridPane.columnIndex="3" GridPane.rowIndex="7">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookPesimistic" GridPane.columnIndex="3" GridPane.rowIndex="7">
                <children>
-                  <Label fx:id="oMinusThreeWeeksLabel" text="0" />
+                  <Label fx:id="oMinusThreeWeeksLabel" text="0" textFill="#fffefe" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #d1e8df;" GridPane.rowIndex="1">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookOptimistic" GridPane.rowIndex="1">
                <children>
-                  <Label text="%outlook.table.oPlusThree" />
+                  <Label text="%outlook.table.oPlusThree" textFill="#fffefe" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
@@ -350,9 +350,9 @@
                   <Label text="%outlook.table.oMinusTwo" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f5d5d8;" GridPane.rowIndex="7">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="outlookPesimistic" GridPane.rowIndex="7">
                <children>
-                  <Label text="%outlook.table.oMinusThree" />
+                  <Label text="%outlook.table.oMinusThree" textFill="#fffefe" />
                </children>
             </VBox>
          </children>
