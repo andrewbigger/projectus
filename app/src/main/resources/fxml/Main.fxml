@@ -36,23 +36,43 @@
          <center>
             <ToolBar prefWidth="200.0" BorderPane.alignment="CENTER">
               <items>
-                  <Button id="newFileButton" fx:id="newFileButton" mnemonicParsing="false" onMouseClicked="#handleCreateNewDocument" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
-                  <Button id="openFileButton" fx:id="openFileButton" mnemonicParsing="false" onMouseClicked="#handleOpenDocument" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
-                  <Button id="saveFileButton" fx:id="saveFileButton" mnemonicParsing="false" onMouseClicked="#handleSaveDocument" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
+                  <Button id="newFileButton" fx:id="newFileButton" mnemonicParsing="false" onMouseClicked="#handleCreateNewDocument" prefHeight="40.0" prefWidth="40.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                     </styleClass></Button>
+                  <Button id="openFileButton" fx:id="openFileButton" mnemonicParsing="false" onMouseClicked="#handleOpenDocument" prefHeight="40.0" prefWidth="40.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                     </styleClass></Button>
+                  <Button id="saveFileButton" fx:id="saveFileButton" mnemonicParsing="false" onMouseClicked="#handleSaveDocument" prefHeight="40.0" prefWidth="40.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                     </styleClass></Button>
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="9.0" />
-                  <MenuButton id="reportsMenuButton" fx:id="reportsMenuButton" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="55.0" text="%toolbar.reports.title">
+                  <MenuButton id="reportsMenuButton" fx:id="reportsMenuButton" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="40.0" styleClass="smallIcon" text="%toolbar.reports.title">
                      <padding>
-                        <Insets left="35.0" />
+                        <Insets left="15.0" />
                      </padding>
                   </MenuButton>
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="9.0" />
-                  <Button id="manageStoriesButton" fx:id="manageStoriesButton" mnemonicParsing="false" onMouseClicked="#handleManageStories" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
-                  <Button id="manageRisksButton" fx:id="manageRisksButton" mnemonicParsing="false" onMouseClicked="#handleManageRisks" prefHeight="55.0" prefWidth="55.0" styleClass="iconButton" />
+                  <Button id="manageStoriesButton" fx:id="manageStoriesButton" mnemonicParsing="false" onMouseClicked="#handleManageStories" prefHeight="40.0" prefWidth="40.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                     </styleClass></Button>
+                  <Button id="manageRisksButton" fx:id="manageRisksButton" mnemonicParsing="false" onMouseClicked="#handleManageRisks" prefHeight="40.0" prefWidth="40.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                     </styleClass></Button>
               </items>
             </ToolBar>
          </center>
          <right>
-            <ToolBar prefHeight="63.0" prefWidth="177.0" BorderPane.alignment="CENTER" />
+            <ToolBar prefHeight="50.0" prefWidth="177.0" BorderPane.alignment="CENTER" />
          </right>
          <top>
             <MenuBar fx:id="mainMenu" prefWidth="1000.0" BorderPane.alignment="CENTER">
